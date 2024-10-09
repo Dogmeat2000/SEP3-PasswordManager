@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d0a10df2-6a85-46da-9d11-2dd45aa7ccc7" name="Changes" comment="creating interface and implementation for handling client requests and sending them to the server">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/sep3/pm_backend/PmBackendApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dk/sep3/pm_backend/PmBackendApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2n6qBv31uUevBTA2GMVSdrHr7Rq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.PasswordManager [clean,compile].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "liberica-21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Carsten Aamand/Documents/SEP3_PasswordManager/SEP3_PasswordManager/PM_Backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean compile" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.PasswordManagerApplication">
+    <configuration name="PasswordManagerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="PasswordManager" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dk.sep3.passwordmanager.PasswordManagerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PasswordManagerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="PasswordManager" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.passwordmanager.PasswordManagerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d0a10df2-6a85-46da-9d11-2dd45aa7ccc7" name="Changes" comment="" />
+      <created>1728303741302</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728303741302</updated>
+      <workItem from="1728303742293" duration="853000" />
+      <workItem from="1728462738693" duration="1377000" />
+      <workItem from="1728464868478" duration="431000" />
+    </task>
+    <task id="LOCAL-00001" summary="creating classes used for communication and datatransfer">
+      <option name="closed" value="true" />
+      <created>1728304376905</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728304376906</updated>
+    </task>
+    <task id="LOCAL-00002" summary="creating interfaces and implementation for handling client requests">
+      <option name="closed" value="true" />
+      <created>1728304414045</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728304414045</updated>
+    </task>
+    <task id="LOCAL-00003" summary="creating interfaces and implementation for handling server communication">
+      <option name="closed" value="true" />
+      <created>1728304432485</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728304432485</updated>
+    </task>
+    <task id="LOCAL-00004" summary="creating application and main classes for loadBalancer">
+      <option name="closed" value="true" />
+      <created>1728304449582</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728304449583</updated>
+    </task>
+    <task id="LOCAL-00005" summary="creating factory and monitor for monitoring loadbalancers and creating more if needed">
+      <option name="closed" value="true" />
+      <created>1728304477619</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728304477619</updated>
+    </task>
+    <task id="LOCAL-00006" summary="creating interface and implementation for handling client requests and sending them to the server">
+      <option name="closed" value="true" />
+      <created>1728304565203</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728304565203</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="creating classes used for communication and datatransfer" />
+    <MESSAGE value="creating interfaces and implementation for handling client requests" />
+    <MESSAGE value="creating interfaces and implementation for handling server communication" />
+    <MESSAGE value="creating application and main classes for loadBalancer" />
+    <MESSAGE value="creating factory and monitor for monitoring loadbalancers and creating more if needed" />
+    <MESSAGE value="creating interface and implementation for handling client requests and sending them to the server" />
+    <option name="LAST_COMMIT_MESSAGE" value="creating interface and implementation for handling client requests and sending them to the server" />
+  </component>
+</project>
