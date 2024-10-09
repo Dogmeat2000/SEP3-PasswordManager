@@ -1,4 +1,4 @@
-package dk.sep3.passwordmanager.dbServer.application;
+package dk.sep3.dbserver.application;
 
 public class dbServerMain
 {

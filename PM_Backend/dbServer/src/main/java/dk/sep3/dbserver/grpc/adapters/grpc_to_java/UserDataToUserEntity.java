@@ -1,6 +1,6 @@
-package dk.sep3.passwordmanager.dbServer.grpc.adapters.grpc_to_java;
+package dk.sep3.dbserver.grpc.adapters.grpc_to_java;
 
-import dk.sep3.passwordmanager.dbServer.db_entities.User;
+import dk.sep3.dbserver.db_entities.User;
 import grpc.UserData;
 
 /** <p>Responsible for converting a gRPC connection data entries into java database server compatible db entities</p> */

@@ -1,10 +1,10 @@
-package dk.sep3.passwordmanager.dbServer.grpc.service;
+package dk.sep3.dbserver.grpc.service;
 
-import dk.sep3.passwordmanager.dbServer.db_entities.User;
-import dk.sep3.passwordmanager.dbServer.grpc.adapters.grpc_to_java.UserDataToUserEntity;
-import dk.sep3.passwordmanager.dbServer.grpc.adapters.java_to_grpc.UserToGrpcUserData;
-import dk.sep3.passwordmanager.dbServer.service.UserRepositoryServiceImpl;
-import dk.sep3.passwordmanager.dbServer.service.exceptions.NotFoundInDBException;
+import dk.sep3.dbserver.db_entities.User;
+import dk.sep3.dbserver.grpc.adapters.grpc_to_java.UserDataToUserEntity;
+import dk.sep3.dbserver.grpc.adapters.java_to_grpc.UserToGrpcUserData;
+import dk.sep3.dbserver.service.UserRepositoryServiceImpl;
+import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import grpc.UserData;
 import grpc.UserNameAndPswd;
 import grpc.UserServiceGrpc;

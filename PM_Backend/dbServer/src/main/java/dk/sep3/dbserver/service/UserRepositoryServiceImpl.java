@@ -1,8 +1,8 @@
-package dk.sep3.passwordmanager.dbServer.service;
+package dk.sep3.dbserver.service;
 
-import dk.sep3.passwordmanager.dbServer.db_entities.User;
-import dk.sep3.passwordmanager.dbServer.repositories.UserRepository;
-import dk.sep3.passwordmanager.dbServer.service.exceptions.NotFoundInDBException;
+import dk.sep3.dbserver.db_entities.User;
+import dk.sep3.dbserver.repositories.UserRepository;
+import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;

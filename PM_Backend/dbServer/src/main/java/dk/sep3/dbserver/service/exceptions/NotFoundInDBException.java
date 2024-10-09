@@ -1,4 +1,4 @@
-package dk.sep3.passwordmanager.dbServer.service.exceptions;
+package dk.sep3.dbserver.service.exceptions;
 
 public class NotFoundInDBException extends RuntimeException
 {
