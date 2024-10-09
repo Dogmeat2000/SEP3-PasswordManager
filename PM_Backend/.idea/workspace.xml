@@ -4,12 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="" />
+    <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/SEP3_PasswordManager.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dbServer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dbServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbServer/src/test/java/dk/sep3/dbserver/integrationTests/UserGrpcIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbServer/src/test/java/dk/sep3/dbserver/integrationTests/UserGrpcIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbServer/src/test/resources/application-test.properties" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Dogmeat2000"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/KatAamand/SEP3_PasswordManager.git",
+    "accountId": "1b2bf504-1779-4b79-811b-a81c275dfd68"
+  }
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -20,10 +45,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2nC7e1GPuTdGqGovYV1JU1MxqEo" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -31,15 +56,25 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.dbServer [clean].executor": "Run",
+    "Maven.dbServer [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "liberica-21",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/IntelliJ_Projects/SEP3_PasswordManager",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.47585395",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -55,7 +90,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-liberica-21.0.2-4caba194b151-c80c24ab" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
       </set>
     </attachedChunks>
   </component>
@@ -68,6 +104,7 @@
       <option name="presentableId" value="Default" />
       <updated>1728465301471</updated>
       <workItem from="1728465302610" duration="298000" />
+      <workItem from="1728486553167" duration="6789000" />
     </task>
     <servers />
   </component>

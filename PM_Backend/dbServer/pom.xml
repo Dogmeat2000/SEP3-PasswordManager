@@ -30,8 +30,6 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <os.detected.classifier>windows-x86_64</os.detected.classifier>
         <java.version>21</java.version>
     </properties>
     <dependencies>
@@ -87,6 +85,19 @@
             <version>3.1.0.RELEASE</version>
         </dependency>
 
+        <!-- Part of the Spring Boot GRPC integration -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>4.28.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-core</artifactId>
+            <version>1.63.0</version>
+        </dependency>
+
         <dependency>
             <!-- Part of the Spring Boot GRPC integration -->
             <groupId>io.grpc</groupId>
@@ -133,6 +144,18 @@
 
         <plugins>
             <plugin>
+                <!-- This configuration has been added, due to issues with testing gRPC connections in parallel on the same port through maven. -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version> <!-- or the latest version -->
+                <configuration>
+                    <reuseForks>false</reuseForks>
+                    <forkCount>1</forkCount>
+                    <parallel>none</parallel>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
@@ -144,7 +167,7 @@
                 <version>0.6.1</version>
                 <configuration>
                     <protocArtifact>
-                        com.google.protobuf:protoc:3.19.4:exe:${os.detected.classifier}
+                        com.google.protobuf:protoc:4.28.2:exe:${os.detected.classifier}
                     </protocArtifact>
 
                     <pluginId>grpc-java</pluginId>

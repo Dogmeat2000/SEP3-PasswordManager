@@ -11,6 +11,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -54,6 +55,15 @@ public class UserGrpcIntegrationTest
 
     // Initialize all the @Mock and @InjectMock fields, allowing Spring Boot time to perform its Dependency Injection.
     MockitoAnnotations.openMocks(this);
+  }
+
+  @AfterEach
+  public void tearDown() {
+    // Tear down the gRPC client channel:
+    channel.shutdownNow();
+    channel = null;
+
+    blockingStub = null;
   }
 
 
