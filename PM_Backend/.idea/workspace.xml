@@ -5,36 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/SEP3_PasswordManager.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common/src/main/java/dto/ClientRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common/src/main/java/dto/ServerResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/ILoadBalancerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/WebAPIServiceMonitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoadBalancer/src/main/webapi.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dbServer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dbServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbServer/src/test/java/dk/sep3/dbserver/integrationTests/UserGrpcIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbServer/src/test/java/dk/sep3/dbserver/integrationTests/UserGrpcIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbServer/src/test/resources/application-test.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadBalancer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Dogmeat2000"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Dogmeat2000&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KatAamand/SEP3_PasswordManager.git",
-    "accountId": "1b2bf504-1779-4b79-811b-a81c275dfd68"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KatAamand/SEP3_PasswordManager.git&quot;,
+    &quot;accountId&quot;: &quot;1b2bf504-1779-4b79-811b-a81c275dfd68&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -56,32 +74,79 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.Common [clean,compile].executor": "Run",
+    "Maven.Common [clean,install].executor": "Run",
+    "Maven.LoadBalancer [clean,compile].executor": "Run",
+    "Maven.LoadBalancer [clean,install].executor": "Run",
+    "Maven.LoadBalancer [compile].executor": "Run",
+    "Maven.WebAPI [clean,compile].executor": "Run",
+    "Maven.WebAPI [clean,install].executor": "Run",
     "Maven.dbServer [clean].executor": "Run",
+    "Maven.dbServer [compile].executor": "Run",
     "Maven.dbServer [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "liberica-21",
+    "jdk.selected.JAVA_MODULE": "21",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/IntelliJ_Projects/SEP3_PasswordManager",
+    "last_opened_file_path": "C:/Users/Carsten Aamand/Documents/SEP3_PasswordManager/PM_Backend/LoadBalancer/src/main/java/dk/sep3/loadbalancer/dto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Facets",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.47585395",
-    "settings.editor.selected.configurable": "vcs.Git",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "MavenSettings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="dk.sep3.loadbalancer" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\PM_Backend\LoadBalancer\src\main\java\dk\sep3\loadbalancer\dto" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\PM_Backend\LoadBalancer\src\main" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="dk.sep3.loadbalancer.dto" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dk.sep3.webapi" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn compile" />
+      <command value="mvn clean compile" />
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.DbServerApplication">
     <configuration name="DbServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="dbServer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="dk.sep3.dbserver.DbServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoadBalancerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="LoadBalancer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dk.sep3.loadbalancer.LoadBalancerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="WebAPI" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dk.sep3.webapi.WebApiApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -90,8 +155,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+        <option value="jdk-21.0.2-liberica-21.0.2-4caba194b151-c80c24ab" />
       </set>
     </attachedChunks>
   </component>
@@ -105,6 +169,7 @@
       <updated>1728465301471</updated>
       <workItem from="1728465302610" duration="298000" />
       <workItem from="1728486553167" duration="6789000" />
+      <workItem from="1728539330562" duration="8056000" />
     </task>
     <servers />
   </component>
