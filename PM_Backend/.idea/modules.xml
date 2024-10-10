@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PM_Backend.iml" filepath="$PROJECT_DIR$/PM_Backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dbServer/dbServer.iml" filepath="$PROJECT_DIR$/dbServer/dbServer.iml" />
     </modules>
   </component>
 </project>
