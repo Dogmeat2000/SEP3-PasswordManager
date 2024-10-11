@@ -9,17 +9,19 @@
         <module name="LoadBalancer" />
         <module name="WebAPI" />
         <module name="dbServer" />
+        <module name="Common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Common" target="21" />
       <module name="Shared" target="21" />
+      <module name="WebApiService" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="LoadBalancer" options="-parameters" />
       <module name="WebAPI" options="-parameters" />
+      <module name="WebApiService" options="-parameters" />
       <module name="dbServer" options="-parameters" />
     </option>
   </component>

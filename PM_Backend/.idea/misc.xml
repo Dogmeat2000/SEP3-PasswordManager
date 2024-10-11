@@ -10,11 +10,14 @@
         <option value="$PROJECT_DIR$/Shared/pom.xml" />
         <option value="$PROJECT_DIR$/shared/pom.xml" />
         <option value="$PROJECT_DIR$/Common/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/WebApiService/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/Shared/pom.xml" />
+        <option value="$PROJECT_DIR$/WebApiService/pom.xml" />
       </set>
     </option>
   </component>
