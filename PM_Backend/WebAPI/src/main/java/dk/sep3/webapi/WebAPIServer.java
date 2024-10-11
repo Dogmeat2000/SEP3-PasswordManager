@@ -1,6 +1,7 @@
 package dk.sep3.webapi;
 
 import dto.ClientRequest;
+import dto.ServerResponse;
 
 /** Handles requests from clients and exposes the API-methods to interact with the dbServer **/
 public class WebAPIServer {
@@ -13,17 +14,26 @@ public class WebAPIServer {
         this.available = true;
     }
 
-    public void handleRequest(ClientRequest request) {
-        currentLoad++;
-        System.out.println("Handling request: " + request.ToString());
+    public ServerResponse handleRequest(ClientRequest request) {
+        if (!isAvailable()) {
+            return new ServerResponse("Server is overloaded, cannot handle more requests.", 503);
+        }
 
-        // TODO implement
+        // TODO: Implement logic to handle the request
 
+        ServerResponse response = new ServerResponse("Request handled successfully", 200);
+        finishRequest();
+
+        return response;
+    }
+
+    private void finishRequest() {
+        System.out.println("Finished request. Reducing load.");
         resetLoad();
     }
 
     public boolean isActive() {
-        return false;
+        return true;
     }
 
     public boolean isAvailable() {
@@ -31,7 +41,9 @@ public class WebAPIServer {
     }
 
     public void resetLoad() {
-        currentLoad -= 1;
+        if (currentLoad > 0) {
+            currentLoad--;
+        }
         available = true;
     }
 }

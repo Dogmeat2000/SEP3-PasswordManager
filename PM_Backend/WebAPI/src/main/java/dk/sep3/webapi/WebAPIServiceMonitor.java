@@ -1,7 +1,5 @@
-package dk.sep3.loadbalancer;
+package dk.sep3.webapi;
 
-import dk.sep3.webapi.WebAPIServer;
-import dk.sep3.webapi.WebAPIServerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -52,6 +50,7 @@ public class WebAPIServiceMonitor {
     }
 
     private boolean isServerOverloaded(WebAPIServer server) {
+        // TODO implement logic to check if server is overloaded
         return false;
     }
 
