@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** LoadBalancerController receives a ClientRequest and forwards it to LoadBalancerService.
+/** LoadBalancerController receives a dto.ClientRequest and forwards it to LoadBalancerService.
  * Recieves and handles all HTTP requests from clients **/
 @RestController
 @RequestMapping("/loadbalancer")
@@ -21,10 +21,9 @@ public class LoadBalancerController {
     @PostMapping("/request")
     public ServerResponse handleRequest(@RequestBody ClientRequest request) {
         try {
-            service.handleClientRequest(request);
-            return new ServerResponse("Request handled successfully", 200);
+            return service.handleClientRequest(request);
         } catch (RuntimeException e) {
-            return new ServerResponse(e.getMessage(), 503);
+            return new ServerResponse("An error occurred", 500);
         }
     }
 }
