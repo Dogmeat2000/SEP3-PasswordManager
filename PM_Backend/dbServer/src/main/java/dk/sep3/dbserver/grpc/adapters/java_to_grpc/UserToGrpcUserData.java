@@ -1,6 +1,6 @@
 package dk.sep3.dbserver.grpc.adapters.java_to_grpc;
 
-import dk.sep3.dbserver.db_entities.User;
+import dk.sep3.dbserver.model.passwordManager.db_entities.User;
 import dk.sep3.dbserver.grpc.factories.UserGrpcFactory;
 import grpc.UserData;
 

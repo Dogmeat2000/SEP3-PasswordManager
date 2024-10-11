@@ -1,8 +1,8 @@
-package dk.sep3.dbserver.application;
+package dk.sep3.dbserverdiscoveryservice.application;
 
-import dk.sep3.dbserver.model.passwordManager.db_entities.User;
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.UserDataToUserEntity;
 import dk.sep3.dbserver.grpc.factories.UserGrpcFactory;
+import dk.sep3.dbserver.model.passwordManager.db_entities.User;
 import grpc.UserData;
 import grpc.UserNameAndPswd;
 import grpc.UserServiceGrpc;
@@ -12,14 +12,14 @@ import io.grpc.StatusRuntimeException;
 
 import java.util.Scanner;
 
-// This is a simple CommandLineInterface debugging tool, to test the foundational DB Server architecture (simulate gRPC calls and if they properly affect the database repository).
-public class dbServerDebug_CLI
+// This is a simple CommandLineInterface debugging tool, to test if the Discovery Service properly retransmits requests to a gRPC server.
+public class dbDiscoveryServerDebug_CLI
 {
   private static final String host = "localhost";
-  private static final int port = 9090;
+  private static final int port = 8090;
 
   public static void main(String[] args) {
-    System.out.println("\nSimple DEBUGGER: That can be used to manually test the basic architecture of the DB Server!");
+    System.out.println("\nSimple DEBUGGER: That can be used to manually test the functionality of the Database Discovery Server!");
 
     Scanner input = new Scanner(System.in);
 

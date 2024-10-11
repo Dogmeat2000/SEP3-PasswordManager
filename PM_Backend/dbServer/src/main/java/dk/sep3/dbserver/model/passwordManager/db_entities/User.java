@@ -1,4 +1,4 @@
-package dk.sep3.dbserver.db_entities;
+package dk.sep3.dbserver.model.passwordManager.db_entities;
 
 import jakarta.persistence.*;
 

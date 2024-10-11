@@ -13,6 +13,7 @@
         <module>WebAPI</module>
         <module>LoadBalancer</module>
         <module>dbServer</module>
+        <module>dbServerDiscoveryService</module>
     </modules>
 
     <properties>

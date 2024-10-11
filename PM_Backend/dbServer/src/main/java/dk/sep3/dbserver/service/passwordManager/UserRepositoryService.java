@@ -1,6 +1,6 @@
-package dk.sep3.dbserver.service;
+package dk.sep3.dbserver.service.passwordManager;
 
-import dk.sep3.dbserver.db_entities.User;
+import dk.sep3.dbserver.model.passwordManager.db_entities.User;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;
 import org.springframework.dao.DataIntegrityViolationException;

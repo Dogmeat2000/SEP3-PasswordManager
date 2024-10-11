@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan(basePackages = "dk.sep3.dbServer.db_entities")
+@EntityScan(basePackages = {"dk.sep3.dbServer.model.passwordManager.db_entities", "dk.sep3.dbServer.model.discoveryService.db_entities"})
 public class DbServerApplication {
 
     public static void main(String[] args) {
