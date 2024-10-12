@@ -1,9 +1,10 @@
 package dk.sep3.dbserver.grpc.service;
 
-import dk.sep3.dbserver.db_entities.User;
+import dk.sep3.dbserver.model.passwordManager.db_entities.User;
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.UserDataToUserEntity;
 import dk.sep3.dbserver.grpc.adapters.java_to_grpc.UserToGrpcUserData;
-import dk.sep3.dbserver.service.UserRepositoryServiceImpl;
+import dk.sep3.dbserver.service.passwordManager.UserRepositoryService;
+import dk.sep3.dbserver.service.passwordManager.UserRepositoryServiceImpl;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import grpc.UserData;
 import grpc.UserNameAndPswd;
@@ -11,19 +12,29 @@ import grpc.UserServiceGrpc;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /** Responsible for handling incoming GRPC calls from external clients and returning results using gRPC. */
 @GrpcService
 public class UserGrpcServiceImpl extends UserServiceGrpc.UserServiceImplBase
 {
-  private final UserRepositoryServiceImpl userServiceImpl;
+  private final UserRepositoryService userServiceImpl;
+  private static final Logger logger = LoggerFactory.getLogger(UserGrpcServiceImpl.class);
 
   @Autowired
-  public UserGrpcServiceImpl(UserRepositoryServiceImpl userServiceImpl) {
+  public UserGrpcServiceImpl(UserRepositoryServiceImpl userServiceImpl, ServerHealthMonitor serverHealthMonitor) {
     super();
     this.userServiceImpl = userServiceImpl;
+
+    // Launch database health monitor on a separate thread:
+    Thread healthMonitorThread = new Thread(() -> serverHealthMonitor.startService());
+    healthMonitorThread.setDaemon(true);
+    healthMonitorThread.start();
+    logger.info("Server Health Monitoring Service is running!");
   }
+
 
   @Override
   public void registerUser(UserData request, StreamObserver<UserData> responseObserver) {

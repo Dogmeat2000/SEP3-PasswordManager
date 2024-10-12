@@ -1,7 +1,7 @@
-package dk.sep3.dbserver.service;
+package dk.sep3.dbserver.service.passwordManager;
 
-import dk.sep3.dbserver.db_entities.User;
-import dk.sep3.dbserver.repositories.UserRepository;
+import dk.sep3.dbserver.model.passwordManager.db_entities.User;
+import dk.sep3.dbserver.repositories.passwordManagerDb.UserRepository;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.exception.ConstraintViolationException;
@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,7 +25,6 @@ public class UserRepositoryServiceImpl implements UserRepositoryService
   }
 
 
-  @Transactional // @Transactional is specified, to ensure that database actions are executed within a single transaction - and can be rolled back, if they fail!
   @Override public User registerUser(User user) throws DataIntegrityViolationException, PersistenceException {
     // Validate received data, before passing to repository/database:
     if(user == null || user.getUsername() == null || user.getEncryptedPassword() == null)

@@ -4,37 +4,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/SEP3_PasswordManager.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="Removing Common module">
+      <change afterPath="$PROJECT_DIR$/Common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common/src/main/java/dto/ClientRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common/src/main/java/dto/ServerResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/TestClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dbServer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dbServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbServer/src/test/java/dk/sep3/dbserver/integrationTests/UserGrpcIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbServer/src/test/java/dk/sep3/dbserver/integrationTests/UserGrpcIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbServer/src/test/resources/application-test.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadBalancer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/ILoadBalancerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/ILoadBalancerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/WebAPIServiceMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServiceMonitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/loadBalancer.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PM_Backend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/WebAPI.proto" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Dogmeat2000"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Dogmeat2000&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KatAamand/SEP3_PasswordManager.git",
-    "accountId": "1b2bf504-1779-4b79-811b-a81c275dfd68"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KatAamand/SEP3_PasswordManager.git&quot;,
+    &quot;accountId&quot;: &quot;1b2bf504-1779-4b79-811b-a81c275dfd68&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -42,8 +61,18 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+        <option name="workOffline" value="true" />
       </MavenGeneralSettings>
     </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="21" />
+        <option name="workspaceImportForciblyTurnedOn" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -56,29 +85,96 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.TestClient.executor": "Run",
+    "Maven. [clean,install].executor": "Run",
+    "Maven.Common [clean,compile].executor": "Run",
+    "Maven.Common [clean,install].executor": "Run",
+    "Maven.LoadBalancer [clean,compile].executor": "Run",
+    "Maven.LoadBalancer [clean,install].executor": "Run",
+    "Maven.LoadBalancer [compile].executor": "Run",
+    "Maven.PM_Backend [clean,compile].executor": "Run",
+    "Maven.PM_Backend [clean,install].executor": "Run",
+    "Maven.PM_Backend [clean].executor": "Run",
+    "Maven.WebAPI [clean,compile].executor": "Run",
+    "Maven.WebAPI [clean,install].executor": "Run",
+    "Maven.WebAPI [clean].executor": "Run",
+    "Maven.WebAPI [compile].executor": "Run",
+    "Maven.WebApiService [clean,install].executor": "Run",
+    "Maven.dbServer [clean,install].executor": "Run",
     "Maven.dbServer [clean].executor": "Run",
+    "Maven.dbServer [compile].executor": "Run",
     "Maven.dbServer [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.LoadBalancerApplication.executor": "Run",
+    "Spring Boot.WebApiApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "liberica-21",
+    "jdk.selected.JAVA_MODULE": "21",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/IntelliJ_Projects/SEP3_PasswordManager",
+    "last_opened_file_path": "C:/Users/Carsten Aamand/Documents/SEP3_PasswordManager/PM_Backend/WebApiService/src/main/java/org/sep3/webapiservice",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Facets",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.47585395",
-    "settings.editor.selected.configurable": "vcs.Git",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.archetype.catalogs",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="dk.sep3.loadbalancer" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\PM_Backend\WebApiService\src\main\java\org\sep3\webapiservice" />
+      <recent name="C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\PM_Backend\LoadBalancer\src\main\java\dk\sep3\loadbalancer" />
+      <recent name="C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\PM_Backend\WebAPI\src\main\java\dk\sep3\webapi" />
+      <recent name="C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\PM_Backend\LoadBalancer\src\main\java\dk\sep3\loadbalancer\dto" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\PM_Backend\LoadBalancer\src\main\proto" />
+      <recent name="C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\PM_Backend\WebAPI\src\main\proto" />
+      <recent name="C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\PM_Backend\LoadBalancer\src\main" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="dk.sep3.loadbalancer.dto" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dk.sep3.webapi" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean compile" />
+      <command value="mvn clean" />
+      <command value="mvn compile" />
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.TestClient">
+    <configuration name="TestClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dk.sep3.loadbalancer.TestClient" />
+      <module name="LoadBalancer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dk.sep3.loadbalancer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DbServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="dbServer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="dk.sep3.dbserver.DbServerApplication" />
@@ -86,14 +182,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
-      </set>
-    </attachedChunks>
+    <configuration name="LoadBalancerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="LoadBalancer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dk.sep3.loadbalancer.LoadBalancerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="WebAPI" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dk.sep3.webapi.WebApiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebApiServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="WebApiService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.sep3.webapiservice.WebApiServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestClient" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -105,10 +219,56 @@
       <updated>1728465301471</updated>
       <workItem from="1728465302610" duration="298000" />
       <workItem from="1728486553167" duration="6789000" />
+      <workItem from="1728539330562" duration="10263000" />
+      <workItem from="1728557987538" duration="5954000" />
+      <workItem from="1728563966068" duration="902000" />
+      <workItem from="1728625563546" duration="5166000" />
+      <workItem from="1728631072443" duration="1091000" />
+      <workItem from="1728632187152" duration="1609000" />
     </task>
+    <task id="LOCAL-00001" summary="adding Common module and dto objects">
+      <option name="closed" value="true" />
+      <created>1728556017589</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728556017590</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Adding classes, interfaces and .proto for LoadBalancer">
+      <option name="closed" value="true" />
+      <created>1728556071406</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728556071406</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Adding classes, interfaces and .proto for WebAPI">
+      <option name="closed" value="true" />
+      <created>1728556083944</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728556083944</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Removing Common module">
+      <option name="closed" value="true" />
+      <created>1728562469704</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728562469704</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="adding Common module and dto objects" />
+    <MESSAGE value="Adding classes, interfaces and .proto for LoadBalancer" />
+    <MESSAGE value="Adding classes, interfaces and .proto for WebAPI" />
+    <MESSAGE value="Removing Common module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removing Common module" />
   </component>
 </project>

@@ -1,9 +1,12 @@
 package dk.sep3.dbserver.integrationTests;
 
-import dk.sep3.dbserver.db_entities.User;
+import dk.sep3.dbserver.DbServerApplication;
+import dk.sep3.dbserver.model.passwordManager.db_entities.User;
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.UserDataToUserEntity;
 import dk.sep3.dbserver.grpc.service.UserGrpcServiceImpl;
-import dk.sep3.dbserver.repositories.UserRepository;
+import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
+import dk.sep3.dbserver.repositories.passwordManagerDb.UserRepository;
+import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
 import grpc.UserData;
 import grpc.UserNameAndPswd;
 import grpc.UserServiceGrpc;
@@ -22,6 +25,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -31,15 +36,23 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)  // Gives access to extended testing functionality
-@SpringBootTest // Signals to Spring Boot that this is a Spring Boot Test!
+@SpringBootTest (
+    classes = {
+    DbServerApplication.class,
+    TestDataSourceConfig.class}) // Signals to Spring Boot that this is a Spring Boot Test and defines which spring configs to use!
+@TestPropertySource(properties = "discovery.datasource.enabled=false") // Ensures that the production database is not used directly!
+@TestPropertySource(properties = "userDatabase.datasource.enabled=false") // Ensures that the production database is not used directly!
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD) // Ensures that Mocks are reset after each test, to avoid tests modifying data in shared mocks, that could cause tests to influence each other.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY) // Establishes an InMemory database instead of using the actual Postgresql database, so tests do not disrupt the production database.
 public class UserGrpcIntegrationTest
 {
   @MockBean private UserRepository userRepository; // Signals that this is a "fake" Spring Boot bean.
+  @MockBean private DiscoveryRepository discoveryRepository; // Included to prevent spring errors while doing dependency injection.
 
   @InjectMocks private UserGrpcServiceImpl userGrpcService; // The gRPC service being tested. It is auto-injected into the test using dependency injection.
+  @InjectMocks private DiscoveryRepositoryServiceImpl discoveryRepositoryService; // Included to prevent spring errors while doing dependency injection.
 
   private ManagedChannel channel;
   private UserServiceGrpc.UserServiceBlockingStub blockingStub;
@@ -84,7 +97,6 @@ public class UserGrpcIntegrationTest
     // Alert Mockito to "mock" the behavior of userRepository when its save method is called,
     // allowing it to simulate database interactions instead of affecting the live production database.
     when(userRepository.save(any(User.class))).thenReturn(user);
-
 
     // Act:
     // Send the gRPC message to the server:
