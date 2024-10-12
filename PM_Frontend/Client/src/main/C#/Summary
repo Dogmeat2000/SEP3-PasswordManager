@@ -1,0 +1,9 @@
+PasswordManager saves and retrieves our passwords
+
+ICommandLineInterface is just our interface for the command line interaction
+
+CommandLineInterfaceImpl is where we implement the command line interface (duh)
+
+PasswordService Handles the entire communication with backend stuff (grpc)
+
+Program just wires everything together
