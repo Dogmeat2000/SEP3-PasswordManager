@@ -4,7 +4,7 @@ public class ClientRequest {
     private String requestType;
     private String requestData;
 
-    // Tom konstruktør kræves for deserialisering
+    // Empty constructor required for deserialization
     public ClientRequest() {}
 
     public ClientRequest(String requestType, String requestData) {

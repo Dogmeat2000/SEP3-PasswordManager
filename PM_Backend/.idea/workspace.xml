@@ -4,27 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="Removing Common module">
-      <change afterPath="$PROJECT_DIR$/Common/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/dto/ClientRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/dto/ServerResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/TestClient.java" afterDir="false" />
+    <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="Creating test client for testing proof of concept">
+      <change afterPath="$PROJECT_DIR$/Common/src/main/java/dto/GetUserClientRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/ILoadBalancerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/ILoadBalancerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/main/java/dto/ClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/dto/ClientRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/WebAPIServiceMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServiceMonitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/loadBalancer.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PM_Backend.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/WebAPI.proto" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbServerDiscoveryService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dbServerDiscoveryService/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +116,7 @@
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.47585395",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.archetype.catalogs",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -182,6 +171,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DbServerDiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="dbServerDiscoveryService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dk.sep3.dbserverdiscoveryservice.application.DbServerDiscoveryServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoadBalancerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="LoadBalancer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="dk.sep3.loadbalancer.LoadBalancerApplication" />
@@ -224,7 +220,8 @@
       <workItem from="1728563966068" duration="902000" />
       <workItem from="1728625563546" duration="5166000" />
       <workItem from="1728631072443" duration="1091000" />
-      <workItem from="1728632187152" duration="1609000" />
+      <workItem from="1728632187152" duration="2290000" />
+      <workItem from="1729433018780" duration="1685000" />
     </task>
     <task id="LOCAL-00001" summary="adding Common module and dto objects">
       <option name="closed" value="true" />
@@ -258,7 +255,63 @@
       <option name="project" value="LOCAL" />
       <updated>1728562469704</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updating PM_Backend files">
+      <option name="closed" value="true" />
+      <created>1728634040562</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728634040562</updated>
+    </task>
+    <task id="LOCAL-00006" summary="remove .proto">
+      <option name="closed" value="true" />
+      <created>1728634066939</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728634066939</updated>
+    </task>
+    <task id="LOCAL-00007" summary="implementing common module">
+      <option name="closed" value="true" />
+      <created>1728634106349</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728634106349</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixing bugs in LoadBalancer module">
+      <option name="closed" value="true" />
+      <created>1728634134661</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728634134661</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Adds pom.xml to main project to keep track of underlying modules">
+      <option name="closed" value="true" />
+      <created>1728634157885</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728634157885</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updating WebAPIServer to fix bugs with package not found on LoadBalancer end">
+      <option name="closed" value="true" />
+      <created>1728634189954</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1728634189954</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Creating test client for testing proof of concept">
+      <option name="closed" value="true" />
+      <created>1728634206272</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1728634206272</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +322,13 @@
     <MESSAGE value="Adding classes, interfaces and .proto for LoadBalancer" />
     <MESSAGE value="Adding classes, interfaces and .proto for WebAPI" />
     <MESSAGE value="Removing Common module" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removing Common module" />
+    <MESSAGE value="updating PM_Backend files" />
+    <MESSAGE value="remove .proto" />
+    <MESSAGE value="implementing common module" />
+    <MESSAGE value="Fixing bugs in LoadBalancer module" />
+    <MESSAGE value="Adds pom.xml to main project to keep track of underlying modules" />
+    <MESSAGE value="Updating WebAPIServer to fix bugs with package not found on LoadBalancer end" />
+    <MESSAGE value="Creating test client for testing proof of concept" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating test client for testing proof of concept" />
   </component>
 </project>

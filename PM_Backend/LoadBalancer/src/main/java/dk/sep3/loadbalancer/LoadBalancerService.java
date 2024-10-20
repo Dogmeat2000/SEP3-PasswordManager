@@ -3,6 +3,7 @@ package dk.sep3.loadbalancer;
 import dk.sep3.webapi.WebAPIServiceMonitor;
 import dk.sep3.webapi.WebAPIServer;
 import dto.ClientRequest;
+import dto.GetUserClientRequest;
 import dto.ServerResponse;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,6 @@ public class LoadBalancerService implements ILoadBalancerService {
     @Override
     public ServerResponse handleClientRequest(ClientRequest request) {
         WebAPIServer availableServer = monitor.assignAvailableServer();
-        return availableServer.handleRequest(request);
+        return availableServer.handleRequest((GetUserClientRequest) request);
     }
 }

@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="LoadBalancer" />
         <module name="WebAPI" />
+        <module name="dbServerDiscoveryService" />
         <module name="dbServer" />
         <module name="Common" />
       </profile>
@@ -23,6 +24,7 @@
       <module name="WebAPI" options="-parameters" />
       <module name="WebApiService" options="-parameters" />
       <module name="dbServer" options="-parameters" />
+      <module name="dbServerDiscoveryService" options="-parameters" />
     </option>
   </component>
 </project>
