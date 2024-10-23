@@ -1,7 +1,6 @@
 package dk.sep3.loadbalancer;
 
-import common.ServerResponse;
-import common.requests.ClientRequest;
+import common.ClientRequest;
 
 /** LoadBalancerService selects an available WebAPI server and returns its address **/
 public interface ILoadBalancerService {

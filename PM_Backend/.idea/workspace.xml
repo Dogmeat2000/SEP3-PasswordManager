@@ -5,33 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="Creating test client for testing proof of concept">
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/dto/DTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/dto/LoginEntryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/dto/MasterUserDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/requests/ClientRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/requests/CreateMasterUserClientRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/requests/GetLoginEntryClientRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/requests/GetMasterUserClientRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/CommunicationClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/RequestHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/grpcCommunicationClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/command/RequestCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/main/java/dto/ClientRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/main/java/dto/GetUserClientRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/main/java/dto/ServerResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/common/ServerResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/ILoadBalancerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/ILoadBalancerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/TestClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServiceMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerMonitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/grpcCommunicationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/grpcCommunicationClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,6 +226,7 @@
       <workItem from="1729435325545" duration="1988000" />
       <workItem from="1729589229835" duration="2491000" />
       <workItem from="1729605976365" duration="13574000" />
+      <workItem from="1729663396001" duration="3554000" />
     </task>
     <task id="LOCAL-00001" summary="adding Common module and dto objects">
       <option name="closed" value="true" />

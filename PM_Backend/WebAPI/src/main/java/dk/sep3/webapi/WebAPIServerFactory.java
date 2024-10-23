@@ -3,8 +3,6 @@ package dk.sep3.webapi;
 import dk.sep3.webapi.network.RequestHandler;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-
 /** Factory for creating new WebAPIServer instances **/
 @Component
 public class WebAPIServerFactory {
@@ -17,7 +15,11 @@ public class WebAPIServerFactory {
 
     public WebAPIServer createNewServer() {
         String newServerUrl = "http://localhost:" + getNextAvailablePort();
-        return new WebAPIServer(newServerUrl, requestHandler);
+
+        WebAPIServer newServer = new WebAPIServer(requestHandler);
+        newServer.setUrl(newServerUrl);
+
+        return newServer;
     }
 
     private int getNextAvailablePort() {

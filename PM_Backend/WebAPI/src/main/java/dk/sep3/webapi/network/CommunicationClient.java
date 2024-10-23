@@ -1,8 +1,7 @@
 package dk.sep3.webapi.network;
 
+import common.ClientRequest;
 import common.ServerResponse;
-import common.dto.MasterUserDTO;
-import common.requests.ClientRequest;
 import grpc.UserServiceGrpc;
 
 public interface CommunicationClient {

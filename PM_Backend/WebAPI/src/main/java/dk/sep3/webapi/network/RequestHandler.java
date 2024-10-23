@@ -1,16 +1,10 @@
 package dk.sep3.webapi.network;
 
+import common.ClientRequest;
 import common.ServerResponse;
-import common.requests.ClientRequest;
-import common.requests.GetLoginEntryClientRequest;
-import common.requests.GetMasterUserClientRequest;
-import dk.sep3.webapi.network.CommunicationClient;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.HashMap;
-import java.util.Map;
-
+/** Handles incoming client requests and forwards them to the appropriate handler **/
 @Configuration
 public class RequestHandler {
 

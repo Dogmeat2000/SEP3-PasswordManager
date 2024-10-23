@@ -1,8 +1,8 @@
 package dk.sep3.webapi.network;
 
+import common.ClientRequest;
 import common.ServerResponse;
 import common.dto.MasterUserDTO;
-import common.requests.ClientRequest;
 import grpc.UserServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -56,17 +56,14 @@ public class grpcCommunicationClient implements CommunicationClient {
     }
 
     private ServerResponse getMasterUser(MasterUserDTO masterUserDTO) {
-        // Implement gRPC logic for getMasterUser
-        return new ServerResponse(); // Placeholder
+        return new ServerResponse();
     }
 
     private ServerResponse createMasterUser(MasterUserDTO masterUserDTO) {
-        // Implement gRPC logic for createMasterUser
-        return new ServerResponse(); // Placeholder
+        return new ServerResponse();
     }
 
     private ServerResponse getLoginEntries(int masterUserId) {
-        // Implement gRPC logic for getLoginEntries
-        return new ServerResponse(); // Placeholder
+        return new ServerResponse();
     }
 }

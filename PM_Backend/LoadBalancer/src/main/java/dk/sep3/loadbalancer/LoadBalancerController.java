@@ -1,12 +1,9 @@
 package dk.sep3.loadbalancer;
 
+import common.ClientRequest;
 import common.ServerResponse;
-import common.dto.DTO;
-import common.requests.ClientRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 /** LoadBalancerController returns the address of an available WebAPI server to the client **/
 @RestController
