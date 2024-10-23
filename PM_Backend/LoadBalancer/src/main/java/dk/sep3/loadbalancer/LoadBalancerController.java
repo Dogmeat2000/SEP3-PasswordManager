@@ -19,7 +19,7 @@ public class LoadBalancerController {
     @PostMapping("/api/assign-server")
     public ResponseEntity<ServerResponse> assignWebApiServer(@RequestBody ClientRequest request) {
         String serverUrl = service.getAvailableWebApiServer(request);
-        ServerResponse response = new ServerResponse(serverUrl, 200);
+        ServerResponse response = new ServerResponse(200, serverUrl);
 
         return ResponseEntity.ok(response);
     }

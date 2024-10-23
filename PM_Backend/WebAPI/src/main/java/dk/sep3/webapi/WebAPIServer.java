@@ -6,7 +6,7 @@ import dk.sep3.webapi.network.RequestHandler;
 import io.grpc.StatusRuntimeException;
 import org.springframework.stereotype.Component;
 
-/** Handles incoming client requests and forwards them to the appropriate handler **/
+/** Handles incoming client requests and forwards them to the Request handler **/
 @Component
 public class WebAPIServer {
     private int currentLoad;
@@ -24,7 +24,7 @@ public class WebAPIServer {
 
     public ServerResponse handleRequest(ClientRequest request) {
         if (!isAvailable()) {
-            return new ServerResponse("Server is overloaded. Please try again later.", 503);
+            return new ServerResponse(503, "Server is overloaded. Please try again later.");
         }
 
         try {
@@ -34,7 +34,7 @@ public class WebAPIServer {
             finishRequest();
             return response;
         } catch (StatusRuntimeException e) {
-            return new ServerResponse("Error: " + e.getStatus().getDescription(), 500);
+            return new ServerResponse(500,"Error: " + e.getStatus().getDescription());
         }
     }
 
