@@ -1,4 +1,4 @@
-package dto;
+package common;
 
 public class ServerResponse {
     private String message;
