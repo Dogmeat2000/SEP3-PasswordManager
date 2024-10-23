@@ -1,11 +1,11 @@
 package dk.sep3.dbserverdiscoveryservice.application;
 
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.UserDataToUserEntity;
-import dk.sep3.dbserver.grpc.factories.UserGrpcFactory;
 import dk.sep3.dbserver.model.passwordManager.db_entities.User;
 import grpc.UserData;
 import grpc.UserNameAndPswd;
 import grpc.UserServiceGrpc;
+import grpc.factories.UserGrpcFactory;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;

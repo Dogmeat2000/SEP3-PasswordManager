@@ -63,6 +63,7 @@ public class User implements Serializable
 
 
   // Required by Spring Boot JPA:
+
   @Override public boolean equals(Object o) {
     if (this == o)
       return true;

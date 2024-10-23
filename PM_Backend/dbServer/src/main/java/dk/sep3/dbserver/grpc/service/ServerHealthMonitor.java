@@ -1,7 +1,7 @@
 package dk.sep3.dbserver.grpc.service;
 
 import dk.sep3.dbserver.model.discoveryService.db_entities.DatabaseServer;
-import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
+import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryService;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.search.MeterNotFoundException;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ import java.net.URL;
 @Service
 public class ServerHealthMonitor
 {
-  private final DiscoveryRepositoryServiceImpl discoveryRepositoryServiceImpl;
+  private final DiscoveryRepositoryService discoveryRepositoryService;
   private static final Logger logger = LoggerFactory.getLogger(ServerHealthMonitor.class);
   private final int threadCycleSleepTimeInMs = 7500; // 5 Second.
   private DatabaseServer thisServer;
@@ -37,8 +37,8 @@ public class ServerHealthMonitor
   private int congestionPercentage = 0;
 
   @Autowired
-  public ServerHealthMonitor(DiscoveryRepositoryServiceImpl discoveryRepositoryServiceImpl){
-    this.discoveryRepositoryServiceImpl = discoveryRepositoryServiceImpl;
+  public ServerHealthMonitor(DiscoveryRepositoryService discoveryRepositoryService){
+    this.discoveryRepositoryService = discoveryRepositoryService;
   }
 
 
@@ -54,7 +54,7 @@ public class ServerHealthMonitor
 
       // Register with Database Discovery Service:
       try {
-        thisServer = discoveryRepositoryServiceImpl.registerDatabaseServer(thisServer);
+        thisServer = discoveryRepositoryService.registerDatabaseServer(thisServer);
         logger.info("Server was logged to discovery service with IP={} and ID={}", thisServer.getHost(), thisServer.getId());
       } catch (Exception e) {
         // Error occurred while registering. Keep trying.

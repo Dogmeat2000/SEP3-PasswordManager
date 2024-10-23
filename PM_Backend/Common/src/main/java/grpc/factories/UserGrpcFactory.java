@@ -1,4 +1,4 @@
-package dk.sep3.dbserver.grpc.factories;
+package grpc.factories;
 
 import grpc.UserData;
 import grpc.UserNameAndPswd;

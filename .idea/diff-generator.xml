@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig">
+    <option name="sourceModelValue" value="dbServer:primaryEntityManagerFactory" />
+    <option name="targetDbValue" value="bc1155a0-8045-4ebb-9611-39caea143ca1__postgres_password_manager" />
+  </component>
+</project>
