@@ -8,51 +8,54 @@ import java.util.List;
 
 /** Monitor servers to check if they are overloaded or not responding, scaling if necessary through the factory  **/
 @Component
-public class WebAPIServiceMonitor {
-    private final List<WebAPIServer> WEB_API_SERVERS;
+public class WebAPIServerMonitor {
+    private List<WebAPIServer> servers;
     private final WebAPIServerFactory factory;
 
-    public WebAPIServiceMonitor(WebAPIServerFactory factory) {
+    public WebAPIServerMonitor(WebAPIServerFactory factory) {
         this.factory = factory;
-        this.WEB_API_SERVERS = new ArrayList<>();
+        this.servers = new ArrayList<>();
+
+        // Create initial server
+        createNewServer();
     }
 
     /** Monitor servers every 10 seconds to check if they are overloaded og not responding **/
     @Scheduled(fixedRate = 10000)
     public void monitorServers() {
-        for (WebAPIServer server : WEB_API_SERVERS) {
+        for (WebAPIServer server : servers) {
             if (isServerOverloaded(server)) {
                 scaleServers();
             } else if (!server.isActive()) {
-                WEB_API_SERVERS.remove(server);
+                servers.remove(server);
             }
         }
     }
 
     /** Assigns the first available server to the client or scales the servers if no servers are available **/
-    public WebAPIServer assignAvailableServer() {
-        return WEB_API_SERVERS.stream().filter(WebAPIServer::isAvailable).findFirst().orElse(createNewServer());
+    public WebAPIServer getAvailableServer() {
+        return servers.stream().filter(WebAPIServer::isAvailable).findFirst().orElse(createNewServer());
     }
 
     public WebAPIServer createNewServer() {
         WebAPIServer newServer = factory.createNewServer();
-        WEB_API_SERVERS.add(newServer);
-
+        servers.add(newServer);
         return newServer;
     }
 
     private void scaleServers() {
-        boolean allServersOverloaded = WEB_API_SERVERS.stream().allMatch(this::isServerOverloaded);
+        boolean allServersOverloaded = servers.stream().allMatch(this::isServerOverloaded);
 
         if (allServersOverloaded) {
             createNewServer();
         }
     }
 
-    private boolean isServerOverloaded(WebAPIServer server) {
-        // TODO implement logic to check if server is overloaded
-        return false;
+    private boolean isServerOverloaded(WebAPIServer webAPIServer) {
+        return !webAPIServer.isAvailable();
     }
 
-
+    public void notifyServerFailure(String serverUrl) {
+        servers.removeIf(server -> server.getUrl().equals(serverUrl));
+    }
 }

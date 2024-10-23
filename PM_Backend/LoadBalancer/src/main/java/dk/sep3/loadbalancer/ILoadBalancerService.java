@@ -1,10 +1,9 @@
 package dk.sep3.loadbalancer;
 
-import dto.ClientRequest;
-import dto.ServerResponse;
+import common.ClientRequest;
 
-/** Receives a request from LoadBalancerController and reroutes it to an available WebAPIServer
- * Handles all business logic for the LoadBalancer **/
+/** LoadBalancerService selects an available WebAPI server and returns its address **/
 public interface ILoadBalancerService {
-    ServerResponse handleClientRequest(ClientRequest request);
+    String getAvailableWebApiServer(ClientRequest request);
+    void handleServerFailure(String serverUrl);
 }
