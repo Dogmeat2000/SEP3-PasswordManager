@@ -1,20 +1,19 @@
 package dk.sep3.dbserver.grpc.service;
 
 import dk.sep3.dbserver.model.passwordManager.db_entities.User;
-import dk.sep3.dbserver.grpc.adapters.grpc_to_java.UserDataToUserEntity;
+import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
 import dk.sep3.dbserver.grpc.adapters.java_to_grpc.UserToGrpcUserData;
 import dk.sep3.dbserver.service.passwordManager.UserRepositoryService;
 import dk.sep3.dbserver.service.passwordManager.UserRepositoryServiceImpl;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
-import grpc.UserData;
-import grpc.UserNameAndPswd;
-import grpc.UserServiceGrpc;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
+// TODO: DELETE THIS CLASS!
 
 /** Responsible for handling incoming GRPC calls from external clients and returning results using gRPC. */
 @GrpcService
@@ -41,7 +40,7 @@ public class UserGrpcServiceImpl extends UserServiceGrpc.UserServiceImplBase
     try {
       // Translate received gRPC information from the client, into a Java/DB compatible
       // entity and attempt to register the User in the repository/database:
-      User registeredUser =  userServiceImpl.registerUser(UserDataToUserEntity.convertToUserEntity(request));
+      User registeredUser =  userServiceImpl.createUser(MasterUserDTOtoMasterUserEntity.convertToUserEntity(request));
 
       // If User registration fails:
       if (registeredUser == null)
@@ -65,7 +64,7 @@ public class UserGrpcServiceImpl extends UserServiceGrpc.UserServiceImplBase
       String encryptedPassword = request.getEncryptedPassword();
 
       // Attempt to read the User with the provided username and password:
-      User user = userServiceImpl.fetchUser(username, encryptedPassword);
+      User user = userServiceImpl.readUser(username, encryptedPassword);
 
       // If User read failed:
       if (user == null)

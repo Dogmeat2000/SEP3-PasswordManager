@@ -32,13 +32,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return grpc.PasswordManagerService.internal_static_grpc_GenericRequest_descriptor;
+    return grpc.PasswordManagerServiceOuterClass.internal_static_grpc_GenericRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return grpc.PasswordManagerService.internal_static_grpc_GenericRequest_fieldAccessorTable
+    return grpc.PasswordManagerServiceOuterClass.internal_static_grpc_GenericRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             grpc.GenericRequest.class, grpc.GenericRequest.Builder.class);
   }
@@ -362,13 +362,13 @@ private static final long serialVersionUID = 0L;
       grpc.GenericRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return grpc.PasswordManagerService.internal_static_grpc_GenericRequest_descriptor;
+      return grpc.PasswordManagerServiceOuterClass.internal_static_grpc_GenericRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return grpc.PasswordManagerService.internal_static_grpc_GenericRequest_fieldAccessorTable
+      return grpc.PasswordManagerServiceOuterClass.internal_static_grpc_GenericRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               grpc.GenericRequest.class, grpc.GenericRequest.Builder.class);
     }
@@ -399,7 +399,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return grpc.PasswordManagerService.internal_static_grpc_GenericRequest_descriptor;
+      return grpc.PasswordManagerServiceOuterClass.internal_static_grpc_GenericRequest_descriptor;
     }
 
     @java.lang.Override
