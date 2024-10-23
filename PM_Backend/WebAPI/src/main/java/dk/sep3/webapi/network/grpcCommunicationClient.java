@@ -2,6 +2,8 @@ package dk.sep3.webapi.network;
 
 import common.ClientRequest;
 import common.ServerResponse;
+import dk.sep3.webapi.network.converter.ClientRequestToGrpcConverter;
+import dk.sep3.webapi.network.converter.GrpcToServerResponseConverter;
 import grpc.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

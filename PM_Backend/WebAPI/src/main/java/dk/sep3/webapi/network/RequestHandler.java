@@ -4,7 +4,7 @@ import common.ClientRequest;
 import common.ServerResponse;
 import org.springframework.context.annotation.Configuration;
 
-/** Handles incoming client requests from WebAPIServe and forwards them to the CommunicationClient **/
+/** Handles incoming client requests from WebAPIServer and forwards them to the CommunicationClient **/
 @Configuration
 public class RequestHandler {
 

@@ -1,4 +1,4 @@
-package dk.sep3.webapi.network;
+package dk.sep3.webapi.network.converter;
 
 import common.ClientRequest;
 import grpc.GenericRequest;
