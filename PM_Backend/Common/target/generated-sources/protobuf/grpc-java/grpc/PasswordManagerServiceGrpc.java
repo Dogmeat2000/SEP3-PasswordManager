@@ -8,11 +8,11 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
     value = "by gRPC proto compiler (version 1.63.0)",
     comments = "Source: PasswordManagerService.proto")
 @io.grpc.stub.annotations.GrpcGenerated
-public final class UserServiceGrpc {
+public final class PasswordManagerServiceGrpc {
 
-  private UserServiceGrpc() {}
+  private PasswordManagerServiceGrpc() {}
 
-  public static final java.lang.String SERVICE_NAME = "grpc.UserService";
+  public static final java.lang.String SERVICE_NAME = "grpc.PasswordManagerService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<grpc.GenericRequest,
@@ -26,10 +26,10 @@ public final class UserServiceGrpc {
   public static io.grpc.MethodDescriptor<grpc.GenericRequest,
       grpc.GenericResponse> getHandleRequestMethod() {
     io.grpc.MethodDescriptor<grpc.GenericRequest, grpc.GenericResponse> getHandleRequestMethod;
-    if ((getHandleRequestMethod = UserServiceGrpc.getHandleRequestMethod) == null) {
-      synchronized (UserServiceGrpc.class) {
-        if ((getHandleRequestMethod = UserServiceGrpc.getHandleRequestMethod) == null) {
-          UserServiceGrpc.getHandleRequestMethod = getHandleRequestMethod =
+    if ((getHandleRequestMethod = PasswordManagerServiceGrpc.getHandleRequestMethod) == null) {
+      synchronized (PasswordManagerServiceGrpc.class) {
+        if ((getHandleRequestMethod = PasswordManagerServiceGrpc.getHandleRequestMethod) == null) {
+          PasswordManagerServiceGrpc.getHandleRequestMethod = getHandleRequestMethod =
               io.grpc.MethodDescriptor.<grpc.GenericRequest, grpc.GenericResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "HandleRequest"))
@@ -38,7 +38,7 @@ public final class UserServiceGrpc {
                   grpc.GenericRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   grpc.GenericResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new UserServiceMethodDescriptorSupplier("HandleRequest"))
+              .setSchemaDescriptor(new PasswordManagerServiceMethodDescriptorSupplier("HandleRequest"))
               .build();
         }
       }
@@ -49,45 +49,45 @@ public final class UserServiceGrpc {
   /**
    * Creates a new async stub that supports all call types for the service
    */
-  public static UserServiceStub newStub(io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<UserServiceStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<UserServiceStub>() {
+  public static PasswordManagerServiceStub newStub(io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<PasswordManagerServiceStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<PasswordManagerServiceStub>() {
         @java.lang.Override
-        public UserServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new UserServiceStub(channel, callOptions);
+        public PasswordManagerServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new PasswordManagerServiceStub(channel, callOptions);
         }
       };
-    return UserServiceStub.newStub(factory, channel);
+    return PasswordManagerServiceStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
-  public static UserServiceBlockingStub newBlockingStub(
+  public static PasswordManagerServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<UserServiceBlockingStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<UserServiceBlockingStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<PasswordManagerServiceBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<PasswordManagerServiceBlockingStub>() {
         @java.lang.Override
-        public UserServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new UserServiceBlockingStub(channel, callOptions);
+        public PasswordManagerServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new PasswordManagerServiceBlockingStub(channel, callOptions);
         }
       };
-    return UserServiceBlockingStub.newStub(factory, channel);
+    return PasswordManagerServiceBlockingStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
-  public static UserServiceFutureStub newFutureStub(
+  public static PasswordManagerServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<UserServiceFutureStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<UserServiceFutureStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<PasswordManagerServiceFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<PasswordManagerServiceFutureStub>() {
         @java.lang.Override
-        public UserServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new UserServiceFutureStub(channel, callOptions);
+        public PasswordManagerServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new PasswordManagerServiceFutureStub(channel, callOptions);
         }
       };
-    return UserServiceFutureStub.newStub(factory, channel);
+    return PasswordManagerServiceFutureStub.newStub(factory, channel);
   }
 
   /**
@@ -103,30 +103,30 @@ public final class UserServiceGrpc {
   }
 
   /**
-   * Base class for the server implementation of the service UserService.
+   * Base class for the server implementation of the service PasswordManagerService.
    */
-  public static abstract class UserServiceImplBase
+  public static abstract class PasswordManagerServiceImplBase
       implements io.grpc.BindableService, AsyncService {
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return UserServiceGrpc.bindService(this);
+      return PasswordManagerServiceGrpc.bindService(this);
     }
   }
 
   /**
-   * A stub to allow clients to do asynchronous rpc calls to service UserService.
+   * A stub to allow clients to do asynchronous rpc calls to service PasswordManagerService.
    */
-  public static final class UserServiceStub
-      extends io.grpc.stub.AbstractAsyncStub<UserServiceStub> {
-    private UserServiceStub(
+  public static final class PasswordManagerServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<PasswordManagerServiceStub> {
+    private PasswordManagerServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected UserServiceStub build(
+    protected PasswordManagerServiceStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new UserServiceStub(channel, callOptions);
+      return new PasswordManagerServiceStub(channel, callOptions);
     }
 
     /**
@@ -139,19 +139,19 @@ public final class UserServiceGrpc {
   }
 
   /**
-   * A stub to allow clients to do synchronous rpc calls to service UserService.
+   * A stub to allow clients to do synchronous rpc calls to service PasswordManagerService.
    */
-  public static final class UserServiceBlockingStub
-      extends io.grpc.stub.AbstractBlockingStub<UserServiceBlockingStub> {
-    private UserServiceBlockingStub(
+  public static final class PasswordManagerServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<PasswordManagerServiceBlockingStub> {
+    private PasswordManagerServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected UserServiceBlockingStub build(
+    protected PasswordManagerServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new UserServiceBlockingStub(channel, callOptions);
+      return new PasswordManagerServiceBlockingStub(channel, callOptions);
     }
 
     /**
@@ -163,19 +163,19 @@ public final class UserServiceGrpc {
   }
 
   /**
-   * A stub to allow clients to do ListenableFuture-style rpc calls to service UserService.
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service PasswordManagerService.
    */
-  public static final class UserServiceFutureStub
-      extends io.grpc.stub.AbstractFutureStub<UserServiceFutureStub> {
-    private UserServiceFutureStub(
+  public static final class PasswordManagerServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<PasswordManagerServiceFutureStub> {
+    private PasswordManagerServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected UserServiceFutureStub build(
+    protected PasswordManagerServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new UserServiceFutureStub(channel, callOptions);
+      return new PasswordManagerServiceFutureStub(channel, callOptions);
     }
 
     /**
@@ -238,32 +238,32 @@ public final class UserServiceGrpc {
         .build();
   }
 
-  private static abstract class UserServiceBaseDescriptorSupplier
+  private static abstract class PasswordManagerServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    UserServiceBaseDescriptorSupplier() {}
+    PasswordManagerServiceBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return grpc.PasswordManagerService.getDescriptor();
+      return grpc.PasswordManagerServiceOuterClass.getDescriptor();
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("UserService");
+      return getFileDescriptor().findServiceByName("PasswordManagerService");
     }
   }
 
-  private static final class UserServiceFileDescriptorSupplier
-      extends UserServiceBaseDescriptorSupplier {
-    UserServiceFileDescriptorSupplier() {}
+  private static final class PasswordManagerServiceFileDescriptorSupplier
+      extends PasswordManagerServiceBaseDescriptorSupplier {
+    PasswordManagerServiceFileDescriptorSupplier() {}
   }
 
-  private static final class UserServiceMethodDescriptorSupplier
-      extends UserServiceBaseDescriptorSupplier
+  private static final class PasswordManagerServiceMethodDescriptorSupplier
+      extends PasswordManagerServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final java.lang.String methodName;
 
-    UserServiceMethodDescriptorSupplier(java.lang.String methodName) {
+    PasswordManagerServiceMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 
@@ -278,11 +278,11 @@ public final class UserServiceGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (UserServiceGrpc.class) {
+      synchronized (PasswordManagerServiceGrpc.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new UserServiceFileDescriptorSupplier())
+              .setSchemaDescriptor(new PasswordManagerServiceFileDescriptorSupplier())
               .addMethod(getHandleRequestMethod())
               .build();
         }

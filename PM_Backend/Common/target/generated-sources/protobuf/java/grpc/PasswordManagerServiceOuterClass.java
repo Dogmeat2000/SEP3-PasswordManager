@@ -5,8 +5,8 @@
 
 package grpc;
 
-public final class PasswordManagerService {
-  private PasswordManagerService() {}
+public final class PasswordManagerServiceOuterClass {
+  private PasswordManagerServiceOuterClass() {}
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
       com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
@@ -14,7 +14,7 @@ public final class PasswordManagerService {
       /* minor= */ 28,
       /* patch= */ 2,
       /* suffix= */ "",
-      PasswordManagerService.class.getName());
+      PasswordManagerServiceOuterClass.class.getName());
   }
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
@@ -56,9 +56,9 @@ public final class PasswordManagerService {
       "\001 \001(\005\022)\n\nmasterUser\030\003 \001(\0132\023.grpc.MasterU" +
       "serDTOH\000B\006\n\004data\"K\n\rMasterUserDTO\022\n\n\002id\030" +
       "\001 \001(\003\022\026\n\016masterUsername\030\002 \001(\t\022\026\n\016masterP" +
-      "assword\030\003 \001(\t2K\n\013UserService\022<\n\rHandleRe" +
-      "quest\022\024.grpc.GenericRequest\032\025.grpc.Gener" +
-      "icResponseB\002P\001b\006proto3"
+      "assword\030\003 \001(\t2V\n\026PasswordManagerService\022" +
+      "<\n\rHandleRequest\022\024.grpc.GenericRequest\032\025" +
+      ".grpc.GenericResponseB\002P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
