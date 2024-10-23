@@ -26,15 +26,20 @@ public final class PasswordManagerService {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_grpc_UserData_descriptor;
+    internal_static_grpc_GenericRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_grpc_UserData_fieldAccessorTable;
+      internal_static_grpc_GenericRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_grpc_UserNameAndPswd_descriptor;
+    internal_static_grpc_GenericResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_grpc_UserNameAndPswd_fieldAccessorTable;
+      internal_static_grpc_GenericResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_grpc_MasterUserDTO_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_grpc_MasterUserDTO_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -44,31 +49,39 @@ public final class PasswordManagerService {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\034PasswordManagerService.proto\022\004grpc\"C\n\010" +
-      "UserData\022\n\n\002id\030\001 \001(\005\022\020\n\010username\030\002 \001(\t\022\031" +
-      "\n\021encryptedPassword\030\003 \001(\t\">\n\017UserNameAnd" +
-      "Pswd\022\020\n\010username\030\001 \001(\t\022\031\n\021encryptedPassw" +
-      "ord\030\002 \001(\t2o\n\013UserService\022.\n\014registerUser" +
-      "\022\016.grpc.UserData\032\016.grpc.UserData\0220\n\007getU" +
-      "ser\022\025.grpc.UserNameAndPswd\032\016.grpc.UserDa" +
-      "taB\002P\001b\006proto3"
+      "\n\034PasswordManagerService.proto\022\004grpc\"X\n\016" +
+      "GenericRequest\022\023\n\013requestType\030\001 \001(\t\022)\n\nm" +
+      "asterUser\030\003 \001(\0132\023.grpc.MasterUserDTOH\000B\006" +
+      "\n\004data\"X\n\017GenericResponse\022\022\n\nstatusCode\030" +
+      "\001 \001(\005\022)\n\nmasterUser\030\003 \001(\0132\023.grpc.MasterU" +
+      "serDTOH\000B\006\n\004data\"K\n\rMasterUserDTO\022\n\n\002id\030" +
+      "\001 \001(\003\022\026\n\016masterUsername\030\002 \001(\t\022\026\n\016masterP" +
+      "assword\030\003 \001(\t2K\n\013UserService\022<\n\rHandleRe" +
+      "quest\022\024.grpc.GenericRequest\032\025.grpc.Gener" +
+      "icResponseB\002P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_grpc_UserData_descriptor =
+    internal_static_grpc_GenericRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_grpc_UserData_fieldAccessorTable = new
+    internal_static_grpc_GenericRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_grpc_UserData_descriptor,
-        new java.lang.String[] { "Id", "Username", "EncryptedPassword", });
-    internal_static_grpc_UserNameAndPswd_descriptor =
+        internal_static_grpc_GenericRequest_descriptor,
+        new java.lang.String[] { "RequestType", "MasterUser", "Data", });
+    internal_static_grpc_GenericResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_grpc_UserNameAndPswd_fieldAccessorTable = new
+    internal_static_grpc_GenericResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_grpc_UserNameAndPswd_descriptor,
-        new java.lang.String[] { "Username", "EncryptedPassword", });
+        internal_static_grpc_GenericResponse_descriptor,
+        new java.lang.String[] { "StatusCode", "MasterUser", "Data", });
+    internal_static_grpc_MasterUserDTO_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_grpc_MasterUserDTO_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_grpc_MasterUserDTO_descriptor,
+        new java.lang.String[] { "Id", "MasterUsername", "MasterPassword", });
     descriptor.resolveAllFeaturesImmutable();
   }
 
