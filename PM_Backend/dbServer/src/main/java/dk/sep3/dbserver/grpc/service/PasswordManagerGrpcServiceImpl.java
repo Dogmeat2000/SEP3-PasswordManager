@@ -1,6 +1,5 @@
 package dk.sep3.dbserver.grpc.service;
 
-import dk.sep3.dbserver.grpc.adapters.java_to_grpc.UserToGrpcUserData;
 import dk.sep3.dbserver.service.passwordManager.UserRepositoryService;
 import dk.sep3.dbserver.service.passwordManager.UserRepositoryServiceImpl;
 import grpc.GenericRequest;
@@ -13,13 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @GrpcService
-public class PasswordManagerServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
+public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
   private final UserRepositoryService userServiceImpl;
   private static final Logger logger = LoggerFactory.getLogger(UserGrpcServiceImpl.class);
 
   @Autowired
-  public PasswordManagerServiceImpl(UserRepositoryServiceImpl userServiceImpl, ServerHealthMonitor serverHealthMonitor) {
+  public PasswordManagerGrpcServiceImpl(UserRepositoryServiceImpl userServiceImpl, ServerHealthMonitor serverHealthMonitor) {
     super();
     this.userServiceImpl = userServiceImpl;
 
