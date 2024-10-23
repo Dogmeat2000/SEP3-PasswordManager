@@ -8,7 +8,7 @@ namespace PM_Frontend.C#.Services
         {
             // Simulating password save requests
             Console.WriteLine($"Sends save request for username: {username}");
-            // TODO: implement actual logic to call REST or gRPC services..
+            // TODO: implement actual logic to call REST or WEBAPI services..
         }
 
         public string GetPassword(string username)
