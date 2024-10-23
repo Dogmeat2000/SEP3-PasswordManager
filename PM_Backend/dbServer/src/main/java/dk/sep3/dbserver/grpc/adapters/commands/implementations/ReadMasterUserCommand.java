@@ -27,13 +27,14 @@ public class ReadMasterUserCommand implements GrpcCommand
   @Override public GenericResponse execute(GenericRequest request) throws PersistenceException, DataIntegrityViolationException, NotFoundInDBException {
     // Identify what type of DTO to convert to java compatible format:
     if(!request.getDataCase().equals(GenericRequest.DataCase.MASTERUSER))
-      throw new IllegalArgumentException("Argument is not valid.");
+      throw new DataIntegrityViolationException("Argument is not valid.");
 
     // Convert to db compatible entity:
     MasterUser masterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(request.getMasterUser());
 
     // Execute the proper action:
     masterUser = masterUserServiceImpl.readMasterUser(masterUser.getMasterUsername(), masterUser.getEncryptedPassword());
+    System.out.println("\n\n\n" + masterUser + "\n\n\n");
 
     // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
     return GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(200, masterUser);

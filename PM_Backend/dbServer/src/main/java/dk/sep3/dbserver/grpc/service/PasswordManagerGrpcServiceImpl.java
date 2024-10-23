@@ -4,6 +4,7 @@ import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommand;
 import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommandFactory;
 import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
 import dk.sep3.dbserver.service.exceptions.IllegalGrpcCommand;
+import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
 import grpc.PasswordManagerServiceGrpc;
@@ -57,6 +58,9 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
     } catch (DataIntegrityViolationException e) {
       responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(400));
 
+    } catch (NotFoundInDBException e) {
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(404));
+
     } catch (IllegalGrpcCommand e) {
       responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(405));
 
@@ -65,6 +69,7 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
 
     } catch (Exception e) {
       responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(500));
+
     } finally {
       responseObserver.onCompleted();
     }

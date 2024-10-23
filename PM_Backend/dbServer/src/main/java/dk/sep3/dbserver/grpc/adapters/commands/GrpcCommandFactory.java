@@ -33,7 +33,7 @@ public class GrpcCommandFactory
    * @throws IllegalGrpcCommand If the declared command is invalid. */
   public GrpcCommand getCommand(String command) throws IllegalGrpcCommand {
     // See if command exists:
-    if(grpcCommandMap.containsKey(command))
+    if(grpcCommandMap.containsKey(command.toLowerCase()))
       return grpcCommandMap.get(command.toLowerCase());
     else
       throw new IllegalGrpcCommand("Invalid GRPC command. Does not exist in grpcCommandMap/List");

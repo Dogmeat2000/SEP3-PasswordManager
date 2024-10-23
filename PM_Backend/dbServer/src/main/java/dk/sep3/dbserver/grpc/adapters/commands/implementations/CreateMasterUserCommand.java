@@ -26,7 +26,7 @@ public class CreateMasterUserCommand implements GrpcCommand
   @Override public GenericResponse execute(GenericRequest request) throws DataIntegrityViolationException, PersistenceException {
     // Identify what type of DTO to convert to java compatible format:
     if(!request.getDataCase().equals(GenericRequest.DataCase.MASTERUSER))
-      throw new IllegalArgumentException("Argument is not valid.");
+      throw new DataIntegrityViolationException("Argument is not valid.");
 
     // Convert to db compatible entity:
     MasterUser masterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(request.getMasterUser());

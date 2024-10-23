@@ -51,6 +51,7 @@ public class dbServerDebug_CLI
             GenericResponse createdMasterUser = stub.handleRequest(request);
             MasterUser newMasterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(createdMasterUser.getMasterUser());
             System.out.println("Created masterUser in DB: " + newMasterUser.toString());
+            System.out.println("StatusCode: " + createdMasterUser.getStatusCode());
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());
           } finally {
@@ -77,6 +78,7 @@ public class dbServerDebug_CLI
 
             MasterUser newMasterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(readMasterUser.getMasterUser());
             System.out.println("Found masterUser in DB: " + newMasterUser.toString());
+            System.out.println("StatusCode: " + readMasterUser.getStatusCode());
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());
           } finally {
