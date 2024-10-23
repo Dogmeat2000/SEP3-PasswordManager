@@ -1,31 +1,31 @@
 package dk.sep3.dbserver.service.passwordManager;
 
-import dk.sep3.dbserver.model.passwordManager.db_entities.User;
+import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;
 import org.springframework.dao.DataIntegrityViolationException;
 
 /**
- * <p>MasterUserRepositoryService defines the interface responsible for the database methods relating to User registration and management.</p>
+ * <p>MasterUserRepositoryService defines the interface responsible for the database methods relating to MasterUser registration and management.</p>
  */
 public interface MasterUserRepositoryService
 {
-  /** <p>Registers/Creates a new User in the repository with the given parameters applied.</p>
-   * @param user The User entity to add to the repository.
-   * @return The registered User instance.
+  /** <p>Registers/Creates a new MasterUser in the repository with the given parameters applied.</p>
+   * @param masterUser The MasterUser entity to add to the repository.
+   * @return The registered MasterUser instance.
    * @throws PersistenceException Thrown if registration failed, due to system/persistence issues (i.e. Repository is offline, etc.)
-   * @throws DataIntegrityViolationException Thrown if registration failed, due to non-legal information being assigned to the User Entity (i.e. username is null)
+   * @throws DataIntegrityViolationException Thrown if registration failed, due to non-legal information being assigned to the MasterUser Entity (i.e. masterUsername is null)
    */
-  User createUser(User user) throws DataIntegrityViolationException, PersistenceException;
+  MasterUser registerMasterUser(MasterUser masterUser) throws DataIntegrityViolationException, PersistenceException;
 
 
-  /** <p>Looks up a User entity with the specified username and password, in the repository</p>
-   * @param username A unique String type username assigned to the specific User to fetch.
-   * @param encryptedPassword A String type containing the encrypted password associated with the given username.
-   * @return The identified User instance.
-   * @throws NotFoundInDBException Thrown if User is not be found.
-   * @throws PersistenceException Thrown if fetching User failed, due to system/persistence issues (i.e. Repository is offline, etc.)
-   * @throws DataIntegrityViolationException Thrown if username is invalid (i.e. null).
+  /** <p>Looks up a MasterUser entity with the specified masterUsername and encrypted password, in the repository</p>
+   * @param masterUsername A unique String type masterUsername assigned to the specific MasterUser to fetch.
+   * @param encryptedPassword A String type containing the encrypted password associated with the given masterUsername.
+   * @return The identified MasterUser instance.
+   * @throws NotFoundInDBException Thrown if MasterUser is not found.
+   * @throws PersistenceException Thrown if fetching MasterUser failed, due to system/persistence issues (i.e. Repository is offline, etc.)
+   * @throws DataIntegrityViolationException Thrown if masterUsername is invalid (i.e. null).
    */
-  User readUser(String username, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException;
+  MasterUser fetchMasterUser(String masterUsername, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException;
 }

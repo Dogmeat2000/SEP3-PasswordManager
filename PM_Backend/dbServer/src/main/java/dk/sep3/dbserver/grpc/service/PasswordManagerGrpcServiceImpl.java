@@ -2,7 +2,7 @@ package dk.sep3.dbserver.grpc.service;
 
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
 import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
-import dk.sep3.dbserver.model.passwordManager.db_entities.User;
+import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
 import dk.sep3.dbserver.service.passwordManager.MasterUserRepositoryService;
 import dk.sep3.dbserver.service.passwordManager.MasterUserRepositoryServiceImpl;
 import grpc.GenericRequest;
@@ -36,12 +36,12 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
 
   @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver){
     try {
-      // Identify what actions was requested:
+      // Identify what action was requested:
       String actionRequested = request.getRequestType();
 
       // TODO: Refactor away from Switch, this is just the quick fix:
       GenericResponse response;
-      User masterUser;
+      MasterUser masterUser;
       switch(actionRequested.toLowerCase()) {
         case "readmasteruser":
           // Identify what type of DTO to convert to java compatible format:
@@ -49,10 +49,10 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
             throw new Exception("Invalid request"); // TODO: Better exception handling.
 
           // Convert to db compatible entity:
-          masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
+          masterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(request.getMasterUser());
 
           // Execute the proper action:
-          masterUser = masterUserServiceImpl.readUser(masterUser.getUsername(), masterUser.getEncryptedPassword());
+          masterUser = masterUserServiceImpl.readMasterUser(masterUser.getMasterUsername(), masterUser.getEncryptedPassword());
 
           // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
           response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(200, masterUser);
@@ -68,10 +68,10 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
             throw new Exception("Invalid request"); // TODO: Better exception handling.
 
           // Convert to db compatible entity:
-          masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
+          masterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(request.getMasterUser());
 
           // Execute the proper action:
-          masterUser = masterUserServiceImpl.createUser(masterUser);
+          masterUser = masterUserServiceImpl.createMasterUser(masterUser);
 
           // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
           response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(201, masterUser);
@@ -86,14 +86,7 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
           responseObserver.onNext(response);
           responseObserver.onCompleted();
           break;
-
       }
 
     } catch (Exception e) {
-      // Catch any exceptions: // TODO: Improve this with proper codes also!
-      GenericResponse errorResponse = GenericResponseFactory.buildGrpcGenericResponseWithError(500);
-      responseObserver.onNext(errorResponse);
-      responseObserver.onCompleted();
-    }
-  }
-}
+      // Catch any exceptions: // TODO: Improve this wi

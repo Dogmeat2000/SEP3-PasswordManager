@@ -1,7 +1,7 @@
 package dk.sep3.dbserver.grpc.factories;
 
 import dk.sep3.dbserver.grpc.adapters.java_to_grpc.MasterUsertoGrpcMasterUserDTO;
-import dk.sep3.dbserver.model.passwordManager.db_entities.User;
+import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
 import grpc.GenericResponse;
 
 public class GenericResponseFactory

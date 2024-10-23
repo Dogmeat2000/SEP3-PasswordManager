@@ -1,11 +1,13 @@
 package dk.sep3.dbserver.application;
 
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
-import dk.sep3.dbserver.model.passwordManager.db_entities.User;
-import dk.sep3.dbserver.grpc.factories.UserGrpcFactory;
-import grpc.UserData;
-import grpc.UserNameAndPswd;
-import grpc.UserServiceGrpc;
+import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
+import dk.sep3.dbserver.grpc.factories.MasterUserGrpcFactory;
+import grpc.MasterUserData;
+import grpc.MasterUserNameAndPswd;
+
+import grpc.MasterUserServiceGrpc;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
@@ -24,48 +26,48 @@ public class dbServerDebug_CLI
     Scanner input = new Scanner(System.in);
 
     while(true) {
-      System.out.println("\nAvailable database server commands: 'AddUser', 'ViewOneUser'");
+      System.out.println("\nAvailable database server commands: 'AddMasterUser', 'ViewOneMasterUser'");
       System.out.print(": ");
       String cmd = input.nextLine();
 
-      String username;
+      String masterUsername;
       String password;
 
       switch(cmd.toLowerCase()) {
-        case "adduser":
-          System.out.println("Register User in DB selected!");
-          System.out.print("Enter username: ");
-          username = input.nextLine();
+        case "addmasteruser":
+          System.out.println("Register MasterUser in DB selected!");
+          System.out.print("Enter masterUsername: ");
+          masterUsername = input.nextLine();
           System.out.print("Enter encrypted password hash: ");
           password = input.nextLine();
-          System.out.println("Creating user {" + username + ", " + password + "}");
+          System.out.println("Creating masterUser {" + masterUsername + ", " + password + "}");
           try {
             ManagedChannel channel = channel();
-            UserServiceGrpc.UserServiceBlockingStub stub = UserServiceGrpc.newBlockingStub(channel);
-            UserData data = UserGrpcFactory.buildGrpcUserData(-1, username, password);
-            UserData createdUser = stub.registerUser(data);
-            User newUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(createdUser);
-            System.out.println("Created user in DB: " + newUser.toString());
+            MasterUserServiceGrpc.MasterUserServiceBlockingStub stub = MasterUserServiceGrpc.newBlockingStub(channel);
+            MasterUserData data = MasterUserGrpcFactory.buildGrpcMasterUserData(-1, masterUsername, password);
+            MasterUserData createdMasterUser = stub.registerMasterUser(data);
+            MasterUser newMasterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(createdMasterUser);
+            System.out.println("Created masterUser in DB: " + newMasterUser.toString());
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());
           } finally {
             channel().shutdown();
           }
           break;
-        case "viewoneuser":
-          System.out.println("Fetch User from DB selected!");
-          System.out.print("Enter username: ");
-          username = input.nextLine();
+        case "viewonemasteruser":
+          System.out.println("Fetch MasterUser from DB selected!");
+          System.out.print("Enter masterUsername: ");
+          masterUsername = input.nextLine();
           System.out.print("Enter encrypted password hash: ");
           password = input.nextLine();
-          System.out.println("Fetching user {" + username + ", " + password + "}");
+          System.out.println("Fetching masterUser {" + masterUsername + ", " + password + "}");
           try {
             ManagedChannel channel = channel();
-            UserServiceGrpc.UserServiceBlockingStub stub = UserServiceGrpc.newBlockingStub(channel);
-            UserNameAndPswd data = UserGrpcFactory.buildGrpcUserNameAndPswd(username, password);
-            UserData foundUser = stub.getUser(data);
-            User newUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(foundUser);
-            System.out.println("Found user in DB: " + newUser.toString());
+            MasterUserServiceGrpc.MasterUserServiceBlockingStub stub = MasterUserServiceGrpc.newBlockingStub(channel);
+            MasterUserNameAndPswd data = MasterUserGrpcFactory.buildGrpcMasterUserNameAndPswd(masterUsername, password);
+            MasterUserData foundMasterUser = stub.getMasterUser(data);
+            MasterUser newMasterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(foundMasterUser);
+            System.out.println("Found masterUser in DB: " + newMasterUser.toString());
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());
           } finally {
