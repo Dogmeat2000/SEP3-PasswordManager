@@ -1,5 +1,8 @@
 package dk.sep3.dbserver.grpc.service;
 
+import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
+import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
+import dk.sep3.dbserver.model.passwordManager.db_entities.User;
 import dk.sep3.dbserver.service.passwordManager.UserRepositoryService;
 import dk.sep3.dbserver.service.passwordManager.UserRepositoryServiceImpl;
 import grpc.GenericRequest;
@@ -32,49 +35,63 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
   @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver){
     try {
       // Identify what actions was requested:
-      String actionRequested = request.getRequestType();
+      String actionRequested = request.getRequestType().toLowerCase();
 
       // TODO: Refactor away from Switch, this is just the quick fix:
+      GenericResponse response;
+      User masterUser;
       switch(actionRequested) {
-        case "getuser":
+        case "readmasteruser":
           // Identify what type of DTO to convert to java compatible format:
-          // TODO Missing implementation
+          if(!request.getDataCase().equals(GenericRequest.DataCase.MASTERUSER))
+            throw new Exception("Invalid request"); // TODO: Better exception handling.
+
+          // Convert to db compatible entity:
+          masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
 
           // Execute the proper action:
-          // TODO Missing implementation
+          masterUser = userServiceImpl.fetchUser(masterUser.getUsername(), masterUser.getEncryptedPassword());
 
           // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
-          // TODO Missing implementation
-          //responseObserver.onNext();
-          //responseObserver.onCompleted();
+          response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(200, masterUser);
+
+          responseObserver.onNext(response);
+          responseObserver.onCompleted();
 
           break;
 
-        case "putuser":
+        case "createmasteruser":
           // Identify what type of DTO to convert to java compatible format:
-          // TODO Missing implementation
+          if(!request.getDataCase().equals(GenericRequest.DataCase.MASTERUSER))
+            throw new Exception("Invalid request"); // TODO: Better exception handling.
+
+          // Convert to db compatible entity:
+          masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
 
           // Execute the proper action:
-          // TODO Missing implementation
+          masterUser = userServiceImpl.registerUser(masterUser);
 
           // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
-          // TODO Missing implementation
-          //responseObserver.onNext();
-          //responseObserver.onCompleted();
+          response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(200, masterUser);
+
+          responseObserver.onNext(response);
+          responseObserver.onCompleted();
+
           break;
 
         default:
-          // TODO: Throw an exception
+          response = GenericResponseFactory.buildGrpcGenericResponseWithError(500);
+          responseObserver.onNext(response);
+          responseObserver.onCompleted();
           break;
 
       }
 
-
-
-
     } catch (Exception e) {
-      // Catch any exceptions:
-      // TODO Missing implementation
+      // Catch any exceptions: // TODO: Improve this with proper codes also!
+      GenericResponse errorResponse = GenericResponseFactory.buildGrpcGenericResponseWithError(500);
+      responseObserver.onNext(errorResponse);
+      responseObserver.onCompleted();
     }
   }
 }

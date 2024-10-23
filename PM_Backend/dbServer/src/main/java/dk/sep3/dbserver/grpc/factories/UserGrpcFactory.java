@@ -3,6 +3,8 @@ package dk.sep3.dbserver.grpc.factories;
 import grpc.UserData;
 import grpc.UserNameAndPswd;
 
+// TODO: DELETE CLASS!
+
 /**
  * <p>Provides static methods for building gRPC compatible versions of the User entity.<br>
  * Is used when exchanging gRPC calls/data between the load balancer and the database server</p>
