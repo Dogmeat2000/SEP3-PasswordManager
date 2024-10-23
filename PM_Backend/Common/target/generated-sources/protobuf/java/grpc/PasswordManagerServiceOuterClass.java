@@ -55,7 +55,7 @@ public final class PasswordManagerServiceOuterClass {
       "\n\004data\"X\n\017GenericResponse\022\022\n\nstatusCode\030" +
       "\001 \001(\005\022)\n\nmasterUser\030\003 \001(\0132\023.grpc.MasterU" +
       "serDTOH\000B\006\n\004data\"K\n\rMasterUserDTO\022\n\n\002id\030" +
-      "\001 \001(\003\022\026\n\016masterUsername\030\002 \001(\t\022\026\n\016masterP" +
+      "\001 \001(\005\022\026\n\016masterUsername\030\002 \001(\t\022\026\n\016masterP" +
       "assword\030\003 \001(\t2V\n\026PasswordManagerService\022" +
       "<\n\rHandleRequest\022\024.grpc.GenericRequest\032\025" +
       ".grpc.GenericResponseB\002P\001b\006proto3"

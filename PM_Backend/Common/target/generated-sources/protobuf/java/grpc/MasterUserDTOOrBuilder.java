@@ -10,10 +10,10 @@ public interface MasterUserDTOOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int64 id = 1;</code>
+   * <code>int32 id = 1;</code>
    * @return The id.
    */
-  long getId();
+  int getId();
 
   /**
    * <code>string masterUsername = 2;</code>

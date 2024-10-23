@@ -45,13 +45,13 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ID_FIELD_NUMBER = 1;
-  private long id_ = 0L;
+  private int id_ = 0;
   /**
-   * <code>int64 id = 1;</code>
+   * <code>int32 id = 1;</code>
    * @return The id.
    */
   @java.lang.Override
-  public long getId() {
+  public int getId() {
     return id_;
   }
 
@@ -147,8 +147,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (id_ != 0L) {
-      output.writeInt64(1, id_);
+    if (id_ != 0) {
+      output.writeInt32(1, id_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(masterUsername_)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 2, masterUsername_);
@@ -165,9 +165,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (id_ != 0L) {
+    if (id_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(1, id_);
+        .computeInt32Size(1, id_);
     }
     if (!com.google.protobuf.GeneratedMessage.isStringEmpty(masterUsername_)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(2, masterUsername_);
@@ -208,8 +208,7 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getId());
+    hash = (53 * hash) + getId();
     hash = (37 * hash) + MASTERUSERNAME_FIELD_NUMBER;
     hash = (53 * hash) + getMasterUsername().hashCode();
     hash = (37 * hash) + MASTERPASSWORD_FIELD_NUMBER;
@@ -345,7 +344,7 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      id_ = 0L;
+      id_ = 0;
       masterUsername_ = "";
       masterPassword_ = "";
       return this;
@@ -404,7 +403,7 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(grpc.MasterUserDTO other) {
       if (other == grpc.MasterUserDTO.getDefaultInstance()) return this;
-      if (other.getId() != 0L) {
+      if (other.getId() != 0) {
         setId(other.getId());
       }
       if (!other.getMasterUsername().isEmpty()) {
@@ -444,7 +443,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 8: {
-              id_ = input.readInt64();
+              id_ = input.readInt32();
               bitField0_ |= 0x00000001;
               break;
             } // case 8
@@ -475,21 +474,21 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private long id_ ;
+    private int id_ ;
     /**
-     * <code>int64 id = 1;</code>
+     * <code>int32 id = 1;</code>
      * @return The id.
      */
     @java.lang.Override
-    public long getId() {
+    public int getId() {
       return id_;
     }
     /**
-     * <code>int64 id = 1;</code>
+     * <code>int32 id = 1;</code>
      * @param value The id to set.
      * @return This builder for chaining.
      */
-    public Builder setId(long value) {
+    public Builder setId(int value) {
 
       id_ = value;
       bitField0_ |= 0x00000001;
@@ -497,12 +496,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int64 id = 1;</code>
+     * <code>int32 id = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearId() {
       bitField0_ = (bitField0_ & ~0x00000001);
-      id_ = 0L;
+      id_ = 0;
       onChanged();
       return this;
     }

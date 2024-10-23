@@ -1,7 +1,7 @@
 package dk.sep3.dbserver.application;
 
+import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
 import dk.sep3.dbserver.model.passwordManager.db_entities.User;
-import dk.sep3.dbserver.grpc.adapters.grpc_to_java.UserDataToUserEntity;
 import dk.sep3.dbserver.grpc.factories.UserGrpcFactory;
 import grpc.UserData;
 import grpc.UserNameAndPswd;
@@ -44,7 +44,7 @@ public class dbServerDebug_CLI
             UserServiceGrpc.UserServiceBlockingStub stub = UserServiceGrpc.newBlockingStub(channel);
             UserData data = UserGrpcFactory.buildGrpcUserData(-1, username, password);
             UserData createdUser = stub.registerUser(data);
-            User newUser = UserDataToUserEntity.convertToUserEntity(createdUser);
+            User newUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(createdUser);
             System.out.println("Created user in DB: " + newUser.toString());
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());
@@ -64,7 +64,7 @@ public class dbServerDebug_CLI
             UserServiceGrpc.UserServiceBlockingStub stub = UserServiceGrpc.newBlockingStub(channel);
             UserNameAndPswd data = UserGrpcFactory.buildGrpcUserNameAndPswd(username, password);
             UserData foundUser = stub.getUser(data);
-            User newUser = UserDataToUserEntity.convertToUserEntity(foundUser);
+            User newUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(foundUser);
             System.out.println("Found user in DB: " + newUser.toString());
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());

@@ -2,7 +2,7 @@ package dk.sep3.dbserver.integrationTests;
 
 import dk.sep3.dbserver.DbServerApplication;
 import dk.sep3.dbserver.model.passwordManager.db_entities.User;
-import dk.sep3.dbserver.grpc.adapters.grpc_to_java.UserDataToUserEntity;
+import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
 import dk.sep3.dbserver.grpc.service.UserGrpcServiceImpl;
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
 import dk.sep3.dbserver.repositories.passwordManagerDb.UserRepository;
@@ -91,7 +91,7 @@ public class UserGrpcIntegrationTest
         .build();
 
     // Build a reference Entity, simulating what would be saved in the database
-    User user = UserDataToUserEntity.convertToUserEntity(request);
+    User user = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request);
     user.setId(1); // Simulate the database using SERIAL to generate a unique id.
 
     // Alert Mockito to "mock" the behavior of userRepository when its save method is called,
