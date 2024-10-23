@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 /** gRPC communicationClient, responsible for making contact with dbServer and sending the results back through the system
  * Uses Converter class to convert ClientRequest to gRPC's GenericRequest-format **/
+
 @Component
 public class grpcCommunicationClient implements CommunicationClient {
     private final ManagedChannel channel;
@@ -19,10 +20,10 @@ public class grpcCommunicationClient implements CommunicationClient {
     private final ClientRequestToGrpcConverter requestConverter;
     private final GrpcToServerResponseConverter responseConverter;
 
-    public grpcCommunicationClient(@Value("${grpc.server.host}")String host, @Value("${grpc.server.port}") int port, ClientRequestToGrpcConverter requestConverter, GrpcToServerResponseConverter responseConverter) {
+    public grpcCommunicationClient(ClientRequestToGrpcConverter requestConverter, GrpcToServerResponseConverter responseConverter) {
         this.requestConverter = requestConverter;
         this.responseConverter = responseConverter;
-        channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+        channel = ManagedChannelBuilder.forAddress("localhost", 8090).usePlaintext().build();
         stub = PasswordManagerServiceGrpc.newBlockingStub(channel);
     }
 
