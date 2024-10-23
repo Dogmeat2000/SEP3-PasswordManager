@@ -89,4 +89,10 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
       }
 
     } catch (Exception e) {
-      // Catch any exceptions: // TODO: Improve this wi
+      // Catch any exceptions: // TODO: Improve this with proper codes also!
+      GenericResponse errorResponse = GenericResponseFactory.buildGrpcGenericResponseWithError(500);
+      responseObserver.onNext(errorResponse);
+      responseObserver.onCompleted();
+    }
+  }
+}

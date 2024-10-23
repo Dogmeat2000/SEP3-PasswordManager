@@ -24,7 +24,7 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
     this.masterUserRepository = masterUserRepository;
   }
 
-  @Override public MasterUser registerMasterUser(MasterUser masterUser) throws DataIntegrityViolationException, PersistenceException {
+  @Override public MasterUser createMasterUser(MasterUser masterUser) throws DataIntegrityViolationException, PersistenceException {
     // Validate received data, before passing to repository/database:
     if(masterUser == null || masterUser.getMasterUsername() == null || masterUser.getEncryptedPassword() == null)
       throw new DataIntegrityViolationException("MasterUser cannot be null");
@@ -47,7 +47,7 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
     }
   }
 
-  @Override public MasterUser fetchMasterUser(String masterUsername, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException {
+  @Override public MasterUser readMasterUser(String masterUsername, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException {
     // Validate received data, before passing to repository/database:
     if(masterUsername == null)
       throw new DataIntegrityViolationException("MasterUsername cannot be null");

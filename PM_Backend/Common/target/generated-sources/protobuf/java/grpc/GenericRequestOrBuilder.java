@@ -11,7 +11,7 @@ public interface GenericRequestOrBuilder extends
 
   /**
    * <pre>
-   * Contains the oepration to execute on this Request
+   * Contains the operation to execute on this Request
    * </pre>
    *
    * <code>string requestType = 1;</code>
@@ -20,7 +20,7 @@ public interface GenericRequestOrBuilder extends
   java.lang.String getRequestType();
   /**
    * <pre>
-   * Contains the oepration to execute on this Request
+   * Contains the operation to execute on this Request
    * </pre>
    *
    * <code>string requestType = 1;</code>
@@ -31,7 +31,7 @@ public interface GenericRequestOrBuilder extends
 
   /**
    * <pre>
-   * Add more DTO's here.
+   * Add more DTOs here.
    * </pre>
    *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -40,7 +40,7 @@ public interface GenericRequestOrBuilder extends
   boolean hasMasterUser();
   /**
    * <pre>
-   * Add more DTO's here.
+   * Add more DTOs here.
    * </pre>
    *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -49,7 +49,7 @@ public interface GenericRequestOrBuilder extends
   grpc.MasterUserDTO getMasterUser();
   /**
    * <pre>
-   * Add more DTO's here.
+   * Add more DTOs here.
    * </pre>
    *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>

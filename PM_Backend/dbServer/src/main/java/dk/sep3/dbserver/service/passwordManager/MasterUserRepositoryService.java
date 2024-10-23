@@ -16,7 +16,7 @@ public interface MasterUserRepositoryService
    * @throws PersistenceException Thrown if registration failed, due to system/persistence issues (i.e. Repository is offline, etc.)
    * @throws DataIntegrityViolationException Thrown if registration failed, due to non-legal information being assigned to the MasterUser Entity (i.e. masterUsername is null)
    */
-  MasterUser registerMasterUser(MasterUser masterUser) throws DataIntegrityViolationException, PersistenceException;
+  MasterUser createMasterUser(MasterUser masterUser) throws DataIntegrityViolationException, PersistenceException;
 
 
   /** <p>Looks up a MasterUser entity with the specified masterUsername and encrypted password, in the repository</p>
@@ -27,5 +27,5 @@ public interface MasterUserRepositoryService
    * @throws PersistenceException Thrown if fetching MasterUser failed, due to system/persistence issues (i.e. Repository is offline, etc.)
    * @throws DataIntegrityViolationException Thrown if masterUsername is invalid (i.e. null).
    */
-  MasterUser fetchMasterUser(String masterUsername, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException;
+  MasterUser readMasterUser(String masterUsername, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException;
 }
