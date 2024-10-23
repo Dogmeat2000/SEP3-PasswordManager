@@ -1,21 +1,33 @@
-using System.Threading.Tasks;
-using System;
-using PM_Frontend.C#.Core;
-using PM_Frontend.C#.Logic;
-using PM_Frontend.C#.Services;
-
-namespace PM_Frontend
+class Program
+{
+    static async Task Main(string[] args)
     {
-        class Program
+        Console.WriteLine("Starting the application...");
+        
+        var loginEntryService = new LoginEntryService();
+        var loginEntryManager = new LoginEntryManager(loginEntryService);
+        
+        // Test save a login entry
+        Console.WriteLine("Testing CreateLoginEntry...");
+        loginEntryManager.CreateLoginEntry("TestUser", "TestPassword123", 1);
+        
+        // Test getting the login entry, taking response time into account
+        await Task.Delay(2000);
+        
+        Console.WriteLine("Testing ReadLoginEntry...");
+        var password = await loginEntryService.ReadLoginEntry("TestUser");
+        
+        if (password != null)
         {
-            static void Main(string[] args)
-            {
-                Console.WriteLine("Starting the application...");
-                var passwordService = new PasswordService();
-                var passwordManager = new PasswordManager(passwordService);
-                var cli = new ClientInterface(passwordManager);
-
-                cli.Start();
-            }
+            Console.WriteLine($"Retrieved password: {password}");
         }
+        else
+        {
+            Console.WriteLine("Failed to retrieve login entry.");
+        }
+        
+        // Start CLI for manual testing
+        var cli = new CommandLineInterfaceImpl();
+        cli.Start();
     }
+}

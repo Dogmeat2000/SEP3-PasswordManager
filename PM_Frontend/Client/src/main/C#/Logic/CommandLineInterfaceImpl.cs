@@ -1,58 +1,51 @@
-using System;
-using System.Threading.Tasks;
-using PM_Frontend.C#.Core;
-
-namespace PM_Frontend.C#.Logic
+class CommandLineInterfaceImpl
 {
-    public class CommandLineInterface : ICommandLineInterface
+    private readonly LoginEntryService _loginEntryService;
+
+    public CommandLineInterfaceImpl()
     {
+        _loginEntryService = new LoginEntryService();
+    }
 
-        public CommandLineInterface(PasswordManager passwordManager)
+    public async Task HandleCommand(string command)
+    {
+        var args = command.Split(" ");
+        
+        switch (args[0])
         {
-            passwordManager = passwordManager;
-        }
+            case "create-login-entry":
+                if (args.Length == 4)
+                {
+                    _loginEntryService.CreateLoginEntry(args[1], args[2], int.Parse(args[3]));
+                }
+                else
+                {
+                    Console.WriteLine("Use: create-login-entry <entryUsername> <entryPassword> <masterUserId>");
+                }
+                break;
 
-        public void Start()
-        {
-            while (true)
-            {
-                Console.WriteLine("Enter command (save/get): ");
-                string command = Console.ReadLine();
-                HandleCommand(command);
-            }
-        }
-
-        public void HandleCommand(string command)
-        {
-            var args = command.Split(" ");
-            switch (args[0])
-            {
-                case "save-password":
-                    if (args.Length == 3)
+            case "read-login-entry":
+                if (args.Length == 2)
+                {
+                    var password = await _loginEntryService.ReadLoginEntry(args[1]);
+                    if (password != null)
                     {
-                        passwordManager.SavePassword(args[1], args[2]);
+                        Console.WriteLine($"Password for {args[1]}: {password}");
                     }
                     else
                     {
-                        Console.WriteLine("Use: save-password <username> <password>");
+                        Console.WriteLine("No login entry found.");
                     }
-                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Use: read-login-entry <entryUsername>");
+                }
+                break;
 
-                case "get-password":
-                    if (args.Length == 2)
-                    {
-                        passwordManager.GetPassword(args[1]);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Use: get-password <username>");
-                    }
-                    break;
-
-                default:
-                    Console.WriteLine("Not known command.");
-                    break;
-            }
+            default:
+                Console.WriteLine("Unknown command.");
+                break;
         }
     }
 }
