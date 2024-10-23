@@ -7,7 +7,7 @@ import grpc.MasterUserDTO;
 public class MasterUserDTOtoMasterUserEntity
 {
   /** <p>Converts the gRPC compatible data type 'UserData' into the database server compatible 'User' entity, ready for interaction with the database.</p>
-   * @param userData a gRPC data type.
+   * @param userGrpcDTO a gRPC data type.
    * @return a database (db server) compatible entity */
   public static MasterUser convertToMasterUserEntity(MasterUserDTO userGrpcDTO) {
     if (userGrpcDTO == null)
