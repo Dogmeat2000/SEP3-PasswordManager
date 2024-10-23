@@ -1,56 +1,39 @@
 package dk.sep3.webapi;
 
-import dto.ClientRequest;
-import dto.GetUserClientRequest;
-import dto.ServerResponse;
-import grpc.UserData;
-import grpc.UserNameAndPswd;
-import grpc.UserServiceGrpc;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
+import common.requests.ClientRequest;
+import common.ServerResponse;
+import dk.sep3.webapi.network.RequestHandler;
 import io.grpc.StatusRuntimeException;
 
-/** Handles requests from clients and exposes the API-methods to interact with the dbServer **/
+/** Handles incoming client requests and forwards them to the appropriate handler **/
 public class WebAPIServer {
     private int currentLoad;
     private final int MAX_LOAD = 3;
     private boolean available;
+    private String url;
+    private RequestHandler handler;
 
-    // gRPC Connection attributes
-    private String host = "localhost";
-    private int port = 8090;
-    private final ManagedChannel channel;
-    private final UserServiceGrpc.UserServiceBlockingStub userServiceStub;
 
-    public WebAPIServer() {
+    public WebAPIServer(String url, RequestHandler handler) {
+        this.url = url;
         this.currentLoad = 0;
         this.available = true;
-
-        this.channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
-        this.userServiceStub = UserServiceGrpc.newBlockingStub(channel);
+        this.handler = handler;
     }
 
-    public ServerResponse handleRequest(GetUserClientRequest request) {
+    public ServerResponse handleRequest(ClientRequest request) {
         if (!isAvailable()) {
-            return new ServerResponse("Server is overloaded, cannot handle more requests.", 503);
+            return new ServerResponse("Server is overloaded. Please try again later.", 503);
         }
 
         try {
             currentLoad++;
 
-            UserNameAndPswd grpcRequest = UserNameAndPswd.newBuilder()
-                    .setUsername(request.getUsername())
-                    .setEncryptedPassword(request.getPassword())
-                    .build();
-
-            UserData grpcResponse = userServiceStub.getUser(grpcRequest);
-
-            // Return the response to the client
-            ServerResponse response = new ServerResponse("Request handled successfully", 200);
+            ServerResponse response = handler.handle(request);
             finishRequest();
             return response;
         } catch (StatusRuntimeException e) {
-            return new ServerResponse("Error: " + e.getStatus(), 500);
+            return new ServerResponse("Error: " + e.getStatus().getDescription(), 500);
         }
     }
 
@@ -74,7 +57,8 @@ public class WebAPIServer {
         available = true;
     }
 
-    public void shutdown() {
-        channel.shutdown();
+    public String getUrl() {
+        return url;
     }
+
 }
