@@ -1,9 +1,12 @@
 package common.dto;
 
 public class MasterUserDTO extends DTO {
+    private int id;
     private String masterUsername;
     private String masterPassword;
 
+    public MasterUserDTO() {
+    }
 
     public MasterUserDTO(String masterUsername, String masterPassword) {
         this.masterUsername = masterUsername;
@@ -24,5 +27,15 @@ public class MasterUserDTO extends DTO {
 
     public void setMasterPassword(String masterPassword) {
         this.masterPassword = masterPassword;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 }

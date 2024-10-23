@@ -6,12 +6,12 @@ public class LoginEntryDTO extends DTO {
     private int masterUserId;
 
     public LoginEntryDTO(int id, int masterUserId) {
-        super(id);
+        super.setId(id);
         this.masterUserId = masterUserId;
     }
 
     public LoginEntryDTO(int id, String entryUsername, String entryPassword, int masterUserId) {
-        super(id);
+        super.setId(id);
         this.entryUsername = entryUsername;
         this.entryPassword = entryPassword;
         this.masterUserId = masterUserId;

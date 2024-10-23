@@ -1,6 +1,7 @@
 package dk.sep3.dbserver.service.discoveryService;
 
 import dk.sep3.dbserver.model.discoveryService.db_entities.DatabaseServer;
+import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -14,7 +15,7 @@ public interface DiscoveryRepositoryService
    * @throws PersistenceException Thrown if registration failed, due to system/persistence issues (i.e. Repository is offline, etc.)
    * @throws DataIntegrityViolationException Thrown if registration failed, due to non-legal information being assigned to the DatabaseServer Entity (i.e. host is null)
    */
-  DatabaseServer registerDatabaseServer(DatabaseServer server);
+  DatabaseServer registerDatabaseServer(DatabaseServer server) throws DataIntegrityViolationException, PersistenceException;
 
 
   /** <p>Unregisters a Database server in the repository.</p>
@@ -22,19 +23,19 @@ public interface DiscoveryRepositoryService
    * @throws PersistenceException Thrown if removal failed, due to system/persistence issues (i.e. Repository is offline, etc.)
    * @throws DataIntegrityViolationException Thrown if removal failed, due to non-legal information being assigned to the DatabaseServer Entity (i.e. host is null)
    */
-  void unregisterDatabaseServer(DatabaseServer server);
+  void unregisterDatabaseServer(DatabaseServer server) throws DataIntegrityViolationException, PersistenceException;
 
 
   /** <p>Retrieves the Database server with the oldest ping/timestamp.</p>
    * @return The Database that has not been heard from, the longest.
    * @throws PersistenceException Thrown if query failed, due to system/persistence issues (i.e. Repository is offline, etc.)
    */
-  DatabaseServer getDatabaseServerWithOldestPing();
+  DatabaseServer getDatabaseServerWithOldestPing() throws NotFoundInDBException, PersistenceException;
 
 
   /** <p>Retrieves the Database server with the least congestion.</p>
    * @return The Database that is least congested.
    * @throws PersistenceException Thrown if query failed, due to system/persistence issues (i.e. Repository is offline, etc.)
    */
-  DatabaseServer getDatabaseServerWithLeastCongestion();
+  DatabaseServer getDatabaseServerWithLeastCongestion() throws NotFoundInDBException, PersistenceException;
 }

@@ -1,12 +1,11 @@
 package dk.sep3.webapi.network;
 
+import common.ClientRequest;
 import common.ServerResponse;
-import common.dto.MasterUserDTO;
-import common.requests.ClientRequest;
-import grpc.UserServiceGrpc;
+import grpc.PasswordManagerServiceGrpc;
 
+/** Interface for the communication client, defines the contract for communication between ClientRequests and dbServer **/
 public interface CommunicationClient {
-    UserServiceGrpc.UserServiceBlockingStub getStub();
-    void shutdown();
     ServerResponse callDbServer(ClientRequest request);
+    void shutdown();
 }

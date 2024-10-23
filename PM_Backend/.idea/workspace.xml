@@ -4,34 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="Creating test client for testing proof of concept">
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/dto/DTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/dto/LoginEntryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/dto/MasterUserDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/requests/ClientRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/requests/CreateMasterUserClientRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/requests/GetLoginEntryClientRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/src/main/java/common/requests/GetMasterUserClientRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/CommunicationClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/RequestHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/grpcCommunicationClient.java" afterDir="false" />
+    <list default="true" id="7cfea997-cadf-4a36-9735-c2195a0f0de3" name="Changes" comment="Updating ClientRequest to use only one, with a String requestType attribute">
+      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/ClientRequestToGrpcConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/GrpcToServerResponseConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/main/java/dto/ClientRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/main/java/dto/GetUserClientRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/main/java/dto/ServerResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/common/ServerResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/ILoadBalancerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/ILoadBalancerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/main/java/common/ServerResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/common/ServerResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/main/java/common/dto/LoginEntryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/common/dto/LoginEntryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/src/main/java/common/dto/MasterUserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/common/dto/MasterUserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/target/generated-sources/protobuf/grpc-java/grpc/UserServiceGrpc.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/target/generated-sources/protobuf/grpc-java/grpc/UserServiceGrpc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/target/generated-sources/protobuf/java/grpc/PasswordManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/target/generated-sources/protobuf/java/grpc/PasswordManagerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/LoadBalancerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoadBalancer/src/main/java/dk/sep3/loadbalancer/TestClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServiceMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerMonitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/WebAPIServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/CommunicationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/CommunicationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/grpcCommunicationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/src/main/java/dk/sep3/webapi/network/grpcCommunicationClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,56 +76,58 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TestClient.executor&quot;: &quot;Run&quot;,
-    &quot;Maven. [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Common [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Common [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LoadBalancer [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LoadBalancer [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LoadBalancer [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.PM_Backend [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.PM_Backend [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.PM_Backend [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebAPI [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebAPI [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebAPI [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebAPI [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebApiService [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dbServer [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dbServer [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dbServer [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dbServer [install].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.LoadBalancerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.WebApiApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Carsten Aamand/Documents/SEP3_PasswordManager/PM_Backend/WebApiService/src/main/java/org/sep3/webapiservice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.47585395&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TestClient.executor": "Run",
+    "Maven. [clean,install].executor": "Run",
+    "Maven.Common [clean,compile].executor": "Run",
+    "Maven.Common [clean,install].executor": "Run",
+    "Maven.LoadBalancer [clean,compile].executor": "Run",
+    "Maven.LoadBalancer [clean,install].executor": "Run",
+    "Maven.LoadBalancer [compile].executor": "Run",
+    "Maven.PM_Backend [clean,compile].executor": "Run",
+    "Maven.PM_Backend [clean,install].executor": "Run",
+    "Maven.PM_Backend [clean].executor": "Run",
+    "Maven.WebAPI [clean,compile].executor": "Run",
+    "Maven.WebAPI [clean,install].executor": "Run",
+    "Maven.WebAPI [clean].executor": "Run",
+    "Maven.WebAPI [compile].executor": "Run",
+    "Maven.WebApiService [clean,install].executor": "Run",
+    "Maven.dbServer [clean,install].executor": "Run",
+    "Maven.dbServer [clean].executor": "Run",
+    "Maven.dbServer [compile].executor": "Run",
+    "Maven.dbServer [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.LoadBalancerApplication.executor": "Run",
+    "Spring Boot.WebApiApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "21",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/Carsten Aamand/Documents/SEP3_PasswordManager/PM_Backend/WebAPI/src/main/java/dk/sep3/webapi/network",
+    "last_opened_file_path": "C:/Users/Carsten Aamand/Documents/SEP3_PasswordManager/PM_Backend/WebApiService/src/main/java/org/sep3/webapiservice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.47585395",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="dk.sep3.webapi.network" />
       <recent name="dk.sep3.webapi" />
       <recent name="dto" />
       <recent name="dk.sep3.loadbalancer" />
@@ -244,6 +233,7 @@
       <workItem from="1729435325545" duration="1988000" />
       <workItem from="1729589229835" duration="2491000" />
       <workItem from="1729605976365" duration="13574000" />
+      <workItem from="1729663396001" duration="9252000" />
     </task>
     <task id="LOCAL-00001" summary="adding Common module and dto objects">
       <option name="closed" value="true" />
@@ -333,7 +323,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728634206272</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Updating ClientRequest to use only one, with a String requestType attribute">
+      <option name="closed" value="true" />
+      <created>1729668445860</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1729668445860</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,6 +349,7 @@
     <MESSAGE value="Adds pom.xml to main project to keep track of underlying modules" />
     <MESSAGE value="Updating WebAPIServer to fix bugs with package not found on LoadBalancer end" />
     <MESSAGE value="Creating test client for testing proof of concept" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating test client for testing proof of concept" />
+    <MESSAGE value="Updating ClientRequest to use only one, with a String requestType attribute" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating ClientRequest to use only one, with a String requestType attribute" />
   </component>
 </project>

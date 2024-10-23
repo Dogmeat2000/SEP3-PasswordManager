@@ -1,14 +1,7 @@
 package dk.sep3.dbserverdiscoveryservice.application;
 
-import dk.sep3.dbserver.grpc.adapters.grpc_to_java.UserDataToUserEntity;
-import dk.sep3.dbserver.grpc.factories.UserGrpcFactory;
-import dk.sep3.dbserver.model.passwordManager.db_entities.User;
-import grpc.UserData;
-import grpc.UserNameAndPswd;
-import grpc.UserServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.StatusRuntimeException;
 
 import java.util.Scanner;
 
@@ -23,7 +16,7 @@ public class dbDiscoveryServerDebug_CLI
 
     Scanner input = new Scanner(System.in);
 
-    while(true) {
+    /*while(true) {
       System.out.println("\nAvailable database server commands: 'AddUser', 'ViewOneUser'");
       System.out.print(": ");
       String cmd = input.nextLine();
@@ -44,7 +37,7 @@ public class dbDiscoveryServerDebug_CLI
             UserServiceGrpc.UserServiceBlockingStub stub = UserServiceGrpc.newBlockingStub(channel);
             UserData data = UserGrpcFactory.buildGrpcUserData(-1, username, password);
             UserData createdUser = stub.registerUser(data);
-            User newUser = UserDataToUserEntity.convertToUserEntity(createdUser);
+            User newUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(createdUser);
             System.out.println("Created user in DB: " + newUser.toString());
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());
@@ -64,7 +57,7 @@ public class dbDiscoveryServerDebug_CLI
             UserServiceGrpc.UserServiceBlockingStub stub = UserServiceGrpc.newBlockingStub(channel);
             UserNameAndPswd data = UserGrpcFactory.buildGrpcUserNameAndPswd(username, password);
             UserData foundUser = stub.getUser(data);
-            User newUser = UserDataToUserEntity.convertToUserEntity(foundUser);
+            User newUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(foundUser);
             System.out.println("Found user in DB: " + newUser.toString());
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());
@@ -75,7 +68,7 @@ public class dbDiscoveryServerDebug_CLI
         default:
           System.out.println("Invalid input!\n");
       }
-    }
+    }*/
 
   }
 
