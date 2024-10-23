@@ -3,12 +3,8 @@ package dk.sep3.dbserver.model.discoveryService.db_entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.ZonedDateTime;
 import java.util.Objects;
-
-import static java.time.ZoneOffset.UTC;
 
 @Entity
 @Table(name = "discoveryservice")
