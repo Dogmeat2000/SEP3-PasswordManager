@@ -16,7 +16,7 @@ public interface UserRepositoryService
    * @throws PersistenceException Thrown if registration failed, due to system/persistence issues (i.e. Repository is offline, etc.)
    * @throws DataIntegrityViolationException Thrown if registration failed, due to non-legal information being assigned to the User Entity (i.e. username is null)
    */
-  User registerUser(User user) throws DataIntegrityViolationException, PersistenceException;
+  User createUser(User user) throws DataIntegrityViolationException, PersistenceException;
 
 
   /** <p>Looks up a User entity with the specified username and password, in the repository</p>
@@ -27,5 +27,5 @@ public interface UserRepositoryService
    * @throws PersistenceException Thrown if fetching User failed, due to system/persistence issues (i.e. Repository is offline, etc.)
    * @throws DataIntegrityViolationException Thrown if username is invalid (i.e. null).
    */
-  User fetchUser(String username, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException;
+  User readUser(String username, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException;
 }

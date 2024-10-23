@@ -50,7 +50,7 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
           masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
 
           // Execute the proper action:
-          masterUser = userServiceImpl.fetchUser(masterUser.getUsername(), masterUser.getEncryptedPassword());
+          masterUser = userServiceImpl.readUser(masterUser.getUsername(), masterUser.getEncryptedPassword());
 
           // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
           response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(200, masterUser);
@@ -69,7 +69,7 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
           masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
 
           // Execute the proper action:
-          masterUser = userServiceImpl.registerUser(masterUser);
+          masterUser = userServiceImpl.createUser(masterUser);
 
           // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
           response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(200, masterUser);

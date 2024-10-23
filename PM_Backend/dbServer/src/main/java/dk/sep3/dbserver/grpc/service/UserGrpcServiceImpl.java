@@ -40,7 +40,7 @@ public class UserGrpcServiceImpl extends UserServiceGrpc.UserServiceImplBase
     try {
       // Translate received gRPC information from the client, into a Java/DB compatible
       // entity and attempt to register the User in the repository/database:
-      User registeredUser =  userServiceImpl.registerUser(MasterUserDTOtoMasterUserEntity.convertToUserEntity(request));
+      User registeredUser =  userServiceImpl.createUser(MasterUserDTOtoMasterUserEntity.convertToUserEntity(request));
 
       // If User registration fails:
       if (registeredUser == null)
@@ -64,7 +64,7 @@ public class UserGrpcServiceImpl extends UserServiceGrpc.UserServiceImplBase
       String encryptedPassword = request.getEncryptedPassword();
 
       // Attempt to read the User with the provided username and password:
-      User user = userServiceImpl.fetchUser(username, encryptedPassword);
+      User user = userServiceImpl.readUser(username, encryptedPassword);
 
       // If User read failed:
       if (user == null)

@@ -25,7 +25,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService
   }
 
 
-  @Override public User registerUser(User user) throws DataIntegrityViolationException, PersistenceException {
+  @Override public User createUser(User user) throws DataIntegrityViolationException, PersistenceException {
     // Validate received data, before passing to repository/database:
     if(user == null || user.getUsername() == null || user.getEncryptedPassword() == null)
       throw new DataIntegrityViolationException("User cannot be null");
@@ -49,7 +49,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService
   }
 
 
-  @Override public User fetchUser(String username, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException {
+  @Override public User readUser(String username, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException {
     // Validate received data, before passing to repository/database:
     if(username == null)
       throw new DataIntegrityViolationException("Username cannot be null");
