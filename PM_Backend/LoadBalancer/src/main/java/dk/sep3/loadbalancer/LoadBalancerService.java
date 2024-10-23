@@ -1,25 +1,35 @@
 package dk.sep3.loadbalancer;
 
-import dk.sep3.webapi.WebAPIServiceMonitor;
+import common.requests.ClientRequest;
 import dk.sep3.webapi.WebAPIServer;
-import dto.ClientRequest;
-import dto.GetUserClientRequest;
-import dto.ServerResponse;
+import dk.sep3.webapi.WebAPIServerMonitor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/** Receives a request from LoadBalancerController and forwards it to the available WebAPIServer
- * Handles all business logic for the LoadBalancer **/
+/** ILoadBalancerService implementation **/
 @Service
 public class LoadBalancerService implements ILoadBalancerService {
-    private final WebAPIServiceMonitor monitor;
 
-    public LoadBalancerService(WebAPIServiceMonitor monitor) {
+    private final WebAPIServerMonitor monitor;
+
+    public LoadBalancerService(WebAPIServerMonitor monitor) {
         this.monitor = monitor;
     }
 
     @Override
-    public ServerResponse handleClientRequest(ClientRequest request) {
-        WebAPIServer availableServer = monitor.assignAvailableServer();
-        return availableServer.handleRequest((GetUserClientRequest) request);
+    public String getAvailableWebApiServer(ClientRequest request) {
+        WebAPIServer server = monitor.getAvailableServer();
+
+        if (server == null) {
+            return "No servers available";
+        }
+
+        return server.getUrl();
     }
+
+    @Override
+    public void handleServerFailure(String serverUrl) {
+        monitor.notifyServerFailure(serverUrl);
+    }
+
 }
