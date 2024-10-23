@@ -5,6 +5,7 @@ import common.ServerResponse;
 import dk.sep3.webapi.network.converter.ClientRequestToGrpcConverter;
 import dk.sep3.webapi.network.converter.GrpcToServerResponseConverter;
 import grpc.*;
+import grpc.PasswordManagerServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.beans.factory.annotation.Value;

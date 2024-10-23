@@ -7,9 +7,9 @@ import grpc.MasterUserDTO;
 /** <p>Responsible for converting java database server compatible db entities into gRPC connection data entries</p> */
 public class MasterUsertoGrpcMasterUserDTO
 {
-  /** <p>Converts the database entity 'User' into a gRPC compatible data type 'UserData', ready for transmission through gRPC connection.</p>
-   * @param masterUserEntity a database compatible Entity type.
-   * @return a gRPC compatible data type. */
+  /** <p>Converts the gRPC compatible data type 'MasterUserDTO' into the database server compatible 'MasterUser' entity, ready for interaction with the database.</p>
+   * @param masterUserEntity a gRPC data type.
+   * @return a database (db server) compatible entity */
   public static MasterUserDTO convertToGrpc(MasterUser masterUserEntity) {
     if (masterUserEntity == null)
       return null;
