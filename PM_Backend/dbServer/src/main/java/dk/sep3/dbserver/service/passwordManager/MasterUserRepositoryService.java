@@ -6,9 +6,9 @@ import jakarta.persistence.PersistenceException;
 import org.springframework.dao.DataIntegrityViolationException;
 
 /**
- * <p>UserRepositoryService defines the interface responsible for the database methods relating to User registration and management.</p>
+ * <p>MasterUserRepositoryService defines the interface responsible for the database methods relating to User registration and management.</p>
  */
-public interface UserRepositoryService
+public interface MasterUserRepositoryService
 {
   /** <p>Registers/Creates a new User in the repository with the given parameters applied.</p>
    * @param user The User entity to add to the repository.

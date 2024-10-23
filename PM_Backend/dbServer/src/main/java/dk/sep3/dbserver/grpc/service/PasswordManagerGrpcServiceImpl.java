@@ -3,8 +3,8 @@ package dk.sep3.dbserver.grpc.service;
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
 import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
 import dk.sep3.dbserver.model.passwordManager.db_entities.User;
-import dk.sep3.dbserver.service.passwordManager.UserRepositoryService;
-import dk.sep3.dbserver.service.passwordManager.UserRepositoryServiceImpl;
+import dk.sep3.dbserver.service.passwordManager.MasterUserRepositoryService;
+import dk.sep3.dbserver.service.passwordManager.MasterUserRepositoryServiceImpl;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
 import grpc.PasswordManagerServiceGrpc;
@@ -17,30 +17,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 @GrpcService
 public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
-  private final UserRepositoryService userServiceImpl;
-  private static final Logger logger = LoggerFactory.getLogger(UserGrpcServiceImpl.class);
+  private final MasterUserRepositoryService masterUserServiceImpl;
+  private static final Logger logger = LoggerFactory.getLogger(PasswordManagerGrpcServiceImpl.class);
 
   @Autowired
-  public PasswordManagerGrpcServiceImpl(UserRepositoryServiceImpl userServiceImpl, ServerHealthMonitor serverHealthMonitor) {
+  public PasswordManagerGrpcServiceImpl(MasterUserRepositoryServiceImpl masterUserServiceImpl, ServerHealthMonitor serverHealthMonitor) {
     super();
-    this.userServiceImpl = userServiceImpl;
+    this.masterUserServiceImpl = masterUserServiceImpl;
 
     // Launch database health monitor on a separate thread:
-    Thread healthMonitorThread = new Thread(() -> serverHealthMonitor.startService());
-    healthMonitorThread.setDaemon(true);
-    healthMonitorThread.start();
-    logger.info("Server Health Monitoring Service is running!");
+    if(serverHealthMonitor != null) {
+      Thread healthMonitorThread = new Thread(() -> serverHealthMonitor.startService());
+      healthMonitorThread.setDaemon(true);
+      healthMonitorThread.start();
+      logger.info("Server Health Monitoring Service is running!");
+    }
   }
 
   @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver){
     try {
       // Identify what actions was requested:
-      String actionRequested = request.getRequestType().toLowerCase();
+      String actionRequested = request.getRequestType();
 
       // TODO: Refactor away from Switch, this is just the quick fix:
       GenericResponse response;
       User masterUser;
-      switch(actionRequested) {
+      switch(actionRequested.toLowerCase()) {
         case "readmasteruser":
           // Identify what type of DTO to convert to java compatible format:
           if(!request.getDataCase().equals(GenericRequest.DataCase.MASTERUSER))
@@ -50,7 +52,7 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
           masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
 
           // Execute the proper action:
-          masterUser = userServiceImpl.readUser(masterUser.getUsername(), masterUser.getEncryptedPassword());
+          masterUser = masterUserServiceImpl.readUser(masterUser.getUsername(), masterUser.getEncryptedPassword());
 
           // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
           response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(200, masterUser);
@@ -69,10 +71,10 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
           masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
 
           // Execute the proper action:
-          masterUser = userServiceImpl.createUser(masterUser);
+          masterUser = masterUserServiceImpl.createUser(masterUser);
 
           // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
-          response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(200, masterUser);
+          response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(201, masterUser);
 
           responseObserver.onNext(response);
           responseObserver.onCompleted();

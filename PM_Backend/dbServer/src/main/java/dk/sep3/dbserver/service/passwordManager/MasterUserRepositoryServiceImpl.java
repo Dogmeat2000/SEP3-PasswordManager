@@ -1,7 +1,7 @@
 package dk.sep3.dbserver.service.passwordManager;
 
 import dk.sep3.dbserver.model.passwordManager.db_entities.User;
-import dk.sep3.dbserver.repositories.passwordManagerDb.UserRepository;
+import dk.sep3.dbserver.repositories.passwordManagerDb.MasterUserRepository;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.exception.ConstraintViolationException;
@@ -14,14 +14,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserRepositoryServiceImpl implements UserRepositoryService
+public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryService
 {
-  public final UserRepository userRepository;
-  private static final Logger logger = LoggerFactory.getLogger(UserRepositoryServiceImpl.class);
+  public final MasterUserRepository masterUserRepository;
+  private static final Logger logger = LoggerFactory.getLogger(MasterUserRepositoryServiceImpl.class);
 
   @Autowired
-  public UserRepositoryServiceImpl(UserRepository userRepository) {
-    this.userRepository = userRepository;
+  public MasterUserRepositoryServiceImpl(MasterUserRepository masterUserRepository) {
+    this.masterUserRepository = masterUserRepository;
   }
 
 
@@ -32,7 +32,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService
 
     // Attempt to add User to DB:
     try {
-      User newUser = userRepository.save(user);
+      User newUser = masterUserRepository.save(user);
       logger.info("User {} added to DB", newUser.getUsername());
       return newUser;
 
@@ -57,7 +57,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService
     // Attempt to fetch User from DB:
     try {
       // Causes the repository to query the database. If no match is found, an error is thrown immediately.
-      List<User> usersFound = userRepository.findByUsernameAndEncryptedPassword(username, encryptedPassword);
+      List<User> usersFound = masterUserRepository.findByUsernameAndEncryptedPassword(username, encryptedPassword);
       if(usersFound.isEmpty())
         throw new NotFoundInDBException("User {" + username + "} not found in DB");
       else if (usersFound.size() > 1)

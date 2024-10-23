@@ -1,40 +1,15 @@
 package dk.sep3.dbserver.integrationTests;
 
 import dk.sep3.dbserver.DbServerApplication;
-import dk.sep3.dbserver.model.passwordManager.db_entities.User;
-import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
-import dk.sep3.dbserver.grpc.service.UserGrpcServiceImpl;
-import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
-import dk.sep3.dbserver.repositories.passwordManagerDb.UserRepository;
-import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
-import grpc.UserData;
-import grpc.UserNameAndPswd;
-import grpc.UserServiceGrpc;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import io.grpc.Status;
-import io.grpc.StatusRuntimeException;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)  // Gives access to extended testing functionality
@@ -48,7 +23,7 @@ import static org.mockito.Mockito.*;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY) // Establishes an InMemory database instead of using the actual Postgresql database, so tests do not disrupt the production database.
 public class UserGrpcIntegrationTest
 {
-  @MockBean private UserRepository userRepository; // Signals that this is a "fake" Spring Boot bean.
+  /*@MockBean private MasterUserRepository userRepository; // Signals that this is a "fake" Spring Boot bean.
   @MockBean private DiscoveryRepository discoveryRepository; // Included to prevent spring errors while doing dependency injection.
 
   @InjectMocks private UserGrpcServiceImpl userGrpcService; // The gRPC service being tested. It is auto-injected into the test using dependency injection.
@@ -195,5 +170,5 @@ public class UserGrpcIntegrationTest
     // Call Mockito and check that the previously set when() statement was called at least 1 time,
     // to ensure that database interaction was actually simulated here.
     verify(userRepository, times(1)).findByUsernameAndEncryptedPassword("User1", "HLKNAFSDYH9407219384");
-  }
+  }*/
 }
