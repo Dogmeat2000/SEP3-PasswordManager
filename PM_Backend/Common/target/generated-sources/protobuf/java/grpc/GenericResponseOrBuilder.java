@@ -20,31 +20,46 @@ public interface GenericResponseOrBuilder extends
   int getStatusCode();
 
   /**
-   * <pre>
-   * Add more DTO's here.
-   * </pre>
-   *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
    * @return Whether the masterUser field is set.
    */
   boolean hasMasterUser();
   /**
-   * <pre>
-   * Add more DTO's here.
-   * </pre>
-   *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
    * @return The masterUser.
    */
   grpc.MasterUserDTO getMasterUser();
   /**
-   * <pre>
-   * Add more DTO's here.
-   * </pre>
-   *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
    */
   grpc.MasterUserDTOOrBuilder getMasterUserOrBuilder();
+
+  /**
+   * <pre>
+   * Add more DTOs here.
+   * </pre>
+   *
+   * <code>.grpc.Exception exception = 4;</code>
+   * @return Whether the exception field is set.
+   */
+  boolean hasException();
+  /**
+   * <pre>
+   * Add more DTOs here.
+   * </pre>
+   *
+   * <code>.grpc.Exception exception = 4;</code>
+   * @return The exception.
+   */
+  grpc.Exception getException();
+  /**
+   * <pre>
+   * Add more DTOs here.
+   * </pre>
+   *
+   * <code>.grpc.Exception exception = 4;</code>
+   */
+  grpc.ExceptionOrBuilder getExceptionOrBuilder();
 
   grpc.GenericResponse.DataCase getDataCase();
 }

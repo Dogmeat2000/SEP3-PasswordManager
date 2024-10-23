@@ -49,6 +49,7 @@ private static final long serialVersionUID = 0L;
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     MASTERUSER(3),
+    EXCEPTION(4),
     DATA_NOT_SET(0);
     private final int value;
     private DataCase(int value) {
@@ -67,6 +68,7 @@ private static final long serialVersionUID = 0L;
     public static DataCase forNumber(int value) {
       switch (value) {
         case 3: return MASTERUSER;
+        case 4: return EXCEPTION;
         case 0: return DATA_NOT_SET;
         default: return null;
       }
@@ -99,10 +101,6 @@ private static final long serialVersionUID = 0L;
 
   public static final int MASTERUSER_FIELD_NUMBER = 3;
   /**
-   * <pre>
-   * Add more DTO's here.
-   * </pre>
-   *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
    * @return Whether the masterUser field is set.
    */
@@ -111,10 +109,6 @@ private static final long serialVersionUID = 0L;
     return dataCase_ == 3;
   }
   /**
-   * <pre>
-   * Add more DTO's here.
-   * </pre>
-   *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
    * @return The masterUser.
    */
@@ -126,10 +120,6 @@ private static final long serialVersionUID = 0L;
     return grpc.MasterUserDTO.getDefaultInstance();
   }
   /**
-   * <pre>
-   * Add more DTO's here.
-   * </pre>
-   *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
    */
   @java.lang.Override
@@ -138,6 +128,49 @@ private static final long serialVersionUID = 0L;
        return (grpc.MasterUserDTO) data_;
     }
     return grpc.MasterUserDTO.getDefaultInstance();
+  }
+
+  public static final int EXCEPTION_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * Add more DTOs here.
+   * </pre>
+   *
+   * <code>.grpc.Exception exception = 4;</code>
+   * @return Whether the exception field is set.
+   */
+  @java.lang.Override
+  public boolean hasException() {
+    return dataCase_ == 4;
+  }
+  /**
+   * <pre>
+   * Add more DTOs here.
+   * </pre>
+   *
+   * <code>.grpc.Exception exception = 4;</code>
+   * @return The exception.
+   */
+  @java.lang.Override
+  public grpc.Exception getException() {
+    if (dataCase_ == 4) {
+       return (grpc.Exception) data_;
+    }
+    return grpc.Exception.getDefaultInstance();
+  }
+  /**
+   * <pre>
+   * Add more DTOs here.
+   * </pre>
+   *
+   * <code>.grpc.Exception exception = 4;</code>
+   */
+  @java.lang.Override
+  public grpc.ExceptionOrBuilder getExceptionOrBuilder() {
+    if (dataCase_ == 4) {
+       return (grpc.Exception) data_;
+    }
+    return grpc.Exception.getDefaultInstance();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -160,6 +193,9 @@ private static final long serialVersionUID = 0L;
     if (dataCase_ == 3) {
       output.writeMessage(3, (grpc.MasterUserDTO) data_);
     }
+    if (dataCase_ == 4) {
+      output.writeMessage(4, (grpc.Exception) data_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -176,6 +212,10 @@ private static final long serialVersionUID = 0L;
     if (dataCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, (grpc.MasterUserDTO) data_);
+    }
+    if (dataCase_ == 4) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, (grpc.Exception) data_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -200,6 +240,10 @@ private static final long serialVersionUID = 0L;
         if (!getMasterUser()
             .equals(other.getMasterUser())) return false;
         break;
+      case 4:
+        if (!getException()
+            .equals(other.getException())) return false;
+        break;
       case 0:
       default:
     }
@@ -220,6 +264,10 @@ private static final long serialVersionUID = 0L;
       case 3:
         hash = (37 * hash) + MASTERUSER_FIELD_NUMBER;
         hash = (53 * hash) + getMasterUser().hashCode();
+        break;
+      case 4:
+        hash = (37 * hash) + EXCEPTION_FIELD_NUMBER;
+        hash = (53 * hash) + getException().hashCode();
         break;
       case 0:
       default:
@@ -359,6 +407,9 @@ private static final long serialVersionUID = 0L;
       if (masterUserBuilder_ != null) {
         masterUserBuilder_.clear();
       }
+      if (exceptionBuilder_ != null) {
+        exceptionBuilder_.clear();
+      }
       dataCase_ = 0;
       data_ = null;
       return this;
@@ -407,6 +458,10 @@ private static final long serialVersionUID = 0L;
           masterUserBuilder_ != null) {
         result.data_ = masterUserBuilder_.build();
       }
+      if (dataCase_ == 4 &&
+          exceptionBuilder_ != null) {
+        result.data_ = exceptionBuilder_.build();
+      }
     }
 
     @java.lang.Override
@@ -427,6 +482,10 @@ private static final long serialVersionUID = 0L;
       switch (other.getDataCase()) {
         case MASTERUSER: {
           mergeMasterUser(other.getMasterUser());
+          break;
+        }
+        case EXCEPTION: {
+          mergeException(other.getException());
           break;
         }
         case DATA_NOT_SET: {
@@ -471,6 +530,13 @@ private static final long serialVersionUID = 0L;
               dataCase_ = 3;
               break;
             } // case 26
+            case 34: {
+              input.readMessage(
+                  getExceptionFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              dataCase_ = 4;
+              break;
+            } // case 34
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -550,10 +616,6 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilder<
         grpc.MasterUserDTO, grpc.MasterUserDTO.Builder, grpc.MasterUserDTOOrBuilder> masterUserBuilder_;
     /**
-     * <pre>
-     * Add more DTO's here.
-     * </pre>
-     *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
      * @return Whether the masterUser field is set.
      */
@@ -562,10 +624,6 @@ private static final long serialVersionUID = 0L;
       return dataCase_ == 3;
     }
     /**
-     * <pre>
-     * Add more DTO's here.
-     * </pre>
-     *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
      * @return The masterUser.
      */
@@ -584,10 +642,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Add more DTO's here.
-     * </pre>
-     *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
      */
     public Builder setMasterUser(grpc.MasterUserDTO value) {
@@ -604,10 +658,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Add more DTO's here.
-     * </pre>
-     *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
      */
     public Builder setMasterUser(
@@ -622,10 +672,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Add more DTO's here.
-     * </pre>
-     *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
      */
     public Builder mergeMasterUser(grpc.MasterUserDTO value) {
@@ -649,10 +695,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Add more DTO's here.
-     * </pre>
-     *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
      */
     public Builder clearMasterUser() {
@@ -672,20 +714,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Add more DTO's here.
-     * </pre>
-     *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
      */
     public grpc.MasterUserDTO.Builder getMasterUserBuilder() {
       return getMasterUserFieldBuilder().getBuilder();
     }
     /**
-     * <pre>
-     * Add more DTO's here.
-     * </pre>
-     *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
      */
     @java.lang.Override
@@ -700,10 +734,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Add more DTO's here.
-     * </pre>
-     *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilder<
@@ -723,6 +753,184 @@ private static final long serialVersionUID = 0L;
       dataCase_ = 3;
       onChanged();
       return masterUserBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilder<
+        grpc.Exception, grpc.Exception.Builder, grpc.ExceptionOrBuilder> exceptionBuilder_;
+    /**
+     * <pre>
+     * Add more DTOs here.
+     * </pre>
+     *
+     * <code>.grpc.Exception exception = 4;</code>
+     * @return Whether the exception field is set.
+     */
+    @java.lang.Override
+    public boolean hasException() {
+      return dataCase_ == 4;
+    }
+    /**
+     * <pre>
+     * Add more DTOs here.
+     * </pre>
+     *
+     * <code>.grpc.Exception exception = 4;</code>
+     * @return The exception.
+     */
+    @java.lang.Override
+    public grpc.Exception getException() {
+      if (exceptionBuilder_ == null) {
+        if (dataCase_ == 4) {
+          return (grpc.Exception) data_;
+        }
+        return grpc.Exception.getDefaultInstance();
+      } else {
+        if (dataCase_ == 4) {
+          return exceptionBuilder_.getMessage();
+        }
+        return grpc.Exception.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * Add more DTOs here.
+     * </pre>
+     *
+     * <code>.grpc.Exception exception = 4;</code>
+     */
+    public Builder setException(grpc.Exception value) {
+      if (exceptionBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        data_ = value;
+        onChanged();
+      } else {
+        exceptionBuilder_.setMessage(value);
+      }
+      dataCase_ = 4;
+      return this;
+    }
+    /**
+     * <pre>
+     * Add more DTOs here.
+     * </pre>
+     *
+     * <code>.grpc.Exception exception = 4;</code>
+     */
+    public Builder setException(
+        grpc.Exception.Builder builderForValue) {
+      if (exceptionBuilder_ == null) {
+        data_ = builderForValue.build();
+        onChanged();
+      } else {
+        exceptionBuilder_.setMessage(builderForValue.build());
+      }
+      dataCase_ = 4;
+      return this;
+    }
+    /**
+     * <pre>
+     * Add more DTOs here.
+     * </pre>
+     *
+     * <code>.grpc.Exception exception = 4;</code>
+     */
+    public Builder mergeException(grpc.Exception value) {
+      if (exceptionBuilder_ == null) {
+        if (dataCase_ == 4 &&
+            data_ != grpc.Exception.getDefaultInstance()) {
+          data_ = grpc.Exception.newBuilder((grpc.Exception) data_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          data_ = value;
+        }
+        onChanged();
+      } else {
+        if (dataCase_ == 4) {
+          exceptionBuilder_.mergeFrom(value);
+        } else {
+          exceptionBuilder_.setMessage(value);
+        }
+      }
+      dataCase_ = 4;
+      return this;
+    }
+    /**
+     * <pre>
+     * Add more DTOs here.
+     * </pre>
+     *
+     * <code>.grpc.Exception exception = 4;</code>
+     */
+    public Builder clearException() {
+      if (exceptionBuilder_ == null) {
+        if (dataCase_ == 4) {
+          dataCase_ = 0;
+          data_ = null;
+          onChanged();
+        }
+      } else {
+        if (dataCase_ == 4) {
+          dataCase_ = 0;
+          data_ = null;
+        }
+        exceptionBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Add more DTOs here.
+     * </pre>
+     *
+     * <code>.grpc.Exception exception = 4;</code>
+     */
+    public grpc.Exception.Builder getExceptionBuilder() {
+      return getExceptionFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Add more DTOs here.
+     * </pre>
+     *
+     * <code>.grpc.Exception exception = 4;</code>
+     */
+    @java.lang.Override
+    public grpc.ExceptionOrBuilder getExceptionOrBuilder() {
+      if ((dataCase_ == 4) && (exceptionBuilder_ != null)) {
+        return exceptionBuilder_.getMessageOrBuilder();
+      } else {
+        if (dataCase_ == 4) {
+          return (grpc.Exception) data_;
+        }
+        return grpc.Exception.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * Add more DTOs here.
+     * </pre>
+     *
+     * <code>.grpc.Exception exception = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        grpc.Exception, grpc.Exception.Builder, grpc.ExceptionOrBuilder> 
+        getExceptionFieldBuilder() {
+      if (exceptionBuilder_ == null) {
+        if (!(dataCase_ == 4)) {
+          data_ = grpc.Exception.getDefaultInstance();
+        }
+        exceptionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            grpc.Exception, grpc.Exception.Builder, grpc.ExceptionOrBuilder>(
+                (grpc.Exception) data_,
+                getParentForChildren(),
+                isClean());
+        data_ = null;
+      }
+      dataCase_ = 4;
+      onChanged();
+      return exceptionBuilder_;
     }
 
     // @@protoc_insertion_point(builder_scope:grpc.GenericResponse)

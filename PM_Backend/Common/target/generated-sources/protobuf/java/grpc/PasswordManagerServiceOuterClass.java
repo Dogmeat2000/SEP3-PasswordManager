@@ -40,6 +40,11 @@ public final class PasswordManagerServiceOuterClass {
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_grpc_MasterUserDTO_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_grpc_Exception_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_grpc_Exception_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -52,13 +57,15 @@ public final class PasswordManagerServiceOuterClass {
       "\n\034PasswordManagerService.proto\022\004grpc\"X\n\016" +
       "GenericRequest\022\023\n\013requestType\030\001 \001(\t\022)\n\nm" +
       "asterUser\030\003 \001(\0132\023.grpc.MasterUserDTOH\000B\006" +
-      "\n\004data\"X\n\017GenericResponse\022\022\n\nstatusCode\030" +
+      "\n\004data\"~\n\017GenericResponse\022\022\n\nstatusCode\030" +
       "\001 \001(\005\022)\n\nmasterUser\030\003 \001(\0132\023.grpc.MasterU" +
-      "serDTOH\000B\006\n\004data\"K\n\rMasterUserDTO\022\n\n\002id\030" +
-      "\001 \001(\005\022\026\n\016masterUsername\030\002 \001(\t\022\026\n\016masterP" +
-      "assword\030\003 \001(\t2V\n\026PasswordManagerService\022" +
-      "<\n\rHandleRequest\022\024.grpc.GenericRequest\032\025" +
-      ".grpc.GenericResponseB\002P\001b\006proto3"
+      "serDTOH\000\022$\n\texception\030\004 \001(\0132\017.grpc.Excep" +
+      "tionH\000B\006\n\004data\"K\n\rMasterUserDTO\022\n\n\002id\030\001 " +
+      "\001(\005\022\026\n\016masterUsername\030\002 \001(\t\022\026\n\016masterPas" +
+      "sword\030\003 \001(\t\"\036\n\tException\022\021\n\texception\030\001 " +
+      "\001(\t2V\n\026PasswordManagerService\022<\n\rHandleR" +
+      "equest\022\024.grpc.GenericRequest\032\025.grpc.Gene" +
+      "ricResponseB\002P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -75,13 +82,19 @@ public final class PasswordManagerServiceOuterClass {
     internal_static_grpc_GenericResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_grpc_GenericResponse_descriptor,
-        new java.lang.String[] { "StatusCode", "MasterUser", "Data", });
+        new java.lang.String[] { "StatusCode", "MasterUser", "Exception", "Data", });
     internal_static_grpc_MasterUserDTO_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_grpc_MasterUserDTO_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_grpc_MasterUserDTO_descriptor,
         new java.lang.String[] { "Id", "MasterUsername", "MasterPassword", });
+    internal_static_grpc_Exception_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_grpc_Exception_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_grpc_Exception_descriptor,
+        new java.lang.String[] { "Exception", });
     descriptor.resolveAllFeaturesImmutable();
   }
 

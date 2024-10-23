@@ -6,7 +6,7 @@ import grpc.GenericResponse;
 
 public class GenericResponseFactory
 {
-  public static GenericResponse buildGrpcGenericResponseWithMasterUserDTO(int statusCode, User masterUser) {
+  public static GenericResponse buildGrpcGenericResponseWithMasterUserDTO(int statusCode, MasterUser masterUser) {
     return GenericResponse.newBuilder()
         .setStatusCode(statusCode)
         .setMasterUser(MasterUsertoGrpcMasterUserDTO.convertToGrpc(masterUser))
