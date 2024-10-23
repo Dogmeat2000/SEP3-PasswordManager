@@ -5,6 +5,7 @@ import common.ServerResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/** Controller for handling incoming requests from the client, and forwarding them to the WebAPIServer **/
 @RestController
 @RequestMapping("/api")
 public class WebAPIServerController {

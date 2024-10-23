@@ -4,12 +4,11 @@ import common.ClientRequest;
 import common.ServerResponse;
 import org.springframework.context.annotation.Configuration;
 
-/** Handles incoming client requests and forwards them to the appropriate handler **/
+/** Handles incoming client requests from WebAPIServe and forwards them to the CommunicationClient **/
 @Configuration
 public class RequestHandler {
 
     private final CommunicationClient communicationClient;
-
     public RequestHandler(CommunicationClient communicationClient) {
         this.communicationClient = communicationClient;
     }
