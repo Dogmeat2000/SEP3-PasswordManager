@@ -1,29 +1,31 @@
 package dk.sep3.dbserver.grpc.service;
 
-import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
+import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommand;
+import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommandFactory;
 import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
-import dk.sep3.dbserver.model.passwordManager.db_entities.User;
-import dk.sep3.dbserver.service.passwordManager.MasterUserRepositoryService;
-import dk.sep3.dbserver.service.passwordManager.MasterUserRepositoryServiceImpl;
+import dk.sep3.dbserver.service.exceptions.IllegalGrpcCommand;
+import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
 import grpc.PasswordManagerServiceGrpc;
 import io.grpc.stub.StreamObserver;
+import jakarta.persistence.PersistenceException;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 
 @GrpcService
 public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
-  private final MasterUserRepositoryService masterUserServiceImpl;
   private static final Logger logger = LoggerFactory.getLogger(PasswordManagerGrpcServiceImpl.class);
+  private final GrpcCommandFactory commandManager;
 
   @Autowired
-  public PasswordManagerGrpcServiceImpl(MasterUserRepositoryServiceImpl masterUserServiceImpl, ServerHealthMonitor serverHealthMonitor) {
+  public PasswordManagerGrpcServiceImpl(ServerHealthMonitor serverHealthMonitor, GrpcCommandFactory commandManager) {
     super();
-    this.masterUserServiceImpl = masterUserServiceImpl;
+    this.commandManager = commandManager;
 
     // Launch database health monitor on a separate thread:
     if(serverHealthMonitor != null) {
@@ -36,63 +38,39 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
 
   @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver){
     try {
-      // Identify what actions was requested:
-      String actionRequested = request.getRequestType();
+      // Validate request
+      if(request == null)
+        throw new IllegalArgumentException("Request cannot be null");
 
-      // TODO: Refactor away from Switch, this is just the quick fix:
-      GenericResponse response;
-      User masterUser;
-      switch(actionRequested.toLowerCase()) {
-        case "readmasteruser":
-          // Identify what type of DTO to convert to java compatible format:
-          if(!request.getDataCase().equals(GenericRequest.DataCase.MASTERUSER))
-            throw new Exception("Invalid request"); // TODO: Better exception handling.
+      // Identify what action was requested:
+      String cmdRequested = request.getRequestType();
 
-          // Convert to db compatible entity:
-          masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
+      // Identify which gRPC command to execute:
+      GrpcCommand command = commandManager.getCommand(cmdRequested);
 
-          // Execute the proper action:
-          masterUser = masterUserServiceImpl.readUser(masterUser.getUsername(), masterUser.getEncryptedPassword());
+      // Execute the command:
+      GenericResponse response = command.execute(request);
 
-          // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
-          response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(200, masterUser);
+      // Transmit response back to client:
+      responseObserver.onNext(response);
 
-          responseObserver.onNext(response);
-          responseObserver.onCompleted();
 
-          break;
+    } catch (DataIntegrityViolationException e) {
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(400));
 
-        case "createmasteruser":
-          // Identify what type of DTO to convert to java compatible format:
-          if(!request.getDataCase().equals(GenericRequest.DataCase.MASTERUSER))
-            throw new Exception("Invalid request"); // TODO: Better exception handling.
+    } catch (NotFoundInDBException e) {
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(404));
 
-          // Convert to db compatible entity:
-          masterUser = MasterUserDTOtoMasterUserEntity.convertToUserEntity(request.getMasterUser());
+    } catch (IllegalGrpcCommand e) {
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(405));
 
-          // Execute the proper action:
-          masterUser = masterUserServiceImpl.createUser(masterUser);
-
-          // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
-          response = GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(201, masterUser);
-
-          responseObserver.onNext(response);
-          responseObserver.onCompleted();
-
-          break;
-
-        default:
-          response = GenericResponseFactory.buildGrpcGenericResponseWithError(500);
-          responseObserver.onNext(response);
-          responseObserver.onCompleted();
-          break;
-
-      }
+    } catch (PersistenceException e) {
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(503));
 
     } catch (Exception e) {
-      // Catch any exceptions: // TODO: Improve this with proper codes also!
-      GenericResponse errorResponse = GenericResponseFactory.buildGrpcGenericResponseWithError(500);
-      responseObserver.onNext(errorResponse);
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(500));
+
+    } finally {
       responseObserver.onCompleted();
     }
   }

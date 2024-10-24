@@ -88,7 +88,7 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object requestType_ = "";
   /**
    * <pre>
-   * Contains the oepration to execute on this Request
+   * Contains the operation to execute on this Request
    * </pre>
    *
    * <code>string requestType = 1;</code>
@@ -109,7 +109,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Contains the oepration to execute on this Request
+   * Contains the operation to execute on this Request
    * </pre>
    *
    * <code>string requestType = 1;</code>
@@ -133,7 +133,7 @@ private static final long serialVersionUID = 0L;
   public static final int MASTERUSER_FIELD_NUMBER = 3;
   /**
    * <pre>
-   * Add more DTO's here.
+   * Add more DTOs here.
    * </pre>
    *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -145,7 +145,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Add more DTO's here.
+   * Add more DTOs here.
    * </pre>
    *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -160,7 +160,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Add more DTO's here.
+   * Add more DTOs here.
    * </pre>
    *
    * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -540,7 +540,7 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object requestType_ = "";
     /**
      * <pre>
-     * Contains the oepration to execute on this Request
+     * Contains the operation to execute on this Request
      * </pre>
      *
      * <code>string requestType = 1;</code>
@@ -560,7 +560,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Contains the oepration to execute on this Request
+     * Contains the operation to execute on this Request
      * </pre>
      *
      * <code>string requestType = 1;</code>
@@ -581,7 +581,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Contains the oepration to execute on this Request
+     * Contains the operation to execute on this Request
      * </pre>
      *
      * <code>string requestType = 1;</code>
@@ -598,7 +598,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Contains the oepration to execute on this Request
+     * Contains the operation to execute on this Request
      * </pre>
      *
      * <code>string requestType = 1;</code>
@@ -612,7 +612,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Contains the oepration to execute on this Request
+     * Contains the operation to execute on this Request
      * </pre>
      *
      * <code>string requestType = 1;</code>
@@ -633,7 +633,7 @@ private static final long serialVersionUID = 0L;
         grpc.MasterUserDTO, grpc.MasterUserDTO.Builder, grpc.MasterUserDTOOrBuilder> masterUserBuilder_;
     /**
      * <pre>
-     * Add more DTO's here.
+     * Add more DTOs here.
      * </pre>
      *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -645,7 +645,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Add more DTO's here.
+     * Add more DTOs here.
      * </pre>
      *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -667,7 +667,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Add more DTO's here.
+     * Add more DTOs here.
      * </pre>
      *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -687,7 +687,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Add more DTO's here.
+     * Add more DTOs here.
      * </pre>
      *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -705,7 +705,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Add more DTO's here.
+     * Add more DTOs here.
      * </pre>
      *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -732,7 +732,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Add more DTO's here.
+     * Add more DTOs here.
      * </pre>
      *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -755,7 +755,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Add more DTO's here.
+     * Add more DTOs here.
      * </pre>
      *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -765,7 +765,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Add more DTO's here.
+     * Add more DTOs here.
      * </pre>
      *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>
@@ -783,7 +783,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Add more DTO's here.
+     * Add more DTOs here.
      * </pre>
      *
      * <code>.grpc.MasterUserDTO masterUser = 3;</code>

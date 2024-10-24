@@ -19,7 +19,7 @@ public final class PasswordManagerServiceGrpc {
       grpc.GenericResponse> getHandleRequestMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "HandleRequest",
+      fullMethodName = SERVICE_NAME + '/' + "handleRequest",
       requestType = grpc.GenericRequest.class,
       responseType = grpc.GenericResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
@@ -32,13 +32,13 @@ public final class PasswordManagerServiceGrpc {
           PasswordManagerServiceGrpc.getHandleRequestMethod = getHandleRequestMethod =
               io.grpc.MethodDescriptor.<grpc.GenericRequest, grpc.GenericResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "HandleRequest"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "handleRequest"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   grpc.GenericRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   grpc.GenericResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new PasswordManagerServiceMethodDescriptorSupplier("HandleRequest"))
+              .setSchemaDescriptor(new PasswordManagerServiceMethodDescriptorSupplier("handleRequest"))
               .build();
         }
       }
