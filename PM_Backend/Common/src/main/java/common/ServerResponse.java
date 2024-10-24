@@ -13,6 +13,7 @@ public class ServerResponse {
 
     public ServerResponse(int statusCode, String message) {
         this.statusCode = statusCode;
+        this.message = message;
     }
 
     public ServerResponse(int statusCode, DTO dto) {

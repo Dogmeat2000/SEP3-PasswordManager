@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 public class LoadBalancerController {
     private final ILoadBalancerService service;
 
-
     public LoadBalancerController(ILoadBalancerService service) {
         this.service = service;
     }
 
-    @PostMapping("/api/assign-server")
+    @PostMapping("/server")
     public ResponseEntity<ServerResponse> assignWebApiServer(@RequestBody ClientRequest request) {
         String serverUrl = service.getAvailableWebApiServer(request);
+        System.out.println("Server URL: " + serverUrl);
         ServerResponse response = new ServerResponse(200, serverUrl);
 
         return ResponseEntity.ok(response);

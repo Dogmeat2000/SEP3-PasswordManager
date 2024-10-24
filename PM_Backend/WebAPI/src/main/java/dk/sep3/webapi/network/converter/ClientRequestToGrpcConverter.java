@@ -20,6 +20,15 @@ public class ClientRequestToGrpcConverter {
                             .setMasterPassword(masterUserDTO.getMasterPassword())
                             .build()
             );
+        } else if (request.getRequestType().equals("ReadMasterUser")) {
+                common.dto.MasterUserDTO masterUserDTO = (common.dto.MasterUserDTO) request.getDTO();
+
+                builder.setMasterUser(
+                        grpc.MasterUserDTO.newBuilder()
+                                .setMasterUsername(masterUserDTO.getMasterUsername())
+                                .setMasterPassword(masterUserDTO.getMasterPassword())
+                                .build()
+                );
         }
 
         return builder.build();

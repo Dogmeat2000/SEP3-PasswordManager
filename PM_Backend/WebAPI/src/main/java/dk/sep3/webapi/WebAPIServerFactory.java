@@ -14,11 +14,13 @@ public class WebAPIServerFactory {
     }
 
     public WebAPIServer createNewServer() {
-        String newServerUrl = "http://localhost:" + getNextAvailablePort();
+        // String newServerUrl = "http://localhost:" + getNextAvailablePort();
+        String newServerUrl = "http://localhost:8081";
 
         WebAPIServer newServer = new WebAPIServer(requestHandler);
         newServer.setUrl(newServerUrl);
 
+        System.out.println("Created new server: " + newServerUrl);
         return newServer;
     }
 

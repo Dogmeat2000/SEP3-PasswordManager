@@ -1,5 +1,12 @@
 package common.dto;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
 public class LoginEntryDTO extends DTO {
     private String entryUsername;
     private String entryPassword;

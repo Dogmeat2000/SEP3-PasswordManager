@@ -7,6 +7,8 @@ public class ClientRequest {
     private String requestType;
     private DTO dto;
 
+    public ClientRequest() {}
+
     public ClientRequest(String requestType, DTO dto) {
         this.requestType = requestType;
         this.dto = dto;
