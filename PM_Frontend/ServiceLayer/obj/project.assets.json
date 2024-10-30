@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Client\\Client.csproj",
-      "projectName": "Client",
-      "projectPath": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Client\\Client.csproj",
+      "projectUniqueName": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
+      "projectName": "ServiceLayer",
+      "projectPath": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
       "packagesPath": "C:\\Users\\DooMz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Client\\obj\\",
+      "outputPath": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DooMz\\AppData\\Roaming\\NuGet\\NuGet.Config"
