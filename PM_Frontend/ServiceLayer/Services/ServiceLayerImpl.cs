@@ -1,8 +1,8 @@
-﻿using Client.Services.LoginEntryService;
-using Client.Services.MasterUserService;
+﻿using ServiceLayer.Services.LoginEntryService;
+using ServiceLayer.Services.MasterUserService;
 using Shared.Dtos;
 
-namespace Client.Services;
+namespace ServiceLayer.Services;
 
 public class ServiceLayerImpl : IServiceLayer
 {

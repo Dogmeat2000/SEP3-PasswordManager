@@ -1,4 +1,4 @@
-﻿namespace Client.Services.Cryptography;
+﻿namespace ServiceLayer.Services.Cryptography;
 
 public class ICryptographyService
 {

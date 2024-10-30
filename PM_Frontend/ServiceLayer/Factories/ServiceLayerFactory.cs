@@ -1,4 +1,4 @@
-﻿namespace Client.Factories;
+﻿namespace ServiceLayer.Factories;
 
 public static class ServiceLayerFactory
 {

@@ -1,6 +1,6 @@
 ﻿using Shared.Dtos;
 
-namespace Client.Services;
+namespace ServiceLayer.Services;
 
 /** The interface which the front-end application contacts with requests that will be handled (Validated, encrypted and other business logic) by the service layer.
  */

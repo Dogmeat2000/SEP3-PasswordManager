@@ -1,4 +1,4 @@
-﻿namespace Client.Networking;
+﻿namespace ServiceLayer.Networking;
 
 public class WebApiClientImpl
 {

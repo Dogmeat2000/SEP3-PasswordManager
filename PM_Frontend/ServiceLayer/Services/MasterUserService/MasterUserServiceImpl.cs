@@ -1,8 +1,8 @@
-﻿using Client.Networking;
-using Client.Services.Cryptography;
+﻿using ServiceLayer.Networking;
+using ServiceLayer.Services.Cryptography;
 using Shared.Dtos;
 
-namespace Client.Services.MasterUserService;
+namespace ServiceLayer.Services.MasterUserService;
 
 public class MasterUserServiceImpl : IMasterUserService
 {

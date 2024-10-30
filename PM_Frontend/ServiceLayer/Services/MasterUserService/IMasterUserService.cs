@@ -1,6 +1,6 @@
 ﻿using Shared.Dtos;
 
-namespace Client.Services.MasterUserService;
+namespace ServiceLayer.Services.MasterUserService;
 /**
  * Handles business logic for the MasterUser data entity
  * Business logic contains encryption, validation and so on

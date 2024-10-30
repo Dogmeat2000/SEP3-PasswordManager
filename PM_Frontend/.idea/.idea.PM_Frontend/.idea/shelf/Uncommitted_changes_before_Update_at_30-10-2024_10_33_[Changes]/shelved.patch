@@ -1,0 +1,442 @@
+Index: Shared/Class1.cs
+===================================================================
+diff --git a/Shared/Class1.cs b/Shared/Class1.cs
+deleted file mode 100644
+--- a/Shared/Class1.cs	(revision 3c4242038f7349862ad629da6bb8757c950e625c)
++++ /dev/null	(revision 3c4242038f7349862ad629da6bb8757c950e625c)
+@@ -1,5 +0,0 @@
+-namespace Shared;
+-
+-public class Class1
+-{
+-}
+\ No newline at end of file
+Index: ServiceLayer/Services/Cryptography/ICryptographyService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Services/Cryptography/ICryptographyService.cs b/ServiceLayer/Services/Cryptography/ICryptographyService.cs
+new file mode 100644
+--- /dev/null	(date 1730277746062)
++++ b/ServiceLayer/Services/Cryptography/ICryptographyService.cs	(date 1730277746062)
+@@ -0,0 +1,6 @@
++namespace Client.Services.Cryptography;
++
++public class ICryptographyService
++{
++    
++}
+\ No newline at end of file
+Index: ServiceLayer/Factories/ServiceLayerFactory.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Factories/ServiceLayerFactory.cs b/ServiceLayer/Factories/ServiceLayerFactory.cs
+new file mode 100644
+--- /dev/null	(date 1730278323426)
++++ b/ServiceLayer/Factories/ServiceLayerFactory.cs	(date 1730278323426)
+@@ -0,0 +1,6 @@
++namespace Client.Factories;
++
++public static class ServiceLayerFactory
++{
++    
++}
+\ No newline at end of file
+Index: ServiceLayer/Networking/IWebApiClient.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Networking/IWebApiClient.cs b/ServiceLayer/Networking/IWebApiClient.cs
+new file mode 100644
+--- /dev/null	(date 1730278463930)
++++ b/ServiceLayer/Networking/IWebApiClient.cs	(date 1730278463930)
+@@ -0,0 +1,6 @@
++namespace Client.Networking;
++
++public interface IWebApiClient
++{
++    
++}
+\ No newline at end of file
+Index: ServiceLayer/Networking/WebApiClientImpl.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Networking/WebApiClientImpl.cs b/ServiceLayer/Networking/WebApiClientImpl.cs
+new file mode 100644
+--- /dev/null	(date 1730278471051)
++++ b/ServiceLayer/Networking/WebApiClientImpl.cs	(date 1730278471051)
+@@ -0,0 +1,6 @@
++namespace Client.Networking;
++
++public class WebApiClientImpl
++{
++    
++}
+\ No newline at end of file
+Index: Shared/Dtos/MasterUserDTO.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Shared/Dtos/MasterUserDTO.cs b/Shared/Dtos/MasterUserDTO.cs
+new file mode 100644
+--- /dev/null	(date 1730278765224)
++++ b/Shared/Dtos/MasterUserDTO.cs	(date 1730278765224)
+@@ -0,0 +1,6 @@
++namespace Shared.Dtos;
++
++public class MasterUserDTO
++{
++    
++}
+\ No newline at end of file
+Index: Shared/Dtos/LoginEntryDTO.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Shared/Dtos/LoginEntryDTO.cs b/Shared/Dtos/LoginEntryDTO.cs
+new file mode 100644
+--- /dev/null	(date 1730280783452)
++++ b/Shared/Dtos/LoginEntryDTO.cs	(date 1730280783452)
+@@ -0,0 +1,15 @@
++namespace Shared.Dtos;
++
++public class LoginEntryDTO : DTO 
++{
++    public string entryUsername { get; set; }
++    public string entryPassword { get; set; }
++    public int masterUserId { get; set; }
++    
++    public LoginEntryDTO(int id, string entryUsername, string entryPassword, int masterUserId) : base(id)
++    {
++        this.entryUsername = entryUsername;
++        this.entryPassword = entryPassword;
++        this.masterUserId = masterUserId;
++    }
++}
+\ No newline at end of file
+Index: Shared/Dtos/DTO.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Shared/Dtos/DTO.cs b/Shared/Dtos/DTO.cs
+new file mode 100644
+--- /dev/null	(date 1730280514870)
++++ b/Shared/Dtos/DTO.cs	(date 1730280514870)
+@@ -0,0 +1,13 @@
++namespace Shared.Dtos;
++
++public abstract class DTO {
++    
++    private int id { get; set; }
++
++    public DTO(int id)
++    {
++        this.id = id;
++    }
++
++    
++}
+\ No newline at end of file
+Index: ServiceLayer/Services/LoginEntryService/ILoginEntryService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Services/LoginEntryService/ILoginEntryService.cs b/ServiceLayer/Services/LoginEntryService/ILoginEntryService.cs
+new file mode 100644
+--- /dev/null	(date 1730278684438)
++++ b/ServiceLayer/Services/LoginEntryService/ILoginEntryService.cs	(date 1730278684438)
+@@ -0,0 +1,6 @@
++namespace Client.Services.LoginEntryService;
++
++public interface ILoginEntryService
++{
++    
++}
+\ No newline at end of file
+Index: ServiceLayer/Services/MasterUserService/IMasterUserService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Services/MasterUserService/IMasterUserService.cs b/ServiceLayer/Services/MasterUserService/IMasterUserService.cs
+new file mode 100644
+--- /dev/null	(date 1730280250901)
++++ b/ServiceLayer/Services/MasterUserService/IMasterUserService.cs	(date 1730280250901)
+@@ -0,0 +1,25 @@
++using Shared.Dtos;
++
++namespace Client.Services.MasterUserService;
++/**
++ * Handles business logic for the MasterUser data entity
++ * Business logic contains encryption, validation and so on
++ */
++public interface IMasterUserService
++{
++    
++    /**
++     * Sends the create-request for the master user further down
++     * Handles validation before encryption
++     * Encrypts the DTO before it is sent on
++     * Decrypts the returning master user before it is returned.
++     */
++    Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto);
++    
++    /**
++     * Sends the read-request for the master user further down
++     * Handles eventual validation
++     * Decrypts the returning master user before returning it.
++     */
++    Task<MasterUserDTO> ReadMasterUserAsync(string masterUserId);
++}
+\ No newline at end of file
+Index: ServiceLayer/Services/LoginEntryService/LoginEntryServiceImpl.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Services/LoginEntryService/LoginEntryServiceImpl.cs b/ServiceLayer/Services/LoginEntryService/LoginEntryServiceImpl.cs
+new file mode 100644
+--- /dev/null	(date 1730280364006)
++++ b/ServiceLayer/Services/LoginEntryService/LoginEntryServiceImpl.cs	(date 1730280364006)
+@@ -0,0 +1,16 @@
++using Client.Networking;
++using Client.Services.Cryptography;
++
++namespace Client.Services.LoginEntryService;
++
++public class LoginEntryServiceImpl : ILoginEntryService
++{
++    private readonly ICryptographyService _cryptographyService;
++    private readonly IWebApiClient _webApiClient;
++
++    public LoginEntryServiceImpl(ICryptographyService cryptographyService, IWebApiClient webApiClient)
++    {
++        _cryptographyService = cryptographyService;
++        _webApiClient = webApiClient;
++    }
++}
+\ No newline at end of file
+Index: ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs b/ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs
+new file mode 100644
+--- /dev/null	(date 1730280363998)
++++ b/ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs	(date 1730280363998)
+@@ -0,0 +1,27 @@
++using Client.Networking;
++using Client.Services.Cryptography;
++using Shared.Dtos;
++
++namespace Client.Services.MasterUserService;
++
++public class MasterUserServiceImpl : IMasterUserService
++{
++    private readonly ICryptographyService _cryptographyService;
++    private readonly IWebApiClient _webApiClient;
++
++    public MasterUserServiceImpl(ICryptographyService cryptographyService, IWebApiClient webApiClient)
++    {
++        _cryptographyService = cryptographyService;
++        _webApiClient = webApiClient;
++    }
++
++    public Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto)
++    {
++        throw new NotImplementedException();
++    }
++
++    public Task<MasterUserDTO> ReadMasterUserAsync(string masterUserId)
++    {
++        throw new NotImplementedException();
++    }
++}
+\ No newline at end of file
+Index: .idea/.idea.PM_Frontend/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoGeneratedRunConfigurationManager\">\r\n    <projectFile profileName=\"IIS Express\">BlazorFrontend/BlazorFrontend.csproj</projectFile>\r\n    <projectFile profileName=\"http\">BlazorFrontend/BlazorFrontend.csproj</projectFile>\r\n    <projectFile profileName=\"https\">BlazorFrontend/BlazorFrontend.csproj</projectFile>\r\n    <projectFile>Client/Client.csproj</projectFile>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"bf0f3349-a25a-49e0-9410-275559e90b27\" name=\"Changes\" comment=\"Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Sterup15&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/KatAamand/SEP3_PasswordManager.git&quot;,\r\n    &quot;accountId&quot;: &quot;f5ce21fa-51f2-4734-9b1f-bd67e39442a6&quot;\r\n  }\r\n}</component>\r\n  <component name=\"MetaFilesCheckinStateConfiguration\" checkMetaFiles=\"true\" />\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"Toolset\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2o9Ee998WGZb5NyTAYKEv1rfOrO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"project.propVCSSupport.DirectoryMappings\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\".NET Project.Client\">\r\n    <configuration name=\"Client\" type=\"DotNetProject\" factoryName=\".NET Project\">\r\n      <option name=\"EXE_PATH\" value=\"\" />\r\n      <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"PROJECT_PATH\" value=\"$PROJECT_DIR$/ServiceLayer/ServiceLayer.csproj\" />\r\n      <option name=\"PROJECT_EXE_PATH_TRACKING\" value=\"1\" />\r\n      <option name=\"PROJECT_ARGUMENTS_TRACKING\" value=\"1\" />\r\n      <option name=\"PROJECT_WORKING_DIRECTORY_TRACKING\" value=\"1\" />\r\n      <option name=\"PROJECT_KIND\" value=\"DotNetCore\" />\r\n      <option name=\"PROJECT_TFM\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"BlazorFrontend: IIS Express\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/BlazorFrontend/BlazorFrontend.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"IIS Express\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"BlazorFrontend: http\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/BlazorFrontend/BlazorFrontend.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"http\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"BlazorFrontend: https\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/BlazorFrontend/BlazorFrontend.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"https\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"bf0f3349-a25a-49e0-9410-275559e90b27\" name=\"Changes\" comment=\"\" />\r\n      <created>1730273483608</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1730273483608</updated>\r\n      <workItem from=\"1730273484718\" duration=\"79000\" />\r\n      <workItem from=\"1730274855110\" duration=\"106000\" />\r\n      <workItem from=\"1730275005220\" duration=\"1332000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730275395117</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730275395117</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnityCheckinConfiguration\" checkUnsavedScenes=\"true\" />\r\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"false\" />\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN\" value=\"false\" />\r\n    <ignored-roots>\r\n      <path value=\"$PROJECT_DIR$/../..\" />\r\n    </ignored-roots>\r\n    <option name=\"CLEAR_INITIAL_COMMIT_MESSAGE\" value=\"true\" />\r\n    <MESSAGE value=\"Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.PM_Frontend/.idea/workspace.xml b/.idea/.idea.PM_Frontend/.idea/workspace.xml
+--- a/.idea/.idea.PM_Frontend/.idea/workspace.xml	(revision 3c4242038f7349862ad629da6bb8757c950e625c)
++++ b/.idea/.idea.PM_Frontend/.idea/workspace.xml	(date 1730280835294)
+@@ -10,8 +10,24 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
++    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Reformatted Client to Servicelayer">
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Factories/ServiceLayerFactory.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Networking/IWebApiClient.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Networking/WebApiClientImpl.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/ICryptographyService.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/IServiceLayer.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/LoginEntryService/ILoginEntryService.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/LoginEntryService/LoginEntryServiceImpl.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/IMasterUserService.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/ServiceLayerImpl.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/Shared/Dtos/DTO.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/Shared/Dtos/LoginEntryDTO.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/Shared/Dtos/MasterUserDTO.cs" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Shared/Class1.cs" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -33,6 +49,9 @@
+     &quot;accountId&quot;: &quot;f5ce21fa-51f2-4734-9b1f-bd67e39442a6&quot;
+   }
+ }</component>
++  <component name="HighlightingSettingsPerFile">
++    <setting file="file://$PROJECT_DIR$/ServiceLayer/Program.cs" root0="FORCE_HIGHLIGHTING" />
++  </component>
+   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+   <component name="ProblemsViewState">
+     <option name="selectedTabId" value="Toolset" />
+@@ -134,7 +153,7 @@
+       <updated>1730273483608</updated>
+       <workItem from="1730273484718" duration="79000" />
+       <workItem from="1730274855110" duration="106000" />
+-      <workItem from="1730275005220" duration="1332000" />
++      <workItem from="1730275005220" duration="5784000" />
+     </task>
+     <task id="LOCAL-00001" summary="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
+       <option name="closed" value="true" />
+@@ -144,7 +163,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1730275395117</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="Reformatted Client to Servicelayer">
++      <option name="closed" value="true" />
++      <created>1730276567693</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1730276567693</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -159,6 +186,7 @@
+     </ignored-roots>
+     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+     <MESSAGE value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
++    <MESSAGE value="Reformatted Client to Servicelayer" />
++    <option name="LAST_COMMIT_MESSAGE" value="Reformatted Client to Servicelayer" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//------------------------------------------------------------------------------\r\n// <auto-generated>\r\n//     This code was generated by a tool.\r\n//\r\n//     Changes to this file may cause incorrect behavior and will be lost if\r\n//     the code is regenerated.\r\n// </auto-generated>\r\n//------------------------------------------------------------------------------\r\n\r\nusing System;\r\nusing System.Reflection;\r\n\r\n[assembly: System.Reflection.AssemblyCompanyAttribute(\"ServiceLayer\")]\r\n[assembly: System.Reflection.AssemblyConfigurationAttribute(\"Debug\")]\r\n[assembly: System.Reflection.AssemblyFileVersionAttribute(\"1.0.0.0\")]\r\n[assembly: System.Reflection.AssemblyInformationalVersionAttribute(\"1.0.0+5b02b1ce4ce760f14f503149fa0de27e929d69b3\")]\r\n[assembly: System.Reflection.AssemblyProductAttribute(\"ServiceLayer\")]\r\n[assembly: System.Reflection.AssemblyTitleAttribute(\"ServiceLayer\")]\r\n[assembly: System.Reflection.AssemblyVersionAttribute(\"1.0.0.0\")]\r\n\r\n// Generated by the MSBuild WriteCodeFragment class.\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs b/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs
+--- a/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs	(revision 3c4242038f7349862ad629da6bb8757c950e625c)
++++ b/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs	(date 1730277390037)
+@@ -13,7 +13,7 @@
+ [assembly: System.Reflection.AssemblyCompanyAttribute("ServiceLayer")]
+ [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+ [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b02b1ce4ce760f14f503149fa0de27e929d69b3")]
++[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c4242038f7349862ad629da6bb8757c950e625c")]
+ [assembly: System.Reflection.AssemblyProductAttribute("ServiceLayer")]
+ [assembly: System.Reflection.AssemblyTitleAttribute("ServiceLayer")]
+ [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+Index: ServiceLayer/Services/IServiceLayer.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Services/IServiceLayer.cs b/ServiceLayer/Services/IServiceLayer.cs
+new file mode 100644
+--- /dev/null	(date 1730279955938)
++++ b/ServiceLayer/Services/IServiceLayer.cs	(date 1730279955938)
+@@ -0,0 +1,26 @@
++using Shared.Dtos;
++
++namespace Client.Services;
++
++/** The interface which the front-end application contacts with requests that will be handled (Validated, encrypted and other business logic) by the service layer.
++ */
++public interface IServiceLayer
++{
++
++    /** Sends a create request to create a new MasterUser.
++     * Delegates business-logic to IMasterUserService 
++     * @param masterUserDto the master user which is requested to be created
++     * @return MasterUserDTO: the created master user
++    */
++    Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto);
++    
++    /** WARNING: This should not be accessible as it will return a master user with username and password, and only takes the id as param.
++     * Another method should be made for login-purposes.
++     * Sends a read request to get a master user
++     * Delegates business-logic to IMasterUserService
++     * @param masterUserId the id of the master user which is wanted
++     * @return MasterUserDTO: The master user which id is used as parameter.
++     * Todo: Think about if parameters should be changed so that the method can be used for login-purposes.
++     */
++    Task<MasterUserDTO> ReadMasterUserAsync(string masterUserId);
++}
+\ No newline at end of file
+Index: ServiceLayer/Services/ServiceLayerImpl.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/Services/ServiceLayerImpl.cs b/ServiceLayer/Services/ServiceLayerImpl.cs
+new file mode 100644
+--- /dev/null	(date 1730279955932)
++++ b/ServiceLayer/Services/ServiceLayerImpl.cs	(date 1730279955932)
+@@ -0,0 +1,27 @@
++using Client.Services.LoginEntryService;
++using Client.Services.MasterUserService;
++using Shared.Dtos;
++
++namespace Client.Services;
++
++public class ServiceLayerImpl : IServiceLayer
++{
++    private readonly ILoginEntryService _loginEntryService;
++    private readonly IMasterUserService _masterUserService;
++
++    public ServiceLayerImpl(ILoginEntryService loginEntryService, IMasterUserService masterUserService)
++    {
++        _loginEntryService = loginEntryService;
++        _masterUserService = masterUserService;
++    }
++
++    public Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto)
++    {
++        return _masterUserService.CreateMasterUserAsync(masterUserDto);
++    }
++
++    public Task<MasterUserDTO> ReadMasterUserAsync(string masterUserId)
++    {
++        return _masterUserService.ReadMasterUserAsync(masterUserId);
++    }
++}
+\ No newline at end of file

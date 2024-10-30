@@ -1,4 +1,4 @@
-﻿namespace Client.Services.LoginEntryService;
+﻿namespace ServiceLayer.Services.LoginEntryService;
 
 public interface ILoginEntryService
 {

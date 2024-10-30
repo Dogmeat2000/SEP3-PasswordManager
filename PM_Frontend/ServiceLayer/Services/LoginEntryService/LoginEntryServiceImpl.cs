@@ -1,7 +1,7 @@
-﻿using Client.Networking;
-using Client.Services.Cryptography;
+﻿using ServiceLayer.Networking;
+using ServiceLayer.Services.Cryptography;
 
-namespace Client.Services.LoginEntryService;
+namespace ServiceLayer.Services.LoginEntryService;
 
 public class LoginEntryServiceImpl : ILoginEntryService
 {
