@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj": {}
+    "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\BlazorUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj": {
+    "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\BlazorUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
+        "projectUniqueName": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
         "projectName": "BlazorUI",
-        "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
-        "packagesPath": "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\",
+        "projectPath": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
+        "packagesPath": "C:\\Users\\DooMz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marcus Lykkegaard\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\DooMz\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

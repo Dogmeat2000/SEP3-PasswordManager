@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\": {}
+    "C:\\Users\\DooMz\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
+      "projectUniqueName": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
       "projectName": "ServiceLayer",
-      "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
-      "packagesPath": "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\obj\\",
+      "projectPath": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
+      "packagesPath": "C:\\Users\\DooMz\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Marcus Lykkegaard\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\DooMz\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -51,8 +51,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj"
+            "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\DooMz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Shared\\Shared.csproj"
             }
           }
         }
