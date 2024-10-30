@@ -5,14 +5,13 @@
     <projectFile profileName="http">BlazorFrontend/BlazorFrontend.csproj</projectFile>
     <projectFile profileName="https">BlazorFrontend/BlazorFrontend.csproj</projectFile>
     <projectFile>Client/Client.csproj</projectFile>
+    <projectFile>ServiceLayer/ServiceLayer.csproj</projectFile>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Created ClientRequest.cs and ServerResponse.cs in C# on frontend" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730275395117</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Created ClientRequest.cs and ServerResponse.cs in C# on frontend">
+      <option name="closed" value="true" />
+      <created>1730289616830</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730289616830</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +166,7 @@
     </ignored-roots>
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
+    <MESSAGE value="Created ClientRequest.cs and ServerResponse.cs in C# on frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created ClientRequest.cs and ServerResponse.cs in C# on frontend" />
   </component>
 </project>
