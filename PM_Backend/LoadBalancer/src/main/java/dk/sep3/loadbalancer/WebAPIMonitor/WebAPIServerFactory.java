@@ -36,6 +36,13 @@ public class WebAPIServerFactory {
             WebAPIServer newServer = new WebAPIServer(requestHandler);
             newServer.setUrl(newServerUrl);
             newServer.setProcess(process); // Storing process for later termination
+
+            // Add a shutdown hook, so this process is closed when the loadbalancer also closes.
+            // Otherwise, the webAPI will continue running in the background after exiting IntelliJ.
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (process.isAlive()) {process.destroyForcibly();}
+            }));
+
             return newServer;
 
         } catch (IOException e) {

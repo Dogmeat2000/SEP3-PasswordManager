@@ -168,6 +168,8 @@
             </plugin>
 
             <plugin>
+                <!-- Plugin below makes a copy of the dbServer application and places it inside the dbDiscoveryService.
+                This allows for the dbDiscoveryService to have local access to launching new instances of the dbServer as the need arises. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.8.0</version>

@@ -20,7 +20,7 @@ import java.util.*;
 @Service
 public class DatabaseServerMonitor
 {
-  private final int threadCycleSleepTimeInMs = 4000; // 1 Second.
+  private final int threadCycleSleepTimeInMs = 8000; // 8 Seconds.
   private final int serverTimeoutInSeconds = 30; // 30 Seconds.
   private final DiscoveryRepositoryService discoveryRepositoryService;
   private final Map<String, List<Integer>> validHostsAndPort;
@@ -67,6 +67,7 @@ public class DatabaseServerMonitor
     while(true) {
       // Check if there are any database servers running:
       DatabaseServer server;
+      boolean launchedNewServer = false;
       try {
         server = discoveryRepositoryService.getDatabaseServerWithOldestPing();
       } catch (NotFoundInDBException e) {
@@ -80,6 +81,7 @@ public class DatabaseServerMonitor
         Thread newThread = new Thread(() -> launchNewDatabaseServer());
         newThread.setDaemon(true);
         newThread.start();
+        launchedNewServer = true;
       } else {
         // Check if the oldest ping is older than the timeout limit:
         Duration timeDifference = Duration.between(Instant.now(), server.getLastPing()); //Gets time between now and the timestamp in the database.
@@ -98,9 +100,11 @@ public class DatabaseServerMonitor
         if(server != null && server.getCongestionPercentage() > 50){
           // Least congested server has reached 50% capacity. Launch another Database Server:
           logger.info("Least congested server has passed congestion limit host:'{}', congestion: '{}'. Launching another server to relieve load", server.getHost(), server.getCongestionPercentage());
-          Thread newThread = new Thread(() -> launchNewDatabaseServer());
-          newThread.setDaemon(true);
-          newThread.start();
+          if(!launchedNewServer) {
+            Thread newThread = new Thread(() -> launchNewDatabaseServer());
+            newThread.setDaemon(true);
+            newThread.start();
+          }
         }
       } catch (Exception e) {
         //continue;
@@ -148,13 +152,13 @@ public class DatabaseServerMonitor
         }
       }));
 
-      // Uncomment the code below, to get all messages the Grpc logger writes to show up inside the dbserverdiscoveryservice loggers view.
-      // This can quickly cause a lot of information to show.
-      /*BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+      // Code below prints all messages to the Grpc logger so it shows up inside the dbserverdiscoveryservice loggers view.
+      // Note: Commenting this code out will cause the process launch to fail. No dbServer will be instantiated.
+      BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
       String line;
       while ((line = reader.readLine()) != null) {
         logger.info("gRPC Data Server: {}", line);
-      }*/
+      }
 
       // Wait for the process to complete
       int exitCode = process.waitFor();

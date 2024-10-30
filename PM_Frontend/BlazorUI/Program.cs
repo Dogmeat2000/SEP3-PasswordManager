@@ -1,4 +1,5 @@
 using BlazorUI.Components;
+using ServiceLayer.Factories;
 
 namespace BlazorUI;
 
@@ -11,6 +12,8 @@ public class Program
         // Add services to the container.
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
+        
+        ServiceLayerFactory.RegisterServices(builder.Services, builder.Configuration);
 
         var app = builder.Build();
 
