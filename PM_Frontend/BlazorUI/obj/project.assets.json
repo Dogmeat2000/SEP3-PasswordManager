@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Carsten Aamand\\.nuget\\packages\\": {}
+    "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Carsten Aamand\\Documents\\SEP3_PasswordManager\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
+      "projectUniqueName": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
       "projectName": "BlazorUI",
-      "projectPath": "C:\\Users\\Carsten Aamand\\Documents\\SEP3_PasswordManager\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
-      "packagesPath": "C:\\Users\\Carsten Aamand\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Carsten Aamand\\Documents\\SEP3_PasswordManager\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\",
+      "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
+      "packagesPath": "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Carsten Aamand\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Marcus Lykkegaard\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

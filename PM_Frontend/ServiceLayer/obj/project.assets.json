@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Carsten Aamand\\.nuget\\packages\\": {}
+    "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Carsten Aamand\\Documents\\SEP3_PasswordManager\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
       "projectName": "ServiceLayer",
-      "projectPath": "C:\\Users\\Carsten Aamand\\Documents\\SEP3_PasswordManager\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
-      "packagesPath": "C:\\Users\\Carsten Aamand\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Carsten Aamand\\Documents\\SEP3_PasswordManager\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\obj\\",
+      "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
+      "packagesPath": "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Carsten Aamand\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Marcus Lykkegaard\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -51,8 +51,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Carsten Aamand\\Documents\\SEP3_PasswordManager\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\Carsten Aamand\\Documents\\SEP3_PasswordManager\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj"
+            "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj"
             }
           }
         }

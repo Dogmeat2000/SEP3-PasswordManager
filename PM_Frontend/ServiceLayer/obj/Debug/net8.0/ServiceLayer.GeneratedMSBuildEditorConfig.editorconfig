@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Client
-build_property.ProjectDir = C:\Users\Carsten Aamand\Documents\SEP3_PasswordManager\SEP3_PasswordManager\PM_Frontend\ServiceLayer\
+build_property.ProjectDir = C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
