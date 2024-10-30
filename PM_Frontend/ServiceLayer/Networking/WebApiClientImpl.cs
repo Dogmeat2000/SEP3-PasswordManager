@@ -38,7 +38,7 @@ public class WebApiClientImpl : IWebApiClient
         where TResponseDto : DTO
     {
         var request = new ClientRequest(requestType, requestDto);
-        await SetWebApiServerUrlAsync(request, false);
+        await SetWebApiServerUrlAsync(false);
 
         var serverOverloaded = true;
         var numberOfAttempts = 0;
@@ -72,9 +72,10 @@ public class WebApiClientImpl : IWebApiClient
         throw new Exception("Server overloaded. Max attempts reached.");
     }
 
-    private async Task<string> SetWebApiServerUrlAsync(ClientRequest request, bool overLoaded)
+    private async Task<string> SetWebApiServerUrlAsync(bool overLoaded)
     {
         if (!string.IsNullOrEmpty(WebApiUrl) && !overLoaded) return WebApiUrl;
+        ClientRequest request = new ClientRequest("GetAvailableServer", null);
         var response = await _httpClient.PostAsJsonAsync($"{_loadBalancerUrl}/loadbalancer/server", request);
 
         response.EnsureSuccessStatusCode();
@@ -86,7 +87,7 @@ public class WebApiClientImpl : IWebApiClient
 
     private async Task WebApiServerIsOverloadedAsync(ClientRequest request)
     {
-        var newServerUrl = await SetWebApiServerUrlAsync(request, true);
+        var newServerUrl = await SetWebApiServerUrlAsync(true);
         Console.WriteLine("New server reached with URL: " + newServerUrl);
     }
 }
