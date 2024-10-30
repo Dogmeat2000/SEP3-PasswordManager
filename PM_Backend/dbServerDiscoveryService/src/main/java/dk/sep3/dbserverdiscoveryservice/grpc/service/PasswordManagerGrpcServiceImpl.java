@@ -30,10 +30,12 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
     this.discoveryRepositoryService = discoveryRepositoryService;
 
     // Launch database server monitor on a separate thread:
-    Thread databaseMonitorThread = new Thread(() -> databaseServerMonitor.startService());
-    databaseMonitorThread.setDaemon(true);
-    databaseMonitorThread.start();
-    logger.info("DatabaseServer Discovery Service is running!");
+    if(databaseServerMonitor != null) {
+      Thread databaseMonitorThread = new Thread(() -> databaseServerMonitor.startService());
+      databaseMonitorThread.setDaemon(true);
+      databaseMonitorThread.start();
+      logger.info("DatabaseServer Discovery Service is running!");
+    }
   }
 
   @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver){
