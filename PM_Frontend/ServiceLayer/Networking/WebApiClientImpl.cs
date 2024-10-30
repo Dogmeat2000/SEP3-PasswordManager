@@ -80,7 +80,7 @@ public class WebApiClientImpl : IWebApiClient
         response.EnsureSuccessStatusCode();
 
         var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
-        WebApiUrl = serverResponse?.Message;
+        WebApiUrl = serverResponse?.Message+"/api/handleRequest";
         return serverResponse?.Message;
     }
 

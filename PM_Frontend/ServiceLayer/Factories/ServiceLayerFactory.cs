@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using ServiceLayer.Networking;
 using ServiceLayer.Services;
 using ServiceLayer.Services.Cryptography;
@@ -9,13 +10,15 @@ namespace ServiceLayer.Factories;
 
 public static class ServiceLayerFactory
 {
-    public static void RegisterServices(IServiceCollection services)
+    public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
+        var loadBalancerUrl = configuration["ApiSettings:LoadBalancerUrl"];
         // Register the Crypto Service as Singleton (long-lived and stateless)
         services.AddSingleton<ICryptographyService, CryptographyServiceImpl>();
 
         // Register API Client with HttpClient and Transient scope (fresh instance per use)
-        services.AddHttpClient<IWebApiClient, WebApiClientImpl>();
+        services.AddScoped<IWebApiClient>(provider =>
+            new WebApiClientImpl(provider.GetRequiredService<HttpClient>(), loadBalancerUrl));
 
         // Register scoped services for Login and Master User functionality
         services.AddScoped<ILoginEntryService, LoginEntryServiceImpl>();

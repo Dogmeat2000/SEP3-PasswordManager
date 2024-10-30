@@ -13,7 +13,7 @@ public class Program
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
         
-        ServiceLayerFactory.RegisterServices(builder.Services);
+        ServiceLayerFactory.RegisterServices(builder.Services, builder.Configuration);
 
         var app = builder.Build();
 
