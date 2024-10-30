@@ -1,4 +1,4 @@
-package dk.sep3.loadbalancer;
+package dk.sep3.loadbalancer.WebAPIMonitor;
 
 import dk.sep3.webapi.WebAPIServer;
 import org.springframework.scheduling.annotation.Scheduled;
