@@ -11,15 +11,12 @@ import org.springframework.stereotype.Component;
 public class WebAPIServer {
     private int currentLoad;
     private final int MAX_LOAD = 3;
-    private boolean available;
     private String url;
     private RequestHandler handler;
     private Process process;
 
-
     public WebAPIServer(RequestHandler handler) {
         this.currentLoad = 0;
-        this.available = true;
         this.handler = handler;
     }
 
@@ -29,34 +26,29 @@ public class WebAPIServer {
         }
 
         try {
-            currentLoad++;
+            currentLoad++;  // Increase load when a new request is received
+            System.out.println("Handling request. Current load: " + currentLoad);
 
             ServerResponse response = handler.handle(request);
-            finishRequest();
+            finishRequest();  // Ensure load is reduced after handling the request
             return response;
         } catch (StatusRuntimeException e) {
-            return new ServerResponse(500,"Error: " + e.getStatus().getDescription());
+            finishRequest();  // Reduce load even if an error occurs
+            return new ServerResponse(500, "Error: " + e.getStatus().getDescription());
         }
     }
 
     private void finishRequest() {
-        System.out.println("Finished request. Reducing load.");
-        resetLoad();
+        currentLoad--;  // Decrease load after finishing a request
+        System.out.println("Finished request. Current load: " + currentLoad);
     }
 
     public boolean isActive() {
-        return true;
+        return process != null && process.isAlive();
     }
 
     public boolean isAvailable() {
-        return available = currentLoad < MAX_LOAD;
-    }
-
-    public void resetLoad() {
-        if (currentLoad > 0) {
-            currentLoad--;
-        }
-        available = true;
+        return currentLoad < MAX_LOAD;  // Calculate availability based on load without modifying state
     }
 
     public String getUrl() {
