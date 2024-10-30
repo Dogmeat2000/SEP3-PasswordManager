@@ -4,12 +4,10 @@ namespace Shared.CommunicationObjects;
 
 public class ServerResponse
 {
-    public string Message { get; set; }
-    public int StatusCode { get; set; }
-    public DTO Dto { get; set; }
-
     // Parameterless constructor required for deserialization
-    public ServerResponse() {}
+    public ServerResponse()
+    {
+    }
 
     public ServerResponse(int statusCode, string message)
     {
@@ -22,4 +20,8 @@ public class ServerResponse
         StatusCode = statusCode;
         Dto = dto;
     }
+
+    public string Message { get; set; }
+    public int StatusCode { get; set; }
+    public DTO Dto { get; set; }
 }

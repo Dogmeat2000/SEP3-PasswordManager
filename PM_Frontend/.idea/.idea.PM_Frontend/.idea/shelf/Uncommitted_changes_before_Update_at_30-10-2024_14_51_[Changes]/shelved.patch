@@ -1,0 +1,610 @@
+Index: BlazorUI/Components/Layout/MainLayout.razor
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@inherits LayoutComponentBase\r\n\r\n<div class=\"page\">\r\n    <div class=\"sidebar\">\r\n        <NavMenu/>\r\n    </div>\r\n\r\n    <main>\r\n        <div class=\"top-row px-4\">\r\n            <a href=\"https://learn.microsoft.com/aspnet/core/\" target=\"_blank\">About</a>\r\n        </div>\r\n\r\n        <article class=\"content px-4\">\r\n            @Body\r\n        </article>\r\n    </main>\r\n</div>\r\n\r\n<div id=\"blazor-error-ui\">\r\n    An unhandled error has occurred.\r\n    <a href=\"\" class=\"reload\">Reload</a>\r\n    <a class=\"dismiss\">\uD83D\uDDD9</a>\r\n</div>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BlazorUI/Components/Layout/MainLayout.razor b/BlazorUI/Components/Layout/MainLayout.razor
+--- a/BlazorUI/Components/Layout/MainLayout.razor	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/BlazorUI/Components/Layout/MainLayout.razor	(date 1730288108428)
+@@ -1,15 +1,8 @@
+ @inherits LayoutComponentBase
+ 
+ <div class="page">
+-    <div class="sidebar">
+-        <NavMenu/>
+-    </div>
+-
++   
+     <main>
+-        <div class="top-row px-4">
+-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+-        </div>
+-
+         <article class="content px-4">
+             @Body
+         </article>
+Index: BlazorUI/Components/Layout/NavMenu.razor
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><div class=\"top-row ps-3 navbar navbar-dark\">\r\n    <div class=\"container-fluid\">\r\n        <a class=\"navbar-brand\" href=\"\">BlazorUI</a>\r\n    </div>\r\n</div>\r\n\r\n<input type=\"checkbox\" title=\"Navigation menu\" class=\"navbar-toggler\"/>\r\n\r\n<div class=\"nav-scrollable\" onclick=\"document.querySelector('.navbar-toggler').click()\">\r\n    <nav class=\"flex-column\">\r\n        <div class=\"nav-item px-3\">\r\n            <NavLink class=\"nav-link\" href=\"\" Match=\"NavLinkMatch.All\">\r\n                <span class=\"bi bi-house-door-fill-nav-menu\" aria-hidden=\"true\"></span> Home\r\n            </NavLink>\r\n        </div>\r\n\r\n        <div class=\"nav-item px-3\">\r\n            <NavLink class=\"nav-link\" href=\"counter\">\r\n                <span class=\"bi bi-plus-square-fill-nav-menu\" aria-hidden=\"true\"></span> Counter\r\n            </NavLink>\r\n        </div>\r\n\r\n        <div class=\"nav-item px-3\">\r\n            <NavLink class=\"nav-link\" href=\"weather\">\r\n                <span class=\"bi bi-list-nested-nav-menu\" aria-hidden=\"true\"></span> Weather\r\n            </NavLink>\r\n        </div>\r\n    </nav>\r\n</div>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BlazorUI/Components/Layout/NavMenu.razor b/BlazorUI/Components/Layout/NavMenu.razor
+--- a/BlazorUI/Components/Layout/NavMenu.razor	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/BlazorUI/Components/Layout/NavMenu.razor	(date 1730284920719)
+@@ -1,4 +1,4 @@
+-<div class="top-row ps-3 navbar navbar-dark">
++@*<div class="top-row ps-3 navbar navbar-dark">
+     <div class="container-fluid">
+         <a class="navbar-brand" href="">BlazorUI</a>
+     </div>
+@@ -26,4 +26,4 @@
+             </NavLink>
+         </div>
+     </nav>
+-</div>
+\ No newline at end of file
++</div>*@
+\ No newline at end of file
+Index: BlazorUI/Components/Modules/LoginModule.razor
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><h3>LoginModule</h3>\r\n\r\n@code {\r\n    \r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BlazorUI/Components/Modules/LoginModule.razor b/BlazorUI/Components/Modules/LoginModule.razor
+--- a/BlazorUI/Components/Modules/LoginModule.razor	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/BlazorUI/Components/Modules/LoginModule.razor	(date 1730291447369)
+@@ -1,5 +1,36 @@
+-<h3>LoginModule</h3>
+-
+ @code {
+-    
+-}
+\ No newline at end of file
++private string masterUsername = string.Empty;
++private string masterPassword = string.Empty;
++private string generatedPassword = string.Empty;
++
++private void GeneratePassword()
++{
++generatedPassword = GenerateRandomPassword();
++}
++
++private string GenerateRandomPassword()
++{
++const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
++var random = new Random();
++return new string(Enumerable.Repeat(chars, 12)
++.Select(s => s[random.Next(s.Length)]).ToArray());
++}
++}
++
++<div class="card shadow p-3 mb-5 bg-white rounded" style="width: 500px; margin: 0 auto;">
++    <div class="card-header text-white" style="background-color: #00517D;">
++        Password Manager
++    </div>
++
++    <div class="d-flex justify-content-start align-items-center p-2" style="background-color: #007bc7;">
++        <button class="btn btn-secondary" @onclick="GeneratePassword" style="margin-right: 10px;">Generate password</button>
++        <span class="text-white">@generatedPassword</span>
++    </div>
++
++    <div class="card-body d-flex flex-wrap" style="gap: 10px;">
++        <input type="text" class="form-control" style="flex: 1;" placeholder="Username" @bind="masterUsername" />
++        <input type="password" class="form-control" style="flex: 1;" placeholder="Password" @bind="masterPassword" />
++        <button class="btn btn-secondary">Login</button>
++        <button class="btn btn-secondary">Create</button>
++    </div>
++</div>
+Index: BlazorUI/Components/Modules/PMModule.razor
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><h3>PMModule</h3>\r\n\r\n@code {\r\n    \r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BlazorUI/Components/Modules/PMModule.razor b/BlazorUI/Components/Modules/PMModule.razor
+--- a/BlazorUI/Components/Modules/PMModule.razor	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/BlazorUI/Components/Modules/PMModule.razor	(date 1730294296843)
+@@ -1,5 +1,95 @@
+-<h3>PMModule</h3>
+-
+ @code {
+-    
+-}
+\ No newline at end of file
++    private string masterUsername = "user0"; 
++    private string generatedPassword = string.Empty;
++
++    private void GeneratePassword()
++    {
++        generatedPassword = GenerateRandomPassword();
++    }
++
++    private string GenerateRandomPassword()
++    {
++        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
++        var random = new Random();
++        return new string(Enumerable.Repeat(chars, 12)
++            .Select(s => s[random.Next(s.Length)]).ToArray());
++    }
++}
++
++<div class="card shadow p-3 mb-5 bg-white rounded" style="width: 100%; margin: 0 auto;">
++
++    <div class="card-header text-white" style="background-color: #00517D;">
++        Password Manager
++    </div>
++
++ 
++    <div class="d-flex justify-content-start align-items-center p-2" style="background-color: #007bc7;">
++        <button class="btn btn-secondary" @onclick="GeneratePassword" style="margin-right: 10px;">Generate Password</button>
++        <span class="text-white">@generatedPassword</span>
++    </div>
++
++   
++    <div class="d-flex mt-3">
++     
++        <div class="p-3" style="width: 200px; background-color: #007bc7; color: white;">
++            <div class="mb-3">
++                Welcome: @masterUsername
++            </div>
++            <div class="mb-2">
++                Menu:
++            </div>
++            <button class="btn btn-secondary mb-2" style="width: 100%;">Create entry</button>
++            <button class="btn btn-secondary" style="width: 100%;">Edit entry</button>
++        </div>
++
++      
++        <div class="flex-grow-1 p-3">
++            <table class="table table-bordered table-hover table-sm">
++                <thead class="text-white" style="background-color: #00517D;">
++                    <tr>
++                        <th colspan="4">Social Media</th>
++                    </tr>
++                </thead>
++                <tbody>
++                    <tr>
++                        <th>Name</th>
++                        <th>Website</th>
++                        <th>Username</th>
++                        <th>Password</th>
++                    </tr>
++                </tbody>
++                
++                <thead class="text-white" style="background-color: #00517D;">
++                    <tr>
++                        <th colspan="4">Bank - Pension - Insurance</th>
++                    </tr>
++                </thead>
++                <tbody>
++                    <tr>
++                        <th>Name</th>
++                        <th>Website</th>
++                        <th>Username</th>
++                        <th>Password</th>
++                    </tr>
++                  
++                </tbody>
++
++              
++                <thead class="text-white" style="background-color: #00517D;">
++                    <tr>
++                        <th colspan="4">Other</th>
++                    </tr>
++                </thead>
++                <tbody>
++                    <tr>
++                        <th>Name</th>
++                        <th>Website</th>
++                        <th>Username</th>
++                        <th>Password</th>
++                    </tr>
++                  
++                </tbody>
++            </table>
++        </div>
++    </div>
++</div>
+Index: BlazorUI/Components/Pages/Home.razor
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@page \"/\"\r\n\r\n<PageTitle>Home</PageTitle>\r\n\r\n<h1>Hello, world!</h1>\r\n\r\nWelcome to your new app.
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BlazorUI/Components/Pages/Home.razor b/BlazorUI/Components/Pages/Home.razor
+--- a/BlazorUI/Components/Pages/Home.razor	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/BlazorUI/Components/Pages/Home.razor	(date 1730294296857)
+@@ -1,7 +1,16 @@
+ @page "/"
++@using BlazorUI.Components.Modules
+ 
+-<PageTitle>Home</PageTitle>
++@code {
+ 
+-<h1>Hello, world!</h1>
++    private LoginModule? loginModule;
++    private PMModule? pmModule;
++    private CreateUpdateEntryModule? createUpdateEntryModule;
++}
++
++<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
++    @* <LoginModule @ref="loginModule" /> *@
++    @* <PMModule @ref="pmModule"/>*@
++    <CreateUpdateEntryModule @ref="createUpdateEntryModule"/>
+ 
+-Welcome to your new app.
+\ No newline at end of file
++</div>
+\ No newline at end of file
+Index: BlazorUI/Components/_Imports.razor
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@using System.Net.Http\r\n@using System.Net.Http.Json\r\n@using Microsoft.AspNetCore.Components.Forms\r\n@using Microsoft.AspNetCore.Components.Routing\r\n@using Microsoft.AspNetCore.Components.Web\r\n@using static Microsoft.AspNetCore.Components.Web.RenderMode\r\n@using Microsoft.AspNetCore.Components.Web.Virtualization\r\n@using Microsoft.JSInterop\r\n@using BlazorUI\r\n@using BlazorUI.Components
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BlazorUI/Components/_Imports.razor b/BlazorUI/Components/_Imports.razor
+--- a/BlazorUI/Components/_Imports.razor	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/BlazorUI/Components/_Imports.razor	(date 1730294296851)
+@@ -7,4 +7,6 @@
+ @using Microsoft.AspNetCore.Components.Web.Virtualization
+ @using Microsoft.JSInterop
+ @using BlazorUI
+-@using BlazorUI.Components
+\ No newline at end of file
++@using BlazorUI.Components
++@using Components.Modules
++@using BlazorUI.Components.Layout
+\ No newline at end of file
+Index: BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//------------------------------------------------------------------------------\r\n// <auto-generated>\r\n//     This code was generated by a tool.\r\n//\r\n//     Changes to this file may cause incorrect behavior and will be lost if\r\n//     the code is regenerated.\r\n// </auto-generated>\r\n//------------------------------------------------------------------------------\r\n\r\nusing System;\r\nusing System.Reflection;\r\n\r\n[assembly: System.Reflection.AssemblyCompanyAttribute(\"BlazorUI\")]\r\n[assembly: System.Reflection.AssemblyConfigurationAttribute(\"Debug\")]\r\n[assembly: System.Reflection.AssemblyFileVersionAttribute(\"1.0.0.0\")]\r\n[assembly: System.Reflection.AssemblyInformationalVersionAttribute(\"1.0.0+24948e0288219a27b6335f2a793af421340bf816\")]\r\n[assembly: System.Reflection.AssemblyProductAttribute(\"BlazorUI\")]\r\n[assembly: System.Reflection.AssemblyTitleAttribute(\"BlazorUI\")]\r\n[assembly: System.Reflection.AssemblyVersionAttribute(\"1.0.0.0\")]\r\n\r\n// Generated by the MSBuild WriteCodeFragment class.\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs b/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs
+--- a/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs	(date 1730294299333)
+@@ -13,7 +13,7 @@
+ [assembly: System.Reflection.AssemblyCompanyAttribute("BlazorUI")]
+ [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+ [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24948e0288219a27b6335f2a793af421340bf816")]
++[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2628fcca57db853233762006c97463a57d163205")]
+ [assembly: System.Reflection.AssemblyProductAttribute("BlazorUI")]
+ [assembly: System.Reflection.AssemblyTitleAttribute("BlazorUI")]
+ [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+Index: .idea/.idea.PM_Frontend/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoGeneratedRunConfigurationManager\">\r\n    <projectFile profileName=\"IIS Express\">BlazorFrontend/BlazorFrontend.csproj</projectFile>\r\n    <projectFile profileName=\"http\">BlazorFrontend/BlazorFrontend.csproj</projectFile>\r\n    <projectFile profileName=\"https\">BlazorFrontend/BlazorFrontend.csproj</projectFile>\r\n    <projectFile>Client/Client.csproj</projectFile>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"bf0f3349-a25a-49e0-9410-275559e90b27\" name=\"Changes\" comment=\"Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Sterup15&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/KatAamand/SEP3_PasswordManager.git&quot;,\r\n    &quot;accountId&quot;: &quot;f5ce21fa-51f2-4734-9b1f-bd67e39442a6&quot;\r\n  }\r\n}</component>\r\n  <component name=\"MetaFilesCheckinStateConfiguration\" checkMetaFiles=\"true\" />\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"Toolset\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2o9Ee998WGZb5NyTAYKEv1rfOrO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\" selected=\".NET Launch Settings Profile.BlazorUI: http\">\r\n    <configuration name=\"Client\" type=\"DotNetProject\" factoryName=\".NET Project\">\r\n      <option name=\"EXE_PATH\" value=\"\" />\r\n      <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"PROJECT_PATH\" value=\"$PROJECT_DIR$/ServiceLayer/ServiceLayer.csproj\" />\r\n      <option name=\"PROJECT_EXE_PATH_TRACKING\" value=\"1\" />\r\n      <option name=\"PROJECT_ARGUMENTS_TRACKING\" value=\"1\" />\r\n      <option name=\"PROJECT_WORKING_DIRECTORY_TRACKING\" value=\"1\" />\r\n      <option name=\"PROJECT_KIND\" value=\"DotNetCore\" />\r\n      <option name=\"PROJECT_TFM\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"BlazorUI: IIS Express\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/BlazorUI/BlazorUI.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"IIS Express\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"BlazorUI: http\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/BlazorUI/BlazorUI.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"http\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"BlazorUI: https\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/BlazorUI/BlazorUI.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"https\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"bf0f3349-a25a-49e0-9410-275559e90b27\" name=\"Changes\" comment=\"\" />\r\n      <created>1730273483608</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1730273483608</updated>\r\n      <workItem from=\"1730273484718\" duration=\"79000\" />\r\n      <workItem from=\"1730274855110\" duration=\"106000\" />\r\n      <workItem from=\"1730275005220\" duration=\"1332000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730275395117</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730275395117</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnityCheckinConfiguration\" checkUnsavedScenes=\"true\" />\r\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"false\" />\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN\" value=\"false\" />\r\n    <ignored-roots>\r\n      <path value=\"$PROJECT_DIR$/../..\" />\r\n    </ignored-roots>\r\n    <option name=\"CLEAR_INITIAL_COMMIT_MESSAGE\" value=\"true\" />\r\n    <MESSAGE value=\"Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.PM_Frontend/.idea/workspace.xml b/.idea/.idea.PM_Frontend/.idea/workspace.xml
+--- a/.idea/.idea.PM_Frontend/.idea/workspace.xml	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/.idea/.idea.PM_Frontend/.idea/workspace.xml	(date 1730296250725)
+@@ -4,19 +4,39 @@
+     <projectFile profileName="IIS Express">BlazorFrontend/BlazorFrontend.csproj</projectFile>
+     <projectFile profileName="http">BlazorFrontend/BlazorFrontend.csproj</projectFile>
+     <projectFile profileName="https">BlazorFrontend/BlazorFrontend.csproj</projectFile>
++    <projectFile profileName="IIS Express">BlazorUI/BlazorUI.csproj</projectFile>
++    <projectFile profileName="http">BlazorUI/BlazorUI.csproj</projectFile>
++    <projectFile profileName="https">BlazorUI/BlazorUI.csproj</projectFile>
+     <projectFile>Client/Client.csproj</projectFile>
+   </component>
+   <component name="AutoImportSettings">
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
++    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Small first commit. Cleaned up classes and created a new UI">
++      <change afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateUpdateEntryModule.razor" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Layout/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Layout/MainLayout.razor" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Layout/NavMenu.razor" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginModule.razor" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Pages/Home.razor" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/_Imports.razor" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfoInputs.cache" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfoInputs.cache" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="DpaMonitoringSettings">
++    <option name="autoShow" value="false" />
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+@@ -27,38 +47,45 @@
+     &quot;assignee&quot;: &quot;Sterup15&quot;
+   }
+ }</component>
+-  <component name="GithubPullRequestsUISettings">{
+-  &quot;selectedUrlAndAccountId&quot;: {
+-    &quot;url&quot;: &quot;https://github.com/KatAamand/SEP3_PasswordManager.git&quot;,
+-    &quot;accountId&quot;: &quot;f5ce21fa-51f2-4734-9b1f-bd67e39442a6&quot;
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/KatAamand/SEP3_PasswordManager.git",
++    "accountId": "1bbfbcf5-afd9-476e-862d-4997578f79fd"
+   }
+-}</component>
++}]]></component>
++  <component name="HighlightingSettingsPerFile">
++    <setting file="file://$PROJECT_DIR$/BlazorFrontend/Program.cs" root0="SKIP_HIGHLIGHTING" />
++  </component>
+   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+   <component name="ProblemsViewState">
+-    <option name="selectedTabId" value="Toolset" />
++    <option name="selectedTabId" value="CurrentFile" />
+   </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 7
+ }</component>
+   <component name="ProjectId" id="2o9Ee998WGZb5NyTAYKEv1rfOrO" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    ".NET Launch Settings Profile.BlazorUI: http.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "main",
++    "ignore.virus.scanning.warn.message": "true",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RunManager" selected=".NET Launch Settings Profile.BlazorUI: http">
+     <configuration name="Client" type="DotNetProject" factoryName=".NET Project">
+       <option name="EXE_PATH" value="" />
+@@ -135,6 +162,7 @@
+       <workItem from="1730273484718" duration="79000" />
+       <workItem from="1730274855110" duration="106000" />
+       <workItem from="1730275005220" duration="1332000" />
++      <workItem from="1730284528570" duration="11576000" />
+     </task>
+     <task id="LOCAL-00001" summary="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
+       <option name="closed" value="true" />
+@@ -144,7 +172,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1730275395117</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="Small first commit. Cleaned up classes and created a new UI">
++      <option name="closed" value="true" />
++      <created>1730284773746</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1730284773746</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -159,6 +195,21 @@
+     </ignored-roots>
+     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+     <MESSAGE value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
++    <MESSAGE value="Small first commit. Cleaned up classes and created a new UI" />
++    <option name="LAST_COMMIT_MESSAGE" value="Small first commit. Cleaned up classes and created a new UI" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="DotNet Breakpoints">
++          <url>file://$PROJECT_DIR$/BlazorUI/Components/Layout/MainLayout.razor</url>
++          <option name="timeStamp" value="1" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="DotNet Breakpoints">
++          <url>file://$PROJECT_DIR$/BlazorUI/Components/Layout/NavMenu.razor</url>
++          <option name="timeStamp" value="2" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
+   </component>
+ </project>
+\ No newline at end of file
+Index: BlazorUI/Components/Modules/CreateUpdateEntryModule.razor
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BlazorUI/Components/Modules/CreateUpdateEntryModule.razor b/BlazorUI/Components/Modules/CreateUpdateEntryModule.razor
+new file mode 100644
+--- /dev/null	(date 1730296275408)
++++ b/BlazorUI/Components/Modules/CreateUpdateEntryModule.razor	(date 1730296275408)
+@@ -0,0 +1,72 @@
++@code {
++private string entryName = string.Empty;
++private string website = string.Empty;
++private string username = string.Empty;
++private string password = string.Empty;
++private string category = string.Empty;
++
++[Parameter] public EventCallback<bool> OnClose { get; set; }
++
++private void ClosePopup()
++{
++OnClose.InvokeAsync(false);
++}
++
++private void DeleteEntry()
++{
++}
++
++private void UpdateEntry()
++{
++}
++}
++
++<div class="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1050;">
++    <div class="modal-dialog" style="position: relative; width: 700px; margin: 5% auto; background: white; padding: 20px; border-radius: 8px;">
++        <div class="modal-header d-flex justify-content-between align-items-center" style="background-color: #00517D; color: white;">
++            <h5 class="m-0">Edit entry</h5>
++            <button type="button" class="close text-dark" style="font-size: 1.5rem;" @onclick="ClosePopup">&times;</button>
++        </div>
++
++        <div class="modal-body">
++            <!-- First line: Name and Website -->
++            <div class="d-flex justify-content-between mb-3">
++                <div style="width: 48%;">
++                    <label>Name</label>
++                    <input type="text" class="form-control" @bind="entryName"/>
++                </div>
++                <div style="width: 48%;">
++                    <label>Website</label>
++                    <input type="text" class="form-control" @bind="website"/>
++                </div>
++            </div>
++
++
++            <div class="d-flex justify-content-between mb-3">
++                <div style="width: 30%;">
++                    <label>Username</label>
++                    <input type="text" class="form-control" @bind="username"/>
++                </div>
++                <div style="width: 30%;">
++                    <label>Password</label>
++                    <input type="text" class="form-control" @bind="password"/>
++                </div>
++                <div style="width: 30%;">
++                    <label>Category</label>
++                    <select class="form-control" @bind="category">
++                        <option>Select</option>
++                        <option>Social media</option>
++                        <option>Work</option>
++                        <option>Personal</option>
++                    </select>
++                </div>
++            </div>
++
++     
++            <div class="d-flex justify-content-end">
++                <button class="btn btn-secondary mr-2" style="margin-right: 10px;" @onclick="DeleteEntry">Delete</button>
++                <button class="btn btn-secondary" @onclick="UpdateEntry">Update</button>
++            </div>
++        </div>
++    </div>
++</div>
+Index: ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//------------------------------------------------------------------------------\r\n// <auto-generated>\r\n//     This code was generated by a tool.\r\n//\r\n//     Changes to this file may cause incorrect behavior and will be lost if\r\n//     the code is regenerated.\r\n// </auto-generated>\r\n//------------------------------------------------------------------------------\r\n\r\nusing System;\r\nusing System.Reflection;\r\n\r\n[assembly: System.Reflection.AssemblyCompanyAttribute(\"ServiceLayer\")]\r\n[assembly: System.Reflection.AssemblyConfigurationAttribute(\"Debug\")]\r\n[assembly: System.Reflection.AssemblyFileVersionAttribute(\"1.0.0.0\")]\r\n[assembly: System.Reflection.AssemblyInformationalVersionAttribute(\"1.0.0+24948e0288219a27b6335f2a793af421340bf816\")]\r\n[assembly: System.Reflection.AssemblyProductAttribute(\"ServiceLayer\")]\r\n[assembly: System.Reflection.AssemblyTitleAttribute(\"ServiceLayer\")]\r\n[assembly: System.Reflection.AssemblyVersionAttribute(\"1.0.0.0\")]\r\n\r\n// Generated by the MSBuild WriteCodeFragment class.\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs b/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs
+--- a/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs	(date 1730294301914)
+@@ -13,7 +13,7 @@
+ [assembly: System.Reflection.AssemblyCompanyAttribute("ServiceLayer")]
+ [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+ [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24948e0288219a27b6335f2a793af421340bf816")]
++[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2628fcca57db853233762006c97463a57d163205")]
+ [assembly: System.Reflection.AssemblyProductAttribute("ServiceLayer")]
+ [assembly: System.Reflection.AssemblyTitleAttribute("ServiceLayer")]
+ [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+Index: BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>is_global = true\r\nbuild_property.TargetFramework = net8.0\r\nbuild_property.TargetPlatformMinVersion = \r\nbuild_property.UsingMicrosoftNETSdkWeb = true\r\nbuild_property.ProjectTypeGuids = \r\nbuild_property.InvariantGlobalization = \r\nbuild_property.PlatformNeutralAssembly = \r\nbuild_property.EnforceExtendedAnalyzerRules = \r\nbuild_property._SupportedPlatformList = Linux,macOS,Windows\r\nbuild_property.RootNamespace = BlazorUI\r\nbuild_property.RootNamespace = BlazorUI\r\nbuild_property.ProjectDir = C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\\r\nbuild_property.EnableComHosting = \r\nbuild_property.EnableGeneratedComInterfaceComImportInterop = \r\nbuild_property.RazorLangVersion = 8.0\r\nbuild_property.SupportLocalizedComponentNames = \r\nbuild_property.GenerateRazorMetadataSourceChecksumAttributes = \r\nbuild_property.MSBuildProjectDirectory = C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\r\nbuild_property._RazorSourceGeneratorDebug = \r\n\r\n[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/App.razor]\r\nbuild_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=\r\nbuild_metadata.AdditionalFiles.CssScope = \r\n\r\n[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Pages/Counter.razor]\r\nbuild_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y\r\nbuild_metadata.AdditionalFiles.CssScope = \r\n\r\n[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Pages/Error.razor]\r\nbuild_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==\r\nbuild_metadata.AdditionalFiles.CssScope = \r\n\r\n[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Pages/Home.razor]\r\nbuild_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y\r\nbuild_metadata.AdditionalFiles.CssScope = \r\n\r\n[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Pages/Weather.razor]\r\nbuild_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y\r\nbuild_metadata.AdditionalFiles.CssScope = \r\n\r\n[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Routes.razor]\r\nbuild_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=\r\nbuild_metadata.AdditionalFiles.CssScope = \r\n\r\n[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/_Imports.razor]\r\nbuild_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==\r\nbuild_metadata.AdditionalFiles.CssScope = \r\n\r\n[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Layout/MainLayout.razor]\r\nbuild_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==\r\nbuild_metadata.AdditionalFiles.CssScope = b-0zkbbkwwv6\r\n\r\n[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Layout/NavMenu.razor]\r\nbuild_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==\r\nbuild_metadata.AdditionalFiles.CssScope = b-n4p89scb43\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig b/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig
+--- a/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig	(date 1730294364770)
+@@ -22,8 +22,16 @@
+ build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+ build_metadata.AdditionalFiles.CssScope = 
+ 
+-[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Pages/Counter.razor]
+-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
++[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Modules/CreateUpdateEntryModule.razor]
++build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2R1bGVzXENyZWF0ZVVwZGF0ZUVudHJ5TW9kdWxlLnJhem9y
++build_metadata.AdditionalFiles.CssScope = 
++
++[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Modules/LoginModule.razor]
++build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2R1bGVzXExvZ2luTW9kdWxlLnJhem9y
++build_metadata.AdditionalFiles.CssScope = 
++
++[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Modules/PMModule.razor]
++build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2R1bGVzXFBNTW9kdWxlLnJhem9y
+ build_metadata.AdditionalFiles.CssScope = 
+ 
+ [C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Pages/Error.razor]
+@@ -33,10 +41,6 @@
+ [C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Pages/Home.razor]
+ build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+ build_metadata.AdditionalFiles.CssScope = 
+-
+-[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Pages/Weather.razor]
+-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
+-build_metadata.AdditionalFiles.CssScope = 
+ 
+ [C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Routes.razor]
+ build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+Index: Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//------------------------------------------------------------------------------\r\n// <auto-generated>\r\n//     This code was generated by a tool.\r\n//\r\n//     Changes to this file may cause incorrect behavior and will be lost if\r\n//     the code is regenerated.\r\n// </auto-generated>\r\n//------------------------------------------------------------------------------\r\n\r\nusing System;\r\nusing System.Reflection;\r\n\r\n[assembly: System.Reflection.AssemblyCompanyAttribute(\"Shared\")]\r\n[assembly: System.Reflection.AssemblyConfigurationAttribute(\"Debug\")]\r\n[assembly: System.Reflection.AssemblyFileVersionAttribute(\"1.0.0.0\")]\r\n[assembly: System.Reflection.AssemblyInformationalVersionAttribute(\"1.0.0+24948e0288219a27b6335f2a793af421340bf816\")]\r\n[assembly: System.Reflection.AssemblyProductAttribute(\"Shared\")]\r\n[assembly: System.Reflection.AssemblyTitleAttribute(\"Shared\")]\r\n[assembly: System.Reflection.AssemblyVersionAttribute(\"1.0.0.0\")]\r\n\r\n// Generated by the MSBuild WriteCodeFragment class.\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs b/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs
+--- a/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs	(revision 2628fcca57db853233762006c97463a57d163205)
++++ b/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs	(date 1730294297927)
+@@ -13,7 +13,7 @@
+ [assembly: System.Reflection.AssemblyCompanyAttribute("Shared")]
+ [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+ [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24948e0288219a27b6335f2a793af421340bf816")]
++[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2628fcca57db853233762006c97463a57d163205")]
+ [assembly: System.Reflection.AssemblyProductAttribute("Shared")]
+ [assembly: System.Reflection.AssemblyTitleAttribute("Shared")]
+ [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
