@@ -1,4 +1,6 @@
-﻿/PM_Frontend/BlazorApp1/BlazorApp1.csproj
-/PM_Frontend/BlazorApp1/appsettings.json
-/PM_Frontend/BlazorApp1/appsettings.Development.json
-/PM_Frontend/BlazorApp1/Program.cs
+﻿/PM_Backend/Common/target/
+/PM_Backend/dbServer/target/
+/PM_Backend/dbServerDiscoveryService/target/
+/PM_Backend/LoadBalancer/target/
+/PM_Backend/WebAPI/target/
+
