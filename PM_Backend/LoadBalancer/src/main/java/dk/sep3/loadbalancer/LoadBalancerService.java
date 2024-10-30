@@ -2,7 +2,6 @@ package dk.sep3.loadbalancer;
 
 import common.ClientRequest;
 import dk.sep3.webapi.WebAPIServer;
-import dk.sep3.webapi.WebAPIServerMonitor;
 import org.springframework.stereotype.Service;
 
 /** ILoadBalancerService implementation **/

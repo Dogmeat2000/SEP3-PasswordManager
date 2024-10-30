@@ -1,5 +1,6 @@
-package dk.sep3.webapi;
+package dk.sep3.loadbalancer.WebAPIMonitor;
 
+import dk.sep3.webapi.WebAPIServer;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -16,20 +17,23 @@ public class WebAPIServerMonitor {
         this.factory = factory;
         this.servers = new ArrayList<>();
 
-        // Create initial server
         createNewServer();
     }
 
     /** Monitor servers every 10 seconds to check if they are overloaded og not responding **/
     @Scheduled(fixedRate = 10000)
     public void monitorServers() {
+        List<WebAPIServer> serversToRemove = new ArrayList<>();
         for (WebAPIServer server : servers) {
             if (isServerOverloaded(server)) {
                 scaleServers();
             } else if (!server.isActive()) {
-                servers.remove(server);
+                serversToRemove.add(server); // Mark for removal
             }
         }
+        serversToRemove.forEach(this::shutdownServer);
+        servers.removeAll(serversToRemove);
+
     }
 
     /** Assigns the first available server to the client or scales the servers if no servers are available **/
@@ -48,6 +52,12 @@ public class WebAPIServerMonitor {
 
         if (allServersOverloaded) {
             createNewServer();
+        }
+    }
+
+    public void shutdownServer(WebAPIServer server) {
+        if (server.getProcess() != null) {
+            server.getProcess().destroy();
         }
     }
 
