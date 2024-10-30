@@ -4,19 +4,39 @@
     <projectFile profileName="IIS Express">BlazorFrontend/BlazorFrontend.csproj</projectFile>
     <projectFile profileName="http">BlazorFrontend/BlazorFrontend.csproj</projectFile>
     <projectFile profileName="https">BlazorFrontend/BlazorFrontend.csproj</projectFile>
+    <projectFile profileName="IIS Express">BlazorUI/BlazorUI.csproj</projectFile>
+    <projectFile profileName="http">BlazorUI/BlazorUI.csproj</projectFile>
+    <projectFile profileName="https">BlazorUI/BlazorUI.csproj</projectFile>
     <projectFile>Client/Client.csproj</projectFile>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
+    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Small first commit. Cleaned up classes and created a new UI">
+      <change afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateUpdateEntryModule.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Layout/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Layout/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Layout/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginModule.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Pages/Home.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfoInputs.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -30,26 +50,33 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/KatAamand/SEP3_PasswordManager.git&quot;,
-    &quot;accountId&quot;: &quot;f5ce21fa-51f2-4734-9b1f-bd67e39442a6&quot;
+    &quot;accountId&quot;: &quot;1bbfbcf5-afd9-476e-862d-4997578f79fd&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/BlazorFrontend/Program.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Toolset" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2o9Ee998WGZb5NyTAYKEv1rfOrO" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.BlazorUI: http.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -135,6 +162,7 @@
       <workItem from="1730273484718" duration="79000" />
       <workItem from="1730274855110" duration="106000" />
       <workItem from="1730275005220" duration="1332000" />
+      <workItem from="1730284528570" duration="11576000" />
     </task>
     <task id="LOCAL-00001" summary="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
       <option name="closed" value="true" />
@@ -144,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730275395117</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Small first commit. Cleaned up classes and created a new UI">
+      <option name="closed" value="true" />
+      <created>1730284773746</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730284773746</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +195,21 @@
     </ignored-roots>
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
+    <MESSAGE value="Small first commit. Cleaned up classes and created a new UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small first commit. Cleaned up classes and created a new UI" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/BlazorUI/Components/Layout/MainLayout.razor</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/BlazorUI/Components/Layout/NavMenu.razor</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
