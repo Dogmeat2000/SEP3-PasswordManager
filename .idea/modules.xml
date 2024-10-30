@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PM_Backend/Common/Common.iml" filepath="$PROJECT_DIR$/PM_Backend/Common/Common.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SEP3_PasswordManager.iml" filepath="$PROJECT_DIR$/.idea/SEP3_PasswordManager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PM_Backend/dbServer/dbServer.iml" filepath="$PROJECT_DIR$/PM_Backend/dbServer/dbServer.iml" />
     </modules>
   </component>
 </project>

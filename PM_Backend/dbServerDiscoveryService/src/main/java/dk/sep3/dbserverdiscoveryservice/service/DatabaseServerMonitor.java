@@ -15,7 +15,8 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
 
-
+/** <p>The DatabaseServerMonitor Class is responsible for monitoring the health of all database-servers that have reported online in the database server database.
+ * This includes removing database-servers that timeout, and instantiating new database-servers when no un-congested servers can be identified. </p> */
 @Service
 public class DatabaseServerMonitor
 {
@@ -32,6 +33,7 @@ public class DatabaseServerMonitor
   @Value("${portMax}")
   private int portMax;
 
+
   public DatabaseServerMonitor(DiscoveryRepositoryService discoveryRepositoryService){
     this.discoveryRepositoryService = discoveryRepositoryService;
     validHosts = new ArrayList<>();
@@ -39,6 +41,7 @@ public class DatabaseServerMonitor
   }
 
 
+  /** <p>Initializes the local dependencies required for the proper functionality of this service.</p> */
   private void initialize() {
     // Define valid host addresses:
     validHosts.add("localhost");
@@ -56,6 +59,7 @@ public class DatabaseServerMonitor
   }
 
 
+  /** <p>Starts the services required for the proper functionality of this class.</p> */
   public void startService() {
     initialize();
     logger.info("DatabaseServer Discovery Service Health Monitor is running!");
@@ -112,17 +116,21 @@ public class DatabaseServerMonitor
   }
 
 
-  // TODO: This is NOT the most elegant method. But it works, for now. Should be refactored!
+  /** <p>Responsible for launching a new Database Server, if no non-congested ones can be found.
+   * This method is intended to be called on waiting remote stations in sleep mode, which can then come online or offline as needed.</p>
+   * <p>Note: Currently it simply executes an instance of the dbServer on this local hardware. The dbServer is executed through its compiled .jar file
+   * and as such requires that JRE be installed and added to the machines Path environment variable</p>*/
   private void launchNewDatabaseServer() {
     // Select a free host address and port:
-    // TODO: Check which host addresses and ports are already in use, and select free ones
+    // TODO: Check which host addresses and ports are already in use, and select free ones. Currently just selects a random port.
+
     try {
       String host = validHosts.getFirst();
-      // TODO: Currently just gets a random port from the valid list.
-      // TODO: This can cause server launched to conflict, but should work for now.
       int port = validHostsAndPort.get(host).get((int) (Math.random()*validHostsAndPort.get(host).size()));
+
       // Build the command to launch a new instance of the GRPC server, through the dbServer.jar file.
       // TODO: Rewrite, so this can be done over the network. Currently just launches a new instance at localhost (this host).
+
       ProcessBuilder processBuilder = new ProcessBuilder(
           "java", "-jar", "./PM_Backend/dbServerDiscoveryService/target/libs/dbServer-0.0.1-SNAPSHOT-exe.jar",
           "--db.host=" + host,
@@ -131,19 +139,22 @@ public class DatabaseServerMonitor
       // Start the new gRPC server:
       Process process = processBuilder.start();
 
+      // Add a shutdown hook, so this process is closed when the discoveryService also closes.
+      // Otherwise, the dbServer will continue running in the background after exiting IntelliJ.
       Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-        if (process != null && process.isAlive()) {
+        if (process.isAlive()) {
           logger.info("Shutting down launched dbServer process...");
-          process.destroyForcibly(); // This attempts clean termination
+          process.destroyForcibly();
         }
       }));
 
-      // Capture the output from the JAR process
-      BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+      // Uncomment the code below, to get all messages the Grpc logger writes to show up inside the dbserverdiscoveryservice loggers view.
+      // This can quickly cause a lot of information to show.
+      /*BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
       String line;
       while ((line = reader.readLine()) != null) {
         logger.info("gRPC Data Server: {}", line);
-      }
+      }*/
 
       // Wait for the process to complete
       int exitCode = process.waitFor();
