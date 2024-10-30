@@ -10,8 +10,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
+    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Reformatted Client to Servicelayer">
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Factories/ServiceLayerFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Networking/IWebApiClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Networking/WebApiClientImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/ICryptographyService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/IServiceLayer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/LoginEntryService/ILoginEntryService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/LoginEntryService/LoginEntryServiceImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/IMasterUserService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Services/ServiceLayerImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shared/Dtos/DTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shared/Dtos/LoginEntryDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shared/Dtos/MasterUserDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/Class1.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +49,9 @@
     &quot;accountId&quot;: &quot;f5ce21fa-51f2-4734-9b1f-bd67e39442a6&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/ServiceLayer/Program.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="Toolset" />
@@ -134,7 +153,7 @@
       <updated>1730273483608</updated>
       <workItem from="1730273484718" duration="79000" />
       <workItem from="1730274855110" duration="106000" />
-      <workItem from="1730275005220" duration="1332000" />
+      <workItem from="1730275005220" duration="5784000" />
     </task>
     <task id="LOCAL-00001" summary="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
       <option name="closed" value="true" />
@@ -144,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730275395117</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Reformatted Client to Servicelayer">
+      <option name="closed" value="true" />
+      <created>1730276567693</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730276567693</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +186,7 @@
     </ignored-roots>
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
+    <MESSAGE value="Reformatted Client to Servicelayer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformatted Client to Servicelayer" />
   </component>
 </project>
