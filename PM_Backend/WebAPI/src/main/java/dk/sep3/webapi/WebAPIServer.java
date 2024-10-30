@@ -14,6 +14,7 @@ public class WebAPIServer {
     private boolean available;
     private String url;
     private RequestHandler handler;
+    private Process process;
 
 
     public WebAPIServer(RequestHandler handler) {
@@ -64,5 +65,13 @@ public class WebAPIServer {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Process getProcess() {
+        return process;
+    }
+
+    public void setProcess(Process process) {
+        this.process = process;
     }
 }
