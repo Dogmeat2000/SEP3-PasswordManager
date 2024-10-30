@@ -1,6 +1,7 @@
 package dk.sep3.loadbalancer.WebAPIMonitor;
 
 import dk.sep3.webapi.WebAPIServer;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 /** Monitor servers to check if they are overloaded or not responding, scaling if necessary through the factory  **/
 @Component
-public class WebAPIServerMonitor {
+public class WebAPIServerMonitor implements DisposableBean {
     private List<WebAPIServer> servers;
     private final WebAPIServerFactory factory;
 
@@ -28,7 +29,7 @@ public class WebAPIServerMonitor {
             if (isServerOverloaded(server)) {
                 scaleServers();
             } else if (!server.isActive()) {
-                serversToRemove.add(server); // Mark for removal
+                serversToRemove.add(server);
             }
         }
         serversToRemove.forEach(this::shutdownServer);
@@ -58,6 +59,11 @@ public class WebAPIServerMonitor {
     public void shutdownServer(WebAPIServer server) {
         if (server.getProcess() != null) {
             server.getProcess().destroy();
+            try {
+                server.getProcess().waitFor();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
@@ -67,5 +73,11 @@ public class WebAPIServerMonitor {
 
     public void notifyServerFailure(String serverUrl) {
         servers.removeIf(server -> server.getUrl().equals(serverUrl));
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("Shutting down all WebAPI servers...");
+        servers.forEach(this::shutdownServer);
     }
 }
