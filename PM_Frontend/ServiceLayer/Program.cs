@@ -1,4 +1,4 @@
-﻿namespace Client;
+﻿namespace ServiceLayer;
 
 class Program
 {
