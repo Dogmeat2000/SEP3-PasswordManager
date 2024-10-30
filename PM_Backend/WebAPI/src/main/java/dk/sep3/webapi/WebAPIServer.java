@@ -26,7 +26,7 @@ public class WebAPIServer {
         }
 
         try {
-            currentLoad++;  // Increase load when a new request is received
+            currentLoad++;
             System.out.println("Handling request. Current load: " + currentLoad);
 
             ServerResponse response = handler.handle(request);
@@ -34,12 +34,12 @@ public class WebAPIServer {
             return response;
         } catch (StatusRuntimeException e) {
             finishRequest();  // Reduce load even if an error occurs
-            return new ServerResponse(500, "Error: " + e.getStatus().getDescription());
+            return new ServerResponse(500, "Error cannot reach dbServer: " + e.getStatus().getDescription());
         }
     }
 
     private void finishRequest() {
-        currentLoad--;  // Decrease load after finishing a request
+        currentLoad--;
         System.out.println("Finished request. Current load: " + currentLoad);
     }
 
@@ -48,7 +48,7 @@ public class WebAPIServer {
     }
 
     public boolean isAvailable() {
-        return currentLoad < MAX_LOAD;  // Calculate availability based on load without modifying state
+        return currentLoad < MAX_LOAD;
     }
 
     public String getUrl() {
