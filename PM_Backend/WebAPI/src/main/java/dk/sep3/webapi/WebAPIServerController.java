@@ -17,7 +17,7 @@ public class WebAPIServerController {
 
     @PostMapping("/handleRequest")
     public ResponseEntity<ServerResponse> handleRequest(@RequestBody ClientRequest request) {
-        System.out.println("Received request: " + request);
+        System.out.println("Received request: " + request + " | Request Type:" + request.getRequestType());
         ServerResponse response = server.handleRequest(request);
         return ResponseEntity.ok(response);
     }
