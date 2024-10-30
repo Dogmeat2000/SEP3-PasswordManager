@@ -2,10 +2,7 @@
 
 public class MasterUserDTO : DTO
 {
-    public string masterUsername { get; set; }
-    public string masterPassword { get; set; }
-
-    public MasterUserDTO(int id, string masterUsername, string masterPassword) : base(id)
+    public MasterUserDTO(int? id, string? masterUsername, string? masterPassword) : base(id)
     {
         this.masterUsername = masterUsername;
         this.masterPassword = masterPassword;
@@ -14,4 +11,7 @@ public class MasterUserDTO : DTO
     public MasterUserDTO()
     {
     }
+
+    public string? masterUsername { get; set; }
+    public string? masterPassword { get; set; }
 }

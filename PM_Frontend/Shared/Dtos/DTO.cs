@@ -2,9 +2,7 @@
 
 public class DTO
 {
-    private int id { get; set; }
-    
-    public DTO(int id)
+    public DTO(int? id)
     {
         this.id = id;
     }
@@ -12,4 +10,6 @@ public class DTO
     public DTO()
     {
     }
+
+    private int? id { get; set; }
 }

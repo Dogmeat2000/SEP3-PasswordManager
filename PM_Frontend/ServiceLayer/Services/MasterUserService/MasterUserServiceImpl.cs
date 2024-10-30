@@ -18,29 +18,29 @@ public class MasterUserServiceImpl : IMasterUserService
     public async Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto)
     {
         //TODO: ?? Add validation on the master user before it is encrypted
-        
+
         //Encrypt the master user
-        MasterUserDTO encryptedMasterUserDto = await _cryptographyService.EncryptMasterUserAsync(masterUserDto);
-        
+        var encryptedMasterUserDto = await _cryptographyService.EncryptMasterUserAsync(masterUserDto);
+
         //Send the request to the web api
-        MasterUserDTO returnedMasterUserDto = await _webApiClient.CreateMasterUserAsync(encryptedMasterUserDto);
-        
+        var returnedMasterUserDto = await _webApiClient.CreateMasterUserAsync(encryptedMasterUserDto);
+
         //TODO: ?? Add validation that the returned masteruser is the same as the encrypted one sent
-        
+
         //Decrypt master user
-        MasterUserDTO decryptedMasterUserDto = await _cryptographyService.DecryptMasterUserAsync(returnedMasterUserDto);
-        
+        var decryptedMasterUserDto = await _cryptographyService.DecryptMasterUserAsync(returnedMasterUserDto);
+
         //TODO: ?? Add validation that the returned decrypted masteruser is the same as the one sent
-        
+
         //Return the decrypted master user
         return decryptedMasterUserDto;
     }
 
-    public async Task<MasterUserDTO> ReadMasterUserAsync(string masterUserId)
+    public async Task<MasterUserDTO> ReadMasterUserAsync(int masterUserId)
     {
         //Send the request to the web-api
-        MasterUserDTO returnedMasterUserDto = await _webApiClient.ReadMasterUserAsync(masterUserId);
-        
+        var returnedMasterUserDto = await _webApiClient.ReadMasterUserAsync(masterUserId);
+
         //TODO: ?? Validation
 
         return returnedMasterUserDto;
