@@ -4,73 +4,47 @@
     <projectFile profileName="IIS Express">BlazorFrontend/BlazorFrontend.csproj</projectFile>
     <projectFile profileName="http">BlazorFrontend/BlazorFrontend.csproj</projectFile>
     <projectFile profileName="https">BlazorFrontend/BlazorFrontend.csproj</projectFile>
+    <projectFile profileName="IIS Express">BlazorUI/BlazorUI.csproj</projectFile>
+    <projectFile profileName="http">BlazorUI/BlazorUI.csproj</projectFile>
+    <projectFile profileName="https">BlazorUI/BlazorUI.csproj</projectFile>
     <projectFile>Client/Client.csproj</projectFile>
-    <projectFile>ServiceLayer/ServiceLayer.csproj</projectFile>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../PM_Backend/dbServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../PM_Backend/dbServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PM_Backend/dbServerDiscoveryService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../PM_Backend/dbServerDiscoveryService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/BlazorFrontend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorFrontend/BlazorFrontend.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Components/Layout/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorFrontend/Components/Layout/MainLayout.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorFrontend/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/BlazorFrontend.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorFrontend/obj/BlazorFrontend.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/BlazorFrontend.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorFrontend/obj/BlazorFrontend.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorFrontend/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorFrontend/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/wwwroot/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorFrontend/wwwroot/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Layout/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Layout/MainLayout.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Layout/NavMenu.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Layout/NavMenu.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginModule.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Pages/Error.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Pages/Error.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Routes.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Routes.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Properties/launchSettings.json" afterDir="false" />
+    <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
+      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/BlazorUI.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/BlazorUI.csproj.nuget.dgspec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorUI/obj/BlazorUI.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/BlazorUI.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/BlazorUI.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/BlazorUI.csproj.nuget.g.targets" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/Debug/net8.0/BlazorUI.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorUI/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorUI/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/wwwroot/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/wwwroot/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Factories/ServiceLayerFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Factories/ServiceLayerFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Networking/IWebApiClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Networking/IWebApiClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Networking/WebApiClientImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Networking/WebApiClientImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/ServiceLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/ServiceLayer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/IServiceLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/IServiceLayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/LoginEntryService/ILoginEntryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/LoginEntryService/ILoginEntryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/IMasterUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/IMasterUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/ServiceLayerImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/ServiceLayerImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Client.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Client.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Client.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Client.csproj.nuget.g.targets" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/ServiceLayer.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/ServiceLayer.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/ServiceLayer.csproj.nuget.dgspec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/ServiceLayer.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/ServiceLayer.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/ServiceLayer.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/ServiceLayer.csproj.nuget.g.targets" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/project.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Class1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/CommunicationObjects/ClientRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/CommunicationObjects/ClientRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/CommunicationObjects/ServerResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/CommunicationObjects/ServerResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Dtos/DTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Dtos/DTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Dtos/LoginEntryDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Dtos/LoginEntryDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Dtos/MasterUserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Dtos/MasterUserDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Debug/net8.0/Shared.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/obj/Shared.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Shared.csproj.nuget.dgspec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared/obj/Shared.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Shared.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/obj/Shared.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/Shared.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/obj/rider.project.restore.info" afterDir="false" />
     </list>
@@ -94,57 +68,17 @@
     &quot;accountId&quot;: &quot;f5ce21fa-51f2-4734-9b1f-bd67e39442a6&quot;
   }
 }</component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/Services/Cryptography/ICryptographyService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ServiceLayer/obj/Debug/net8.0/Client.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/DooMz/OneDrive - ViaUC/3. Semester/Password_Manager_SEP3/PM_Frontend/ServiceLayer/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://ILoginEntryService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://ILoginEntryService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://IMasterUserService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://IMasterUserService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://IMasterUserService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://IWebApiClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://IWebApiClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://IWebApiClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://IWebApiClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://LoginEntryServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://LoginEntryServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://MasterUserServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://ServiceLayerFactory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://ServiceLayerFactory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://ServiceLayerFactory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://WebApiClientImpl.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="SWEA" />
+    <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2o9Ee998WGZb5NyTAYKEv1rfOrO" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -227,11 +161,6 @@
       </method>
     </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="true">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -252,39 +181,7 @@
       <option name="project" value="LOCAL" />
       <updated>1730275395117</updated>
     </task>
-    <task id="LOCAL-00002" summary="Created ClientRequest.cs and ServerResponse.cs in C# on frontend">
-      <option name="closed" value="true" />
-      <created>1730289616830</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1730289616830</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Made C# DTO's again ;)">
-      <option name="closed" value="true" />
-      <created>1730290070039</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1730290070039</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Created ICryptographyService again ;)">
-      <option name="closed" value="true" />
-      <created>1730290199652</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1730290199652</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Brought classes back from the dead">
-      <option name="closed" value="true" />
-      <created>1730291190179</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1730291190179</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,17 +189,6 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <ignored-roots>
@@ -310,10 +196,6 @@
     </ignored-roots>
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
-    <MESSAGE value="Created ClientRequest.cs and ServerResponse.cs in C# on frontend" />
-    <MESSAGE value="Made C# DTO's again ;)" />
-    <MESSAGE value="Created ICryptographyService again ;)" />
-    <MESSAGE value="Brought classes back from the dead" />
-    <option name="LAST_COMMIT_MESSAGE" value="Brought classes back from the dead" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client" />
   </component>
 </project>

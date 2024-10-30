@@ -1,5 +1,95 @@
-﻿<h3>PMModule</h3>
+﻿@code {
+    private string masterUsername = "user0"; 
+    private string generatedPassword = string.Empty;
 
-@code {
+    private void GeneratePassword()
+    {
+        generatedPassword = GenerateRandomPassword();
+    }
 
+    private string GenerateRandomPassword()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+        var random = new Random();
+        return new string(Enumerable.Repeat(chars, 12)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
 }
+
+<div class="card shadow p-3 mb-5 bg-white rounded" style="width: 100%; margin: 0 auto;">
+
+    <div class="card-header text-white" style="background-color: #00517D;">
+        Password Manager
+    </div>
+
+ 
+    <div class="d-flex justify-content-start align-items-center p-2" style="background-color: #007bc7;">
+        <button class="btn btn-secondary" @onclick="GeneratePassword" style="margin-right: 10px;">Generate Password</button>
+        <span class="text-white">@generatedPassword</span>
+    </div>
+
+   
+    <div class="d-flex mt-3">
+     
+        <div class="p-3" style="width: 200px; background-color: #007bc7; color: white;">
+            <div class="mb-3">
+                Welcome: @masterUsername
+            </div>
+            <div class="mb-2">
+                Menu:
+            </div>
+            <button class="btn btn-secondary mb-2" style="width: 100%;">Create entry</button>
+            <button class="btn btn-secondary" style="width: 100%;">Edit entry</button>
+        </div>
+
+      
+        <div class="flex-grow-1 p-3">
+            <table class="table table-bordered table-hover table-sm">
+                <thead class="text-white" style="background-color: #00517D;">
+                    <tr>
+                        <th colspan="4">Social Media</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th>Website</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                </tbody>
+                
+                <thead class="text-white" style="background-color: #00517D;">
+                    <tr>
+                        <th colspan="4">Bank - Pension - Insurance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th>Website</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                  
+                </tbody>
+
+              
+                <thead class="text-white" style="background-color: #00517D;">
+                    <tr>
+                        <th colspan="4">Other</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th>Website</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
