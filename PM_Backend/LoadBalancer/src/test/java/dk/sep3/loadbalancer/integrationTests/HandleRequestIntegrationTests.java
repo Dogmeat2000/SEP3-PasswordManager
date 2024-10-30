@@ -4,7 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.ClientRequest;
 import common.ServerResponse;
-import common.dto.MasterUserDTO;
+import dk.sep3.loadbalancer.WebAPIMonitor.WebAPIServerMonitor;
+import dk.sep3.webapi.WebAPIServer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
@@ -20,6 +22,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
@@ -35,6 +38,10 @@ public class HandleRequestIntegrationTests
 
   @LocalServerPort
   private int port;
+
+  @MockBean WebAPIServerMonitor webAPIServerMonitor;
+
+  @MockBean WebAPIServer webAPIServer;
 
 
   @BeforeEach
@@ -63,12 +70,18 @@ public class HandleRequestIntegrationTests
       // and trust that tests in other modules identify any issues belonging to such modules:
       HttpEntity<String> entityServerAddress = new HttpEntity<>(requestServerAddressBody, headersServerAddress);
 
-      // Act: Send the HTTP message to the server:
+      when(webAPIServer.getUrl()).thenReturn("http://localhost:8081");
+      when(webAPIServerMonitor.getAvailableServer()).thenReturn(webAPIServer);
 
+      // Act: Send the HTTP message to the server:
       String urlServerAddress = "http://localhost:" + port + "/loadbalancer/server";
       ResponseEntity<ServerResponse> responseServerAddress = restTemplate.postForEntity(urlServerAddress, entityServerAddress, ServerResponse.class);
 
       // Assert:
+      // Verify that the server was actually queried:
+      verify(webAPIServer, times(1)).getUrl();
+      verify(webAPIServerMonitor, times(1)).getAvailableServer();
+
       // Ensure that the response is not null
       assertNotNull(responseServerAddress);
       assertNotNull(responseServerAddress.getBody());
