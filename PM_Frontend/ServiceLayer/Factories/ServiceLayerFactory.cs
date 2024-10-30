@@ -12,6 +12,9 @@ public static class ServiceLayerFactory
 {
     public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
+        // Register HttpClient with a base address
+        services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(configuration["ApiSettings:BaseAddress"]) });
+        
         var loadBalancerUrl = configuration["ApiSettings:LoadBalancerUrl"];
         // Register the Crypto Service as Singleton (long-lived and stateless)
         services.AddSingleton<ICryptographyService, CryptographyServiceImpl>();

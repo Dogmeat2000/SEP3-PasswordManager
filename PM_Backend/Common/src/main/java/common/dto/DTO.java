@@ -1,5 +1,6 @@
 package common.dto;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(
@@ -7,6 +8,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         include = JsonTypeInfo.As.PROPERTY,
         property = "@class"
 )
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = MasterUserDTO.class, name = "MasterUserDTO"),
+        @JsonSubTypes.Type(value = LoginEntryDTO.class, name = "LoginEntryDTO")
+})
 
 public abstract class DTO {
     private int id;

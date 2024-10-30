@@ -1,4 +1,6 @@
 ﻿using System.Net.Http.Json;
+using System.Text;
+using Newtonsoft.Json; // Make sure to add this
 using Shared.CommunicationObjects;
 using Shared.Dtos;
 
@@ -37,6 +39,7 @@ public class WebApiClientImpl : IWebApiClient
         where TRequestDto : DTO
         where TResponseDto : DTO
     {
+        // Create a ClientRequest with requestType and requestDto
         var request = new ClientRequest(requestType, requestDto);
         await SetWebApiServerUrlAsync(false);
 
@@ -47,10 +50,20 @@ public class WebApiClientImpl : IWebApiClient
         {
             Console.WriteLine("From WebApiClientImpl.cs: Attempting to use WEB-API URL: " + WebApiUrl +
                               " for request of type: " + requestType);
-            var response = await _httpClient.PostAsJsonAsync(WebApiUrl, request);
 
+            // Serialize the request using Newtonsoft.Json
+            var jsonRequest = JsonConvert.SerializeObject(request, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects // This ensures @class is included
+            });
+
+            // Sending the request as JSON
+            var response = await _httpClient.PostAsync(WebApiUrl, new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
+
+            // Read the server's response
             var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
 
+            // Handle overloaded server responses
             if (serverResponse != null && serverResponse.StatusCode == 503)
             {
                 Console.WriteLine("From WebApiClientImpl.cs: Server is overloaded, getting new server:");
@@ -81,7 +94,7 @@ public class WebApiClientImpl : IWebApiClient
         response.EnsureSuccessStatusCode();
 
         var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
-        WebApiUrl = serverResponse?.Message+"/api/handleRequest";
+        WebApiUrl = serverResponse?.Message + "/api/handleRequest";
         return serverResponse?.Message;
     }
 

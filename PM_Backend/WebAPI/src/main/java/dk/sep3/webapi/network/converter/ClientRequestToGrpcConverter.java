@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ClientRequestToGrpcConverter {
+
     public GenericRequest convert(ClientRequest request) {
         GenericRequest.Builder builder = GenericRequest.newBuilder()
                 .setRequestType(request.getRequestType());
