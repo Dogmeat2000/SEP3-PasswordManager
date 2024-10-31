@@ -104,7 +104,7 @@ public class HandleRequestIntegrationTests
       assertNotNull(response.getStatusCode());
 
       // Ensure that statusCode is CREATED:
-      assertEquals(201, response.getBody().getStatusCode());
+      assertEquals(HttpStatus.CREATED, response.getStatusCode());
 
       // Ensure that we receive a MasterUserDTO instance, with correct values:
       assertThat(response.getBody().getDto()).isInstanceOf(MasterUserDTO.class);
