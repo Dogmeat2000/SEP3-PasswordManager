@@ -22,3 +22,4 @@ C:\Users\DooMz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\Sh
 C:\Users\DooMz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\Shared\obj\Debug\net8.0\refint\Shared.dll
 C:\Users\DooMz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\Shared\obj\Debug\net8.0\Shared.pdb
 C:\Users\DooMz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\Shared\obj\Debug\net8.0\ref\Shared.dll
+C:\Users\doomz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\Shared\obj\Debug\net8.0\Shared.csproj.AssemblyReference.cache

@@ -1,0 +1,46 @@
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Shared.Dtos;
+
+namespace Shared.JSONService
+{
+    public class DTOJsonConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return typeof(DTO).IsAssignableFrom(objectType);
+        }
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var dto = (DTO)value;
+            var type = dto.GetType();
+
+            // Begin writing JSON object with type information
+            writer.WriteStartObject();
+            writer.WritePropertyName("@class");
+            writer.WriteValue(type.FullName); // Adds type metadata, e.g., "Shared.Dtos.MasterUserDTO"
+
+            // Write all properties of the DTO
+            foreach (var prop in type.GetProperties())
+            {
+                writer.WritePropertyName(prop.Name);
+                serializer.Serialize(writer, prop.GetValue(dto));
+            }
+
+            writer.WriteEndObject();
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var jsonObject = JObject.Load(reader);
+            var typeName = jsonObject["@class"]?.ToString();
+            var dtoType = Type.GetType(typeName);
+
+            if (dtoType == null)
+                throw new JsonSerializationException($"Unknown type: {typeName}");
+
+            return jsonObject.ToObject(dtoType, serializer);
+        }
+    }
+}

@@ -1,17 +1,18 @@
-﻿namespace Shared.Dtos;
+﻿using Newtonsoft.Json;
 
-public class MasterUserDTO : DTO
+namespace Shared.Dtos
 {
-    public MasterUserDTO(int? id, string? masterUsername, string? masterPassword) : base(id)
+    public class MasterUserDTO : DTO
     {
-        this.masterUsername = masterUsername;
-        this.masterPassword = masterPassword;
-    }
+        public string? masterUsername { get; set; }
+        public string? masterPassword { get; set; }
 
-    public MasterUserDTO()
-    {
-    }
+        public MasterUserDTO(int? id, string? masterUsername, string? masterPassword) : base(id)
+        {
+            this.masterUsername = masterUsername;
+            this.masterPassword = masterPassword;
+        }
 
-    public string? masterUsername { get; set; }
-    public string? masterPassword { get; set; }
+        public MasterUserDTO() { }
+    }
 }

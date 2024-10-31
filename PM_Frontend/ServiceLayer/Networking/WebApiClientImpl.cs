@@ -34,56 +34,65 @@ public class WebApiClientImpl : IWebApiClient
         return responseMasterUserDto;
     }
 
-    private async Task<TResponseDto> SendRequestAsync<TRequestDto, TResponseDto>(string requestType,
-        TRequestDto requestDto)
-        where TRequestDto : DTO
-        where TResponseDto : DTO
-    {
-        // Create a ClientRequest with requestType and requestDto
-        var request = new ClientRequest(requestType, requestDto);
-        await SetWebApiServerUrlAsync(false);
-
-        var serverOverloaded = true;
-        var numberOfAttempts = 0;
-
-        while (serverOverloaded && numberOfAttempts < 5)
+    private async Task<TResponseDto> SendRequestAsync<TRequestDto, TResponseDto>(string requestType, TRequestDto requestDto)
+            where TRequestDto : DTO
+            where TResponseDto : DTO
         {
-            Console.WriteLine("From WebApiClientImpl.cs: Attempting to use WEB-API URL: " + WebApiUrl +
-                              " for request of type: " + requestType);
+            var request = new ClientRequest(requestType, requestDto);
+            await SetWebApiServerUrlAsync(false);
 
-            // Serialize the request using Newtonsoft.Json
-            var jsonRequest = JsonConvert.SerializeObject(request, new JsonSerializerSettings
+            var serverOverloaded = true;
+            var numberOfAttempts = 0;
+
+            while (serverOverloaded && numberOfAttempts < 5)
             {
-                TypeNameHandling = TypeNameHandling.Objects // This ensures @class is included
-            });
+                Console.WriteLine("Attempting to use WEB-API URL: " + WebApiUrl + " for request of type: " + requestType);
 
-            // Sending the request as JSON
-            var response = await _httpClient.PostAsync(WebApiUrl, new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
+                // Serialize the request with type information
+                var jsonRequest = JsonConvert.SerializeObject(request, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto // Ensure @class is included for polymorphism
+                });
 
-            // Read the server's response
-            var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
+                var response = await _httpClient.PostAsync(WebApiUrl, new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
 
-            // Handle overloaded server responses
-            if (serverResponse != null && serverResponse.StatusCode == 503)
-            {
-                Console.WriteLine("From WebApiClientImpl.cs: Server is overloaded, getting new server:");
-                await WebApiServerIsOverloadedAsync(request);
-                numberOfAttempts++;
+                if (!response.IsSuccessStatusCode)
+                {
+                    // Check for overload and other potential errors
+                    if (response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable)
+                    {
+                        Console.WriteLine("Server is overloaded, trying new server:");
+                        await WebApiServerIsOverloadedAsync(request);
+                        numberOfAttempts++;
+                    }
+                    else
+                    {
+                        throw new Exception("Server responded with an error: " + response.ReasonPhrase);
+                    }
+                }
+                else
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+
+                    // Deserialize ServerResponse to determine if we received a valid DTO
+                    var serverResponse = JsonConvert.DeserializeObject<ServerResponse>(jsonResponse, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.Auto // Handle polymorphic deserialization
+                    });
+
+                    if (serverResponse?.Dto is TResponseDto responseDto)
+                    {
+                        return responseDto;
+                    }
+                    else
+                    {
+                        throw new Exception("Unexpected response DTO type or server error.");
+                    }
+                }
             }
-            else if (serverResponse != null && serverResponse.Dto is TResponseDto responseDto)
-            {
-                // Successfully received a valid response
-                return responseDto;
-            }
-            else
-            {
-                // Handle other possible response scenarios or throw an exception if needed
-                throw new Exception("Unexpected response from the server.");
-            }
+
+            throw new Exception("Server overloaded. Max attempts reached.");
         }
-
-        throw new Exception("Server overloaded. Max attempts reached.");
-    }
 
     private async Task<string> SetWebApiServerUrlAsync(bool overLoaded)
     {

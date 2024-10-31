@@ -1,15 +1,20 @@
-﻿namespace Shared.Dtos;
+﻿using Newtonsoft.Json;
+using Shared.JSONService;
 
-public class DTO
+namespace Shared.Dtos
 {
-    public DTO(int? id)
+    // Base DTO class
+    [JsonObject]
+    [JsonConverter(typeof(DTOJsonConverter))]  // Custom converter for polymorphic serialization
+    public abstract class DTO
     {
-        this.id = id;
-    }
+        public int? Id { get; set; }
 
-    public DTO()
-    {
-    }
+        public DTO(int? id)
+        {
+            Id = id;
+        }
 
-    private int? id { get; set; }
+        public DTO() { }
+    }
 }
