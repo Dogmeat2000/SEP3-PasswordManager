@@ -57,6 +57,9 @@ public class WebApiClientImpl : IWebApiClient
                 Console.WriteLine("JSon request: " + jsonRequest);
 
                 var response = await _httpClient.PostAsync(WebApiUrl, new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
+                
+                Console.WriteLine("Response status code: " + response.StatusCode);
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
 
                 if (!response.IsSuccessStatusCode)
                 {
