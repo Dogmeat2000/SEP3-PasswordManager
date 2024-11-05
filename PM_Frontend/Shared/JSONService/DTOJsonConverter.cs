@@ -38,12 +38,26 @@ namespace Shared.JSONService
         {
             var jsonObject = JObject.Load(reader);
             var typeName = jsonObject["@class"]?.ToString();
+            Console.WriteLine(jsonObject.ToString());
+            if (typeName.Contains("MasterUserDTO"))
+            {
+                typeName = "Shared.Dtos.MasterUserDTO, Shared";
+            }
+            
+            else if (typeName.Contains("LoginEntryDTO"))
+            {
+                typeName = "Shared.Dtos.LoginEntryDTO, Shared";
+            }
+            
             var dtoType = Type.GetType(typeName);
+            
+            Console.WriteLine(dtoType);
 
             if (dtoType == null)
                 throw new JsonSerializationException($"Unknown type: {typeName}");
 
-            return jsonObject.ToObject(dtoType, serializer);
+            return null;
+
         }
     }
 }

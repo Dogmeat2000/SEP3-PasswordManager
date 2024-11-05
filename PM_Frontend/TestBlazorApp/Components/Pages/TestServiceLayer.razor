@@ -66,6 +66,8 @@ private async Task HandleCreateMasterUser()
 {
     try
     {
+        newMasterUser.masterUsername = "TestUserName";
+        newMasterUser.masterPassword = "TestPassword";
         createResult = await ServiceLayer.CreateMasterUserAsync(newMasterUser);
         createError = null; // Clear any previous error
     }
