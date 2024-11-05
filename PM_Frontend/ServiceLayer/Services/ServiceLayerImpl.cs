@@ -1,5 +1,6 @@
 ﻿using ServiceLayer.Services.LoginEntryService;
 using ServiceLayer.Services.MasterUserService;
+using Shared.CommunicationObjects;
 using Shared.Dtos;
 
 namespace ServiceLayer.Services;
@@ -15,12 +16,12 @@ public class ServiceLayerImpl : IServiceLayer
         _masterUserService = masterUserService;
     }
 
-    public async Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto)
+    public async Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto)
     {
         return await _masterUserService.CreateMasterUserAsync(masterUserDto);
     }
 
-    public async Task<MasterUserDTO> ReadMasterUserAsync(int masterUserId)
+    public async Task<ServerResponse> ReadMasterUserAsync(int masterUserId)
     {
         return await _masterUserService.ReadMasterUserAsync(masterUserId);
     }

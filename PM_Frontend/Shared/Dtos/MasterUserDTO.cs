@@ -14,5 +14,15 @@ namespace Shared.Dtos
         }
 
         public MasterUserDTO() { }
+
+        public override string ToString()
+        {
+            string toString = "[";
+            toString += masterUsername;
+            toString += " ; ";
+            toString += masterPassword;
+            toString += "]";
+            return toString;
+        }
     }
 }

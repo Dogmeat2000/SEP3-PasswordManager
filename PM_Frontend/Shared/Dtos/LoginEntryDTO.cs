@@ -16,5 +16,15 @@ namespace Shared.Dtos
         }
 
         public LoginEntryDTO(int id) : base(id) { }
+        
+        public override string ToString()
+        {
+            string toString = "[";
+            toString += entryUsername;
+            toString += " ; ";
+            toString += entryPassword;
+            toString += "]";
+            return toString;
+        }
     }
 }

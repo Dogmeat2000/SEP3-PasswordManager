@@ -3,6 +3,7 @@ using System.Text;
 using Newtonsoft.Json; // Make sure to add this
 using Shared.CommunicationObjects;
 using Shared.Dtos;
+using Shared.JSONService;
 
 namespace ServiceLayer.Networking;
 
@@ -19,24 +20,23 @@ public class WebApiClientImpl : IWebApiClient
 
     private string? WebApiUrl { get; set; }
 
-    public async Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto)
+    public async Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto)
     {
         var responseMasterUserDto =
-            await SendRequestAsync<MasterUserDTO, MasterUserDTO>("CreateMasterUser", masterUserDto);
+            await SendRequestAsync<MasterUserDTO>("CreateMasterUser", masterUserDto);
         return responseMasterUserDto;
     }
 
-    public async Task<MasterUserDTO> ReadMasterUserAsync(int masterUserId)
+    public async Task<ServerResponse> ReadMasterUserAsync(int masterUserId)
     {
         var responseMasterUserDto =
-            await SendRequestAsync<MasterUserDTO, MasterUserDTO>("ReadMasterUser",
+            await SendRequestAsync<MasterUserDTO>("ReadMasterUser",
                 new MasterUserDTO(masterUserId, null, null));
         return responseMasterUserDto;
     }
 
-    private async Task<TResponseDto> SendRequestAsync<TRequestDto, TResponseDto>(string requestType, TRequestDto requestDto)
+    private async Task<ServerResponse> SendRequestAsync<TRequestDto>(string requestType, TRequestDto requestDto)
             where TRequestDto : DTO
-            where TResponseDto : DTO
         {
             var request = new ClientRequest(requestType, requestDto);
             await SetWebApiServerUrlAsync(false);
@@ -78,21 +78,30 @@ public class WebApiClientImpl : IWebApiClient
                 else
                 {
                     var jsonResponse = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(jsonResponse);
 
                     // Deserialize ServerResponse to determine if we received a valid DTO
-                    var serverResponse = JsonConvert.DeserializeObject<ServerResponse>(jsonResponse, new JsonSerializerSettings
+                    var serverResponse = JsonConvert.DeserializeObject<ServerResponse>(jsonResponse);
+                    Console.WriteLine("ServerResponse: " + serverResponse);
+                    
+                        /*, new JsonSerializerSettings
                     {
-                        TypeNameHandling = TypeNameHandling.Auto // Handle polymorphic deserialization
+                        TypeNameHandling = TypeNameHandling.Objects,
+                        Converters = new List<JsonConverter> { new DTOJsonConverter() } // Only use the custom converter
                     });
+*/
+                    
 
-                    if (serverResponse?.Dto is TResponseDto responseDto)
+                    if (serverResponse != null)
                     {
-                        return responseDto;
+                        return serverResponse;
                     }
+
                     else
                     {
-                        throw new Exception("Unexpected response DTO type or server error.");
+                        throw new Exception("Server was not responded with an error: " + jsonResponse);
                     }
+                    
                 }
             }
 
@@ -108,8 +117,8 @@ public class WebApiClientImpl : IWebApiClient
         response.EnsureSuccessStatusCode();
 
         var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
-        WebApiUrl = serverResponse?.Message + "/api/handleRequest";
-        return serverResponse?.Message;
+        WebApiUrl = serverResponse?.message + "/api/handleRequest";
+        return serverResponse?.message;
     }
 
     private async Task WebApiServerIsOverloadedAsync(ClientRequest request)

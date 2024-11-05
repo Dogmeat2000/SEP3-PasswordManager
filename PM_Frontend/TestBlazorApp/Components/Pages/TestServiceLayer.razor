@@ -1,5 +1,6 @@
 @page "/test-service-layer"
 @using ServiceLayer.Services
+@using Shared.CommunicationObjects
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
 
@@ -27,7 +28,7 @@
 
     @if (createResult != null)
     {
-    <p>Created Master User: @createResult.masterUsername</p>
+    <p>Created Master User: @createResult.statusCode, @createResult.message, @createResult.dto.ToString()</p>
     }
     else if (!string.IsNullOrEmpty(createError))
     {
@@ -55,7 +56,7 @@
 
 @code {
 private MasterUserDTO newMasterUser = new MasterUserDTO();
-private MasterUserDTO createResult;
+private ServerResponse createResult;
 private string createError;
 
 private int userId;
@@ -83,7 +84,7 @@ private async Task HandleReadMasterUser()
 {
     try
     {
-        readResult = await ServiceLayer.ReadMasterUserAsync(userId);
+        //readResult = await ServiceLayer.ReadMasterUserAsync(userId);
         readError = null; // Clear any previous error
     }
     catch (Exception ex)

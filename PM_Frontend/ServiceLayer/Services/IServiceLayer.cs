@@ -1,4 +1,5 @@
-﻿using Shared.Dtos;
+﻿using Shared.CommunicationObjects;
+using Shared.Dtos;
 
 namespace ServiceLayer.Services;
 
@@ -12,7 +13,7 @@ public interface IServiceLayer
      * @param masterUserDto the master user which is requested to be created
      * @return MasterUserDTO: the created master user
      */
- Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto);
+ Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto);
 
  /**
      * WARNING: This should not be accessible as it will return a master user with username and password, and only takes the id as param.
@@ -23,5 +24,5 @@ public interface IServiceLayer
      * @return MasterUserDTO: The master user which id is used as parameter.
      * Todo: Think about if parameters should be changed so that the method can be used for login-purposes.
      */
- Task<MasterUserDTO> ReadMasterUserAsync(int masterUserId);
+ Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
 }

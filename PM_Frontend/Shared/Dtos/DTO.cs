@@ -16,5 +16,7 @@ namespace Shared.Dtos
         }
 
         public DTO() { }
+
+        public abstract override string ToString();
     }
 }

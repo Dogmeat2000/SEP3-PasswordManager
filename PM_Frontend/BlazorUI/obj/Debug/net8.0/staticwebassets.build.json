@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5fMC2dJyRdBOLPZtcnxRfZhteIVm0nekTg2QNyeP1aU=",
+  "Hash": "Il1aojxlLxDIrfty+tkaHyZYQbM/Dzuvbcx8fvpQYpw=",
   "Source": "BlazorUI",
   "BasePath": "_content/BlazorUI",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "BlazorUI\\wwwroot",
       "Source": "BlazorUI",
-      "ContentRoot": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\wwwroot\\",
       "BasePath": "_content/BlazorUI",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorUI.styles.css",
+      "Identity": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorUI.styles.css",
       "SourceId": "BlazorUI",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/BlazorUI",
       "RelativePath": "BlazorUI.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorUI.styles.css"
+      "OriginalItemSpec": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorUI.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorUI.bundle.scp.css",
+      "Identity": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorUI.bundle.scp.css",
       "SourceId": "BlazorUI",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/BlazorUI",
       "RelativePath": "BlazorUI.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorUI.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorUI.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\wwwroot\\app.css",
+      "Identity": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\wwwroot\\app.css",
       "SourceId": "BlazorUI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\wwwroot\\",
       "BasePath": "_content/BlazorUI",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "BlazorUI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\wwwroot\\",
       "BasePath": "_content/BlazorUI",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "BlazorUI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\wwwroot\\",
       "BasePath": "_content/BlazorUI",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\wwwroot\\favicon.png",
+      "Identity": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\wwwroot\\favicon.png",
       "SourceId": "BlazorUI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\wwwroot\\",
       "BasePath": "_content/BlazorUI",
       "RelativePath": "favicon.png",
       "AssetKind": "All",

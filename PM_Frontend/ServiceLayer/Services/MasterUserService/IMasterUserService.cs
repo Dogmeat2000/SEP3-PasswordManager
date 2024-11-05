@@ -1,4 +1,5 @@
-﻿using Shared.Dtos;
+﻿using Shared.CommunicationObjects;
+using Shared.Dtos;
 
 namespace ServiceLayer.Services.MasterUserService;
 
@@ -14,12 +15,12 @@ public interface IMasterUserService
      * Encrypts the DTO before it is sent on
      * Decrypts the returning master user before it is returned.
      */
- Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto);
+ Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto);
 
  /**
      * Sends the read-request for the master user further down
      * Handles eventual validation
      * Decrypts the returning master user before returning it.
      */
- Task<MasterUserDTO> ReadMasterUserAsync(int masterUserId);
+ Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
 }

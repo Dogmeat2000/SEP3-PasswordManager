@@ -1,4 +1,5 @@
-﻿using Shared.Dtos;
+﻿using Shared.CommunicationObjects;
+using Shared.Dtos;
 
 namespace ServiceLayer.Networking;
 
@@ -7,7 +8,7 @@ namespace ServiceLayer.Networking;
  */
 public interface IWebApiClient
 {
-    Task<MasterUserDTO> CreateMasterUserAsync(MasterUserDTO masterUserDto);
+    Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto);
 
-    Task<MasterUserDTO> ReadMasterUserAsync(int masterUserId);
+    Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
 }
