@@ -10,10 +10,10 @@ public class ClientRequest
 
     public ClientRequest(string requestType, DTO dto)
     {
-        RequestType = requestType;
-        Dto = dto;
+        this.requestType = requestType;
+        this.dto = dto;
     }
 
-    public string RequestType { get; set; }
-    public DTO Dto { get; set; }
+    public string requestType { get; set; }
+    public DTO dto { get; set; }
 }

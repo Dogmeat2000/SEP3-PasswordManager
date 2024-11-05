@@ -8,11 +8,11 @@ namespace Shared.Dtos
     [JsonConverter(typeof(DTOJsonConverter))]  // Custom converter for polymorphic serialization
     public abstract class DTO
     {
-        public int? Id { get; set; }
+        public int? id { get; set; }
 
         public DTO(int? id)
         {
-            Id = id;
+            this.id = id;
         }
 
         public DTO() { }

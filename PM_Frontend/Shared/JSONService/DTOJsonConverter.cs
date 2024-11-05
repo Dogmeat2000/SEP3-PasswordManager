@@ -18,8 +18,11 @@ namespace Shared.JSONService
 
             // Begin writing JSON object with type information
             writer.WriteStartObject();
+            writer.WritePropertyName("@type");
+            writer.WriteValue("common.dto."+type.Name); // Adds type metadata, e.g., "Shared.Dtos.MasterUserDTO"
+            
             writer.WritePropertyName("@class");
-            writer.WriteValue(type.FullName); // Adds type metadata, e.g., "Shared.Dtos.MasterUserDTO"
+            writer.WriteValue("common.dto."+type.Name);
 
             // Write all properties of the DTO
             foreach (var prop in type.GetProperties())
