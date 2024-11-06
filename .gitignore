@@ -4,6 +4,9 @@
 /PM_Backend/LoadBalancer/target/
 /PM_Backend/WebAPI/target/
 /PM_Frontend/BlazorUI/obj/
+/PM_Frontend/BlazorUI/bin/
 /PM_Frontend/Shared/obj/
+/PM_Frontend/Shared/bin/
 /PM_Frontend/TestBlazorApp/obj/
+/PM_Frontend/TestBlazorApp/bin/
 
