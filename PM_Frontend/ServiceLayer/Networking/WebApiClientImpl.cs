@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using Newtonsoft.Json; // Make sure to add this
 using Shared.CommunicationObjects;
@@ -19,6 +20,7 @@ public class WebApiClientImpl : IWebApiClient
         _loadBalancerUrl = loadBalancerUrl;
     }
     
+
 
     public async Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto)
     {
