@@ -5,12 +5,12 @@
 
     private LoginModule? loginModule;
     private PMModule? pmModule;
-    private CreateUpdateEntryModule? createUpdateEntryModule;
+    private CreateEntryModule? _createEntryModule;
 }
 
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
     @* <LoginModule @ref="loginModule" /> *@
-    @* <PMModule @ref="pmModule"/>*@
-    <CreateUpdateEntryModule @ref="createUpdateEntryModule"/>
+    <PMModule @ref="pmModule"/>
+    @*   <CreateEntryModule @ref="_createEntryModule"/> *@
 
 </div>

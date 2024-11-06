@@ -17,7 +17,7 @@
 
 .top-row[b-n4p89scb43] {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .navbar-brand[b-n4p89scb43] {
@@ -51,33 +51,33 @@
     padding-bottom: 0.5rem;
 }
 
-    .nav-item:first-of-type[b-n4p89scb43] {
-        padding-top: 1rem;
-    }
+.nav-item:first-of-type[b-n4p89scb43] {
+    padding-top: 1rem;
+}
 
-    .nav-item:last-of-type[b-n4p89scb43] {
-        padding-bottom: 1rem;
-    }
+.nav-item:last-of-type[b-n4p89scb43] {
+    padding-bottom: 1rem;
+}
 
-    .nav-item[b-n4p89scb43]  .nav-link {
-        color: #d7d7d7;
-        background: none;
-        border: none;
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
-        width: 100%;
-    }
+.nav-item[b-n4p89scb43]  .nav-link {
+    color: #d7d7d7;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    line-height: 3rem;
+    width: 100%;
+}
 
 .nav-item[b-n4p89scb43]  a.active {
-    background-color: rgba(255,255,255,0.37);
+    background-color: rgba(255, 255, 255, 0.37);
     color: white;
 }
 
 .nav-item[b-n4p89scb43]  .nav-link:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
 }
 

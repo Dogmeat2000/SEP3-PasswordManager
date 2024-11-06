@@ -1,4 +1,6 @@
-﻿@code {
+﻿@using ServiceLayer.Services
+@inject IServiceLayer ServiceLayer
+@code {
 private string masterUsername = string.Empty;
 private string masterPassword = string.Empty;
 private string generatedPassword = string.Empty;

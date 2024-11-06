@@ -22,8 +22,12 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Modules/CreateUpdateEntryModule.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2R1bGVzXENyZWF0ZVVwZGF0ZUVudHJ5TW9kdWxlLnJhem9y
+[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Modules/CreateEntryModule.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2R1bGVzXENyZWF0ZUVudHJ5TW9kdWxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Modules/EntryListViewModule.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2R1bGVzXEVudHJ5TGlzdFZpZXdNb2R1bGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Modules/LoginModule.razor]
@@ -32,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Modules/PMModule.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2R1bGVzXFBNTW9kdWxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Modules/UpdateDeleteEntryModule.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2R1bGVzXFVwZGF0ZURlbGV0ZUVudHJ5TW9kdWxlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/Components/Pages/Error.razor]

@@ -8,7 +8,6 @@ namespace Shared.CommunicationObjects;
 [JsonConverter(typeof(ServerResponseJsonConverter))]
 public class ServerResponse
 {
-    // Parameterless constructor required for deserialization
     public ServerResponse()
     {
     }

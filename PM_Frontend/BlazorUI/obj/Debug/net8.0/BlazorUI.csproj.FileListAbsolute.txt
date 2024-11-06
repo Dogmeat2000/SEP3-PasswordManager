@@ -79,3 +79,24 @@ C:\Users\doomz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\Bl
 C:\Users\doomz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\BlazorUI\obj\Debug\net8.0\BlazorUI.pdb
 C:\Users\doomz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\BlazorUI\obj\Debug\net8.0\BlazorUI.genruntimeconfig.cache
 C:\Users\doomz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\BlazorUI\obj\Debug\net8.0\ref\BlazorUI.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Http.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\ServiceLayer.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Shared.dll
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\ServiceLayer.pdb
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\bin\Debug\net8.0\Shared.pdb
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\obj\Debug\net8.0\BlazorUI.csproj.AssemblyReference.cache
+C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\BlazorUI\obj\Debug\net8.0\BlazorUI.csproj.Up2Date

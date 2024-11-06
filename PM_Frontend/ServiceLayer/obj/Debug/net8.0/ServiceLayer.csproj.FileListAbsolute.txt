@@ -1,6 +1,4 @@
-C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\bin\Debug\net8.0\ServiceLayer.exe
 C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\bin\Debug\net8.0\ServiceLayer.deps.json
-C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\bin\Debug\net8.0\ServiceLayer.runtimeconfig.json
 C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\bin\Debug\net8.0\ServiceLayer.dll
 C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\bin\Debug\net8.0\ServiceLayer.pdb
 C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\bin\Debug\net8.0\Shared.dll
@@ -15,7 +13,6 @@ C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\S
 C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\obj\Debug\net8.0\ServiceLayer.dll
 C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\obj\Debug\net8.0\refint\ServiceLayer.dll
 C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\obj\Debug\net8.0\ServiceLayer.pdb
-C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\obj\Debug\net8.0\ServiceLayer.genruntimeconfig.cache
 C:\Users\Marcus Lykkegaard\Desktop\Softwareteknologi\Softwareprogrammer\GitHub\SEP3_PasswordManager\PM_Frontend\ServiceLayer\obj\Debug\net8.0\ref\ServiceLayer.dll
 C:\Users\DooMz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\ServiceLayer\bin\Debug\net8.0\ServiceLayer.deps.json
 C:\Users\DooMz\OneDrive - ViaUC\3. Semester\Password_Manager_SEP3\PM_Frontend\ServiceLayer\bin\Debug\net8.0\ServiceLayer.dll
