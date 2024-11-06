@@ -89,6 +89,7 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
       throw new DataIntegrityViolationException("Validation of MasterUser failed. MasterUser is null.");
     }
 
+    validateMasterUserId(masterUser.getId());
     validateMasterUserName(masterUser.getMasterUsername());
     validateMasterUserPassword(masterUser.getEncryptedPassword());
 
@@ -127,6 +128,16 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
     } else if (encryptedPassword.length() < 12) {
       logger.error("Validation of MasterUsers encryptedPassword' failed. Encrypted Password must be at least 12 characters long");
       throw new DataIntegrityViolationException("Encrypted Password must be at least 12 characters");
+    }
+
+    // Validation passed.
+  }
+
+
+  private void validateMasterUserId(int id) throws DataIntegrityViolationException {
+    if(id != 0) {
+      logger.error("Validation of MasterUser id' failed. Provided masterUser Id must be zero, since db handles finding the id.");
+      throw new DataIntegrityViolationException("Provided masterUser Id must be zero, since db handles finding the id.");
     }
 
     // Validation passed.
