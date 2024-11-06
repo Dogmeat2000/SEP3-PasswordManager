@@ -66,7 +66,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
       assertThrows(DataIntegrityViolationException.class, () -> dbMasterUserRepositoryService.readMasterUser(null, "ads91234AVA'S7_:&)/(=9"));
     }
 
-    @Test public void whenCreateMasterUser_IsGivenBlankMasterUsername_ThrowsDataIntegrityViolationException() {
+    @Test public void whenReadMasterUser_IsGivenBlankMasterUsername_ThrowsDataIntegrityViolationException() {
       assertThrows(DataIntegrityViolationException.class, () -> dbMasterUserRepositoryService.readMasterUser("", "ads91234AVA'S7_:&)/(=9"));
     }
 

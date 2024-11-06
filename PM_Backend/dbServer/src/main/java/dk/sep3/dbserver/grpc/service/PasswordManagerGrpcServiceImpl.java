@@ -40,7 +40,7 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
   @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver){
     try {
       // Validate request
-      if(request == null)
+      if(request == null || request.getRequestType().isBlank() || request.getRequestType().isEmpty())
         throw new IllegalArgumentException("Request cannot be null");
 
       // Identify what action was requested:
@@ -55,7 +55,7 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
       // Transmit response back to client:
       responseObserver.onNext(response);
 
-    } catch (DataIntegrityViolationException e) {
+    } catch (DataIntegrityViolationException | IllegalArgumentException e) {
       // Query contained an Illegal Argument (example: attempt to create user without providing username.)
       responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(400, e.getMessage()));
       logError(400, e.getMessage());
