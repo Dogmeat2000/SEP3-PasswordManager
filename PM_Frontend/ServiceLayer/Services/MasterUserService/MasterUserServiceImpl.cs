@@ -28,7 +28,7 @@ public class MasterUserServiceImpl : IMasterUserService
 
         //TODO: ?? Add validation that the returned masteruser is the same as the encrypted one sent
 
-        //Decrypt master user
+        //Decrypt Server response
         var decryptedServerResponse = await _cryptographyService.DecryptServerResponceAsync(returnedServerResponse);
 
         //TODO: ?? Add validation that the returned decrypted masteruser is the same as the one sent
