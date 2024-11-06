@@ -4,9 +4,9 @@ import dk.sep3.webapi.WebAPIServer;
 import dk.sep3.webapi.network.RequestHandler;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.concurrent.TimeUnit;
 
 /** Factory for creating new WebAPIServer instances **/
 @Component
@@ -43,11 +43,16 @@ public class WebAPIServerFactory {
             if (process.isAlive()) {process.destroyForcibly();}
             }));
 
+            // waiting for server to start
+            TimeUnit.SECONDS.sleep(7);
+
             return newServer;
 
         } catch (IOException e) {
             System.err.println("Failed to start new WebAPI server: " + e.getMessage());
             throw new RuntimeException("Failed to start new WebAPI server", e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

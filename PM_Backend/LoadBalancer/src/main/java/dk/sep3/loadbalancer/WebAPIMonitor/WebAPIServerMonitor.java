@@ -11,12 +11,14 @@ import java.util.List;
 /** Monitor servers to check if they are overloaded or not responding, scaling if necessary through the factory  **/
 @Component
 public class WebAPIServerMonitor implements DisposableBean {
-    private List<WebAPIServer> servers;
+    private final List<WebAPIServer> servers;
     private final WebAPIServerFactory factory;
 
     public WebAPIServerMonitor(WebAPIServerFactory factory) {
         this.factory = factory;
         this.servers = new ArrayList<>();
+
+        createNewServer();
     }
 
     /** Monitor servers every 10 seconds to check if they are overloaded og not responding **/
