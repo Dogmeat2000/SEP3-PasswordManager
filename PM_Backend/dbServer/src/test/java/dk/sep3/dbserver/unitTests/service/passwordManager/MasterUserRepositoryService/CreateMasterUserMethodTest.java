@@ -31,8 +31,10 @@ import static org.junit.jupiter.api.Assertions.*;
     classes = {
         DbServerApplication.class,
         TestDataSourceConfig.class})
-@TestPropertySource(properties = "discovery.datasource.enabled=false") // Ensures that the production database is not used directly!
-@TestPropertySource(properties = "userDatabase.datasource.enabled=false") // Ensures that the production database is not used directly!
+@TestPropertySource(properties = {
+    "discovery.datasource.enabled=false", // Ensures that the production database is not used directly!
+    "userDatabase.datasource.enabled=false" // Ensures that the production database is not used directly!
+})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 public class CreateMasterUserMethodTest

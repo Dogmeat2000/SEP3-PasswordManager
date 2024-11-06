@@ -2,9 +2,8 @@ package dk.sep3.dbserver.integrationTests;
 
 import dk.sep3.dbserver.DbServerApplication;
 import dk.sep3.dbserver.grpc.factories.MasterUserDTOGrpcFactory;
-import dk.sep3.dbserver.grpc.service.PasswordManagerGrpcServiceImpl;
+import dk.sep3.dbserver.grpc.service.DbServerPasswordManagerGrpcServiceImpl;
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
-import dk.sep3.dbserver.repositories.passwordManagerDb.MasterUserRepository;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
@@ -36,8 +35,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     classes = {
     DbServerApplication.class,
     TestDataSourceConfig.class}) // Signals to Spring Boot that this is a Spring Boot Test and defines which spring configs to use!
-@TestPropertySource(properties = "discovery.datasource.enabled=false") // Ensures that the production database is not used directly!
-@TestPropertySource(properties = "userDatabase.datasource.enabled=false") // Ensures that the production database is not used directly!
+@TestPropertySource(properties = {
+    "grpc.server.port=9090", // Set to an available port for this test class
+    "discovery.datasource.enabled=false", // Ensures that the production database is not used directly!
+    "userDatabase.datasource.enabled=false" // Ensures that the production database is not used directly!
+})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD) // Ensures that Mocks are reset after each test, to avoid tests modifying data in shared mocks, that could cause tests to influence each other.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY) // Establishes an InMemory database instead of using the actual Postgresql database, so tests do not disrupt the production database.
 public class GrpcIntegrationTests
@@ -45,7 +47,7 @@ public class GrpcIntegrationTests
   @MockBean private DiscoveryRepository dbDiscoveryRepository;
   //private MasterUserRepository dbMasterUserRepository;
 
-  @InjectMocks private PasswordManagerGrpcServiceImpl passwordManagerGrpcService;
+  @InjectMocks private DbServerPasswordManagerGrpcServiceImpl passwordManagerGrpcService;
   @InjectMocks private DiscoveryRepositoryServiceImpl discoveryRepositoryService;
 
   private ManagedChannel channel;

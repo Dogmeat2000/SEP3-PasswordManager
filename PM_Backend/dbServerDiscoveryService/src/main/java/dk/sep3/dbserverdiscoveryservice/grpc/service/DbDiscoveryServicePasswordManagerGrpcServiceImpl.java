@@ -16,23 +16,27 @@ import net.devh.boot.grpc.server.service.GrpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 import javax.naming.ServiceUnavailableException;
+import java.util.Arrays;
 
 @GrpcService
-public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
+public class DbDiscoveryServicePasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
   private final DiscoveryRepositoryService discoveryRepositoryService;
   private final int numberOfRetries = 6;
-  private static final Logger logger = LoggerFactory.getLogger(PasswordManagerGrpcServiceImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(DbDiscoveryServicePasswordManagerGrpcServiceImpl.class);
 
   @Autowired
-  public PasswordManagerGrpcServiceImpl(DiscoveryRepositoryServiceImpl discoveryRepositoryService, DatabaseServerMonitor databaseServerMonitor) {
+  public DbDiscoveryServicePasswordManagerGrpcServiceImpl(DiscoveryRepositoryServiceImpl discoveryRepositoryService,
+      DatabaseServerMonitor databaseServerMonitor,
+      Environment environment) {
     super();
     this.discoveryRepositoryService = discoveryRepositoryService;
 
     // Launch database server monitor on a separate thread:
-    if(databaseServerMonitor != null) {
+    if(databaseServerMonitor != null && !isTestProfile(environment)) {
       Thread databaseMonitorThread = new Thread(databaseServerMonitor::startService);
       databaseMonitorThread.setDaemon(true);
       databaseMonitorThread.start();
@@ -81,5 +85,10 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
         .forAddress(host, port)
         .usePlaintext()
         .build();
+  }
+
+  private boolean isTestProfile(Environment environment) {
+    // Check if any of the active profiles is "test"
+    return Arrays.asList(environment.getActiveProfiles()).contains("test");
   }
 }
