@@ -3,6 +3,7 @@ package dk.sep3.dbserver.grpc.service;
 import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommand;
 import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommandFactory;
 import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
+import dk.sep3.dbserver.service.exceptions.DuplicateDbEntryException;
 import dk.sep3.dbserver.service.exceptions.IllegalGrpcCommand;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import grpc.GenericRequest;
@@ -29,7 +30,7 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
 
     // Launch database health monitor on a separate thread:
     if(serverHealthMonitor != null) {
-      Thread healthMonitorThread = new Thread(() -> serverHealthMonitor.startService());
+      Thread healthMonitorThread = new Thread(serverHealthMonitor::startService);
       healthMonitorThread.setDaemon(true);
       healthMonitorThread.start();
       logger.info("Server Health Monitoring Service is running!");
@@ -39,7 +40,7 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
   @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver){
     try {
       // Validate request
-      if(request == null)
+      if(request == null || request.getRequestType().isBlank() || request.getRequestType().isEmpty())
         throw new IllegalArgumentException("Request cannot be null");
 
       // Identify what action was requested:
@@ -54,24 +55,43 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
       // Transmit response back to client:
       responseObserver.onNext(response);
 
-
-    } catch (DataIntegrityViolationException e) {
-      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(400));
+    } catch (DataIntegrityViolationException | IllegalArgumentException e) {
+      // Query contained an Illegal Argument (example: attempt to create user without providing username.)
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(400, e.getMessage()));
+      logError(400, e.getMessage());
 
     } catch (NotFoundInDBException e) {
-      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(404));
+      // Could Not find value in repository
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(404, e.getMessage()));
+      logError(404, e.getMessage());
 
     } catch (IllegalGrpcCommand e) {
-      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(405));
+      // Illegal Grpc Command provided
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(405, e.getMessage()));
+      logError(405, e.getMessage());
+
+    }  catch (DuplicateDbEntryException e) {
+      // Value already exists in repository (example: attempting to create a user that already exists)
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(409, e.getMessage()));
+      logError(409, e.getMessage());
 
     } catch (PersistenceException e) {
-      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(503));
+      // Service unavailable
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(503, e.getMessage()));
+      logError(503, e.getMessage());
 
     } catch (Exception e) {
-      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(500));
+      // Internal Server Error
+      responseObserver.onNext(GenericResponseFactory.buildGrpcGenericResponseWithError(500, e.getMessage()));
+      logError(500, e.getMessage());
 
     } finally {
       responseObserver.onCompleted();
     }
+  }
+
+
+  private void logError(int statusCode, String errorMsg) {
+    logger.error("Failed to process request. ErrorCode '{}' was thrown. Reason: '{}'", statusCode, errorMsg);
   }
 }

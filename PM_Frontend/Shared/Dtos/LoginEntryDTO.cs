@@ -25,9 +25,10 @@ namespace Shared.Dtos
         {
         }
 
+        public LoginEntryDTO(int id) : base(id) { }
+
         public LoginEntryDTO()
         {
-            throw new NotImplementedException();
         }
 
         public override string ToString()

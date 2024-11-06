@@ -17,11 +17,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.naming.ServiceUnavailableException;
+
 @GrpcService
 public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
   private final DiscoveryRepositoryService discoveryRepositoryService;
-  private final int numberOfRetries = 5;
+  private final int numberOfRetries = 6;
   private static final Logger logger = LoggerFactory.getLogger(PasswordManagerGrpcServiceImpl.class);
 
   @Autowired
@@ -31,20 +33,20 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
 
     // Launch database server monitor on a separate thread:
     if(databaseServerMonitor != null) {
-      Thread databaseMonitorThread = new Thread(() -> databaseServerMonitor.startService());
+      Thread databaseMonitorThread = new Thread(databaseServerMonitor::startService);
       databaseMonitorThread.setDaemon(true);
       databaseMonitorThread.start();
       logger.info("DatabaseServer Discovery Service is running!");
     }
   }
 
-  @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver){
+  @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver) {
     try {
       // Transmit to the least congested gRPC server:
       int i = 0;
       while(i < numberOfRetries) {
         // Check which gRPC server is least congested:
-        logger.info("Forwarding request: " + request.getRequestType());
+        logger.info("Forwarding request '{}'. ",request.getRequestType());
         DatabaseServer leastCongestedServer = discoveryRepositoryService.getDatabaseServerWithLeastCongestion();
         try {
           // Forward request to a proper gRPC database server:
@@ -55,16 +57,22 @@ public class PasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.P
           // Transmit back to client:
           responseObserver.onNext(response);
           responseObserver.onCompleted();
+          logger.info("Request '{}' was forwarded successfully. Response received successfully and retransmitted back to client.", request.getRequestType());
           break;
         } catch (StatusRuntimeException e) {
           i++;
           // Unregister the problematic server and try again
-          logger.error("Failed to forward request: " +  request.getRequestType());
+          logger.error("Failed to forward request '{}' to dbServer. Attempt # {}/{}", request.getRequestType(), i, numberOfRetries);
           discoveryRepositoryService.unregisterDatabaseServer(leastCongestedServer);
+          if(i == numberOfRetries) {
+            throw new ServiceUnavailableException("Failed to forward request: '" + request.getRequestType() + "', gRPC database service is unavailable.");
+          }
         }
       }
+    } catch (ServiceUnavailableException e) {
+      responseObserver.onError(Status.UNAVAILABLE.withDescription("Error handling Request. gRPC database service is not available.").withCause(e).asRuntimeException());
     } catch (Exception e) {
-      responseObserver.onError(Status.INTERNAL.withDescription("Error handling Request.").withCause(e).asRuntimeException());
+      responseObserver.onError(Status.INTERNAL.withDescription("Error handling Request. Unspecified cause.").withCause(e).asRuntimeException());
     }
   }
 

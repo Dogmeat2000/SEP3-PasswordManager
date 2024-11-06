@@ -1,6 +1,7 @@
 package dk.sep3.dbserver.service.passwordManager;
 
 import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
+import dk.sep3.dbserver.service.exceptions.DuplicateDbEntryException;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,8 +16,9 @@ public interface MasterUserRepositoryService
    * @return The registered MasterUser instance.
    * @throws PersistenceException Thrown if registration failed, due to system/persistence issues (i.e. Repository is offline, etc.)
    * @throws DataIntegrityViolationException Thrown if registration failed, due to non-legal information being assigned to the MasterUser Entity (i.e. masterUsername is null)
+   * @throws DuplicateDbEntryException If a MasterUser with this name already exists in the repository.
    */
-  MasterUser createMasterUser(MasterUser masterUser) throws DataIntegrityViolationException, PersistenceException;
+  MasterUser createMasterUser(MasterUser masterUser) throws DataIntegrityViolationException, PersistenceException, DuplicateDbEntryException;
 
 
   /** <p>Looks up a MasterUser entity with the specified masterUsername and encrypted password, in the repository</p>
@@ -25,7 +27,7 @@ public interface MasterUserRepositoryService
    * @return The identified MasterUser instance.
    * @throws NotFoundInDBException Thrown if MasterUser is not found.
    * @throws PersistenceException Thrown if fetching MasterUser failed, due to system/persistence issues (i.e. Repository is offline, etc.)
-   * @throws DataIntegrityViolationException Thrown if masterUsername is invalid (i.e. null).
+   * @throws DataIntegrityViolationException Thrown if masterUsername or encryptedPassword is invalid (i.e. null, or similar failed validation).
    */
   MasterUser readMasterUser(String masterUsername, String encryptedPassword) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException;
 }

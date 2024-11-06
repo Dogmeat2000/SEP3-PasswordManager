@@ -4,7 +4,6 @@ import dk.sep3.dbserver.DbServerApplication;
 import dk.sep3.dbserver.grpc.factories.MasterUserDTOGrpcFactory;
 import dk.sep3.dbserverdiscoveryservice.grpc.service.PasswordManagerGrpcServiceImpl;
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
-import dk.sep3.dbserver.repositories.passwordManagerDb.MasterUserRepository;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
@@ -31,11 +30,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ActiveProfiles("test")
-@ExtendWith(MockitoExtension.class)  // Gives access to extended testing functionality
+@ExtendWith(MockitoExtension.class)
 @SpringBootTest (
     classes = {
     DbServerApplication.class,
-    TestDataSourceConfig.class}) // Signals to Spring Boot that this is a Spring Boot Test and defines which spring configs to use!
+    TestDataSourceConfig.class})
 @TestPropertySource(properties = "discovery.datasource.enabled=false") // Ensures that the production database is not used directly!
 @TestPropertySource(properties = "userDatabase.datasource.enabled=false") // Ensures that the production database is not used directly!
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD) // Ensures that Mocks are reset after each test, to avoid tests modifying data in shared mocks, that could cause tests to influence each other.
@@ -53,7 +52,7 @@ public class GrpcIntegrationTests
   @BeforeEach
   public void setUp() {
     // Start up a gRPC client channel:
-    channel = ManagedChannelBuilder.forAddress("localhost", 8090)
+    channel = ManagedChannelBuilder.forAddress("localhost", 9001)
         .usePlaintext()
         .build();
 
@@ -117,7 +116,7 @@ public class GrpcIntegrationTests
         .setMasterUser(masterUserDTO)
         .build();
 
-    passwordManagerStub.handleRequest(request); // Add a user to the database, that we can attempt to read.
+    GenericResponse ignored = passwordManagerStub.handleRequest(request); // Add a user to the database, that we can attempt to read.
 
 
 
