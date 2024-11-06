@@ -1,4 +1,5 @@
-﻿using ServiceLayer.Services.LoginEntryService;
+using System.Threading.Tasks;
+using ServiceLayer.Services.LoginEntryService;
 using ServiceLayer.Services.MasterUserService;
 using Shared.CommunicationObjects;
 using Shared.Dtos;

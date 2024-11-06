@@ -20,10 +20,7 @@ namespace Shared.Dtos
             this.masterUserId = masterUserId;
             this.Category = Category;
         }
-
-        public LoginEntryDTO(int id) : base(id)
-        {
-        }
+        
 
         public LoginEntryDTO(int id) : base(id) { }
 
