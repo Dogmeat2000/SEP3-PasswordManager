@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\BlazorUI.csproj": {}
+    "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\BlazorUI.csproj": {
+    "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
+        "projectUniqueName": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
         "projectName": "BlazorUI",
-        "projectPath": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
-        "packagesPath": "C:\\Users\\doomz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\BlazorUI\\obj\\",
+        "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\BlazorUI.csproj",
+        "packagesPath": "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\BlazorUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\doomz\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Marcus Lykkegaard\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj": {
-                "projectPath": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj"
+              "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj": {
+                "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj"
               }
             }
           }
@@ -69,17 +69,17 @@
         }
       }
     },
-    "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj": {
+    "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
         "projectName": "ServiceLayer",
-        "projectPath": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
-        "packagesPath": "C:\\Users\\doomz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\ServiceLayer\\obj\\",
+        "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\ServiceLayer.csproj",
+        "packagesPath": "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\ServiceLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\doomz\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Marcus Lykkegaard\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -91,8 +91,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Shared\\Shared.csproj": {
-                "projectPath": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Shared\\Shared.csproj"
+              "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj"
               }
             }
           }
@@ -145,17 +145,17 @@
         }
       }
     },
-    "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Shared\\Shared.csproj": {
+    "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Shared\\Shared.csproj",
+        "projectUniqueName": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Shared\\Shared.csproj",
-        "packagesPath": "C:\\Users\\doomz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\Marcus Lykkegaard\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Marcus Lykkegaard\\Desktop\\Softwareteknologi\\Softwareprogrammer\\GitHub\\SEP3_PasswordManager\\PM_Frontend\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\doomz\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Marcus Lykkegaard\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
