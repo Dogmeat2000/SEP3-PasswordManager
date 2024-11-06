@@ -1,12 +1,18 @@
 package common;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import common.dto.DTO;
 
 public class ClientRequest {
 
+    @JsonProperty("requestType")
     private String requestType;
+
+    @JsonProperty("dto")
     private DTO dto;
 
+    @JsonCreator
     public ClientRequest() {}
 
     public ClientRequest(String requestType, DTO dto) {

@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\TestBlazorApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TestBlazorApp.bundle.scp.css",
+      "PackagePath": "staticwebassets\\TestBlazorApp.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\doomz\\OneDrive - ViaUC\\3. Semester\\Password_Manager_SEP3\\PM_Frontend\\TestBlazorApp\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TestBlazorApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.TestBlazorApp.props",
+      "PackagePath": "build\\TestBlazorApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.TestBlazorApp.props",
+      "PackagePath": "buildMultiTargeting\\TestBlazorApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.TestBlazorApp.props",
+      "PackagePath": "buildTransitive\\TestBlazorApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -30,7 +30,7 @@ public class GrpcToServerResponseConverter {
             serverResponse.setDto(loginEntryDTO);
 
         } */ else {
-            throw new UnsupportedOperationException("Unknown DTO type in GenericResponse.");
+            return new ServerResponse(500, "Error: dto not supported");
         }
 
         return serverResponse;

@@ -11,7 +11,7 @@ import java.util.List;
 /** Monitor servers to check if they are overloaded or not responding, scaling if necessary through the factory  **/
 @Component
 public class WebAPIServerMonitor implements DisposableBean {
-    private List<WebAPIServer> servers;
+    private final List<WebAPIServer> servers;
     private final WebAPIServerFactory factory;
 
     public WebAPIServerMonitor(WebAPIServerFactory factory) {
@@ -34,12 +34,18 @@ public class WebAPIServerMonitor implements DisposableBean {
         }
         serversToRemove.forEach(this::shutdownServer);
         servers.removeAll(serversToRemove);
-
     }
 
     /** Assigns the first available server to the client or scales the servers if no servers are available **/
     public WebAPIServer getAvailableServer() {
-        return servers.stream().filter(WebAPIServer::isAvailable).findFirst().orElse(createNewServer());
+        WebAPIServer availableServer = servers.stream().filter(WebAPIServer::isAvailable).findFirst().orElse(null);
+        if (availableServer == null) {
+            System.out.println("No available servers, creating a new one.");
+            return createNewServer();
+        } else {
+            System.out.println("Found available server: " + availableServer.getUrl());
+            return availableServer;
+        }
     }
 
     public WebAPIServer createNewServer() {

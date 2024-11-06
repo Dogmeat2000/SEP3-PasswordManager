@@ -4,14 +4,16 @@ namespace Shared.CommunicationObjects;
 
 public class ClientRequest
 {
-    public string RequestType { get; set; }
-    public DTO Dto { get; set; } 
-
-    public ClientRequest() {}
+    public ClientRequest()
+    {
+    }
 
     public ClientRequest(string requestType, DTO dto)
     {
-        RequestType = requestType;
-        Dto = dto;
+        this.requestType = requestType;
+        this.dto = dto;
     }
+
+    public string requestType { get; set; }
+    public DTO dto { get; set; }
 }

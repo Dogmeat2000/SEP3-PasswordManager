@@ -1,0 +1,59 @@
+﻿<changelist name="Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]" date="1730365256940" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 31-10-2024 10:00 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/BlazorUI.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Shared/obj/Debug/net8.0/Shared.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="Shared/obj/Debug/net8.0/Shared.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/Shared.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="BlazorUI/obj/Debug/net8.0/BlazorUI.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="BlazorUI/obj/Debug/net8.0/BlazorUI.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/BlazorUI.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Shared/obj/Debug/net8.0/Shared.assets.cache" />
+    <option name="AFTER_PATH" value="Shared/obj/Debug/net8.0/Shared.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/Shared.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="BlazorUI/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="BlazorUI/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/project.nuget.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="BlazorUI/obj/Debug/net8.0/BlazorUI.assets.cache" />
+    <option name="AFTER_PATH" value="BlazorUI/obj/Debug/net8.0/BlazorUI.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/BlazorUI.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Shared/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="Shared/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/project.nuget1.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="ServiceLayer/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="ServiceLayer/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/project.nuget2.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="ServiceLayer/obj/Debug/net8.0/ServiceLayer.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/ServiceLayer.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="ServiceLayer/obj/Debug/net8.0/ServiceLayer.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="ServiceLayer/obj/Debug/net8.0/ServiceLayer.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/ServiceLayer.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="ServiceLayer/obj/Debug/net8.0/ServiceLayer.assets.cache" />
+    <option name="AFTER_PATH" value="ServiceLayer/obj/Debug/net8.0/ServiceLayer.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/shelf/Uncommitted_changes_before_Update_at_31-10-2024_10_00_[Changes]/ServiceLayer.assets.cache" />
+  </binary>
+</changelist>

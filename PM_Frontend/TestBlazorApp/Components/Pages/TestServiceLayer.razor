@@ -1,0 +1,97 @@
+@page "/test-service-layer"
+@using ServiceLayer.Services
+@using Shared.CommunicationObjects
+@using Shared.Dtos
+@inject IServiceLayer ServiceLayer
+
+<h3>Service Layer Test</h3>
+
+<div>
+    <h4>Create Master User</h4>
+    <EditForm Model="newMasterUser" OnValidSubmit="HandleCreateMasterUser" FormName="createMasterUserForm">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>
+            <label for="username">Username:</label>
+            <InputText id="username" @bind-Value="newMasterUser.masterUsername" />
+            <ValidationMessage For="@(() => newMasterUser.masterUsername)" />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <InputText id="password" @bind-Value="newMasterUser.masterPassword" type="password" />
+            <ValidationMessage For="@(() => newMasterUser.masterPassword)" />
+        </div>
+
+        <button type="submit">Create Master User</button>
+    </EditForm>
+
+    @if (createResult != null)
+    {
+    <p>Created Master User: @createResult.statusCode, @createResult.message, @createResult.dto.ToString()</p>
+    }
+    else if (!string.IsNullOrEmpty(createError))
+    {
+    <p style="color:red;">Error creating user: @createError</p>
+    }
+
+    <hr />
+
+    <h4>Read Master User</h4>
+    <div>
+        <label for="userId">User ID:</label>
+        <InputNumber id="userId" @bind-Value="userId" />
+        <button @onclick="HandleReadMasterUser">Read Master User</button>
+    </div>
+
+    @if (readResult != null)
+    {
+    <p>Read Master User: @readResult.masterUsername</p>
+    }
+    else if (!string.IsNullOrEmpty(readError))
+    {
+    <p style="color:red;">Error reading user: @readError</p>
+    }
+</div>
+
+@code {
+private MasterUserDTO newMasterUser = new MasterUserDTO();
+private ServerResponse createResult;
+private string createError;
+
+private int userId;
+private MasterUserDTO readResult;
+private string readError;
+
+private async Task HandleCreateMasterUser()
+{
+    try
+    {
+        newMasterUser.masterUsername = "TestUserName";
+        newMasterUser.masterPassword = "TestPassword";
+        createResult = await ServiceLayer.CreateMasterUserAsync(newMasterUser);
+        createError = null; // Clear any previous error
+    }
+    catch (Exception ex)
+    {
+        // Log the error and inner exception message
+        createError = ex.InnerException != null ? ex.InnerException.Message : ex.Message; 
+        createResult = null; // Clear any previous result
+    }
+}
+
+private async Task HandleReadMasterUser()
+{
+    try
+    {
+        //readResult = await ServiceLayer.ReadMasterUserAsync(userId);
+        readError = null; // Clear any previous error
+    }
+    catch (Exception ex)
+    {
+        // Log the error and inner exception message
+        readError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+        readResult = null; // Clear any previous result
+    }
+}
+}

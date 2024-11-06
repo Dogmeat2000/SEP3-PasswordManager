@@ -1,0 +1,8 @@
+﻿/PM_Backend/Common/target/
+/PM_Backend/dbServer/target/
+/PM_Backend/dbServerDiscoveryService/target/
+/PM_Backend/LoadBalancer/target/
+/PM_Backend/WebAPI/target/
+/PM_Frontend/BlazorUI/obj/
+/PM_Frontend/Shared/obj/
+
