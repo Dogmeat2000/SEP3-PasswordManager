@@ -13,7 +13,6 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -117,7 +116,7 @@ public class GrpcIntegrationTests
         .setMasterUser(masterUserDTO)
         .build();
 
-    passwordManagerStub.handleRequest(request); // Add a user to the database, that we can attempt to read.
+    GenericResponse ignored = passwordManagerStub.handleRequest(request); // Add a user to the database, that we can attempt to read.
 
 
 
