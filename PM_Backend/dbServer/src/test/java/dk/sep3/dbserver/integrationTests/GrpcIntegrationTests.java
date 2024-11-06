@@ -43,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class GrpcIntegrationTests
 {
   @MockBean private DiscoveryRepository dbDiscoveryRepository;
-  private MasterUserRepository dbMasterUserRepository;
+  //private MasterUserRepository dbMasterUserRepository;
 
   @InjectMocks private PasswordManagerGrpcServiceImpl passwordManagerGrpcService;
   @InjectMocks private DiscoveryRepositoryServiceImpl discoveryRepositoryService;

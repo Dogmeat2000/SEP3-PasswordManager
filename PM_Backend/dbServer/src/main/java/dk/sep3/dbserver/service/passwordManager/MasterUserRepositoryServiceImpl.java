@@ -84,6 +84,11 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
 
 
   private void validateCreateMasterUser(MasterUser masterUser) throws DataIntegrityViolationException, DuplicateDbEntryException {
+    if(masterUser == null) {
+      logger.error("Could not Create new MasterUser in DB., Validation of MasterUser failed. MasterUser is null.");
+      throw new DataIntegrityViolationException("Validation of MasterUser failed. MasterUser is null.");
+    }
+
     validateMasterUserName(masterUser.getMasterUsername());
     validateMasterUserPassword(masterUser.getEncryptedPassword());
 
