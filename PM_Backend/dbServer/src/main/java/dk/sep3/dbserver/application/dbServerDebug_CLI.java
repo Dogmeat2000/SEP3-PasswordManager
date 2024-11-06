@@ -1,6 +1,7 @@
 package dk.sep3.dbserver.application;
 
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
+import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
 import dk.sep3.dbserver.grpc.factories.MasterUserDTOGrpcFactory;
 import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
 
@@ -49,9 +50,14 @@ public class dbServerDebug_CLI
             GenericRequest request = buildMasterUserRequest("CreateMasterUser", masterUserDTO);
 
             GenericResponse createdMasterUser = stub.handleRequest(request);
-            MasterUser newMasterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(createdMasterUser.getMasterUser());
-            System.out.println("Created masterUser in DB: " + newMasterUser.toString());
-            System.out.println("StatusCode: " + createdMasterUser.getStatusCode());
+            if(!createdMasterUser.getException().getException().isEmpty()){
+              System.out.println("Failed to create MasterUser. Code: '" + createdMasterUser.getStatusCode() + "' Cause: " + createdMasterUser.getException().getException());
+            } else {
+              MasterUser newMasterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(createdMasterUser.getMasterUser());
+              System.out.println("Created masterUser in DB: " + newMasterUser.toString());
+              System.out.println("StatusCode: " + createdMasterUser.getStatusCode());
+            }
+
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());
           } finally {
@@ -76,9 +82,14 @@ public class dbServerDebug_CLI
 
             GenericResponse readMasterUser = stub.handleRequest(request);
 
-            MasterUser newMasterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(readMasterUser.getMasterUser());
-            System.out.println("Found masterUser in DB: " + newMasterUser.toString());
-            System.out.println("StatusCode: " + readMasterUser.getStatusCode());
+            if(!readMasterUser.getException().getException().isEmpty()){
+              System.out.println("Failed to read MasterUser. Code: '" + readMasterUser.getStatusCode() + "' Cause: " + readMasterUser.getException().getException());
+            } else {
+              MasterUser newMasterUser = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(readMasterUser.getMasterUser());
+              System.out.println("Found masterUser in DB: " + newMasterUser.toString());
+              System.out.println("StatusCode: " + readMasterUser.getStatusCode());
+            }
+
           } catch (StatusRuntimeException e) {
             System.out.println("Error: " + e.getStatus().getDescription());
           } finally {

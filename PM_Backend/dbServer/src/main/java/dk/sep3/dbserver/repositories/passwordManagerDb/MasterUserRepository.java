@@ -25,4 +25,13 @@ public interface MasterUserRepository extends JpaRepository<MasterUser, Integer>
    * @param password The encrypted password associated with the given username.
    * @return A list of all the users found matching the given attributes.*/
   List<MasterUser> findByMasterUsernameAndEncryptedPassword(String masterUsername, String password);
+
+
+  /** <p>Fetches a List of users with this exact username from the database.<br><br>
+   * This method makes use of JPA's built in query derivation, where JPA automatically translates
+   * and builds the SQL query based on the methods name.<br>
+   * Note: Be sure to follow JPA naming conventions: <a href="https://www.baeldung.com/spring-data-derived-queries">https://www.baeldung.com/spring-data-derived-queries</a></p>
+   * @param masterUsername Name of the user to find.
+   * @return A list of all the users found matching the given attributes.*/
+  List<MasterUser> findByMasterUsername(String masterUsername);
 }

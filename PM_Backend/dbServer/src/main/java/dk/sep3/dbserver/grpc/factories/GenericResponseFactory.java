@@ -13,9 +13,10 @@ public class GenericResponseFactory
         .build();
   }
 
-  public static GenericResponse buildGrpcGenericResponseWithError(int statusCode) {
+  public static GenericResponse buildGrpcGenericResponseWithError(int statusCode, String exceptionMsg) {
     return GenericResponse.newBuilder()
         .setStatusCode(statusCode)
+        .setException(grpc.Exception.newBuilder().setException(exceptionMsg))
         .build();
   }
 }
