@@ -23,7 +23,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 /** <p>Defines the automated UnitTests to run on the MasterUserRepositoryService methods.</p>*/
 @ActiveProfiles("test")
