@@ -1,10 +1,90 @@
-﻿@code {
-    private string masterUsername = "user0"; 
+﻿@page "/password-manager"
+@using ServiceLayer.Services
+@using Shared.Dtos
+@inject IServiceLayer ServiceLayer
+
+@code {
+    private string masterUsername = "user0";
     private string generatedPassword = string.Empty;
+
+    private bool isCreateModalOpen = false;
+    private bool isEditModalOpen = false;
+    private LoginEntryDTO selectedEntry = new LoginEntryDTO();
+
+    private List<LoginEntryDTO> socialMediaEntries = new();
+    private List<LoginEntryDTO> bankEntries = new();
+    private List<LoginEntryDTO> otherEntries = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadEntries();
+    }
+
+    private async Task LoadEntries()
+    {/*
+        var response = await ServiceLayer.ReadLoginEntriesAsync();
+        if (response.statusCode == 200 && response.dto is List<LoginEntryDTO> entries)
+        {
+            socialMediaEntries = entries.Where(e => e.Category == "Social Media").ToList();
+            bankEntries = entries.Where(e => e.Category == "Bank - Pension - Insurance").ToList();
+            otherEntries = entries.Where(e => e.Category == "Other").ToList();
+        }
+        StateHasChanged();*/
+    }
+
+    private void OpenCreateModal()
+    {
+        isCreateModalOpen = true;
+        StateHasChanged(); 
+    }
+
+    private void CloseCreateModal()
+    {
+        isCreateModalOpen = false;
+        StateHasChanged(); 
+    }
+
+    private void OpenEditModal() // insert parm: LoginEntryDTO entry
+    {
+   //     selectedEntry = entry;
+        isEditModalOpen = true;
+        StateHasChanged(); 
+    }
+
+    private void CloseEditModal()
+    {
+        isEditModalOpen = false;
+        StateHasChanged(); 
+    }
+
+    private async Task HandleCreate(LoginEntryDTO newEntry)
+    {
+        await ServiceLayer.CreateLoginEntryAsync(newEntry);
+        await LoadEntries();
+        CloseCreateModal();
+        StateHasChanged(); 
+    }
+
+    private async Task HandleUpdate(LoginEntryDTO updatedEntry)
+    {
+        await ServiceLayer.UpdateLoginEntryAsync(updatedEntry);
+        await LoadEntries();
+        CloseEditModal();
+        StateHasChanged(); 
+    }
+
+    private async Task HandleDelete(int entryId)
+    {
+        await ServiceLayer.DeleteLoginEntryAsync(entryId);
+        await LoadEntries();
+        CloseEditModal();
+        StateHasChanged(); 
+    }
 
     private void GeneratePassword()
     {
         generatedPassword = GenerateRandomPassword();
+        StateHasChanged();
     }
 
     private string GenerateRandomPassword()
@@ -17,20 +97,16 @@
 }
 
 <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 100%; margin: 0 auto;">
-
     <div class="card-header text-white" style="background-color: #00517D;">
         Password Manager
     </div>
-
- 
+    
     <div class="d-flex justify-content-start align-items-center p-2" style="background-color: #007bc7;">
         <button class="btn btn-secondary" @onclick="GeneratePassword" style="margin-right: 10px;">Generate Password</button>
-        <span class="text-white">@generatedPassword</span>
+        <span class="text-white ml-2">@generatedPassword</span> <!-- Display the generated password -->
     </div>
 
-   
     <div class="d-flex mt-3">
-     
         <div class="p-3" style="width: 200px; background-color: #007bc7; color: white;">
             <div class="mb-3">
                 Welcome: @masterUsername
@@ -38,58 +114,24 @@
             <div class="mb-2">
                 Menu:
             </div>
-            <button class="btn btn-secondary mb-2" style="width: 100%;">Create entry</button>
-            <button class="btn btn-secondary" style="width: 100%;">Edit entry</button>
+            <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="OpenCreateModal">Create Entry</button>
+            <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="OpenEditModal">Update/delete Entry</button>
         </div>
 
-      
         <div class="flex-grow-1 p-3">
-            <table class="table table-bordered table-hover table-sm">
-                <thead class="text-white" style="background-color: #00517D;">
-                    <tr>
-                        <th colspan="4">Social Media</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Website</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                    </tr>
-                </tbody>
-                
-                <thead class="text-white" style="background-color: #00517D;">
-                    <tr>
-                        <th colspan="4">Bank - Pension - Insurance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Website</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                    </tr>
-                  
-                </tbody>
-
-              
-                <thead class="text-white" style="background-color: #00517D;">
-                    <tr>
-                        <th colspan="4">Other</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Website</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                    </tr>
-                  
-                </tbody>
-            </table>
+            <EntityListViewModule Entries="socialMediaEntries" Category="Social Media" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
+            <EntityListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
+            <EntityListViewModule Entries="otherEntries" Category="Other" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
         </div>
     </div>
 </div>
+
+@if (isCreateModalOpen)
+{
+    <CreateEntryModule OnCreate="HandleCreate" />
+}
+
+@if (isEditModalOpen)
+{
+    <UpdateDeleteEntryModule Entry="selectedEntry" OnUpdate="HandleUpdate" OnDelete="HandleDelete" />
+}

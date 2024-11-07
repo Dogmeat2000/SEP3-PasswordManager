@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using Newtonsoft.Json; // Make sure to add this
 using Shared.CommunicationObjects;
@@ -11,14 +12,15 @@ public class WebApiClientImpl : IWebApiClient
 {
     private readonly HttpClient _httpClient;
     private readonly string _loadBalancerUrl;
+    private string WebApiUrl { get; set; }
 
     public WebApiClientImpl(HttpClient httpClient, string loadBalancerUrl)
     {
         _httpClient = httpClient;
         _loadBalancerUrl = loadBalancerUrl;
     }
+    
 
-    private string? WebApiUrl { get; set; }
 
     public async Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto)
     {
@@ -34,16 +36,25 @@ public class WebApiClientImpl : IWebApiClient
                 new MasterUserDTO(masterUserId, null, null));
         return responseMasterUserDto;
     }
-
+    
+    
     private async Task<ServerResponse> SendRequestAsync<TRequestDto>(string requestType, TRequestDto requestDto)
             where TRequestDto : DTO
         {
+            //Create the CLientRequest to be sent to Web api
             var request = new ClientRequest(requestType, requestDto);
-            await SetWebApiServerUrlAsync(false);
+            
+            //Check to see if WebApiUrl is set
+            if (string.IsNullOrEmpty(WebApiUrl))
+            {
+                Console.WriteLine("Setting WebApiUrl");
+                await SetWebApiServerUrlAsync(false);
+            }
 
             var serverOverloaded = true;
             var numberOfAttempts = 0;
 
+            //if current web api server is overloaded, get another url
             while (serverOverloaded && numberOfAttempts < 5)
             {
                 Console.WriteLine("Attempting to use WEB-API URL: " + WebApiUrl + " for request of type: " + requestType);
@@ -54,18 +65,16 @@ public class WebApiClientImpl : IWebApiClient
                     TypeNameHandling = TypeNameHandling.Auto // Ensure @class is included for polymorphism
                 });
                 
-                Console.WriteLine("JSon request: " + jsonRequest);
-
+                //Send the request to the web api server
                 var response = await _httpClient.PostAsync(WebApiUrl, new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
-                
                 Console.WriteLine("Response status code: " + response.StatusCode);
-                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
 
                 if (!response.IsSuccessStatusCode)
                 {
                     // Check for overload and other potential errors
                     if (response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable)
                     {
+                        //Server is overloaded, or otherwise unavailable, get new web api url
                         Console.WriteLine("Server is overloaded, trying new server:");
                         await WebApiServerIsOverloadedAsync(request);
                         numberOfAttempts++;
@@ -77,48 +86,46 @@ public class WebApiClientImpl : IWebApiClient
                 }
                 else
                 {
+                    //Succes case
                     var jsonResponse = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine(jsonResponse);
 
                     // Deserialize ServerResponse to determine if we received a valid DTO
                     var serverResponse = JsonConvert.DeserializeObject<ServerResponse>(jsonResponse);
                     Console.WriteLine("ServerResponse: " + serverResponse);
                     
-                        /*, new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.Objects,
-                        Converters = new List<JsonConverter> { new DTOJsonConverter() } // Only use the custom converter
-                    });
-*/
-                    
-
                     if (serverResponse != null)
                     {
                         return serverResponse;
                     }
-
-                    else
-                    {
-                        throw new Exception("Server was not responded with an error: " + jsonResponse);
-                    }
+                    
+                    throw new Exception("Server was not responded with an error: " + jsonResponse);
+                    
                     
                 }
             }
 
             throw new Exception("Server overloaded. Max attempts reached.");
         }
+        
 
     private async Task<string> SetWebApiServerUrlAsync(bool overLoaded)
     {
-        if (!string.IsNullOrEmpty(WebApiUrl) && !overLoaded) return WebApiUrl;
-        ClientRequest request = new ClientRequest("GetAvailableServer", null);
-        var response = await _httpClient.PostAsJsonAsync($"{_loadBalancerUrl}/loadbalancer/server", request);
+        //if webapi url not already set
+        if (string.IsNullOrEmpty(WebApiUrl) || overLoaded)
+        {
+            //Ask loadbalancer for new web api server
+            ClientRequest request = new ClientRequest("GetAvailableServer", null);
+            var response = await _httpClient.PostAsJsonAsync($"{_loadBalancerUrl}/loadbalancer/server", request);
 
-        response.EnsureSuccessStatusCode();
+            response.EnsureSuccessStatusCode();
 
-        var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
-        WebApiUrl = serverResponse?.message + "/api/handleRequest";
-        return serverResponse?.message;
+            var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
+            //Set webapiurl to be the new url
+            WebApiUrl = serverResponse?.message + "/api/handleRequest";
+            Console.WriteLine("WebApiUrl set to: " + WebApiUrl);
+        }
+
+        return WebApiUrl;
     }
 
     private async Task WebApiServerIsOverloadedAsync(ClientRequest request)
