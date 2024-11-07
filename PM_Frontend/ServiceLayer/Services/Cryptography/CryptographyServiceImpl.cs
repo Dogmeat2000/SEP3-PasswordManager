@@ -1,3 +1,4 @@
+using Shared.CommunicationObjects;
 using Shared.Dtos;
 
 namespace ServiceLayer.Services.Cryptography;
@@ -14,14 +15,20 @@ public class CryptographyServiceImpl : ICryptographyService
         return await Task.FromResult(encryptedMasterUserDto);
     }
 
-    public async Task<MasterUserDTO> DecryptMasterUserAsync(MasterUserDTO masterUserDto)
+    public async Task<ServerResponse> DecryptServerResponceAsync(ServerResponse serverResponse)
     {
-        MasterUserDTO decryptedMasterUserDto = new();
+        ServerResponse decryptedServerResponse = new();
+        decryptedServerResponse.message = serverResponse.message;
+        decryptedServerResponse.statusCode = serverResponse.statusCode;
+
+        if (decryptedServerResponse.dto.GetType() == typeof(MasterUserDTO))
+        {
+            MasterUserDTO decryptedMasterUserDto = (MasterUserDTO)decryptedServerResponse.dto;
+            AesEncryptionHelper.Decrypt(decryptedMasterUserDto.masterUsername);
+            AesEncryptionHelper.Decrypt(decryptedMasterUserDto.masterPassword);
+        }
         
-        decryptedMasterUserDto.masterUsername = AesEncryptionHelper.Decrypt(masterUserDto.masterUsername);
-        decryptedMasterUserDto.masterPassword = AesEncryptionHelper.Decrypt(masterUserDto.masterPassword);
-        
-        return await Task.FromResult(decryptedMasterUserDto);
+        return await Task.FromResult(decryptedServerResponse);
     }
 
     public async Task<LoginEntryDTO> EncryptLoginEntryAsync(LoginEntryDTO loginEntryDto)
@@ -34,13 +41,19 @@ public class CryptographyServiceImpl : ICryptographyService
         return await Task.FromResult(encryptedLoginEntryDto);
     }
 
-    public async Task<LoginEntryDTO> DecryptLoginEntryAsync(LoginEntryDTO loginEntryDto)
+    public async Task<ServerResponse> DecryptLoginEntryAsync(ServerResponse serverResponse)
     {
-        LoginEntryDTO decryptedMasterUserDto = new();
+        ServerResponse decryptedServerResponse = new();
+        decryptedServerResponse.message = serverResponse.message;
+        decryptedServerResponse.statusCode = serverResponse.statusCode;
+
+        if (decryptedServerResponse.dto.GetType() == typeof(LoginEntryDTO))
+        {
+            LoginEntryDTO decryptedLoginEntry = (LoginEntryDTO)decryptedServerResponse.dto;
+            AesEncryptionHelper.Decrypt(decryptedLoginEntry.entryUsername);
+            AesEncryptionHelper.Decrypt(decryptedLoginEntry.entryPassword);
+        }
         
-        decryptedMasterUserDto.entryUsername = AesEncryptionHelper.Decrypt(loginEntryDto.entryUsername);
-        decryptedMasterUserDto.entryPassword = AesEncryptionHelper.Decrypt(loginEntryDto.entryPassword);
-        
-        return await Task.FromResult(decryptedMasterUserDto);
+        return await Task.FromResult(decryptedServerResponse);
     }
 }
