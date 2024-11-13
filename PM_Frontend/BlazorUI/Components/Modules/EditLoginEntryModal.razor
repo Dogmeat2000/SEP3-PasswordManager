@@ -1,38 +1,6 @@
 ﻿@using ServiceLayer.Services
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
-@code {
-    private string entryName = string.Empty;
-    private string entryAddress = string.Empty;
-    private string entryUsername = string.Empty;
-    private string entryPassword = string.Empty;
-    private string category = string.Empty;
-
-    [Parameter]
-    public EventCallback<LoginEntryDTO> OnCreate { get; set; }
-
-    [Parameter]
-    public EventCallback OnCancel { get; set; }
-
-    private async Task CreateEntry()
-    {
-        var newEntry = new LoginEntryDTO
-        {
-            entryName = entryName,
-            entryAddress = entryAddress,
-            entryUsername = entryUsername,
-            entryPassword = entryPassword,
-            Category = category
-        };
-
-        await OnCreate.InvokeAsync(newEntry);
-    }
-
-    private async Task CloseCreateModal()
-    {
-        await OnCancel.InvokeAsync();
-    }
-}
 
 <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog">
@@ -58,7 +26,7 @@
                     <label for="entryPassword">Password</label>
                     <input type="text" id="entryPassword" class="form-control" @bind="entryPassword" />
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label for="category">Category</label>
                     <select id="category" class="form-control" @bind="category">
                         <option>Select</option>
@@ -66,7 +34,7 @@
                         <option>Bank - Pension - Insurance</option>
                         <option>Other</option>
                     </select>
-                </div>
+                </div>*@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" @onclick="CloseCreateModal">Delete</button>
@@ -75,3 +43,48 @@
         </div>
     </div>
 </div>
+
+@code {
+    private bool isVisible = false; 
+    
+    private string entryName = string.Empty;
+    private string entryAddress = string.Empty;
+    private string entryUsername = string.Empty;
+    private string entryPassword = string.Empty;
+    private string category = string.Empty;
+
+    [Parameter]
+    public EventCallback<LoginEntryDTO> OnCreate { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+    public void showModal()
+    {
+        isVisible = true; 
+    }
+
+    public void HideModal()
+    {
+        isVisible = false; 
+    }
+
+    private async Task CreateEntry()
+    {
+        var newEntry = new LoginEntryDTO
+        {
+            entryName = entryName,
+            entryAddress = entryAddress,
+            entryUsername = entryUsername,
+            entryPassword = entryPassword,
+            Category = category
+        };
+
+        await OnCreate.InvokeAsync(newEntry);
+    }
+
+    private async Task CloseCreateModal()
+    {
+        await OnCancel.InvokeAsync();
+    }
+}
