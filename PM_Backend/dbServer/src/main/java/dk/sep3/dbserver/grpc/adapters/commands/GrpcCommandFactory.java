@@ -1,5 +1,6 @@
 package dk.sep3.dbserver.grpc.adapters.commands;
 
+import dk.sep3.dbserver.grpc.adapters.commands.implementations.CreateLoginEntryCommand;
 import dk.sep3.dbserver.grpc.adapters.commands.implementations.CreateMasterUserCommand;
 import dk.sep3.dbserver.grpc.adapters.commands.implementations.ReadMasterUserCommand;
 import dk.sep3.dbserver.service.exceptions.IllegalGrpcCommand;
@@ -22,6 +23,7 @@ public class GrpcCommandFactory
     // Register every available command, by adding to the HashMap below:
     grpcCommandMap.put("createmasteruser", commands.stream().filter(c -> c instanceof CreateMasterUserCommand).findFirst().orElseThrow(() -> new IllegalGrpcCommand(genericErrorMsg)));
     grpcCommandMap.put("readmasteruser", commands.stream().filter(c -> c instanceof ReadMasterUserCommand).findFirst().orElseThrow(() -> new IllegalGrpcCommand(genericErrorMsg)));
+    grpcCommandMap.put("createloginentry", commands.stream().filter(c -> c instanceof CreateLoginEntryCommand).findFirst().orElseThrow(() -> new IllegalGrpcCommand(genericErrorMsg)));
     // Add more commands below: IMPORTANT: Please add any command in ALL LOWERCASE!
 
     //..
