@@ -37,9 +37,9 @@
         var response = await ServiceLayer.ReadLoginEntriesAsync();
         if (response.statusCode == 200 && response.dto is List<LoginEntryDTO> entries)
         {
-            socialMediaEntries = entries.Where(e => e.Category == "Social Media").ToList();
-            bankEntries = entries.Where(e => e.Category == "Bank - Pension - Insurance").ToList();
-            otherEntries = entries.Where(e => e.Category == "Other").ToList();
+            socialMediaEntries = entries.Where(e => e.entryCategory == "Social Media").ToList();
+            bankEntries = entries.Where(e => e.entryCategory == "Bank - Pension - Insurance").ToList();
+            otherEntries = entries.Where(e => e.entryCategory == "Other").ToList();
         }
         StateHasChanged();*/
         
