@@ -86,4 +86,9 @@ public class LoginEntryDTO extends DTO {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override public String toString() {
+        return "LoginEntryDTO{" + "id=" + id + ", entryUsername='" + entryUsername + '\'' + ", entryPassword='" + entryPassword + '\'' + ", masterUserId=" + masterUserId + ", entryName='" + entryName
+            + '\'' + ", entryAddress='" + entryAddress + '\'' + ", entryCategory='" + entryCategory + '\'' + '}';
+    }
 }
