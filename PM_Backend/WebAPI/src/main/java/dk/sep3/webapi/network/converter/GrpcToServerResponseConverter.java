@@ -27,10 +27,12 @@ public class GrpcToServerResponseConverter {
 
             for (LoginEntryDTO grpcLoginEntryDTO : grpcResponse.getLoginEntries().getLoginEntriesList()){
                 common.dto.LoginEntryDTO newEntry = new common.dto.LoginEntryDTO(
-                    grpcLoginEntryDTO.getId(),
                     grpcLoginEntryDTO.getEntryUsername(),
                     grpcLoginEntryDTO.getEntryPassword(),
-                    grpcLoginEntryDTO.getMasterUserId()
+                    grpcLoginEntryDTO.getMasterUserId(),
+                    grpcLoginEntryDTO.getEntryName(),
+                    grpcLoginEntryDTO.getEntryAddress(),
+                    grpcLoginEntryDTO.getCategory()
                 );
                 loginEntryListDTO.addLoginEntry(newEntry);
             }
