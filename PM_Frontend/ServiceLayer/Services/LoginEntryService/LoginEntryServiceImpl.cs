@@ -35,7 +35,8 @@ public class LoginEntryServiceImpl : ILoginEntryService
     public async Task<ServerResponse> CreateLoginEntryAsync(
         LoginEntryDTO newEntry)
     {
-        return null;
+        ServerResponse response = await _webApiClient.CreateLoginEntryAsync(await _cryptographyService.EncryptLoginEntryAsync(newEntry));
+        return await _cryptographyService.DecryptLoginEntryAsync(response);
     }
 
     /**
