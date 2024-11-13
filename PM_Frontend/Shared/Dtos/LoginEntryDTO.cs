@@ -9,7 +9,7 @@ namespace Shared.Dtos
         public string? entryPassword { get; set; }
         public string? entryAddress { get; set; }
         public int? masterUserId { get; set; }
-        public string? Category { get; set; }
+        public string? entryCategory { get; set; }
 
         public LoginEntryDTO(int? id, string? entryUsername,
             string? entryPassword, int? masterUserId,
@@ -17,10 +17,12 @@ namespace Shared.Dtos
             string? entryName,
             string? entryAddress) : base(id)
         {
-            this.entryUsername = entryUsername;
-            this.entryPassword = entryPassword;
+            this.entryUsername = entryUsername ?? "Error: Unspecified";
+            this.entryPassword = entryPassword ?? "Error: Unspecified";
             this.masterUserId = masterUserId;
-            this.Category = Category;
+            this.entryCategory = entryCategory ?? "Other";
+            this.entryName = entryName ?? "Error: Unspecified";
+            this.entryAddress = entryAddress ?? "Error: Unspecified";
         }
         
 
@@ -33,9 +35,17 @@ namespace Shared.Dtos
         public override string ToString()
         {
             string toString = "[";
+            toString += "Name: " + entryName;
+            toString += " ; Address: ";
+            toString += entryAddress;
+            toString += "; Username: ";
             toString += entryUsername;
-            toString += " ; ";
+            toString += "; Password: ";
             toString += entryPassword;
+            toString += "; Category: ";
+            toString += entryCategory;
+            toString += "; MasterUserId: ";
+            toString += masterUserId;
             toString += "]";
             return toString;
         }

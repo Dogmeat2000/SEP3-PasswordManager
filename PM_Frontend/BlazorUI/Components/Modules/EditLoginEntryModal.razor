@@ -31,7 +31,7 @@
                         <input type="text" id="entryPassword" class="form-control" @bind="entryPassword"/>
                     </div>
                     @*<div class="form-group">
-                    <label for="category">Category</label>
+                    <label for="category">entryCategory</label>
                     <select id="category" class="form-control" @bind="category">
                         <option>Select</option>
                         <option>Social Media</option>
@@ -41,7 +41,7 @@
                 </div>*@
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" @onclick="">Delete</button>
+                    <!--<button class="btn btn-secondary" @onclick="">Delete</button>--> //TODO: Commented out because app would not launch with this line!
                     <button class="btn btn-primary" @onclick="UpdateLoginEntryAsync">Save</button>
                 </div>
             </div>
@@ -95,10 +95,10 @@
     {
         var entryToBeUpdated = new LoginEntryDTO
         {
-            EntryName = entryName,
-            EntryPassword = entryPassword,
-            EntryUsername = entryUsername,
-            EntryAddress = entryAddress
+            entryName = entryName,
+            entryPassword = entryPassword,
+            entryUsername = entryUsername,
+            entryAddress = entryAddress
         };
 
         var updatedLoginEntry = await LoginEntryService.UpdateLoginEntryAsync(entryToBeUpdated);

@@ -35,8 +35,8 @@ public class CryptographyServiceImpl : ICryptographyService
     {                                                                                
         LoginEntryDTO encryptedLoginEntryDto = new();                                
                                                                                      
-        encryptedLoginEntryDto.EntryUsername = AesEncryptionHelper.Encrypt(loginEntryDto.EntryUsername);
-        encryptedLoginEntryDto.EntryPassword = AesEncryptionHelper.Encrypt(loginEntryDto.EntryPassword);
+        encryptedLoginEntryDto.entryUsername = AesEncryptionHelper.Encrypt(loginEntryDto.entryUsername);
+        encryptedLoginEntryDto.entryPassword = AesEncryptionHelper.Encrypt(loginEntryDto.entryPassword);
         
         return await Task.FromResult(encryptedLoginEntryDto);
     }
@@ -50,8 +50,8 @@ public class CryptographyServiceImpl : ICryptographyService
         if (decryptedServerResponse.dto.GetType() == typeof(LoginEntryDTO))
         {
             LoginEntryDTO decryptedLoginEntry = (LoginEntryDTO)decryptedServerResponse.dto;
-            AesEncryptionHelper.Decrypt(decryptedLoginEntry.EntryUsername);
-            AesEncryptionHelper.Decrypt(decryptedLoginEntry.EntryPassword);
+            AesEncryptionHelper.Decrypt(decryptedLoginEntry.entryUsername);
+            AesEncryptionHelper.Decrypt(decryptedLoginEntry.entryPassword);
         }
         
         return await Task.FromResult(decryptedServerResponse);
