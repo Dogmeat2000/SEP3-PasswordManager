@@ -1,5 +1,6 @@
 ﻿@page "/password-manager"
 @using ServiceLayer.Services
+@using Shared.CommunicationObjects
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
 
@@ -18,8 +19,7 @@
     private List<LoginEntryDTO> bankEntries = new();
     private List<LoginEntryDTO> otherEntries = new();
     
-    protected override async Task OnInitializedAsync()
-    {
+    protected override async Task OnInitializedAsync() {
         await LoadEntries();
     }
 
@@ -32,24 +32,32 @@
     }
     
 
-    private async Task LoadEntries()
-    {/*
-        var response = await ServiceLayer.ReadLoginEntriesAsync();
-        if (response.statusCode == 200 && response.dto is List<LoginEntryDTO> entries)
-        {
-            socialMediaEntries = entries.Where(e => e.entryCategory == "Social Media").ToList();
-            bankEntries = entries.Where(e => e.entryCategory == "Bank - Pension - Insurance").ToList();
-            otherEntries = entries.Where(e => e.entryCategory == "Other").ToList();
+    private async Task LoadEntries() {
+        ServerResponse response = await ServiceLayer.ReadLoginEntriesAsync();
+
+        try { 
+            if (response.statusCode == 200 
+                && response.dto is LoginEntryListDTO entries
+                && entries.loginEntries != null
+                && entries.loginEntries.Count > 0) {
+            
+                IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
+                socialMediaEntries = enumerableEntries.Where(e => e.entryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                bankEntries = enumerableEntries.Where(e => e.entryCategory == "Bank - Pension - Insurance").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                otherEntries = enumerableEntries.Where(e => e.entryCategory == "Other").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                StateHasChanged();
+            }
+        } catch (Exception e) {
+            // TODO: Improve exceptionhandling. Currently just placeholder, so blazor app can be launched elsewhere while implementing backend.
+            Console.WriteLine("[LoginEntryListViewModule.razor] Exception occurred while querying for all loginEntries. Reason: " + e.Message);
         }
-        StateHasChanged();*/
         
         // TODO: Delete below:
         TestData();
         StateHasChanged();
     }
 
-    private void OpenCreateModal()
-    {
+    private void OpenCreateModal() {
         isCreateModalOpen = true;
         StateHasChanged(); 
     }
