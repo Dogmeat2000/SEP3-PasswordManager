@@ -18,7 +18,6 @@ public class LoginEntryServiceImpl : ILoginEntryService
     }
 
     public async Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto) {
-        Console.WriteLine("[LoginEntryServiceImpl]: Reached this class");
         // Validate received request, before encryption:
         // TODO: Finish implementing this validation, once authorization and login functionality have been completed.
         /*if (dto.id != loggedInUser.id || dto.masterUsername != loggedInUser.masterUsername || dto.masterPassword != loggedInUser.masterPassword) {
@@ -28,7 +27,7 @@ public class LoginEntryServiceImpl : ILoginEntryService
         // Encrypt the embedded dto:
         // TODO: Encryption / Decryption does not reliably produce the same encrypted strings each time... So for now it does not work.
         //var encryptedDto = await _cryptographyService.EncryptMasterUserAsync(dto);
-        var encryptedDto = dto; // Temporary solution.
+        var encryptedDto = dto; // TODO: Temporary solution.
         
         // Request all loginEntries
         ServerResponse response = await _webApiClient.ReadLoginEntriesAsync(encryptedDto);
@@ -45,7 +44,7 @@ public class LoginEntryServiceImpl : ILoginEntryService
         
         // Decrypt the embedded loginEntries.
         //ServerResponse decryptedResponse = await _cryptographyService.DecryptLoginEntryListAsync(response);
-        ServerResponse decryptedResponse = response; // Temporary solution.
+        ServerResponse decryptedResponse = response; // TODO: Temporary solution.
         
         // Return the ServerResponse
         return decryptedResponse;

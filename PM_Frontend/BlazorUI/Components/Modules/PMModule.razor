@@ -25,7 +25,7 @@
     }
 
     private async Task LoadEntries() {
-        int retryCount = 5;
+        int retryCount = 3;
         int counter = 0;
         while (counter < retryCount) {
             ServerResponse? response;
@@ -46,10 +46,8 @@
                         entries.RemoveLoginEntry(loginEntryDto); //Remove already assigned entries, so any remainders can be caught later and added to "Others" category.
 
                     // Categorize remaining entries to "Others" category:
-                    foreach (var loginEntryDto in entries.loginEntries) {
-                        Console.WriteLine("\n\n\notherEntries IS NOW: " + otherEntries + "\n\n\n");
+                    foreach (var loginEntryDto in entries.loginEntries)
                         otherEntries.Add(loginEntryDto);
-                    }
                     
                     counter += 100000;
                     StateHasChanged();
