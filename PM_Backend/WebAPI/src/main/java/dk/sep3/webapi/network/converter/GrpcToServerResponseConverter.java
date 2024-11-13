@@ -44,7 +44,7 @@ public class GrpcToServerResponseConverter {
               grpcResponse.getLoginEntry().getMasterUserId(),
               grpcResponse.getLoginEntry().getEntryName(),
               grpcResponse.getLoginEntry().getEntryAddress(),
-              "Unspecified");
+              "Other");
             serverResponse.setDto(loginEntryDTO);
         }*/ else if (grpcResponse.hasException()) {
             // An exception occurred. Return the exception:
