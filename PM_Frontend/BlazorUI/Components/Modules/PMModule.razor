@@ -42,9 +42,9 @@
                 && entries.loginEntries.Count > 0) {
             
                 IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
-                socialMediaEntries = enumerableEntries.Where(e => e.entryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
-                bankEntries = enumerableEntries.Where(e => e.entryCategory == "Bank - Pension - Insurance").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
-                otherEntries = enumerableEntries.Where(e => e.entryCategory == "Other").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                socialMediaEntries = enumerableEntries.Where(e => e.EntryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                bankEntries = enumerableEntries.Where(e => e.EntryCategory == "Bank - Pension - Insurance").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                otherEntries = enumerableEntries.Where(e => e.EntryCategory == "Other").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
                 StateHasChanged();
             }
         } catch (Exception e) {

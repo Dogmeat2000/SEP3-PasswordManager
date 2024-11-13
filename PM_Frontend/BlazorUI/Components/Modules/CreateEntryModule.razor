@@ -18,11 +18,11 @@
     {
         var newEntry = new LoginEntryDTO
         {
-            entryName = entryName,
-            entryAddress = entryAddress,
-            entryUsername = entryUsername,
-            entryPassword = entryPassword,
-            entryCategory = category
+            EntryName = entryName,
+            EntryAddress = entryAddress,
+            EntryUsername = entryUsername,
+            EntryPassword = entryPassword,
+            EntryCategory = category
         };
 
         await OnCreate.InvokeAsync(newEntry);

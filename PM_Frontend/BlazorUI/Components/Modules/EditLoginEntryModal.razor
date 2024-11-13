@@ -95,10 +95,10 @@
     {
         var entryToBeUpdated = new LoginEntryDTO
         {
-            entryName = entryName,
-            entryPassword = entryPassword,
-            entryUsername = entryUsername,
-            entryAddress = entryAddress
+            EntryUsername = entryUsername,
+            EntryPassword = entryPassword,
+            EntryName = entryName,
+            EntryAddress = entryAddress,
         };
 
         var updatedLoginEntry = await LoginEntryService.UpdateLoginEntryAsync(entryToBeUpdated);
