@@ -32,6 +32,7 @@ public interface IWebApiClient
     Task<ServerResponse> UpdateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
     Task<ServerResponse> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete);
 
+    // TODO: Marcus, commented out due to errors.
     /**
      * Sends a request to authenticate a master user.
      * The Web API validates the credentials and returns an authentication token if successful.
@@ -39,5 +40,5 @@ public interface IWebApiClient
      * @param masterUserDto DTO containing master user credentials for authentication.
      * @return ServerResponse containing authentication results, such as a JWT token.
      */
-    Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto);
+    //Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto);
 }

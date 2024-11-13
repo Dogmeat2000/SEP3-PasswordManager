@@ -68,10 +68,11 @@ public class WebApiClientImpl : IWebApiClient
 
 
     
-    public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
+    // TODO: Marcus, commented out due to errors.
+    /*public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
     {
         return await SendRequestAsync<MasterUserDTO>("AuthenticateUser", masterUserDto);
-    }
+    }*/
 
     
     

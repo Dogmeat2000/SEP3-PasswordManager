@@ -32,9 +32,9 @@
     
 
     private async Task LoadEntries() {
-        ServerResponse response = await ServiceLayer.ReadLoginEntriesAsync();
-
         try { 
+        ServerResponse response = await ServiceLayer.ReadLoginEntriesAsync();
+        
             if (response.statusCode == 200 
                 && response.dto is LoginEntryListDTO entries
                 && entries.loginEntries != null

@@ -1,12 +1,27 @@
 ﻿@page "/"
 @using BlazorUI.Components.Modules
-@inject IJSRuntime jsRuntime
 
+
+<!--
 <AuthorizeView>
     <Authorized>
-        <PMModule />
+        
     </Authorized>
     <NotAuthorized>
         <LoginModule />
     </NotAuthorized>
-</AuthorizeView>
+</AuthorizeView>-->
+
+@code {
+    // TODO: Marcus, commented in/out due to errors.
+    private LoginModule? loginModule;
+    private PMModule? pmModule;
+    private CreateEntryModule? _createEntryModule;
+}
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    @* <LoginModule @ref="loginModule" /> *@
+    <PMModule @ref="pmModule"/>
+    @*   <CreateEntryModule @ref="_createEntryModule"/> *@
+
+</div>

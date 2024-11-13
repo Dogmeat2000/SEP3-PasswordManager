@@ -6,8 +6,9 @@
     private string generatedPassword = string.Empty;
     private string message = string.Empty;
 
-    [Inject] public IServiceLayer ServiceLayer { get; set; }
-    [Inject] public IJSRuntime jsRuntime { get; set; }
+    // TODO: Marcus, commented out due to errors.
+    //[Inject] public IServiceLayer ServiceLayer { get; set; }
+    //[Inject] public IJSRuntime jsRuntime { get; set; }
 
     private void GeneratePassword()
     {
@@ -30,7 +31,8 @@
             masterPassword = masterPassword
         };
 
-        var response = await ServiceLayer.AuthenticateUserAsync(loginDto);
+        // TODO: Marcus, commented out due to errors.
+        /*var response = await ServiceLayer.AuthenticateUserAsync(loginDto);
 
         if (response.statusCode == 200 && !string.IsNullOrEmpty(response.message))
         {
@@ -40,7 +42,7 @@
         else
         {
             message = "Login failed. Please check your credentials.";
-        }
+        }*/
     }
 
     private async Task CreateUser()
@@ -51,7 +53,8 @@
             masterPassword = masterPassword
         };
 
-        var response = await ServiceLayer.CreateMasterUserAsync(createDto);
+        // TODO: Marcus, commented out due to errors.
+        /*var response = await ServiceLayer.CreateMasterUserAsync(createDto);
 
         if (response.statusCode == 201)
         {
@@ -60,7 +63,7 @@
         else
         {
             message = "Failed to create user. Username might already exist.";
-        }
+        }*/
     }
 }
 

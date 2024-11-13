@@ -35,8 +35,8 @@ namespace ServiceLayer.Services
          *
          * @return ServerResponse containing the list of decrypted LoginEntryDTO objects
          */
-        
-        Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto);
+        // TODO: Marcus, commented out due to errors.
+        //Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto);
 
         /**
          * Sends a request to retrieve all login entries.

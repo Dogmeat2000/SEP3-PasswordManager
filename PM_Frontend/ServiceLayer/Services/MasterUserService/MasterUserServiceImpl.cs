@@ -47,7 +47,8 @@ public class MasterUserServiceImpl : IMasterUserService
         return returnedMasterUserDto;
     }
 
-    public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
+    // TODO: Marcus, commented out due to errors.
+    /*public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
     {
         // Encrypt the master user credentials for secure transmission
         var encryptedMasterUserDto = await _cryptographyService.EncryptMasterUserAsync(masterUserDto);
@@ -58,5 +59,5 @@ public class MasterUserServiceImpl : IMasterUserService
         // Decrypt the response to retrieve authentication results
         return await _cryptographyService.DecryptServerResponceAsync(response);
         
-    }
+    }*/
 }

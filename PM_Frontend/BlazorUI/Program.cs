@@ -17,7 +17,8 @@ namespace BlazorUI
             
             ServiceLayerFactory.RegisterServices(builder.Services, builder.Configuration);
             
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            // TODO: Marcus, commented out due to errors.
+            /*builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -30,9 +31,9 @@ namespace BlazorUI
                         ValidAudience = "yourdomain.com", 
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_secret_key")) 
                     };
-                });
+                });*/
             
-            builder.Services.AddAuthorizationCore();
+            //builder.Services.AddAuthorizationCore();
 
             var app = builder.Build();
             
@@ -50,9 +51,10 @@ namespace BlazorUI
             app.UseAntiforgery();
             
        
-            app.UseRouting();
-            app.UseAuthentication(); 
-            app.UseAuthorization(); 
+            // TODO: Marcus, commented out due to errors.
+            /*app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization(); */
 
        
             app.MapRazorComponents<App>()
