@@ -1,6 +1,5 @@
 ﻿using Shared.CommunicationObjects;
 using Shared.Dtos;
-using System.Threading.Tasks;
 
 namespace ServiceLayer.Services.LoginEntryService
 {

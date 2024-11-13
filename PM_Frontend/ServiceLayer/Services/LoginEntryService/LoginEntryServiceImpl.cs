@@ -24,7 +24,18 @@ public class LoginEntryServiceImpl : ILoginEntryService
     */
     public async Task<ServerResponse> ReadLoginEntriesAsync()
     {
-        return null;
+        // TODO: Maybe ensure the client only reads this clients own loginEntries? Attach an id? Or maybe Authentication can handle this, when implemented!
+        
+        // Request all loginEntries
+        ServerResponse response = await _webApiClient.ReadLoginEntriesAsync();
+        
+        // Decrypt the embedded loginEntries.
+        // TODO: Not implemented
+        
+        // Return the ServerResponse
+        // TODO: Not implemented
+        
+        throw new NotImplementedException();
     }
 
     /**

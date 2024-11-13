@@ -8,10 +8,16 @@ namespace ServiceLayer.Networking;
  */
 public interface IWebApiClient
 {
+    // MasterUser methods:
     Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto);
-
     Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
+    
+    // LoginEntry methods:
     Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
+    
+    /**<summary>Reads all login entries from the database.</summary>
+     * <returns>A ServerResponse object containing a DTO of LoginEntryListDTO type.</returns>*/
+    Task<ServerResponse> ReadLoginEntriesAsync();
     Task<ServerResponse> UpdateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
     Task<ServerResponse> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete);
 }

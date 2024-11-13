@@ -20,8 +20,8 @@ public class WebApiClientImpl : IWebApiClient
         _loadBalancerUrl = loadBalancerUrl;
     }
     
-
-
+    
+    // MasterUser Methods:
     public async Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto)
     {
         var responseMasterUserDto =
@@ -37,10 +37,18 @@ public class WebApiClientImpl : IWebApiClient
         return responseMasterUserDto;
     }
 
+    
+    // LoginEntry methods:
     public async Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO loginEntryDto)
     {
         var serverResponse =
             await SendRequestAsync <LoginEntryDTO>("CreateLoginEntry", loginEntryDto);
+        return serverResponse;
+    }
+    
+    public async Task<ServerResponse> ReadLoginEntriesAsync() {
+        // Note: new LoginEntryDTO() is not used for anything in below. SendRequestAsync simply does not accept a DTO being NULL. 
+        ServerResponse serverResponse = await SendRequestAsync("ReadLoginEntries", new LoginEntryDTO()); 
         return serverResponse;
     }
 
