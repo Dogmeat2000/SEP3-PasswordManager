@@ -65,6 +65,10 @@ namespace Shared.JSONService
                     {
                         dto = dtoToken.ToObject<LoginEntryDTO>(); // Deserialize manually to LoginEntryDTO
                     }
+                    else if (typeName.Contains("LoginEntryListDTO"))
+                    {
+                        dto = dtoToken.ToObject<LoginEntryListDTO>();
+                    }
                     else
                     {
                         throw new JsonSerializationException($"Unknown DTO type: {typeName}");
