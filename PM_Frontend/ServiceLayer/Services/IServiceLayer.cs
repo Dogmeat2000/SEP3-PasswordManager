@@ -66,7 +66,7 @@ namespace ServiceLayer.Services
          * @param updatedEntry LoginEntryDTO containing updated data for the entry
          * @return ServerResponse containing the updated LoginEntryDTO
          */
-        Task<ServerResponse> UpdateLoginEntryAsync(LoginEntryDTO updatedEntry);
+        Task<LoginEntryDTO> UpdateLoginEntryAsync(LoginEntryDTO updatedEntry);
 
         /**
          * Sends a delete request for a login entry based on the entry ID.
@@ -75,6 +75,6 @@ namespace ServiceLayer.Services
          * @param entryId The ID of the entry to be deleted
          * @return ServerResponse indicating success or failure of the deletion
          */
-        Task<ServerResponse> DeleteLoginEntryAsync(int entryId);
+        Task<bool> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete);
     }
 }

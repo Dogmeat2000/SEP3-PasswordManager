@@ -1,5 +1,6 @@
 ﻿@page "/password-manager"
 @using ServiceLayer.Services
+@using Shared.CommunicationObjects
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
 
@@ -17,26 +18,46 @@
     private List<LoginEntryDTO> socialMediaEntries = new();
     private List<LoginEntryDTO> bankEntries = new();
     private List<LoginEntryDTO> otherEntries = new();
-
-    protected override async Task OnInitializedAsync()
-    {
+    
+    protected override async Task OnInitializedAsync() {
         await LoadEntries();
     }
 
-    private async Task LoadEntries()
-    {/*
-        var response = await ServiceLayer.ReadLoginEntriesAsync();
-        if (response.statusCode == 200 && response.dto is List<LoginEntryDTO> entries)
-        {
-            socialMediaEntries = entries.Where(e => e.Category == "Social Media").ToList();
-            bankEntries = entries.Where(e => e.Category == "Bank - Pension - Insurance").ToList();
-            otherEntries = entries.Where(e => e.Category == "Other").ToList();
+    
+    private void TestData() { // TODO: Delete method
+        socialMediaEntries.Add(new LoginEntryDTO(1, "TestEntryUserName1", "TestPswd1", 1, "Social Media", "Discord", "https://discord.com"));
+        bankEntries.Add(new LoginEntryDTO(2, "TestEntryUserName2", "TestPswd1", 1, "Bank - Pension - Insurance", "ItsLearning", "https://itsLearning.dk"));
+        otherEntries.Add(new LoginEntryDTO(3, "TestEntryUserName3", "TestPswd1", 1, "Other", "Folketinget", "https://folketinget.dk"));
+        
+    }
+    
+
+    private async Task LoadEntries() {
+        ServerResponse response = await ServiceLayer.ReadLoginEntriesAsync();
+
+        try { 
+            if (response.statusCode == 200 
+                && response.dto is LoginEntryListDTO entries
+                && entries.loginEntries != null
+                && entries.loginEntries.Count > 0) {
+            
+                IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
+                socialMediaEntries = enumerableEntries.Where(e => e.entryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                bankEntries = enumerableEntries.Where(e => e.entryCategory == "Bank - Pension - Insurance").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                otherEntries = enumerableEntries.Where(e => e.entryCategory == "Other").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                StateHasChanged();
+            }
+        } catch (Exception e) {
+            // TODO: Improve exceptionhandling. Currently just placeholder, so blazor app can be launched elsewhere while implementing backend.
+            Console.WriteLine("[LoginEntryListViewModule.razor] Exception occurred while querying for all loginEntries. Reason: " + e.Message);
         }
-        StateHasChanged();*/
+        
+        // TODO: Delete below:
+        TestData();
+        StateHasChanged();
     }
 
-    private void OpenCreateModal()
-    {
+    private void OpenCreateModal() {
         isCreateModalOpen = true;
         StateHasChanged(); 
     }
@@ -107,15 +128,15 @@
             <div class="mb-2">
                 Menu
             </div>
-            <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="OpenCreateModal">Create Entry</button>
-            <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="ShowEditLoginEntryModal">Update or Delete Entry</button>
-            <button @onclick="TestMethod">TEST</button>
+                <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="OpenCreateModal">Create Entry</button>
+                <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="ShowEditLoginEntryModal">Update or Delete Entry</button>
+                <button @onclick="TestMethod">TEST</button>
             </div>
 
-        <div class="flex-grow-1 p-3">
-            <EntityListViewModule Entries="socialMediaEntries" Category="Social Media" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
-            <EntityListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
-            <EntityListViewModule Entries="otherEntries" Category="Other" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
+        <div class="flex-grow-1 px-1">
+            <LoginEntryListViewModule Entries="socialMediaEntries" Category="Social Media"/>
+            <LoginEntryListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance"/>
+            <LoginEntryListViewModule Entries="otherEntries" Category="Other"/>
         </div>
     </div>
 </div>

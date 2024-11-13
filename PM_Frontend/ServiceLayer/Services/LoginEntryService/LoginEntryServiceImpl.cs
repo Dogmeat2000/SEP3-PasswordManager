@@ -35,7 +35,8 @@ public class LoginEntryServiceImpl : ILoginEntryService
     public async Task<ServerResponse> CreateLoginEntryAsync(
         LoginEntryDTO newEntry)
     {
-        return null;
+        ServerResponse response = await _webApiClient.CreateLoginEntryAsync(await _cryptographyService.EncryptLoginEntryAsync(newEntry));
+        return await _cryptographyService.DecryptLoginEntryAsync(response);
     }
 
     /**
@@ -43,10 +44,21 @@ public class LoginEntryServiceImpl : ILoginEntryService
      * @param updatedEntry LoginEntryDTO containing the updated data.
      * @return ServerResponse containing the updated entry.
      */
-    public async Task<ServerResponse> UpdateLoginEntryAsync(
-        LoginEntryDTO updatedEntry)
+    public async Task<LoginEntryDTO> UpdateLoginEntryAsync(LoginEntryDTO updatedEntry)
     {
-        return null;
+        var encryptedEntry = await _cryptographyService.EncryptLoginEntryAsync(updatedEntry);
+        
+        var response = await _webApiClient.UpdateLoginEntryAsync(encryptedEntry);
+        
+        var decryptedEntry = await _cryptographyService.DecryptLoginEntryAsync(response);
+        var decryptedEntryDto = decryptedEntry.dto;
+
+        if (!(decryptedEntryDto.GetType() == typeof(LoginEntryDTO)))
+        {
+            throw new ApplicationException("Failed to update login entry");
+        }
+    
+        return (LoginEntryDTO)decryptedEntryDto;
     }
 
     /**
@@ -54,8 +66,9 @@ public class LoginEntryServiceImpl : ILoginEntryService
      * @param entryId The ID of the entry to delete.
      * @return ServerResponse indicating success or failure of the deletion.
      */
-    public async Task<ServerResponse> DeleteLoginEntryAsync(int entryId)
+    public async Task<bool> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete)
     {
-        return null;
+        var response = await _webApiClient.DeleteLoginEntryAsync(entryToDelete);
+        return true; // TO DO Implement proper validation
     }
 }

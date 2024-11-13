@@ -22,14 +22,11 @@
   <component name="ChangeListManager">
     <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/App.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateEntryModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateEntryModule.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/EditLoginEntryModal.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/EditLoginEntryModal.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/_Imports.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/JSONService/DTOJsonConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/JSONService/DTOJsonConverter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +35,13 @@
   </component>
   <component name="DpaMonitoringSettings">
     <option name="autoShow" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -55,16 +59,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/24372012c6c94138bf3f496e104366ffc8f918/6f/3d4e9992/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7beca651b1af466d51e879c74afac8ebca741c3e99965ead1e70bb60811c3054/ComponentBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/BlazorUI/obj/Debug/net8.0/BlazorUI.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/ServiceLayer/Factories/ServiceLayerFactory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/ServiceLayer/Factories/ServiceLayerFactory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/ServiceLayer/Factories/ServiceLayerFactory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/Shared/Dtos/LoginEntryDTO.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Marcus Lykkegaard/Desktop/Softwareteknologi/Softwareprogrammer/GitHub/SEP3_PasswordManager/PM_Frontend/Shared/Dtos/LoginEntryDTO.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -81,22 +77,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.BlazorUI: http.executor": "Run",
-    ".NET Launch Settings Profile.TestBlazorApp: http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.BlazorUI: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.TestBlazorApp: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.BlazorUI: http">
     <configuration name="Client" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -351,7 +348,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730919769793</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="WIP: Adjust LoginEntry view to better align with GUI design template">
+      <option name="closed" value="true" />
+      <created>1731487903094</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1731487903094</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,6 +392,7 @@
     <MESSAGE value="Createing frontend" />
     <MESSAGE value="Updated all module-files making them ready for userstories 1&amp;2.&#10;Updated Serviceimpl, to take correct CRUD from interfaces (Master and entry). &#10;Still struggling shifting between modules(PMModule to CreateEntryModule) and getting generate password to actually show generate password...&#10;StateHasChanged does not seem to do the trick alone." />
     <MESSAGE value="Updating decrypting methods to return and accept ServerResponse" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="WIP: Adjust LoginEntry view to better align with GUI design template" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: Adjust LoginEntry view to better align with GUI design template" />
   </component>
 </project>

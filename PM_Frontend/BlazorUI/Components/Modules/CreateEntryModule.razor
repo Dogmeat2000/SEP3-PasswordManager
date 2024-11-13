@@ -22,7 +22,7 @@
             entryAddress = entryAddress,
             entryUsername = entryUsername,
             entryPassword = entryPassword,
-            Category = category
+            entryCategory = category
         };
 
         await OnCreate.InvokeAsync(newEntry);
@@ -59,7 +59,7 @@
                     <input type="text" id="entryPassword" class="form-control" @bind="entryPassword" />
                 </div>
                 <div class="form-group">
-                    <label for="category">Category</label>
+                    <label for="category">entryCategory</label>
                     <select id="category" class="form-control" @bind="category">
                         <option>Select</option>
                         <option>Social Media</option>

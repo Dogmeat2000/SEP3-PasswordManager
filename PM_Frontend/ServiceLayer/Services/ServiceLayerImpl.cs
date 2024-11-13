@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using ServiceLayer.Services.LoginEntryService;
 using ServiceLayer.Services.MasterUserService;
 using Shared.CommunicationObjects;
@@ -11,8 +10,7 @@ public class ServiceLayerImpl : IServiceLayer
     private readonly ILoginEntryService _loginEntryService;
     private readonly IMasterUserService _masterUserService;
 
-    public ServiceLayerImpl(ILoginEntryService loginEntryService,
-        IMasterUserService masterUserService)
+    public ServiceLayerImpl(ILoginEntryService loginEntryService, IMasterUserService masterUserService)
     {
         _loginEntryService = loginEntryService;
         _masterUserService = masterUserService;
@@ -45,14 +43,13 @@ public class ServiceLayerImpl : IServiceLayer
         return await _loginEntryService.CreateLoginEntryAsync(newEntry);
     }
 
-    public async Task<ServerResponse> UpdateLoginEntryAsync(
-        LoginEntryDTO updatedEntry)
+    public async Task<LoginEntryDTO> UpdateLoginEntryAsync(LoginEntryDTO updatedEntry)
     {
         return await _loginEntryService.UpdateLoginEntryAsync(updatedEntry);
     }
 
-    public async Task<ServerResponse> DeleteLoginEntryAsync(int entryId)
+    public async Task<bool> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete)
     {
-        return await _loginEntryService.DeleteLoginEntryAsync(entryId);
+        return await _loginEntryService.DeleteLoginEntryAsync(entryToDelete);
     }
 }

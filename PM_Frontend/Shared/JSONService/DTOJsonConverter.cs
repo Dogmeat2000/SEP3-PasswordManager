@@ -60,9 +60,12 @@ public class DTOJsonConverter : JsonConverter
                 {
                     LoginEntryDTO dto = new LoginEntryDTO
                     {
+                        entryName = jsonObject["entryName"]?.ToString(),
                         entryUsername = jsonObject["entryUsername"]?.ToString(),
                         entryPassword = jsonObject["entryPassword"]?.ToString(),
+                        entryAddress = jsonObject["entryAddress"]?.ToString(),
                         masterUserId = (int?)jsonObject["masterUserId"],
+                        entryCategory = jsonObject["category"]?.ToString(),
                         id = (int?)jsonObject["id"]
                     };
                     return dto;

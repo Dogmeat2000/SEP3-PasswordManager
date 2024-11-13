@@ -1,0 +1,35 @@
+.loginEntry-section {
+  background-color: #0078d7;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: left;
+  padding: 5px 10px;
+  border-bottom: 2px solid #ffffff;
+}
+
+.loginEntry-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  table-layout: fixed;
+}
+
+.loginEntry-table th {
+  background-color: #e6f0fa;
+  color: #000000;
+  font-weight: bold;
+  padding: 8px;
+  border: 1px solid #d4d4d4;
+}
+
+.loginEntry-table td {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 8px;
+  border: 1px solid #d4d4d4;
+  text-align: left;
+}
+
+.loginEntry-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}

@@ -28,7 +28,6 @@ public class WebApiClientImpl : IWebApiClient
             await SendRequestAsync<MasterUserDTO>("CreateMasterUser", masterUserDto);
         return responseMasterUserDto;
     }
-    
 
     public async Task<ServerResponse> ReadMasterUserAsync(int masterUserId)
     {
@@ -37,6 +36,29 @@ public class WebApiClientImpl : IWebApiClient
                 new MasterUserDTO(masterUserId, null, null));
         return responseMasterUserDto;
     }
+
+    public async Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO loginEntryDto)
+    {
+        var serverResponse =
+            await SendRequestAsync <LoginEntryDTO>("CreateLoginEntry", loginEntryDto);
+        return serverResponse;
+    }
+
+    /** Updates LoginEntry in DB **/
+    public async Task<ServerResponse> UpdateLoginEntryAsync(LoginEntryDTO loginEntryDto)
+    {
+        var serverResponse = await SendRequestAsync("UpdateLoginEntry", loginEntryDto);
+        return serverResponse;
+    }
+
+    /** Deletes LoginEntry in DB **/
+    public async Task<ServerResponse> DeleteLoginEntryAsync(LoginEntryDTO logonEntryDto)
+    {
+        var serverResponse = await SendRequestAsync("DeleteLoginEntry", logonEntryDto);
+        return serverResponse;
+    }
+
+
     
     public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
     {

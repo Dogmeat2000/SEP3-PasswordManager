@@ -5,6 +5,8 @@ import common.ServerResponse;
 import dk.sep3.webapi.network.converter.ClientRequestToGrpcConverter;
 import dk.sep3.webapi.network.converter.GrpcToServerResponseConverter;
 import grpc.*;
+import grpc.GenericRequest;
+import grpc.GenericResponse;
 import grpc.PasswordManagerServiceGrpc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

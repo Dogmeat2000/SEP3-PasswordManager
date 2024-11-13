@@ -1,6 +1,8 @@
 package dk.sep3.dbserver.grpc.factories;
 
+import dk.sep3.dbserver.grpc.adapters.java_to_grpc.LoginEntrytoGrpcLoginEntry;
 import dk.sep3.dbserver.grpc.adapters.java_to_grpc.MasterUsertoGrpcMasterUserDTO;
+import dk.sep3.dbserver.model.Pm.db_entities.LoginEntry;
 import dk.sep3.dbserver.model.Pm.db_entities.MasterUser;
 import grpc.GenericResponse;
 
@@ -18,5 +20,13 @@ public class GenericResponseFactory
         .setStatusCode(statusCode)
         .setException(grpc.Exception.newBuilder().setException(exceptionMsg))
         .build();
+  }
+
+  public static GenericResponse buildGrpcGenericResponseWithLoginEntryDTO(int statusCode, LoginEntry loginEntry)
+  {
+    return GenericResponse.newBuilder()
+            .setStatusCode(statusCode)
+            .setLoginEntry(LoginEntrytoGrpcLoginEntry.convertToGrpc(loginEntry))
+            .build();
   }
 }

@@ -4,8 +4,7 @@ using Shared.Dtos;
 namespace ServiceLayer.Networking;
 
 /**
- * Handles the communication with the Web API, sending and receiving requests.
- * Each method represents a specific API call related to the MasterUser entity.
+ * Handles the communication with the Web-api, sends and receives requests.
  */
 public interface IWebApiClient
 {
@@ -24,6 +23,9 @@ public interface IWebApiClient
      * @return ServerResponse containing the retrieved MasterUserDTO.
      */
     Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
+    Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
+    Task<ServerResponse> UpdateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
+    Task<ServerResponse> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete);
 
     /**
      * Sends a request to authenticate a master user.
