@@ -59,6 +59,14 @@ public class WebApiClientImpl : IWebApiClient
     }
 
 
+    
+    public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
+    {
+        return await SendRequestAsync<MasterUserDTO>("AuthenticateUser", masterUserDto);
+    }
+
+    
+    
     private async Task<ServerResponse> SendRequestAsync<TRequestDto>(string requestType, TRequestDto requestDto)
             where TRequestDto : DTO
         {
