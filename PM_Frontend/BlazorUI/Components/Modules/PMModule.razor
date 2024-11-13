@@ -4,11 +4,12 @@
 @inject IServiceLayer ServiceLayer
 
 @code {
+    private EditLoginEntryModal? editLoginEntryModal; 
+    
     private string masterUsername = "user0";
     private string generatedPassword = string.Empty;
 
     private bool isCreateModalOpen = false;
-    private bool isEditModalOpen = false;
     private LoginEntryDTO selectedEntry = new LoginEntryDTO();
 
     private List<LoginEntryDTO> socialMediaEntries = new();
@@ -43,19 +44,7 @@
         isCreateModalOpen = false;
         StateHasChanged(); 
     }
-
-    private void OpenEditModal() // insert parm: LoginEntryDTO entry
-    {
-   //     selectedEntry = entry;
-        isEditModalOpen = true;
-        StateHasChanged(); 
-    }
-
-    private void CloseEditModal()
-    {
-        isEditModalOpen = false;
-        StateHasChanged(); 
-    }
+    
 
     private async Task HandleCreate(LoginEntryDTO newEntry)
     {
@@ -64,23 +53,7 @@
         CloseCreateModal();
         StateHasChanged(); 
     }
-
-    private async Task HandleUpdate(LoginEntryDTO updatedEntry)
-    {
-        await ServiceLayer.UpdateLoginEntryAsync(updatedEntry);
-        await LoadEntries();
-        CloseEditModal();
-        StateHasChanged(); 
-    }
-
-    private async Task HandleDelete(int entryId)
-    {
-        await ServiceLayer.DeleteLoginEntryAsync(entryId);
-        await LoadEntries();
-        CloseEditModal();
-        StateHasChanged(); 
-    }
-
+    
     private void GeneratePassword()
     {
         generatedPassword = GenerateRandomPassword();
@@ -94,6 +67,12 @@
         return new string(Enumerable.Repeat(chars, 12)
             .Select(s => s[random.Next(s.Length)]).ToArray());
     }
+
+    private void ShowEditLoginEntryModal()
+    {
+        editLoginEntryModal.showModal();
+    }
+
 }
 
 <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 100%; margin: 0 auto;">
@@ -112,10 +91,10 @@
                 Welcome: @masterUsername
             </div>
             <div class="mb-2">
-                Menu:
+                Menu
             </div>
             <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="OpenCreateModal">Create Entry</button>
-            <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="OpenEditModal">Update/delete Entry</button>
+            <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="ShowEditLoginEntryModal">Update or Delete Entry</button>
         </div>
 
         <div class="flex-grow-1 p-3">
@@ -129,9 +108,4 @@
 @if (isCreateModalOpen)
 {
     <CreateEntryModule OnCreate="HandleCreate" />
-}
-
-@if (isEditModalOpen)
-{
-    <UpdateDeleteEntryModule Entry="selectedEntry" OnUpdate="HandleUpdate" OnDelete="HandleDelete" />
 }
