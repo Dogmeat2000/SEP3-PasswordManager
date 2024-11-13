@@ -3,6 +3,8 @@
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
 
+<EditLoginEntryModal @ref="editLoginEntryModal"/>
+
 @code {
     private EditLoginEntryModal? editLoginEntryModal; 
     
@@ -70,7 +72,19 @@
 
     private void ShowEditLoginEntryModal()
     {
-        editLoginEntryModal.showModal();
+        if (editLoginEntryModal != null)
+        {
+            editLoginEntryModal.ShowModal();
+        }
+        else
+        {
+            Console.WriteLine("editLoginEntryModal er null");
+        }
+    }
+
+    private void TestMethod()
+    {
+        Console.WriteLine("TEST TEST");
     }
 
 }
@@ -95,7 +109,8 @@
             </div>
             <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="OpenCreateModal">Create Entry</button>
             <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="ShowEditLoginEntryModal">Update or Delete Entry</button>
-        </div>
+            <button @onclick="TestMethod">TEST</button>
+            </div>
 
         <div class="flex-grow-1 p-3">
             <EntityListViewModule Entries="socialMediaEntries" Category="Social Media" OnEdit="OpenEditModal" OnDelete="HandleDelete" />

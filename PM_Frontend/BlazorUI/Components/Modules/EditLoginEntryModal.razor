@@ -2,31 +2,33 @@
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
 
-<div class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Update or delete Entry</h5>
-                <button type="button" class="close" @onclick="CloseCreateModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="entryName">Name</label>
-                    <input type="text" id="entryName" class="form-control" @bind="entryName" />
+@if (isVisible)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update or delete Entry</h5>
+                    <button type="button" class="close" @onclick="HideModal">&times;</button>
                 </div>
-                <div class="form-group">
-                    <label for="entryAddress">Website</label>
-                    <input type="text" id="entryAddress" class="form-control" @bind="entryAddress" />
-                </div>
-                <div class="form-group">
-                    <label for="entryUsername">Username</label>
-                    <input type="text" id="entryUsername" class="form-control" @bind="entryUsername" />
-                </div>
-                <div class="form-group">
-                    <label for="entryPassword">Password</label>
-                    <input type="text" id="entryPassword" class="form-control" @bind="entryPassword" />
-                </div>
-                @*<div class="form-group">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="entryName">Name</label>
+                        <input type="text" id="entryName" class="form-control" @bind="entryName"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="entryAddress">Website</label>
+                        <input type="text" id="entryAddress" class="form-control" @bind="entryAddress"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="entryUsername">Username</label>
+                        <input type="text" id="entryUsername" class="form-control" @bind="entryUsername"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="entryPassword">Password</label>
+                        <input type="text" id="entryPassword" class="form-control" @bind="entryPassword"/>
+                    </div>
+                    @*<div class="form-group">
                     <label for="category">Category</label>
                     <select id="category" class="form-control" @bind="category">
                         <option>Select</option>
@@ -35,14 +37,15 @@
                         <option>Other</option>
                     </select>
                 </div>*@
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" @onclick="CloseCreateModal">Delete</button>
-                <button class="btn btn-primary" @onclick="CreateEntry">Save</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" @onclick="CloseCreateModal">Delete</button>
+                    <button class="btn btn-primary" @onclick="CreateEntry">Save</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
 
 @code {
     private bool isVisible = false; 
@@ -59,14 +62,16 @@
     [Parameter]
     public EventCallback OnCancel { get; set; }
 
-    public void showModal()
+    public void ShowModal()
     {
         isVisible = true; 
+        StateHasChanged();
     }
 
-    public void HideModal()
+    private void HideModal()
     {
         isVisible = false; 
+        StateHasChanged();
     }
 
     private async Task CreateEntry()
