@@ -13,27 +13,36 @@ namespace Shared.Dtos
 
         public LoginEntryDTO(int? id, string? entryUsername,
             string? entryPassword, int? masterUserId,
-            string? Category) : base(id)
+            string? category,
+            string? entryName, 
+            string? entryAddress) : base(id)
         {
-            EntryUsername = entryUsername;
-            EntryPassword = entryPassword;
+            EntryUsername = entryUsername ?? "Error: Unspecified";
+            EntryPassword = entryPassword ?? "Error: Unspecified";
             MasterUserId = masterUserId;
-            this.Category = Category;
+            Category = category ?? "Other";
+            EntryName = entryName ?? "Error: Unspecified";
+            EntryAddress = entryAddress ?? "Error: Unspecified";
         }
         
 
         public LoginEntryDTO(int id) : base(id) { }
 
-        public LoginEntryDTO()
-        {
-        }
+        public LoginEntryDTO() { }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             string toString = "[";
+            toString += "Name: " + EntryName;
+            toString += " ; Address: ";
+            toString += EntryAddress;
+            toString += "; Username: ";
             toString += EntryUsername;
-            toString += " ; ";
+            toString += "; Password: ";
             toString += EntryPassword;
+            toString += "; Category: ";
+            toString += Category;
+            toString += "; MasterUserId: ";
+            toString += MasterUserId;
             toString += "]";
             return toString;
         }
