@@ -1,122 +1,31 @@
 ﻿@using Shared.Dtos
 @code {
-    private string entryName = string.Empty;
-    private string entryAddress = string.Empty;
-    private string entryUsername = string.Empty;
-    private string entryPassword = string.Empty;
-    private string category = string.Empty;
-    
     [Parameter]
     public List<LoginEntryDTO> Entries { get; set; }
-    
     [Parameter]
     public string Category { get; set; }
-    
-    [Parameter]
-    public string OnEdit { get; set; }
-    
-    [Parameter]
-    public string OnDelete { get; set; }
-
-    [Parameter]
-    public EventCallback<LoginEntryDTO> OnCreate { get; set; }
-
-    [Parameter]
-    public EventCallback OnCancel { get; set; }
-
-    private async Task CreateEntry()
-    {
-        var newEntry = new LoginEntryDTO
-        {
-            entryName = entryName,
-            entryAddress = entryAddress,
-            entryUsername = entryUsername,
-            entryPassword = entryPassword,
-            Category = category
-        };
-
-        await OnCreate.InvokeAsync(newEntry);
-    }
-
-    private async Task CloseCreateModal()
-    {
-        await OnCancel.InvokeAsync();
-    }
 }
 
 <div class="loginEntry-section">
-    Social media
+    @Category
 </div>
 <table class="loginEntry-table">
     <thead>
-    <tr>
-        <th>name</th>
-        <th>website</th>
-        <th>username</th>
-        <th>password</th>
-    </tr>
+        <tr>
+            <th>Name</th>
+            <th>Website</th>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>facebook</td>
-        <td>facebook.com</td>
-        <td>facebookuser0</td>
-        <td>strongfbPW1</td>
-    </tr>
-    <tr>
-        <td>Instagram</td>
-        <td>instagram.com</td>
-        <td>Instauser0</td>
-        <td>strongInstaPW4</td>
-    </tr>
-    <tr>
-        <td>Reddit</td>
-        <td>reddit.com</td>
-        <td>user@reddit.com</td>
-        <td>strongVIAPw5</td>
-    </tr>
+        @foreach (LoginEntryDTO loginEntry in Entries) {
+            <tr>
+                <th>@loginEntry.EntryName</th>
+                <th>@loginEntry.EntryAddress</th>
+                <th>@loginEntry.EntryUsername</th>
+                <th>@loginEntry.EntryPassword</th>
+            </tr>
+        }
     </tbody>
 </table>
-
-
-<!--<div class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Create Entry</h5>
-                <button type="button" class="close" @onclick="CloseCreateModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="entryName">Name</label>
-                    <input type="text" id="entryName" class="form-control" @bind="entryName" />
-                </div>
-                <div class="form-group">
-                    <label for="entryAddress">Website</label>
-                    <input type="text" id="entryAddress" class="form-control" @bind="entryAddress" />
-                </div>
-                <div class="form-group">
-                    <label for="entryUsername">Username</label>
-                    <input type="text" id="entryUsername" class="form-control" @bind="entryUsername" />
-                </div>
-                <div class="form-group">
-                    <label for="entryPassword">Password</label>
-                    <input type="text" id="entryPassword" class="form-control" @bind="entryPassword" />
-                </div>
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <select id="category" class="form-control" @bind="category">
-                        <option>Select</option>
-                        <option>Social Media</option>
-                        <option>Bank - Pension - Insurance</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" @onclick="CloseCreateModal">Cancel</button>
-                <button class="btn btn-primary" @onclick="CreateEntry">Add</button>
-            </div>
-        </div>
-    </div>
-</div>-->

@@ -21,41 +21,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/BlazorFrontend.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Components/App.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Components/Layout/MainLayout.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Components/Layout/MainLayout.razor.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Components/Pages/Error.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Components/Pages/Home.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Components/Routes.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Components/_Imports.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/BlazorFrontend.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/BlazorFrontend.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/BlazorFrontend.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/Debug/net8.0/BlazorFrontend.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/project.packagespec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/rider.project.model.nuget.info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/obj/rider.project.restore.info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorFrontend/wwwroot/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/EntryListViewModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateEntryModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateEntryModule.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/EditLoginEntryModal.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/EditLoginEntryModal.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/JSONService/DTOJsonConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/JSONService/DTOJsonConverter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,23 +77,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.BlazorUI: http.executor": "Run",
-    ".NET Launch Settings Profile.TestBlazorApp: http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.BlazorUI: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.TestBlazorApp: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.BlazorUI: http">
     <configuration name="Client" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -377,7 +348,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730919769793</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="WIP: Adjust LoginEntry view to better align with GUI design template">
+      <option name="closed" value="true" />
+      <created>1731487903094</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1731487903094</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,6 +392,7 @@
     <MESSAGE value="Createing frontend" />
     <MESSAGE value="Updated all module-files making them ready for userstories 1&amp;2.&#10;Updated Serviceimpl, to take correct CRUD from interfaces (Master and entry). &#10;Still struggling shifting between modules(PMModule to CreateEntryModule) and getting generate password to actually show generate password...&#10;StateHasChanged does not seem to do the trick alone." />
     <MESSAGE value="Updating decrypting methods to return and accept ServerResponse" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="WIP: Adjust LoginEntry view to better align with GUI design template" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: Adjust LoginEntry view to better align with GUI design template" />
   </component>
 </project>
