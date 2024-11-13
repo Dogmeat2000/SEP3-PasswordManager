@@ -33,7 +33,7 @@ public class CryptographyServiceImpl : ICryptographyService
 
     public async Task<LoginEntryDTO> EncryptLoginEntryAsync(LoginEntryDTO loginEntryDto)
     {                                                                                
-        LoginEntryDTO encryptedLoginEntryDto = new();                                
+        LoginEntryDTO encryptedLoginEntryDto = loginEntryDto;                     
                                                                                      
         encryptedLoginEntryDto.EntryUsername = AesEncryptionHelper.Encrypt(loginEntryDto.EntryUsername);
         encryptedLoginEntryDto.EntryPassword = AesEncryptionHelper.Encrypt(loginEntryDto.EntryPassword);
@@ -49,9 +49,14 @@ public class CryptographyServiceImpl : ICryptographyService
 
         if (decryptedServerResponse.dto.GetType() == typeof(LoginEntryDTO))
         {
+            
             LoginEntryDTO decryptedLoginEntry = (LoginEntryDTO)decryptedServerResponse.dto;
+            
+            Console.WriteLine("From cryp: " + decryptedLoginEntry.EntryName);
+            
             AesEncryptionHelper.Decrypt(decryptedLoginEntry.EntryUsername);
             AesEncryptionHelper.Decrypt(decryptedLoginEntry.EntryPassword);
+            
         }
         
         return await Task.FromResult(decryptedServerResponse);
