@@ -22,7 +22,7 @@
         @foreach (LoginEntryDTO loginEntry in Entries) {
             <tr>
                 <th>@loginEntry.EntryName</th>
-                <th>@loginEntry.EntryAddress</th>
+                <th><a href="@loginEntry.EntryAddress" target="_blank" rel="noopener norefferer">@loginEntry.EntryAddress</a></th>
                 <th>@loginEntry.EntryUsername</th>
                 <th>@loginEntry.EntryPassword</th>
             </tr>
