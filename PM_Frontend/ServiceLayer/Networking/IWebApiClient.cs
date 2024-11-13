@@ -12,4 +12,6 @@ public interface IWebApiClient
 
     Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
     Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
+    Task<ServerResponse> UpdateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
+    Task<ServerResponse> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete);
 }
