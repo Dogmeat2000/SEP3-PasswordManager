@@ -67,6 +67,26 @@ public class DTOJsonConverter : JsonConverter
                     };
                     return dto;
                 }
+
+                if (typeName.Contains("LoginEntryListDTO"))
+                {
+                    // Initialize the LoginEntryListDTO
+                    var loginEntryListDTO = new LoginEntryListDTO
+                    {
+                        id = (int?)jsonObject["id"]
+                    };
+
+                    // Deserialize the loginEntries array
+                    var entriesArray = jsonObject["loginEntries"] as JArray;
+                    if (entriesArray != null)
+                    {
+                        loginEntryListDTO.loginEntries = entriesArray
+                            .Select(entry => entry.ToObject<LoginEntryDTO>(serializer))
+                            .ToList();
+                    }
+
+                    return loginEntryListDTO;
+                }
             }
 
             throw new JsonSerializationException("Missing or unknown @class property in DTO.");
