@@ -17,10 +17,19 @@
     private List<LoginEntryDTO> socialMediaEntries = new();
     private List<LoginEntryDTO> bankEntries = new();
     private List<LoginEntryDTO> otherEntries = new();
-
+    
     protected override async Task OnInitializedAsync()
     {
         await LoadEntries();
+    }
+
+    
+    private void TestData() {
+        // TODO: Delete method
+        socialMediaEntries.Add(new LoginEntryDTO(1, "Test1", "TestPswd1", 1, "Social Media"));
+        bankEntries.Add(new LoginEntryDTO(2, "Test2", "TestPswd1", 1, "Bank - Pension - Insurance"));
+        bankEntries.Add(new LoginEntryDTO(3, "Test3", "TestPswd1", 1, "Other"));
+        
     }
 
     private async Task LoadEntries()
@@ -33,6 +42,10 @@
             otherEntries = entries.Where(e => e.Category == "Other").ToList();
         }
         StateHasChanged();*/
+        
+        // TODO: Delete below:
+        TestData();
+        StateHasChanged();
     }
 
     private void OpenCreateModal()
@@ -113,9 +126,9 @@
             </div>
 
         <div class="flex-grow-1 p-3">
-            <EntityListViewModule Entries="socialMediaEntries" Category="Social Media" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
-            <EntityListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
-            <EntityListViewModule Entries="otherEntries" Category="Other" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
+            <LoginEntryListViewModule Entries="socialMediaEntries" Category="Social Media" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
+            <!--<LoginEntryListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance" OnEdit="OpenEditModal" OnDelete="HandleDelete" />
+            <LoginEntryListViewModule Entries="otherEntries" Category="Other" OnEdit="OpenEditModal" OnDelete="HandleDelete" />-->
         </div>
     </div>
 </div>
