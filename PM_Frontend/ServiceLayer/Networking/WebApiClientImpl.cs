@@ -36,8 +36,15 @@ public class WebApiClientImpl : IWebApiClient
                 new MasterUserDTO(masterUserId, null, null));
         return responseMasterUserDto;
     }
-    
-    
+
+    public async Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO loginEntryDto)
+    {
+        var serverResponse =
+            await SendRequestAsync <LoginEntryDTO>("CreateLoginEntry", loginEntryDto);
+        return serverResponse;
+    }
+
+
     private async Task<ServerResponse> SendRequestAsync<TRequestDto>(string requestType, TRequestDto requestDto)
             where TRequestDto : DTO
         {
