@@ -1,51 +1,55 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Shared.Dtos
 {
     public class LoginEntryDTO : DTO
     {
-        public string? entryName { get; set; }
-        public string? entryUsername { get; set; }
-        public string? entryPassword { get; set; }
-        public string? entryAddress { get; set; }
-        public int? masterUserId { get; set; }
-        public string? entryCategory { get; set; }
+            [JsonProperty("entryName")]
+            public string? EntryName { get; set; }
+    
+            [JsonProperty("entryPassword")]
+            public string? EntryPassword { get; set; }
+    
+            [JsonProperty("entryUsername")]
+            public string? EntryUsername { get; set; }
+    
+            [JsonProperty("entryAddress")]
+            public string? EntryAddress { get; set; }
+    
+            [JsonProperty("masterUserId")]
+            public int? MasterUserId { get; set; }
+    
+            [JsonProperty("entryCategory")]
+            public string? EntryCategory { get; set; }
 
-        public LoginEntryDTO(int? id, string? entryUsername,
-            string? entryPassword, int? masterUserId,
-            string? entryCategory,
-            string? entryName,
-            string? entryAddress) : base(id)
-        {
-            this.entryUsername = entryUsername ?? "Error: Unspecified";
-            this.entryPassword = entryPassword ?? "Error: Unspecified";
-            this.masterUserId = masterUserId;
-            this.entryCategory = entryCategory ?? "Other";
-            this.entryName = entryName ?? "Error: Unspecified";
-            this.entryAddress = entryAddress ?? "Error: Unspecified";
-        }
+            public LoginEntryDTO(int? id, string? entryUsername, string? entryPassword, int? masterUserId, string? entryCategory, string? entryName, string? entryAddress) : base(id)
+            {
+                EntryName = entryName;
+                EntryUsername = entryUsername;
+                EntryPassword = entryPassword;
+                EntryAddress = entryAddress;
+                MasterUserId = masterUserId;
+                EntryCategory = entryCategory;
+            }
+    
+            public LoginEntryDTO(int id) : base(id) { }
+            public LoginEntryDTO() { }
         
-
-        public LoginEntryDTO(int id) : base(id) { }
-
-        public LoginEntryDTO()
-        {
-        }
-
         public override string ToString()
         {
             string toString = "[";
-            toString += "Name: " + entryName;
+            toString += "Name: " + EntryName;
             toString += " ; Address: ";
-            toString += entryAddress;
+            toString += EntryAddress;
             toString += "; Username: ";
-            toString += entryUsername;
+            toString += EntryUsername;
             toString += "; Password: ";
-            toString += entryPassword;
+            toString += EntryPassword;
             toString += "; Category: ";
-            toString += entryCategory;
+            toString += EntryCategory;
             toString += "; MasterUserId: ";
-            toString += masterUserId;
+            toString += MasterUserId;
             toString += "]";
             return toString;
         }

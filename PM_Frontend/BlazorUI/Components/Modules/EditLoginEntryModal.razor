@@ -41,7 +41,7 @@
                 </div>*@
                 </div>
                 <div class="modal-footer">
-                    <!--<button class="btn btn-secondary" @onclick="">Delete</button>--> //TODO: Commented out because app would not launch with this line!
+                    <button class="btn btn-secondary" @onclick="DeleteLoginEntryAsync">Delete</button>
                     <button class="btn btn-primary" @onclick="UpdateLoginEntryAsync">Save</button>
                 </div>
             </div>
@@ -62,7 +62,7 @@
 
     [Parameter]
     public EventCallback<LoginEntryDTO> OnUpdateEntrySucces { get; set; }
-    public EventCallback onDeleteEntrySuccess { get; set; }
+    public EventCallback<bool> onDeleteEntrySuccess { get; set; }
 
     private void Initialize()
     {
@@ -95,10 +95,10 @@
     {
         var entryToBeUpdated = new LoginEntryDTO
         {
-            entryName = entryName,
-            entryPassword = entryPassword,
-            entryUsername = entryUsername,
-            entryAddress = entryAddress
+            EntryUsername = entryUsername,
+            EntryPassword = entryPassword,
+            EntryName = entryName,
+            EntryAddress = entryAddress,
         };
 
         var updatedLoginEntry = await LoginEntryService.UpdateLoginEntryAsync(entryToBeUpdated);

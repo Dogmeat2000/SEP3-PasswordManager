@@ -6,4 +6,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 public interface LoginEntryRepositoryService {
     LoginEntry createLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException;
+    LoginEntry updateLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException;
+    void deleteLoginEntry(LoginEntry loginEntry) throws PersistenceException;
 }
