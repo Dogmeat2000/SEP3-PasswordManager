@@ -2,6 +2,7 @@ package dk.sep3.webapi.network.converter;
 
 import common.ClientRequest;
 import common.dto.LoginEntryDTO;
+import common.dto.MasterUserDTO;
 import grpc.GenericRequest;
 import org.springframework.stereotype.Component;
 
@@ -31,8 +32,7 @@ public class ClientRequestToGrpcConverter {
                                 .setMasterPassword(masterUserDTO.getMasterPassword())
                                 .build()
                 );
-        } else if (request.getRequestType().equals("CreateLoginEntry"))
-        {
+        } else if (request.getRequestType().equals("CreateLoginEntry")) {
             common.dto.LoginEntryDTO loginEntryDTO = (LoginEntryDTO) request.getDTO();
             builder.setLoginEntry(
                     grpc.LoginEntryDTO.newBuilder()
@@ -41,6 +41,18 @@ public class ClientRequestToGrpcConverter {
                             .setEntryPassword(loginEntryDTO.getEntryPassword())
                             .setMasterUserId(loginEntryDTO.getMasterUserId())
                             .build()
+            );
+        } else if (request.getRequestType().equalsIgnoreCase("ReadLoginEntries")) {
+            // Extract MasterUser from request:
+            common.dto.MasterUserDTO masterUserDTO = (MasterUserDTO) request.getDTO();
+
+            // Build gRPC compatible request:
+            builder.setMasterUser(
+                grpc.MasterUserDTO.newBuilder()
+                    .setId(masterUserDTO.getId())
+                    .setMasterUsername(masterUserDTO.getMasterUsername())
+                    .setMasterPassword(masterUserDTO.getMasterPassword())
+                    .build()
             );
         }
 

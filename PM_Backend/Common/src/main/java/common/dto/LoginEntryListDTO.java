@@ -2,6 +2,7 @@ package common.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonTypeInfo(
@@ -18,6 +19,7 @@ public class LoginEntryListDTO extends DTO {
     }
 
     public LoginEntryListDTO() {
+        loginEntries = new ArrayList<>();
     }
 
     public List<LoginEntryDTO> getLoginEntries() {
@@ -28,8 +30,11 @@ public class LoginEntryListDTO extends DTO {
         this.loginEntries = loginEntries;
     }
 
-    public void addLoginEntry(LoginEntryDTO loginEntry)
-    {
+    public void addLoginEntry(LoginEntryDTO loginEntry) {
         loginEntries.add(loginEntry);
+    }
+
+    @Override public String toString() {
+        return "LoginEntryListDTO{" + "loginEntries=" + loginEntries + '}';
     }
 }

@@ -25,6 +25,7 @@ public class LoginEntry implements Serializable {
     @Column(name = "entry_address")
     private String entryAddress;
 
+    // Todo: Change the below variable, to point to the Category implementation using JPA - once that gets implemented. (Skrevet af Kristian)
     @Column(name = "entry_category_id", nullable = false)
     private int entryCategoryId;
 
