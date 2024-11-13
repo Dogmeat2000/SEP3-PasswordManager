@@ -1,6 +1,8 @@
 ﻿@using ServiceLayer.Services
+@using ServiceLayer.Services.LoginEntryService
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
+@inject ILoginEntryService LoginEntryService
 
 @if (isVisible)
 {
@@ -39,8 +41,8 @@
                 </div>*@
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" @onclick="CloseCreateModal">Delete</button>
-                    <button class="btn btn-primary" @onclick="CreateEntry">Save</button>
+                    <button class="btn btn-secondary" @onclick="">Delete</button>
+                    <button class="btn btn-primary" @onclick="UpdateLoginEntryAsync">Save</button>
                 </div>
             </div>
         </div>
@@ -48,7 +50,9 @@
 }
 
 @code {
-    private bool isVisible = false; 
+    private bool isVisible = false;
+
+    private LoginEntryDTO selectedLoginEntry; 
     
     private string entryName = string.Empty;
     private string entryAddress = string.Empty;
@@ -57,11 +61,19 @@
     private string category = string.Empty;
 
     [Parameter]
-    public EventCallback<LoginEntryDTO> OnCreate { get; set; }
+    public EventCallback<LoginEntryDTO> OnUpdateEntrySucces { get; set; }
+    public EventCallback onDeleteEntrySuccess { get; set; }
 
-    [Parameter]
-    public EventCallback OnCancel { get; set; }
-
+    private void Initialize()
+    {
+        selectedLoginEntry = new LoginEntryDTO();
+        
+        entryName = "";
+        entryAddress = "";
+        entryUsername = "";
+        entryPassword = ""; 
+    }
+    
     public void ShowModal()
     {
         isVisible = true; 
@@ -71,25 +83,32 @@
     private void HideModal()
     {
         isVisible = false; 
+        entryName = string.Empty;
+        entryAddress = string.Empty;
+        entryUsername = string.Empty;
+        entryPassword = string.Empty;
+        
         StateHasChanged();
     }
 
-    private async Task CreateEntry()
+    private async Task UpdateLoginEntryAsync()
     {
-        var newEntry = new LoginEntryDTO
+        var entryToBeUpdated = new LoginEntryDTO
         {
-            entryName = entryName,
-            entryAddress = entryAddress,
-            entryUsername = entryUsername,
-            entryPassword = entryPassword,
-            Category = category
+            EntryName = entryName,
+            EntryPassword = entryPassword,
+            EntryUsername = entryUsername,
+            EntryAddress = entryAddress
         };
 
-        await OnCreate.InvokeAsync(newEntry);
+        var updatedLoginEntry = await LoginEntryService.UpdateLoginEntryAsync(entryToBeUpdated);
+        await OnUpdateEntrySucces.InvokeAsync(updatedLoginEntry); 
+        HideModal();
     }
 
-    private async Task CloseCreateModal()
+    private async Task DeleteLoginEntryAsync()
     {
-        await OnCancel.InvokeAsync();
+        var isDeleted = await LoginEntryService.DeleteLoginEntryAsync(selectedLoginEntry); 
+        await onDeleteEntrySuccess.InvokeAsync(); 
     }
 }

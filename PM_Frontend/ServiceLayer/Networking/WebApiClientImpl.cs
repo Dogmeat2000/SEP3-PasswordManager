@@ -44,6 +44,20 @@ public class WebApiClientImpl : IWebApiClient
         return serverResponse;
     }
 
+    /** Updates LoginEntry in DB **/
+    public async Task<ServerResponse> UpdateLoginEntryAsync(LoginEntryDTO loginEntryDto)
+    {
+        var serverResponse = await SendRequestAsync("UpdateLoginEntry", loginEntryDto);
+        return serverResponse;
+    }
+
+    /** Deletes LoginEntry in DB **/
+    public async Task<ServerResponse> DeleteLoginEntryAsync(LoginEntryDTO logonEntryDto)
+    {
+        var serverResponse = await SendRequestAsync("DeleteLoginEntry", logonEntryDto);
+        return serverResponse;
+    }
+
 
     private async Task<ServerResponse> SendRequestAsync<TRequestDto>(string requestType, TRequestDto requestDto)
             where TRequestDto : DTO
