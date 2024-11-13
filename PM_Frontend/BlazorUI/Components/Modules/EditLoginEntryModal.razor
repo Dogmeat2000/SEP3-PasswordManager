@@ -9,42 +9,47 @@
     <div class="modal fade show d-block" @onclick="HideModal" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
         <div class="modal-dialog" @onclick:stopPropagation>
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header header">
                     <h5 class="modal-title">Update or delete Entry</h5>
-                    <button type="button" class="close" @onclick="HideModal">&times;</button>
+                    <button type="button" class="close btn bg-white" @onclick="HideModal">&times;</button>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="entryName">Name</label>
-                        <input type="text" id="entryName" class="form-control" @bind="entryName"/>
+                <form class="p-3">
+                    <div class="form-group mb-3">
+                        <label for="entryName" class="form-label">Name</label>
+                        <input type="text" id="entryName" class="form-control" @bind="entryName" placeholder="Enter name"/>
                     </div>
-                    <div class="form-group">
-                        <label for="entryAddress">Website</label>
-                        <input type="text" id="entryAddress" class="form-control" @bind="entryAddress"/>
+
+                    <div class="form-group mb-3">
+                        <label for="entryAddress" class="form-label">Website</label>
+                        <input type="text" id="entryAddress" class="form-control" @bind="entryAddress" placeholder="Enter website URL"/>
                     </div>
-                    <div class="form-group">
-                        <label for="entryUsername">Username</label>
-                        <input type="text" id="entryUsername" class="form-control" @bind="entryUsername"/>
+
+                    <div class="form-group mb-3">
+                        <label for="entryUsername" class="form-label">Username</label>
+                        <input type="text" id="entryUsername" class="form-control" @bind="entryUsername" placeholder="Enter username"/>
                     </div>
-                    <div class="form-group">
-                        <label for="entryPassword">Password</label>
-                        <input type="text" id="entryPassword" class="form-control" @bind="entryPassword"/>
+
+                    <div class="form-group mb-3">
+                        <label for="entryPassword" class="form-label">Password</label>
+                        <input type="password" id="entryPassword" class="form-control" @bind="entryPassword" placeholder="Enter password"/>
                     </div>
-                    @*<div class="form-group">
-                    <label for="category">entryCategory</label>
-                    <select id="category" class="form-control" @bind="entrycategory">
-                        <option>Select</option>
-                        <option>Social Media</option>
-                        <option>Bank - Pension - Insurance</option>
-                        <option>Other</option>
-                    </select>
-                </div>*@
+
+                    <!-- Optional Category Selection -->
+                    <div class="form-group mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select id="category" class="form-select" @bind="entrycategory">
+                            <option selected disabled>Select category</option>
+                            <option>Social Media</option>
+                            <option>Bank - Pension - Insurance</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" @onclick="DeleteLoginEntryAsync">Delete</button>
+                        <button class="btn btn-primary" @onclick="UpdateLoginEntryAsync">Save</button>
+                    </div> 
+                </form>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" @onclick="DeleteLoginEntryAsync">Delete</button>
-                    <button class="btn btn-primary" @onclick="UpdateLoginEntryAsync">Save</button>
-                </div>
-            </div>
         </div>
     </div>
 }
@@ -69,11 +74,11 @@
     {
         if (SelectedEntry != null)
         {
-            entryName = SelectedEntry.EntryName;
-            entryUsername = SelectedEntry.EntryUsername;
-            entryPassword = SelectedEntry.EntryPassword;
-            entryAddress = SelectedEntry.EntryAddress;
-            entrycategory = SelectedEntry.EntryCategory;
+            entryName = SelectedEntry.EntryName ?? "DefaultName"; 
+            entryUsername = SelectedEntry.EntryUsername ?? "DefaultUsername";
+            entryPassword = SelectedEntry.EntryPassword ?? "DefaultPassword";
+            entryAddress = SelectedEntry.EntryAddress ?? "http://default.url";
+            entrycategory = SelectedEntry.EntryCategory ?? "DefaultCategory";
             
             isVisible = true;
             StateHasChanged();
@@ -92,14 +97,13 @@
 
     private async Task UpdateLoginEntryAsync()
     {
-        var entryToBeUpdated = new LoginEntryDTO
-        {
-            EntryUsername = entryUsername,
-            EntryPassword = entryPassword,
-            EntryName = entryName,
-            EntryAddress = entryAddress,
-        };
-
+        var entryToBeUpdated = SelectedEntry;
+        entryToBeUpdated.EntryName = entryName;
+        entryToBeUpdated.EntryUsername = entryUsername;
+        entryToBeUpdated.EntryPassword = entryPassword;
+        entryToBeUpdated.EntryCategory = entrycategory;
+        entryToBeUpdated.EntryAddress = entryAddress; 
+        
         var updatedLoginEntry = await LoginEntryService.UpdateLoginEntryAsync(entryToBeUpdated);
         await OnUpdateEntrySucces.InvokeAsync(updatedLoginEntry); 
         HideModal();

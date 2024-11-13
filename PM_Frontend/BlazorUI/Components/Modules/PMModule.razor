@@ -25,9 +25,9 @@
 
     
     private void TestData() {
-        socialMediaEntries.Add(new LoginEntryDTO(1, "TestEntryUserName1", "TestPswd1", 1, "Social Media", "Discord", "https://discord.com"));
-        bankEntries.Add(new LoginEntryDTO(2, "TestEntryUserName2", "TestPswd1", 1, "Bank - Pension - Insurance", "ItsLearning", "https://itsLearning.dk"));
-        otherEntries.Add(new LoginEntryDTO(3, "TestEntryUserName3", "TestPswd1", 1, "Other", "Folketinget", "https://folketinget.dk"));
+        socialMediaEntries.Add(new LoginEntryDTO(1, "TestEntryUserName1", "TestPswd1", 109, "Social Media", "Discord", "https://discord.com"));
+        bankEntries.Add(new LoginEntryDTO(2, "TestEntryUserName2", "TestPswd1", 109, "Bank - Pension - Insurance", "ItsLearning", "https://itsLearning.dk"));
+        otherEntries.Add(new LoginEntryDTO(3, "TestEntryUserName3", "TestPswd1", 109, "Other", "Folketinget", "https://folketinget.dk"));
     }
     
 
@@ -113,31 +113,30 @@
         selectedEntry = entry;
         ShowEditLoginEntryModal();
     }
+
 }
 
-<div class="card shadow p-3 mb-5 bg-white rounded" style="width: 100%; margin: 0 auto;">
-    <div class="card-header text-white" style="background-color: #00517D;">
+<div class="card shadow mb-5 bg-white rounded" style="width: 100%; margin: 0 auto;">
+    <div class="card-header text-white p-3" style="background-color: #00517D;">
         Password Manager
     </div>
-    
-    <div class="d-flex justify-content-start align-items-center p-2" style="background-color: #007bc7;">
-        <button class="btn btn-secondary" @onclick="GeneratePassword" style="margin-right: 10px;">Generate Password</button>
-        <span class="text-white ml-2">@generatedPassword</span> <!-- Display the generated password -->
+
+    <div class="d-flex justify-content-start align-items-center p-3" style="background-color: #007bc7; border-color: var(--color-primary-dark); border-bottom: 2px solid;">
+        <button class="btn btn-sm btn-outline-light me-3" @onclick="GeneratePassword">Generate Password</button>
+        <span class="text-white ms-2">@generatedPassword</span>
     </div>
 
-    <div class="d-flex mt-3">
-        <div class="p-3" style="width: 200px; background-color: #007bc7; color: white;">
-            <div class="mb-3">
-                Welcome: @masterUsername
+    <div class="d-flex">
+        <div class="p-4" style="width: 200px; background-color: #007bc7; color: white;">
+            <div class="mb-4">
+                Welcome @masterUsername!
             </div>
-            <div class="mb-2">
-                Menu
-            </div>
-                <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="OpenCreateModal">Create Entry</button>
-                <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="ShowEditLoginEntryModal">Update or Delete Entry</button>
-            </div>
+            
+            <button class="btn bg-white mb-3 btn-sm" style="width: 100%;" @onclick="OpenCreateModal">Create Entry</button>
+            <button class="btn bg-white mb-3 btn-sm" style="width: 100%;" @onclick="ShowEditLoginEntryModal" disabled="@((selectedEntry == null))">Edit Entry</button>
+        </div>
 
-        <div class="flex-grow-1 px-1">
+        <div class="flex-grow-1">
             <LoginEntryListViewModule Entries="socialMediaEntries" Category="Social Media" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
             <LoginEntryListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
             <LoginEntryListViewModule Entries="otherEntries" Category="Other" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>

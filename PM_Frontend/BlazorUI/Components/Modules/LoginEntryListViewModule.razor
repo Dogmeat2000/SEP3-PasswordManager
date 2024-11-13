@@ -12,7 +12,7 @@
     [Parameter]
     public EventCallback<LoginEntryDTO> OnEntryDoubleClicked { get; set; }
     
-    private LoginEntryDTO selectedEntry;
+    private LoginEntryDTO? selectedEntry;
     private bool singleClickHandled;
     private System.Timers.Timer clickTimer;
     private bool _fullyLoaded = false;
@@ -39,6 +39,11 @@
         singleClickHandled = true;
         clickTimer.Start();
     }
+    
+    private void ClearSelection()
+    {
+        selectedEntry = null;
+    }
 
     private void HandleDoubleClick(LoginEntryDTO entry)
     {
@@ -60,21 +65,23 @@
 <div class="loginEntry-section">
     @Category
 </div>
-<table class="loginEntry-table">
+<table class="loginEntry-table table table-striped table-hover" @onclick="ClearSelection">
     <thead>
-        <tr>
-            <th>Name</th>
-            <th>Website</th>
-            <th>Username</th>
-            <th>Password</th>
+        <tr class="small">
+            <th scope="col">Name</th>
+            <th scope="col">Website</th>
+            <th scope="col">Username</th>
+            <th scope="col"> Password</th>
         </tr>
     </thead>
     @if (!_fullyLoaded) {
         <p>@updateLoadingMsg("Loading entries...")</p>
     }
-    <tbody>
+    <tbody @onclick:stopPropagation>
         @foreach (LoginEntryDTO loginEntry in Entries) {
-            <tr @onclick="() => HandleClick(loginEntry)" @ondblclick="() => HandleDoubleClick(loginEntry)">
+        <tr @onclick="() => HandleClick(loginEntry)"
+            @ondblclick="() => HandleDoubleClick(loginEntry)"
+            class="@(selectedEntry == loginEntry ? "active-row" : "")">
                 <td>@loginEntry.EntryName</td>
                 <td><a href="@loginEntry.EntryAddress" target="_blank" rel="noopener norefferer">@loginEntry.EntryAddress</a></td>
                 <td>@loginEntry.EntryUsername</td>
