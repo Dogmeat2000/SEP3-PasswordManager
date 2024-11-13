@@ -1,5 +1,6 @@
 ﻿@using ServiceLayer.Services
 @using Shared.Dtos
+@using Shared.CommunicationObjects
 @inject IServiceLayer ServiceLayer
 @code {
     private string entryName = string.Empty;
@@ -7,6 +8,9 @@
     private string entryUsername = string.Empty;
     private string entryPassword = string.Empty;
     private string category = string.Empty;
+    private bool isSubmitting = false;
+    private string? errorMessage = null;
+    private string? confirmationMessage = null;
 
     [Parameter]
     public EventCallback<LoginEntryDTO> OnCreate { get; set; }
@@ -16,6 +20,10 @@
 
     private async Task CreateEntry()
     {
+        isSubmitting = true;
+        errorMessage = null;
+        confirmationMessage = null;
+
         var newEntry = new LoginEntryDTO
         {
             EntryName = entryName,
@@ -25,7 +33,45 @@
             EntryCategory = category
         };
 
-        await OnCreate.InvokeAsync(newEntry);
+        try
+        {
+            // Call the service layer to create the entry in the database and receive a ServerResponse
+            ServerResponse response = await ServiceLayer.CreateLoginEntryAsync(newEntry);
+
+            // Check the status code in the ServerResponse
+            if (response.statusCode == 200)
+            {
+                confirmationMessage = "Entry created successfully!";
+                
+                // Optionally, invoke the OnCreate callback to notify the parent component
+                await OnCreate.InvokeAsync(newEntry);
+
+                // Clear the form fields
+                entryName = string.Empty;
+                entryAddress = string.Empty;
+                entryUsername = string.Empty;
+                entryPassword = string.Empty;
+                category = string.Empty;
+
+                // Automatically close the modal after a brief delay if desired
+                // await Task.Delay(1000); // Uncomment to add delay
+                await CloseCreateModal();
+            }
+            else
+            {
+                // Display the server's error message if status code is not successful
+                errorMessage = response.message ?? "An error occurred while creating the entry.";
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle unexpected errors
+            errorMessage = "Failed to create entry: " + ex.Message;
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
     }
 
     private async Task CloseCreateModal()
@@ -42,6 +88,14 @@
                 <button type="button" class="close" @onclick="CloseCreateModal">&times;</button>
             </div>
             <div class="modal-body">
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger">@errorMessage</div>
+                }
+                @if (!string.IsNullOrEmpty(confirmationMessage))
+                {
+                    <div class="alert alert-success">@confirmationMessage</div>
+                }
                 <div class="form-group">
                     <label for="entryName">Name</label>
                     <input type="text" id="entryName" class="form-control" @bind="entryName" />
@@ -56,10 +110,10 @@
                 </div>
                 <div class="form-group">
                     <label for="entryPassword">Password</label>
-                    <input type="text" id="entryPassword" class="form-control" @bind="entryPassword" />
+                    <input type="password" id="entryPassword" class="form-control" @bind="entryPassword" />
                 </div>
                 <div class="form-group">
-                    <label for="category">entryCategory</label>
+                    <label for="category">Category</label>
                     <select id="category" class="form-control" @bind="category">
                         <option>Select</option>
                         <option>Social Media</option>
@@ -69,8 +123,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" @onclick="CloseCreateModal">Cancel</button>
-                <button class="btn btn-primary" @onclick="CreateEntry">Add</button>
+                <button class="btn btn-secondary" @onclick="CloseCreateModal" disabled="@isSubmitting">Cancel</button>
+                <button class="btn btn-primary" @onclick="CreateEntry" disabled="@isSubmitting">Add</button>
             </div>
         </div>
     </div>

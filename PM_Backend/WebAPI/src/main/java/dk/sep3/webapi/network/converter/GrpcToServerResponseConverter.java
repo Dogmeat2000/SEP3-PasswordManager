@@ -20,16 +20,16 @@ public class GrpcToServerResponseConverter {
             masterUserDTO.setMasterPassword(grpcResponse.getMasterUser().getMasterPassword());
             serverResponse.setDto(masterUserDTO);
 
-        } /* else if (grpcResponse.hasLoginEntry()) {
-            LoginEntryDTO loginEntryDTO = new LoginEntryDTO(
-                    (int) grpcResponse.getLoginEntry().getId(),
-                    grpcResponse.getLoginEntry().getEntryUsername(),
+        } else if (grpcResponse.hasLoginEntry()) {
+            LoginEntryDTO loginEntryDTO = new LoginEntryDTO(grpcResponse.getLoginEntry().getEntryUsername(),
                     grpcResponse.getLoginEntry().getEntryPassword(),
-                    (int) grpcResponse.getLoginEntry().getMasterUserId()
-            );
+                    grpcResponse.getLoginEntry().getMasterUserId(),
+                    grpcResponse.getLoginEntry().getEntryName(),
+                    grpcResponse.getLoginEntry().getEntryAddress(),
+                    "Unspecified");
             serverResponse.setDto(loginEntryDTO);
 
-        } */ else {
+        } else {
             return new ServerResponse(500, "Error: dto not supported");
         }
 

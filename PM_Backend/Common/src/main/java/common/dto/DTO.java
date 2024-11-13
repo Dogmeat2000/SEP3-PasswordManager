@@ -10,7 +10,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = MasterUserDTO.class, name = "MasterUserDTO"),
-        @JsonSubTypes.Type(value = LoginEntryDTO.class, name = "LoginEntryDTO")
+        @JsonSubTypes.Type(value = LoginEntryDTO.class, name = "LoginEntryDTO"),
+        @JsonSubTypes.Type(value = LoginEntryListDTO.class, name = "LoginEntryListDTO")
 })
 
 public abstract class DTO {

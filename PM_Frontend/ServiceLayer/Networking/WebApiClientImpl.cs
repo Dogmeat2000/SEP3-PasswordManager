@@ -102,6 +102,7 @@ public class WebApiClientImpl : IWebApiClient
                 {
                     TypeNameHandling = TypeNameHandling.Auto // Ensure @class is included for polymorphism
                 });
+                Console.WriteLine(jsonRequest);
                 
                 //Send the request to the web api server
                 var response = await _httpClient.PostAsync(WebApiUrl, new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
