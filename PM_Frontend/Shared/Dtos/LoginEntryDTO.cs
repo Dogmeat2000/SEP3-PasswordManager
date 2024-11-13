@@ -9,18 +9,18 @@ namespace Shared.Dtos
         public string? EntryPassword { get; set; }
         public string? EntryAddress { get; set; }
         public int? MasterUserId { get; set; }
-        public string? Category { get; set; }
+        public string? EntryCategory { get; set; }
 
         public LoginEntryDTO(int? id, string? entryUsername,
             string? entryPassword, int? masterUserId,
-            string? category,
+            string? entryCategory,
             string? entryName, 
             string? entryAddress) : base(id)
         {
             EntryUsername = entryUsername ?? "Error: Unspecified";
             EntryPassword = entryPassword ?? "Error: Unspecified";
             MasterUserId = masterUserId;
-            Category = category ?? "Other";
+            EntryCategory = entryCategory ?? "Other";
             EntryName = entryName ?? "Error: Unspecified";
             EntryAddress = entryAddress ?? "Error: Unspecified";
         }
@@ -40,7 +40,7 @@ namespace Shared.Dtos
             toString += "; Password: ";
             toString += EntryPassword;
             toString += "; Category: ";
-            toString += Category;
+            toString += EntryCategory;
             toString += "; MasterUserId: ";
             toString += MasterUserId;
             toString += "]";
