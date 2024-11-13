@@ -13,19 +13,20 @@ public class LoginEntryListDTO : DTO
         this.loginEntries = loginEntries;
     }
 
-    public void AddLoginEntry(LoginEntryDTO loginEntry)
-    {
-        if (loginEntries == null)
-        {
+    public void AddLoginEntry(LoginEntryDTO loginEntry) {
+        if (loginEntries == null) {
             loginEntries = new List<LoginEntryDTO>();
         }
         loginEntries.Add(loginEntry);
     }
 
+    public void RemoveLoginEntry(LoginEntryDTO loginEntry) {
+        loginEntries?.Remove(loginEntry);
+    }
+
     public override string ToString()
     {
-        if (loginEntries == null || !loginEntries.Any())
-        {
+        if (loginEntries == null || !loginEntries.Any()) {
             return "LoginEntryListDTO: No entries available";
         }
         

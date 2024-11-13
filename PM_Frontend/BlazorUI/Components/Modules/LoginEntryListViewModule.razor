@@ -47,11 +47,11 @@
         OnEntryDoubleClicked.InvokeAsync(entry);
     }
 
-    private void toggleFullyLoaded() {
+    private void ToggleFullyLoaded() {
         _fullyLoaded = !_fullyLoaded;
     }
 
-    private string updateLoadingMsg(string msg) {
+    private string UpdateLoadingMsg(string msg) {
         _loadingMsg = msg;
         return _loadingMsg;
     }
@@ -70,7 +70,7 @@
         </tr>
     </thead>
     @if (!_fullyLoaded) {
-        <p>@updateLoadingMsg("Loading entries...")</p>
+        <p>@UpdateLoadingMsg("Loading entries...")</p>
     }
     <tbody>
         @foreach (LoginEntryDTO loginEntry in Entries) {
@@ -82,8 +82,11 @@
             </tr>
         }
         @if (!_fullyLoaded) {
-            <p>@updateLoadingMsg(String.Empty)</p>
-            toggleFullyLoaded();
+            UpdateLoadingMsg(String.Empty);
+            ToggleFullyLoaded();
+        }
+        @if (_fullyLoaded && Entries.Count <= 0) {
+            UpdateLoadingMsg("No Login Entries found...");
         }
     </tbody>
 </table>

@@ -10,16 +10,14 @@ public class ServiceLayerImpl : IServiceLayer
     private readonly ILoginEntryService _loginEntryService;
     private readonly IMasterUserService _masterUserService;
 
-    public ServiceLayerImpl(ILoginEntryService loginEntryService, IMasterUserService masterUserService)
-    {
+    public ServiceLayerImpl(ILoginEntryService loginEntryService, IMasterUserService masterUserService) {
         _loginEntryService = loginEntryService;
         _masterUserService = masterUserService;
     }
 
     // MasterUser Service Methods:
     public async Task<ServerResponse> CreateMasterUserAsync(
-        MasterUserDTO masterUserDto)
-    {
+        MasterUserDTO masterUserDto) {
         return await _masterUserService.CreateMasterUserAsync(masterUserDto);
     }
 

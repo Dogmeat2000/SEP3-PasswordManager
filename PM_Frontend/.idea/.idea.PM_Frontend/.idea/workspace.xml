@@ -21,12 +21,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ServiceLayer/Networking/NetworkExceptionHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateEntryModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateEntryModule.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/EditLoginEntryModal.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/EditLoginEntryModal.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Pages/Home.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Networking/WebApiClientImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Networking/WebApiClientImpl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/JSONService/DTOJsonConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/JSONService/DTOJsonConverter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/ICryptographyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/ICryptographyService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/LoginEntryService/LoginEntryServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/LoginEntryService/LoginEntryServiceImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/ServiceLayerImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/ServiceLayerImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/Dtos/LoginEntryListDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Dtos/LoginEntryListDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.csproj.AssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,15 +62,29 @@
     &quot;assignee&quot;: &quot;Sterup15&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/KatAamand/SEP3_PasswordManager.git&quot;,
-    &quot;accountId&quot;: &quot;b2dccf4c-2b83-4bcd-b46f-63a17befd26a&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/KatAamand/SEP3_PasswordManager.git",
+    "accountId": "1b2bf504-1779-4b79-811b-a81c275dfd68"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/BlazorUI/Components/Modules/EditLoginEntryModal.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/BlazorUI/Components/Modules/EditLoginEntryModal.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/BlazorUI/Components/Modules/EditLoginEntryModal.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/ServiceLayer/Networking/IWebApiClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/ServiceLayer/Networking/IWebApiClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/Shared/Dtos/LoginEntryDTO.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/Shared/Dtos/LoginEntryDTO.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/Shared/Dtos/LoginEntryDTO.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/Shared/Dtos/LoginEntryDTO.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/krige/Dropbox/Pc (2)/Documents/Studier/Professionsbachelor/.NET Projects/SEP3 - Planning Poker/PM_Frontend/Shared/Dtos/LoginEntryDTO.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://diff.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -267,6 +291,7 @@
       <workItem from="1730802070176" duration="14562000" />
       <workItem from="1730919601498" duration="649000" />
       <workItem from="1730962081104" duration="1234000" />
+      <workItem from="1731523035233" duration="2302000" />
     </task>
     <task id="LOCAL-00001" summary="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
       <option name="closed" value="true" />
@@ -356,7 +381,103 @@
       <option name="project" value="LOCAL" />
       <updated>1731487903094</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="WIP: Made LoginEntryView read data from code. Still WIP!">
+      <option name="closed" value="true" />
+      <created>1731489416087</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731489416087</updated>
+    </task>
+    <task id="LOCAL-00013" summary="WIP: Small fix.">
+      <option name="closed" value="true" />
+      <created>1731489530328</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1731489530328</updated>
+    </task>
+    <task id="LOCAL-00014" summary="WIP: Expanded LoginEntryDTO to include EntryName and EntryAddress.">
+      <option name="closed" value="true" />
+      <created>1731489958512</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1731489958512</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fix a small typo in previous push.">
+      <option name="closed" value="true" />
+      <created>1731490002340</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1731490002340</updated>
+    </task>
+    <task id="LOCAL-00016" summary="WIP: Updated LoginEntryView to read remaining visible fields from code.">
+      <option name="closed" value="true" />
+      <created>1731490243999</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1731490243999</updated>
+    </task>
+    <task id="LOCAL-00017" summary="WIP: LoginEntryView updated to show clickable links.">
+      <option name="closed" value="true" />
+      <created>1731491592598</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1731491592598</updated>
+    </task>
+    <task id="LOCAL-00018" summary="WIP: Improved LoginEntryView so cells have same width. Also redid som changes to LoginEntryDTO that were lost in last push.">
+      <option name="closed" value="true" />
+      <created>1731492190167</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1731492190167</updated>
+    </task>
+    <task id="LOCAL-00019" summary="WIP: Prepared LoginEntryView to fetch data from the ServiceLayer.">
+      <option name="closed" value="true" />
+      <created>1731492836582</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1731492836582</updated>
+    </task>
+    <task id="LOCAL-00020" summary="WIP: Implemented code in C# frontend to send request to read ALl loginEntries from DB.">
+      <option name="closed" value="true" />
+      <created>1731493956647</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1731493956647</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Uncommented Auth code.">
+      <option name="closed" value="true" />
+      <created>1731497417718</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1731497417718</updated>
+    </task>
+    <task id="LOCAL-00022" summary="One more">
+      <option name="closed" value="true" />
+      <created>1731497495328</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1731497495328</updated>
+    </task>
+    <task id="LOCAL-00023" summary="LoginEntryView: Improved visualization.">
+      <option name="closed" value="true" />
+      <created>1731504689244</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1731504689244</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,6 +514,18 @@
     <MESSAGE value="Updated all module-files making them ready for userstories 1&amp;2.&#10;Updated Serviceimpl, to take correct CRUD from interfaces (Master and entry). &#10;Still struggling shifting between modules(PMModule to CreateEntryModule) and getting generate password to actually show generate password...&#10;StateHasChanged does not seem to do the trick alone." />
     <MESSAGE value="Updating decrypting methods to return and accept ServerResponse" />
     <MESSAGE value="WIP: Adjust LoginEntry view to better align with GUI design template" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: Adjust LoginEntry view to better align with GUI design template" />
+    <MESSAGE value="WIP: Made LoginEntryView read data from code. Still WIP!" />
+    <MESSAGE value="WIP: Small fix." />
+    <MESSAGE value="WIP: Expanded LoginEntryDTO to include EntryName and EntryAddress." />
+    <MESSAGE value="Fix a small typo in previous push." />
+    <MESSAGE value="WIP: Updated LoginEntryView to read remaining visible fields from code." />
+    <MESSAGE value="WIP: LoginEntryView updated to show clickable links." />
+    <MESSAGE value="WIP: Improved LoginEntryView so cells have same width. Also redid som changes to LoginEntryDTO that were lost in last push." />
+    <MESSAGE value="WIP: Prepared LoginEntryView to fetch data from the ServiceLayer." />
+    <MESSAGE value="WIP: Implemented code in C# frontend to send request to read ALl loginEntries from DB." />
+    <MESSAGE value="Uncommented Auth code." />
+    <MESSAGE value="One more" />
+    <MESSAGE value="LoginEntryView: Improved visualization." />
+    <option name="LAST_COMMIT_MESSAGE" value="LoginEntryView: Improved visualization." />
   </component>
 </project>

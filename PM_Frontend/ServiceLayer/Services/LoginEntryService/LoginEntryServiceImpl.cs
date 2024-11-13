@@ -18,26 +18,37 @@ public class LoginEntryServiceImpl : ILoginEntryService
     }
 
     public async Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto) {
-        
+        Console.WriteLine("[LoginEntryServiceImpl]: Reached this class");
         // Validate received request, before encryption:
         // TODO: Finish implementing this validation, once authorization and login functionality have been completed.
         /*if (dto.id != loggedInUser.id || dto.masterUsername != loggedInUser.masterUsername || dto.masterPassword != loggedInUser.masterPassword) {
-            throw new ArgumentException("Unable to process request. Valid logged in user credentials were not provided.");
+            throw new ArgumentException("Unable to process request. Valid logged-in user credentials were not provided.");
         }*/
         
         // Encrypt the embedded dto:
-        var encryptedDto = await _cryptographyService.EncryptMasterUserAsync(dto);
+        // TODO: Encryption / Decryption does not reliably produce the same encrypted strings each time... So for now it does not work.
+        //var encryptedDto = await _cryptographyService.EncryptMasterUserAsync(dto);
+        var encryptedDto = dto; // Temporary solution.
         
         // Request all loginEntries
         ServerResponse response = await _webApiClient.ReadLoginEntriesAsync(encryptedDto);
         
+        // Validate the response:
+        if (!(response.dto != null && response.dto.GetType() == typeof(LoginEntryListDTO))) {
+            throw new ApplicationException("Failed to fetch all login entries.");
+        }
+        
+        // Check query was success, else return the exception response:
+        if (response.statusCode != 200) {
+            throw new ApplicationException("Failed to fetch login entries.");
+        }
+        
         // Decrypt the embedded loginEntries.
-        // TODO: Not implemented
+        //ServerResponse decryptedResponse = await _cryptographyService.DecryptLoginEntryListAsync(response);
+        ServerResponse decryptedResponse = response; // Temporary solution.
         
         // Return the ServerResponse
-        // TODO: Not implemented
-        
-        throw new NotImplementedException();
+        return decryptedResponse;
     }
 
     /**
