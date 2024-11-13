@@ -25,7 +25,7 @@ public class LoginEntryRepositoryServiceImpl implements LoginEntryRepositoryServ
     @Override
     public LoginEntry createLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException {
         // Validate the received LoginEntry data before saving to the database
-        validateCreateLoginEntry(loginEntry);
+        validateLoginEntry(loginEntry);
 
         try {
             // Save LoginEntry to the database
@@ -43,7 +43,58 @@ public class LoginEntryRepositoryServiceImpl implements LoginEntryRepositoryServ
         }
     }
 
-    private void validateCreateLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException {
+    @Override
+    public LoginEntry updateLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException {
+        // Validating LoginEntry
+        validateLoginEntry(loginEntry);
+
+        try {
+            // checks if the entry exists in DB
+            if (!loginEntryRepository.existsById(loginEntry.getId())) {
+                logger.error("LoginEntry with ID '{}' not found in DB. Update operation aborted.", loginEntry.getId());
+                throw new PersistenceException("LoginEntry with ID " + loginEntry.getId() + " not found in the database.");
+            }
+
+            // Delete the LoginEntry by id
+            LoginEntry updatedLoginEntry = loginEntryRepository.save(loginEntry);
+            logger.info("LoginEntry '{}' updated in DB", loginEntry.getEntryName());
+            return updatedLoginEntry;
+
+        } catch (IllegalArgumentException | ConstraintViolationException | DataIntegrityViolationException e) {
+            logger.error("Unable to update LoginEntry '{}', Reason: '{}'", loginEntry.getEntryName(), e.getMessage());
+            throw new DataIntegrityViolationException("Invalid LoginEntry data provided. Reason: " + e.getMessage());
+        } catch (PersistenceException e) {
+            logger.error("Persistence exception occurred while creating LoginEntry '{}', Reason: '{}'", loginEntry.getEntryName(), e.getMessage());
+            throw new PersistenceException(e);
+        }
+    }
+
+    @Override
+    public void deleteLoginEntry(LoginEntry loginEntry) throws PersistenceException {
+        // Validating LoginEntry
+        validateLoginEntry(loginEntry);
+
+        try {
+            // checks if the entry exists in DB
+            if (!loginEntryRepository.existsById(loginEntry.getId())) {
+                logger.error("LoginEntry with ID '{}' not found in DB. Delete operation aborted.", loginEntry.getId());
+                throw new PersistenceException("LoginEntry with ID " + loginEntry.getId() + " not found in the database.");
+            }
+
+            // Delete the LoginEntry by id
+            loginEntryRepository.deleteById(loginEntry.getId());
+            logger.info("LoginEntry with ID '{}' deleted from DB", loginEntry.getId());
+
+        } catch (IllegalArgumentException e) {
+            logger.error("Unable to delete LoginEntry '{}', Reason: '{}'", loginEntry.getEntryName(), e.getMessage());
+            throw new PersistenceException("Invalid LoginEntry data provided for deletion. Reason: " + e.getMessage());
+        } catch (PersistenceException e) {
+            logger.error("Persistence exception occurred while deleting LoginEntry '{}', Reason: '{}'", loginEntry.getEntryName(), e.getMessage());
+            throw new PersistenceException(e);
+        }
+    }
+
+    private void validateLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException {
         if (loginEntry == null) {
             logger.error("Validation failed. LoginEntry is null.");
             throw new DataIntegrityViolationException("LoginEntry cannot be null.");
