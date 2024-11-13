@@ -23,12 +23,4 @@ public interface IMasterUserService
      * Decrypts the returning master user before returning it.
      */
  Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
- 
- /**
-     * Sends a request to authenticate the master user.
-     * Encrypts the credentials in MasterUserDTO, sends the request, and decrypts the server's response.
-     * @param masterUserDto Data Transfer Object containing master user credentials.
-     * @return ServerResponse with authentication status and details.
-     */
- Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto);
 }

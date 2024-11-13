@@ -17,12 +17,6 @@ public interface IWebApiClient
      */
     Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto);
 
-    /**
-     * Sends a request to retrieve a master user by their ID from the Web API.
-     *
-     * @param masterUserId The ID of the master user to be retrieved.
-     * @return ServerResponse containing the retrieved MasterUserDTO.
-     */
     Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
     Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
     

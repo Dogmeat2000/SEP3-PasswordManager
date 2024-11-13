@@ -46,17 +46,4 @@ public class MasterUserServiceImpl : IMasterUserService
 
         return returnedMasterUserDto;
     }
-
-    public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
-    {
-        // Encrypt the master user credentials for secure transmission
-        var encryptedMasterUserDto = await _cryptographyService.EncryptMasterUserAsync(masterUserDto);
-
-        // Send encrypted credentials to the web API for authentication
-        var response = await _webApiClient.AuthenticateUserAsync(encryptedMasterUserDto);
-
-        // Decrypt the response to retrieve authentication results
-        return await _cryptographyService.DecryptServerResponceAsync(response);
-        
-    }
 }

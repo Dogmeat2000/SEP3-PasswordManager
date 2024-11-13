@@ -1,67 +1,22 @@
 ﻿@using ServiceLayer.Services
-@using Shared.Dtos
+@inject IServiceLayer ServiceLayer
 @code {
-    private string masterUsername = string.Empty;
-    private string masterPassword = string.Empty;
-    private string generatedPassword = string.Empty;
-    private string message = string.Empty;
+private string masterUsername = string.Empty;
+private string masterPassword = string.Empty;
+private string generatedPassword = string.Empty;
 
-    [Inject] public IServiceLayer ServiceLayer { get; set; }
-    [Inject] public IJSRuntime jsRuntime { get; set; }
+private void GeneratePassword()
+{
+generatedPassword = GenerateRandomPassword();
+}
 
-    private void GeneratePassword()
-    {
-        generatedPassword = GenerateRandomPassword();
-    }
-
-    private string GenerateRandomPassword()
-    {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-        var random = new Random();
-        return new string(Enumerable.Repeat(chars, 12)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
-    }
-
-    private async Task Login()
-    {
-        var loginDto = new MasterUserDTO
-        {
-            masterUsername = masterUsername,
-            masterPassword = masterPassword
-        };
-
-        var response = await ServiceLayer.AuthenticateUserAsync(loginDto);
-
-        if (response.statusCode == 200 && !string.IsNullOrEmpty(response.message))
-        {
-            await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "authToken", response.message);
-            message = "Login successful!";
-        }
-        else
-        {
-            message = "Login failed. Please check your credentials.";
-        }
-    }
-
-    private async Task CreateUser()
-    {
-        var createDto = new MasterUserDTO
-        {
-            masterUsername = masterUsername,
-            masterPassword = masterPassword
-        };
-
-        var response = await ServiceLayer.CreateMasterUserAsync(createDto);
-
-        if (response.statusCode == 201)
-        {
-            message = "User created successfully!";
-        }
-        else
-        {
-            message = "Failed to create user. Username might already exist.";
-        }
-    }
+private string GenerateRandomPassword()
+{
+const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+var random = new Random();
+return new string(Enumerable.Repeat(chars, 12)
+.Select(s => s[random.Next(s.Length)]).ToArray());
+}
 }
 
 <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 500px; margin: 0 auto;">
@@ -77,11 +32,7 @@
     <div class="card-body d-flex flex-wrap" style="gap: 10px;">
         <input type="text" class="form-control" style="flex: 1;" placeholder="Username" @bind="masterUsername" />
         <input type="password" class="form-control" style="flex: 1;" placeholder="Password" @bind="masterPassword" />
-        <button class="btn btn-secondary" @onclick="Login">Login</button>
-        <button class="btn btn-secondary" @onclick="CreateUser">Create</button>
-    </div>
-
-    <div class="mt-3">
-        <p>@message</p>
+        <button class="btn btn-secondary">Login</button>
+        <button class="btn btn-secondary">Create</button>
     </div>
 </div>
