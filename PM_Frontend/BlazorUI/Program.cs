@@ -1,41 +1,65 @@
 using BlazorUI.Components;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using ServiceLayer.Factories;
+using System.Text;
 
-namespace BlazorUI;
-
-public class Program
+namespace BlazorUI
 {
-    public static void Main(string[] args)
+    public class Program
     {
-        var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
-        builder.Services.AddRazorComponents()
-            .AddInteractiveServerComponents();
-        
-        ServiceLayerFactory.RegisterServices(builder.Services, builder.Configuration);
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (!app.Environment.IsDevelopment())
+        public static void Main(string[] args)
         {
-            app.UseExceptionHandler("/Error");
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();
+            var builder = WebApplication.CreateBuilder(args);
+            
+            builder.Services.AddRazorComponents()
+                .AddInteractiveServerComponents();
+            
+            ServiceLayerFactory.RegisterServices(builder.Services, builder.Configuration);
+            
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "yourdomain.com", 
+                        ValidAudience = "yourdomain.com", 
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_secret_key")) 
+                    };
+                });
+            
+            builder.Services.AddAuthorizationCore();
+
+            var app = builder.Build();
+            
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts(); 
+            }
+            
+    
+            app.UseHttpsRedirection();
+            
+         
+            app.UseStaticFiles();
+            app.UseAntiforgery();
+            
+       
+            app.UseRouting();
+            app.UseAuthentication(); 
+            app.UseAuthorization(); 
+
+       
+            app.MapRazorComponents<App>()
+                .AddInteractiveServerRenderMode();
+            
+    
+            app.Run();
         }
-
-        app.UseHttpsRedirection();
-
-        app.UseStaticFiles();
-        app.UseAntiforgery();
-
-        app.MapRazorComponents<App>()
-            .AddInteractiveServerRenderMode();
-
-        app.Run();
     }
 }
