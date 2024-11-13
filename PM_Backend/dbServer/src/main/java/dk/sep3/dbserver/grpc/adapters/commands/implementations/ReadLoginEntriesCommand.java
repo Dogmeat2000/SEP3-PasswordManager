@@ -6,6 +6,7 @@ import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
 import dk.sep3.dbserver.model.Pm.db_entities.LoginEntry;
 import dk.sep3.dbserver.model.Pm.db_entities.MasterUser;
 import dk.sep3.dbserver.service.Pm.LoginEntryRepositoryService;
+import dk.sep3.dbserver.service.Pm.MasterUserRepositoryService;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
 import jakarta.persistence.PersistenceException;
@@ -20,10 +21,14 @@ import java.util.List;
 public class ReadLoginEntriesCommand implements GrpcCommand
 {
   private final LoginEntryRepositoryService loginEntryRepositoryServiceImpl;
+  private final MasterUserRepositoryService masterUserServiceImpl;
 
   @Autowired
-  public ReadLoginEntriesCommand(LoginEntryRepositoryService loginEntryRepositoryServiceImpl){
+  public ReadLoginEntriesCommand(LoginEntryRepositoryService loginEntryRepositoryServiceImpl,
+      MasterUserRepositoryService masterUserServiceImpl){
+
     this.loginEntryRepositoryServiceImpl = loginEntryRepositoryServiceImpl;
+    this.masterUserServiceImpl = masterUserServiceImpl;
   }
 
   @Override public GenericResponse execute(GenericRequest request) throws DataIntegrityViolationException, PersistenceException {
@@ -39,6 +44,14 @@ public class ReadLoginEntriesCommand implements GrpcCommand
         || masterUser.getMasterUsername() == null
         || masterUser.getEncryptedPassword() == null)
       throw new DataIntegrityViolationException("Invalid DTO provided");
+
+    // Check if the MasterUser is a valid account:
+    try {
+      // Will throw an exception is the user cannot be found in the db.
+      masterUserServiceImpl.readMasterUser(masterUser.getMasterUsername(), masterUser.getEncryptedPassword());
+    } catch (Exception e) {
+      throw new DataIntegrityViolationException("Cannot look up loginEntries for a MasterUser that does not exist in the repository");
+    }
 
     // Execute the proper action:
     List<LoginEntry> loginEntries = loginEntryRepositoryServiceImpl.readLoginEntriesByMasterUserId(masterUser.getId());
