@@ -30,7 +30,7 @@ import java.util.Map;
 @EnableJpaRepositories(
     entityManagerFactoryRef = "testdbEntityManagerFactory",
     transactionManagerRef = "testdbTransactionManager",
-    basePackages = {"dk.sep3.dbserver.repositories.passwordManagerDb"})
+    basePackages = {"dk.sep3.dbserver.repositories.PmDb"})
 public class TestDataSourceConfig
 {
   @Primary
@@ -55,7 +55,7 @@ public class TestDataSourceConfig
 
     return builder
         .dataSource(testdbDataSource)
-        .packages("dk.sep3.dbserver.model.passwordManager.db_entities")
+        .packages("dk.sep3.dbserver.model.Pm.db_entities")
         .persistenceUnit("testdbDataSource")
         .properties(testdbJpaProperties)
         .build();

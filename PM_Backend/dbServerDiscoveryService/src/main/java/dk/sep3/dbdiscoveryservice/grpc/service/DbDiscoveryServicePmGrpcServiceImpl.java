@@ -22,14 +22,14 @@ import javax.naming.ServiceUnavailableException;
 import java.util.Arrays;
 
 @GrpcService
-public class DbDiscoveryServicePswdMgrGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
+public class DbDiscoveryServicePmGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
   private final DiscoveryRepositoryService discoveryRepositoryService;
   private final int numberOfRetries = 6;
-  private static final Logger logger = LoggerFactory.getLogger(DbDiscoveryServicePswdMgrGrpcServiceImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(DbDiscoveryServicePmGrpcServiceImpl.class);
 
   @Autowired
-  public DbDiscoveryServicePswdMgrGrpcServiceImpl(DiscoveryRepositoryServiceImpl discoveryRepositoryService,
+  public DbDiscoveryServicePmGrpcServiceImpl(DiscoveryRepositoryServiceImpl discoveryRepositoryService,
       DatabaseServerMonitor databaseServerMonitor,
       Environment environment) {
     super();
