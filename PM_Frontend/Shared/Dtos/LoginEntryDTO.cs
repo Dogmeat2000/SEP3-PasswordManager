@@ -4,20 +4,20 @@ namespace Shared.Dtos
 {
     public class LoginEntryDTO : DTO
     {
-        public string? entryName { get; set; }
-        public string? entryUsername { get; set; }
-        public string? entryPassword { get; set; }
-        public string? entryAddress { get; set; }
-        public int? masterUserId { get; set; }
+        public string? EntryName { get; set; }
+        public string? EntryUsername { get; set; }
+        public string? EntryPassword { get; set; }
+        public string? EntryAddress { get; set; }
+        public int? MasterUserId { get; set; }
         public string? Category { get; set; }
 
         public LoginEntryDTO(int? id, string? entryUsername,
             string? entryPassword, int? masterUserId,
             string? Category) : base(id)
         {
-            this.entryUsername = entryUsername;
-            this.entryPassword = entryPassword;
-            this.masterUserId = masterUserId;
+            EntryUsername = entryUsername;
+            EntryPassword = entryPassword;
+            MasterUserId = masterUserId;
             this.Category = Category;
         }
         
@@ -31,9 +31,9 @@ namespace Shared.Dtos
         public override string ToString()
         {
             string toString = "[";
-            toString += entryUsername;
+            toString += EntryUsername;
             toString += " ; ";
-            toString += entryPassword;
+            toString += EntryPassword;
             toString += "]";
             return toString;
         }
