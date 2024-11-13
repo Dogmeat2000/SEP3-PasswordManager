@@ -1,6 +1,7 @@
 package dk.sep3.dbserver.grpc.adapters.commands.implementations;
 
 import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommand;
+import dk.sep3.dbserver.grpc.adapters.grpc_to_java.LoginEntryDTOtoLoginEntryEntity;
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
 import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
 import dk.sep3.dbserver.model.Pm.db_entities.LoginEntry;
@@ -29,12 +30,12 @@ public class CreateLoginEntryCommand implements GrpcCommand {
             throw new DataIntegrityViolationException("Argument is not valid.");
 
         // Convert to db compatible entity:
-        LoginEntry loginEntry = MasterUserDTOtoMasterUserEntity.convertToMasterUserEntity(request.getMasterUser());
+        LoginEntry loginEntry = LoginEntryDTOtoLoginEntryEntity.convertToLoginEntryEntity(request.getLoginEntry());
 
         // Execute the proper action:
-        masterUser = masterUserServiceImpl.createMasterUser(masterUser);
+        loginEntry = loginEntryServiceImpl.createLoginEntry(loginEntry);
 
         // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
-        return GenericResponseFactory.buildGrpcGenericResponseWithMasterUserDTO(201, masterUser);
+        return GenericResponseFactory.buildGrpcGenericResponseWithLoginEntryDTO(201, loginEntry);
     }
 }
