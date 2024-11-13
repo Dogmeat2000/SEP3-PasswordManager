@@ -1,9 +1,10 @@
 package dk.sep3.webapi.network.converter;
 
 import common.ServerResponse;
-import common.dto.LoginEntryDTO;
+import common.dto.LoginEntryListDTO;
 import common.dto.MasterUserDTO;
 import grpc.GenericResponse;
+import grpc.LoginEntryDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,16 +21,33 @@ public class GrpcToServerResponseConverter {
             masterUserDTO.setMasterPassword(grpcResponse.getMasterUser().getMasterPassword());
             serverResponse.setDto(masterUserDTO);
 
-        } /* else if (grpcResponse.hasLoginEntry()) {
-            LoginEntryDTO loginEntryDTO = new LoginEntryDTO(
+        } else if (grpcResponse.hasLoginEntries()) {
+            // Convert gRPC loginEntries to HTTP compatible format:
+            LoginEntryListDTO loginEntryListDTO = new LoginEntryListDTO();
+
+            for (LoginEntryDTO grpcLoginEntryDTO : grpcResponse.getLoginEntries().getLoginEntriesList()){
+                common.dto.LoginEntryDTO newEntry = new common.dto.LoginEntryDTO(
+                    grpcLoginEntryDTO.getId(),
+                    grpcLoginEntryDTO.getEntryUsername(),
+                    grpcLoginEntryDTO.getEntryPassword(),
+                    grpcLoginEntryDTO.getMasterUserId()
+                );
+                loginEntryListDTO.addLoginEntry(newEntry);
+            }
+            // Set the ServerResponse:
+            serverResponse.setDto(loginEntryListDTO);
+
+        } else if (grpcResponse.hasLoginEntry()) {
+            // TODO: Not implemented
+            /* LoginEntryDTO loginEntryDTO = new LoginEntryDTO(
                     (int) grpcResponse.getLoginEntry().getId(),
                     grpcResponse.getLoginEntry().getEntryUsername(),
                     grpcResponse.getLoginEntry().getEntryPassword(),
                     (int) grpcResponse.getLoginEntry().getMasterUserId()
             );
             serverResponse.setDto(loginEntryDTO);
-
-        } */ else {
+                */
+        } else {
             return new ServerResponse(500, "Error: dto not supported");
         }
 

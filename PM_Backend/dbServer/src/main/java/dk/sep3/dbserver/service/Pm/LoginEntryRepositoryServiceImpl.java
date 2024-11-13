@@ -2,7 +2,7 @@ package dk.sep3.dbserver.service.Pm;
 
 import dk.sep3.dbserver.model.Pm.db_entities.LoginEntry;
 import dk.sep3.dbserver.repositories.PmDb.LoginEntryRepository;
-import dk.sep3.dbserver.service.exceptions.DuplicateDbEntryException;
+import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
@@ -10,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class LoginEntryRepositoryServiceImpl implements LoginEntryRepositoryService {
@@ -42,6 +45,39 @@ public class LoginEntryRepositoryServiceImpl implements LoginEntryRepositoryServ
             throw new PersistenceException(e);
         }
     }
+
+
+    @Override public List<LoginEntry> readLoginEntriesByMasterUserId(int id) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException {
+        // Validate the id:
+        if(id <= 0)
+            throw new DataIntegrityViolationException("Invalid MasterUserDTO provided. MasterUserId is zero or negative.");
+
+        // Attempt to fetch LoginEntries from DB:
+        try {
+            // Causes the repository to query the database. If no match is found, an error is thrown immediately.
+            List<LoginEntry> entriesFound = loginEntryRepository.findLoginEntriesByMasterUserId(id);
+            if(entriesFound.isEmpty())
+                throw new NotFoundInDBException("No LoginEntries associated with MasterUserId {" + id + "} found in DB");
+
+            logger.info("'{}' LoginEntries read from DB", entriesFound.size());
+            return entriesFound;
+
+        } catch (IllegalArgumentException | ConstraintViolationException | DataIntegrityViolationException e) {
+            // Handle exceptions caused by incompatible data formats (either java or sql ddl mismatch in definitions):
+            logger.error("Unable to fetch LoginEntries associated with MasterUserId '{}' in DB, Reason: {}", id, e.getMessage());
+            throw new DataIntegrityViolationException("Invalid MasterUserId provided. Incompatible with database! Reason: " + e.getMessage());
+
+        } catch (NoSuchElementException e) {
+            // No LoginEntries were found.
+            throw new NotFoundInDBException(e.getMessage());
+
+        } catch (PersistenceException e) {
+            // Handle other exceptions relating to persistence and connectivity:
+            logger.error("Persistence exception occurred while fetching all LoginEntries associated with MasterUserId '{}', Reason: {}", id, e.getMessage());
+            throw new PersistenceException(e);
+        }
+    }
+
 
     @Override
     public LoginEntry updateLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException {
