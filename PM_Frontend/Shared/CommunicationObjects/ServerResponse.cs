@@ -25,13 +25,13 @@ public class ServerResponse
     }
 
     
-    public string message { get; set; }
+    public string? message { get; set; }
     
     
     public int statusCode { get; set; }
     
     
-    public DTO dto { get; set; }
+    public DTO? dto { get; set; }
     
     public override string ToString()
     {

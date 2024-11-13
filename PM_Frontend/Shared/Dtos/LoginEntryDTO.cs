@@ -1,41 +1,55 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Shared.Dtos
 {
     public class LoginEntryDTO : DTO
     {
-        public string? entryName { get; set; }
-        public string? entryUsername { get; set; }
-        public string? entryPassword { get; set; }
-        public string? entryAddress { get; set; }
-        public int? masterUserId { get; set; }
-        public string? Category { get; set; }
+            [JsonProperty("entryName")]
+            public string? EntryName { get; set; }
+    
+            [JsonProperty("entryPassword")]
+            public string? EntryPassword { get; set; }
+    
+            [JsonProperty("entryUsername")]
+            public string? EntryUsername { get; set; }
+    
+            [JsonProperty("entryAddress")]
+            public string? EntryAddress { get; set; }
+    
+            [JsonProperty("masterUserId")]
+            public int? MasterUserId { get; set; }
+    
+            [JsonProperty("entryCategory")]
+            public string? EntryCategory { get; set; }
 
-        public LoginEntryDTO(int? id, string? entryUsername,
-            string? entryPassword, int? masterUserId,
-            string? entryCategory,
-            string? entryName,
-            string? entryAddress) : base(id)
-        {
-            this.entryUsername = entryUsername;
-            this.entryPassword = entryPassword;
-            this.masterUserId = masterUserId;
-            this.Category = Category;
-        }
+            public LoginEntryDTO(int? id, string? entryUsername, string? entryPassword, int? masterUserId, string? entryCategory, string? entryName, string? entryAddress) : base(id)
+            {
+                EntryName = entryName;
+                EntryUsername = entryUsername;
+                EntryPassword = entryPassword;
+                EntryAddress = entryAddress;
+                MasterUserId = masterUserId;
+                EntryCategory = entryCategory;
+            }
+    
+            public LoginEntryDTO(int id) : base(id) { }
+            public LoginEntryDTO() { }
         
-
-        public LoginEntryDTO(int id) : base(id) { }
-
-        public LoginEntryDTO()
-        {
-        }
-
         public override string ToString()
         {
             string toString = "[";
-            toString += entryUsername;
-            toString += " ; ";
-            toString += entryPassword;
+            toString += "Name: " + EntryName;
+            toString += " ; Address: ";
+            toString += EntryAddress;
+            toString += "; Username: ";
+            toString += EntryUsername;
+            toString += "; Password: ";
+            toString += EntryPassword;
+            toString += "; Category: ";
+            toString += EntryCategory;
+            toString += "; MasterUserId: ";
+            toString += MasterUserId;
             toString += "]";
             return toString;
         }

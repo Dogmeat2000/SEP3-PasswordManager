@@ -6,13 +6,14 @@
 <EditLoginEntryModal @ref="editLoginEntryModal"/>
 
 @code {
+    // Edit and delete attributes
+    private LoginEntryDTO selectedEntry; 
     private EditLoginEntryModal? editLoginEntryModal; 
     
     private string masterUsername = "user0";
     private string generatedPassword = string.Empty;
 
     private bool isCreateModalOpen = false;
-    private LoginEntryDTO selectedEntry = new LoginEntryDTO();
 
     private List<LoginEntryDTO> socialMediaEntries = new();
     private List<LoginEntryDTO> bankEntries = new();
@@ -24,11 +25,10 @@
     }
 
     
-    private void TestData() { // TODO: Delete method
+    private void TestData() {
         socialMediaEntries.Add(new LoginEntryDTO(1, "TestEntryUserName1", "TestPswd1", 1, "Social Media", "Discord", "https://discord.com"));
         bankEntries.Add(new LoginEntryDTO(2, "TestEntryUserName2", "TestPswd1", 1, "Bank - Pension - Insurance", "ItsLearning", "https://itsLearning.dk"));
         otherEntries.Add(new LoginEntryDTO(3, "TestEntryUserName3", "TestPswd1", 1, "Other", "Folketinget", "https://folketinget.dk"));
-        
     }
     
 
@@ -94,12 +94,6 @@
             Console.WriteLine("editLoginEntryModal er null");
         }
     }
-
-    private void TestMethod()
-    {
-        Console.WriteLine("TEST TEST");
-    }
-
 }
 
 <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 100%; margin: 0 auto;">
@@ -122,7 +116,6 @@
             </div>
                 <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="OpenCreateModal">Create Entry</button>
                 <button class="btn btn-secondary mb-2" style="width: 100%;" @onclick="ShowEditLoginEntryModal">Update or Delete Entry</button>
-                <button @onclick="TestMethod">TEST</button>
             </div>
 
         <div class="flex-grow-1 px-1">
