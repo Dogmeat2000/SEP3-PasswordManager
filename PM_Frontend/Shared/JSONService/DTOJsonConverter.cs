@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.AccessControl;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Shared.CommunicationObjects;
@@ -29,8 +30,21 @@ public class DTOJsonConverter : JsonConverter
             // Write all properties of the DTO
             foreach (var prop in type.GetProperties())
             {
-                writer.WritePropertyName(prop.Name);
-                serializer.Serialize(writer, prop.GetValue(dto));
+                if (prop.CanRead)
+                {
+                    var propertyValue = prop.GetValue(dto);
+                    if (propertyValue != null)
+                    {
+                        // Retrieve the JSON property name if specified
+                        var jsonPropertyAttribute = prop.GetCustomAttributes(typeof(JsonPropertyAttribute), true)
+                            .FirstOrDefault() as JsonPropertyAttribute;
+                        var jsonPropertyName = jsonPropertyAttribute != null ? jsonPropertyAttribute.PropertyName : prop.Name;
+
+                        // Write JSON property name and value
+                        writer.WritePropertyName(jsonPropertyName);
+                        serializer.Serialize(writer, propertyValue);
+                    }
+                }
             }
 
             writer.WriteEndObject();
@@ -68,6 +82,9 @@ public class DTOJsonConverter : JsonConverter
                         EntryCategory = jsonObject["category"]?.ToString(),
                         id = (int?)jsonObject["id"]
                     };
+                    
+                    Console.WriteLine("From DTOJsonConverter: " + dto.ToString());
+                    
                     return dto;
                 }
 
