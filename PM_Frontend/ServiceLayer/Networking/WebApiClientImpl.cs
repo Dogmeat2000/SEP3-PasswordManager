@@ -76,7 +76,7 @@ public class WebApiClientImpl : IWebApiClient
                     {
                         //Server is overloaded, or otherwise unavailable, get new web api url
                         Console.WriteLine("Server is overloaded, trying new server:");
-                        await WebApiServerIsOverloadedAsync(request);
+                        await WebApiServerIsOverloadedAsync();
                         numberOfAttempts++;
                     }
                     else
@@ -128,7 +128,7 @@ public class WebApiClientImpl : IWebApiClient
         return WebApiUrl;
     }
 
-    private async Task WebApiServerIsOverloadedAsync(ClientRequest request)
+    private async Task WebApiServerIsOverloadedAsync()
     {
         var newServerUrl = await SetWebApiServerUrlAsync(true);
         Console.WriteLine("New server reached with URL: " + newServerUrl);
