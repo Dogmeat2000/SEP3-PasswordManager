@@ -1,4 +1,4 @@
-package dk.sep3.dbserverdiscoveryservice.service;
+package dk.sep3.dbdiscoveryservice.service;
 
 import dk.sep3.dbserver.model.discoveryService.db_entities.DatabaseServer;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryService;

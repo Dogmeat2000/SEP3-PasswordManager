@@ -1,7 +1,7 @@
-package dk.sep3.dbserver.unitTests.grpc.service.PasswordManagerGrpcServiceImpl;
+package dk.sep3.dbserver.unitTests.grpc.service.PassMgrGrpcServiceImpl;
 
 import dk.sep3.dbserver.DbServerApplication;
-import dk.sep3.dbserver.grpc.service.DbServerPasswordManagerGrpcServiceImpl;
+import dk.sep3.dbserver.grpc.service.DbServerPswdMgrGrpcServiceImpl;
 import dk.sep3.dbserver.integrationTests.TestDataSourceConfig;
 import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
@@ -16,7 +16,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +49,7 @@ public class HandleRequestMethodTest
   private MasterUserRepository dbMasterUserRepository;
 
   @Autowired
-  private DbServerPasswordManagerGrpcServiceImpl passwordMngrGrpcService;
+  private DbServerPswdMgrGrpcServiceImpl passwordMngrGrpcService;
 
   private ManagedChannel channel;
   private PasswordManagerServiceGrpc.PasswordManagerServiceBlockingStub passwordManagerStub;

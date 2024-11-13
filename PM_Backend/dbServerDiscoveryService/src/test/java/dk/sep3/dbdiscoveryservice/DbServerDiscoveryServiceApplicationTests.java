@@ -1,6 +1,6 @@
-package dk.sep3.dbserverdiscoveryservice;
+package dk.sep3.dbdiscoveryservice;
 
-import dk.sep3.dbserverdiscoveryservice.application.DbServerDiscoveryServiceApplication;
+import dk.sep3.dbdiscoveryservice.application.DbServerDiscoveryServiceApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

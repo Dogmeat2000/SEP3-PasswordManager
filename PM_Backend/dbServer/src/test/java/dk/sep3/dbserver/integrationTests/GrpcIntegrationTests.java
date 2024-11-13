@@ -2,7 +2,7 @@ package dk.sep3.dbserver.integrationTests;
 
 import dk.sep3.dbserver.DbServerApplication;
 import dk.sep3.dbserver.grpc.factories.MasterUserDTOGrpcFactory;
-import dk.sep3.dbserver.grpc.service.DbServerPasswordManagerGrpcServiceImpl;
+import dk.sep3.dbserver.grpc.service.DbServerPswdMgrGrpcServiceImpl;
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
 import grpc.GenericRequest;
@@ -47,7 +47,7 @@ public class GrpcIntegrationTests
   @MockBean private DiscoveryRepository dbDiscoveryRepository;
   //private MasterUserRepository dbMasterUserRepository;
 
-  @InjectMocks private DbServerPasswordManagerGrpcServiceImpl passwordManagerGrpcService;
+  @InjectMocks private DbServerPswdMgrGrpcServiceImpl passwordManagerGrpcService;
   @InjectMocks private DiscoveryRepositoryServiceImpl discoveryRepositoryService;
 
   private ManagedChannel channel;

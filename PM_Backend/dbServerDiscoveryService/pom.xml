@@ -160,7 +160,7 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <mainClass>
-                                dk.sep3.dbserverdiscoveryservice.application.DbServerDiscoveryServiceApplication
+                                dk.sep3.dbdiscoveryservice.application.DbServerDiscoveryServiceApplication
                             </mainClass>
                         </manifest>
                     </archive>

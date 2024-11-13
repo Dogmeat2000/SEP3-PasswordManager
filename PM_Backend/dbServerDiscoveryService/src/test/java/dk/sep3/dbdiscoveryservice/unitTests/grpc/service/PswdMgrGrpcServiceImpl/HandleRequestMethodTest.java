@@ -1,17 +1,17 @@
-package dk.sep3.dbserverdiscoveryservice.unitTests.grpc.service.PasswordManagerGrpcServiceImpl;
+package dk.sep3.dbdiscoveryservice.unitTests.grpc.service.PswdMgrGrpcServiceImpl;
 
 import dk.sep3.dbserver.DbServerApplication;
 import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommandFactory;
-import dk.sep3.dbserver.grpc.service.DbServerPasswordManagerGrpcServiceImpl;
+import dk.sep3.dbserver.grpc.service.DbServerPswdMgrGrpcServiceImpl;
 import dk.sep3.dbserver.grpc.service.ServerHealthMonitor;
 import dk.sep3.dbserver.model.discoveryService.db_entities.DatabaseServer;
 import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
 import dk.sep3.dbserver.repositories.passwordManagerDb.MasterUserRepository;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
-import dk.sep3.dbserverdiscoveryservice.grpc.service.DbDiscoveryServicePasswordManagerGrpcServiceImpl;
-import dk.sep3.dbserverdiscoveryservice.integrationTests.TestDataSourceConfig;
-import dk.sep3.dbserverdiscoveryservice.service.DatabaseServerMonitor;
+import dk.sep3.dbdiscoveryservice.grpc.service.DbDiscoveryServicePswdMgrGrpcServiceImpl;
+import dk.sep3.dbdiscoveryservice.integrationTests.TestDataSourceConfig;
+import dk.sep3.dbdiscoveryservice.service.DatabaseServerMonitor;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
 import grpc.MasterUserDTO;
@@ -69,8 +69,8 @@ public class HandleRequestMethodTest
 
   @Autowired GrpcCommandFactory commandFactory;
 
-  private DbDiscoveryServicePasswordManagerGrpcServiceImpl discoveryPasswordManagerGrpcService;
-  private DbServerPasswordManagerGrpcServiceImpl dbServerPasswordManagerGrpcService;
+  private DbDiscoveryServicePswdMgrGrpcServiceImpl discoveryPasswordManagerGrpcService;
+  private DbServerPswdMgrGrpcServiceImpl dbServerPasswordManagerGrpcService;
 
   @Autowired Environment environment;
 
@@ -104,7 +104,7 @@ public class HandleRequestMethodTest
 
     // Set up and start the first gRPC server on primary port
     dbServerGrpcServer = ServerBuilder.forPort(dbGrpcServerPort)
-        .addService(new DbServerPasswordManagerGrpcServiceImpl(serverHealthMonitor, commandFactory))
+        .addService(new DbServerPswdMgrGrpcServiceImpl(serverHealthMonitor, commandFactory))
         .build()
         .start();
 
@@ -113,7 +113,7 @@ public class HandleRequestMethodTest
     }
 
     discoveryGrpcServer = ServerBuilder.forPort(discoveryGrpcServerPort)
-        .addService(new DbDiscoveryServicePasswordManagerGrpcServiceImpl(discoveryRepositoryService, databaseServerMonitor, environment)) // Another service implementation
+        .addService(new DbDiscoveryServicePswdMgrGrpcServiceImpl(discoveryRepositoryService, databaseServerMonitor, environment)) // Another service implementation
         .build()
         .start();
 
