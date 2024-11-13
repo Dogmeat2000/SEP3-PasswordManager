@@ -38,15 +38,15 @@ namespace ServiceLayer.Services
         // TODO: Marcus, commented out due to errors.
         //Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto);
 
-        /**
-         * Sends a request to retrieve all login entries.
-         * Delegates business logic to ILoginEntryService, decrypting passwords before returning.
-         *
-         * @return ServerResponse with a list of decrypted LoginEntryDTO objects.
+        /** <summary>Sends a request to fetch all login_entries, associated with the designated MasterUser.
+         * Delegates business logic to ILoginEntryService (Such as validation and encryption).</summary>
+         * <param name="dto">A <see cref="MasterUserDTO"/> object that contains the currently logged in MasterUser's id, username and password</param>
+         * <returns> <p>If Successful: A <see cref="ServerResponse"/> object containing a <b>decrypted</b> DTO of <see cref="LoginEntryListDTO"/> type, associated with the logged-in user...</p>
+         * <p>If unsuccessful: A <see cref="ServerResponse"/> object containing the received HTTP status code and exception message</p></returns>
+         * <exception cref="ArgumentException ">Thrown if validation of <see cref="MasterUserDTO"/> failed.
+         * Provided MasterUser does not contain the currently logged in users id, username and password.</exception>
          */
-        
-        
-        Task<ServerResponse> ReadLoginEntriesAsync();
+        Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto);
 
         /**
          * Sends a create request for a new login entry.
