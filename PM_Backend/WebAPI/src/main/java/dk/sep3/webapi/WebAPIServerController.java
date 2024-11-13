@@ -18,6 +18,13 @@ public class WebAPIServerController {
 
     @PostMapping("/handleRequest")
     public ResponseEntity<ServerResponse> handleRequest(@RequestBody ClientRequest request) {
+        System.out.println("Received request: " + request);
+        System.out.println("DTO: " + request.getDTO());
+
+        if (request.getDTO() != null) {
+            System.out.println("DTO Type: " + request.getDTO().getClass().getName());
+        }
+
         System.out.println("Received request: " + request + " | Request Type:" + request.getRequestType());
         ServerResponse response = server.handleRequest(request);
 

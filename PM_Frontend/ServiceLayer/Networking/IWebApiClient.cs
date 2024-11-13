@@ -20,9 +20,11 @@ public interface IWebApiClient
     Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
     Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
     
-    /**<summary>Reads all login entries from the database.</summary>
-     * <returns>A ServerResponse object containing a DTO of LoginEntryListDTO type.</returns>*/
-    Task<ServerResponse> ReadLoginEntriesAsync();
+    /**<summary>Reads all login entries from the database, associated with the logged-in user.</summary>
+     * <param name="dto">An encrypted <see cref="MasterUserDTO"/> object that contains the currently logged in MasterUser's id, username and password</param>
+     * <returns> <p>If Successful: A <see cref="ServerResponse"/> object containing an <b>encrypted</b> DTO of <see cref="LoginEntryListDTO"/> type, associated with the logged-in user...</p>
+     * <p>If unsuccessful: A <see cref="ServerResponse"/> object containing the received HTTP status code and exception message</p></returns>*/
+    Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto);
     Task<ServerResponse> UpdateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
     Task<ServerResponse> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete);
 

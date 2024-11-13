@@ -8,20 +8,25 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         property = "@class"
 )
 public class LoginEntryDTO extends DTO {
+    private int id;
     private String entryUsername;
     private String entryPassword;
     private int masterUserId;
+    private String entryName;
+    private String entryAddress;
+    private String entryCategory;
 
-    public LoginEntryDTO(int id, int masterUserId) {
-        super.setId(id);
-        this.masterUserId = masterUserId;
-    }
 
-    public LoginEntryDTO(int id, String entryUsername, String entryPassword, int masterUserId) {
-        super.setId(id);
+    public LoginEntryDTO(String entryUsername, String entryPassword, int masterUserId, String entryName, String entryAddress, String entryCategory) {
         this.entryUsername = entryUsername;
         this.entryPassword = entryPassword;
         this.masterUserId = masterUserId;
+        this.entryName = entryName;
+        this.entryAddress = entryAddress;
+        this.entryCategory = entryCategory;
+    }
+
+    public LoginEntryDTO() {
     }
 
     public String getEntryUsername() {
@@ -46,5 +51,39 @@ public class LoginEntryDTO extends DTO {
 
     public void setMasterUserId(int masterUserId) {
         this.masterUserId = masterUserId;
+    }
+
+    public String getEntryName() {
+        return entryName;
+    }
+
+    public void setEntryName(String entryName) {
+        this.entryName = entryName;
+    }
+
+    public String getEntryAddress() {
+        return entryAddress;
+    }
+
+    public void setEntryAddress(String entryAddress) {
+        this.entryAddress = entryAddress;
+    }
+
+    public String getEntryCategory() {
+        return entryCategory;
+    }
+
+    public void setEntryCategory(String entryCategory) {
+        this.entryCategory = entryCategory;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -17,17 +17,19 @@ public class LoginEntryServiceImpl : ILoginEntryService
         _webApiClient = webApiClient;
     }
 
-    /**
-    * Retrieves all login entries from the server, decrypting the passwords before returning.
-    *
-    * @return ServerResponse containing the list of decrypted LoginEntryDTOs.
-    */
-    public async Task<ServerResponse> ReadLoginEntriesAsync()
-    {
-        // TODO: Maybe ensure the client only reads this clients own loginEntries? Attach an id? Or maybe Authentication can handle this, when implemented!
+    public async Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto) {
+        
+        // Validate received request, before encryption:
+        // TODO: Finish implementing this validation, once authorization and login functionality have been completed.
+        /*if (dto.id != loggedInUser.id || dto.masterUsername != loggedInUser.masterUsername || dto.masterPassword != loggedInUser.masterPassword) {
+            throw new ArgumentException("Unable to process request. Valid logged in user credentials were not provided.");
+        }*/
+        
+        // Encrypt the embedded dto:
+        var encryptedDto = await _cryptographyService.EncryptMasterUserAsync(dto);
         
         // Request all loginEntries
-        ServerResponse response = await _webApiClient.ReadLoginEntriesAsync();
+        ServerResponse response = await _webApiClient.ReadLoginEntriesAsync(encryptedDto);
         
         // Decrypt the embedded loginEntries.
         // TODO: Not implemented

@@ -33,7 +33,7 @@
 
     private async Task LoadEntries() {
         try { 
-        ServerResponse response = await ServiceLayer.ReadLoginEntriesAsync();
+        ServerResponse response = await ServiceLayer.ReadLoginEntriesAsync(new MasterUserDTO()); // TODO: Apply the logged-in userDTO here instead.
         
             if (response.statusCode == 200 
                 && response.dto is LoginEntryListDTO entries

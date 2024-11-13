@@ -28,8 +28,16 @@
   padding: 8px;
   border: 1px solid #d4d4d4;
   text-align: left;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.loginEntry-table td:hover {
+  background-color: #99ccff;
+  cursor: pointer;
 }
 
 .loginEntry-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+

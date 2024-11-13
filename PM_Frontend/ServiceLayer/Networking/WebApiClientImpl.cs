@@ -46,9 +46,8 @@ public class WebApiClientImpl : IWebApiClient
         return serverResponse;
     }
     
-    public async Task<ServerResponse> ReadLoginEntriesAsync() {
-        // Note: new LoginEntryDTO() is not used for anything in below. SendRequestAsync simply does not accept a DTO being NULL. 
-        ServerResponse serverResponse = await SendRequestAsync("ReadLoginEntries", new LoginEntryDTO()); 
+    public async Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto) {
+        ServerResponse serverResponse = await SendRequestAsync("ReadLoginEntries", dto); 
         return serverResponse;
     }
 
@@ -102,6 +101,7 @@ public class WebApiClientImpl : IWebApiClient
                 {
                     TypeNameHandling = TypeNameHandling.Auto // Ensure @class is included for polymorphism
                 });
+                Console.WriteLine(jsonRequest);
                 
                 //Send the request to the web api server
                 var response = await _httpClient.PostAsync(WebApiUrl, new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
