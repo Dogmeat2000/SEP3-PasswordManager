@@ -1,6 +1,6 @@
-package dk.sep3.dbserver.repositories.passwordManagerDb;
+package dk.sep3.dbserver.repositories.PmDb;
 
-import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
+import dk.sep3.dbserver.model.Pm.db_entities.MasterUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

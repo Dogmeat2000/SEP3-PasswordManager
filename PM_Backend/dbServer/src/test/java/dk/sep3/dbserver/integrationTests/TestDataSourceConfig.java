@@ -4,7 +4,6 @@ import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -31,7 +30,7 @@ import java.util.Map;
 @EnableJpaRepositories(
     entityManagerFactoryRef = "testdbEntityManagerFactory",
     transactionManagerRef = "testdbTransactionManager",
-    basePackages = {"dk.sep3.dbserver.repositories.passwordManagerDb"})
+    basePackages = {"dk.sep3.dbserver.repositories.PmDb"})
 public class TestDataSourceConfig
 {
   @Primary
@@ -56,7 +55,7 @@ public class TestDataSourceConfig
 
     return builder
         .dataSource(testdbDataSource)
-        .packages("dk.sep3.dbserver.model.passwordManager.db_entities")
+        .packages("dk.sep3.dbserver.model.Pm.db_entities")
         .persistenceUnit("testdbDataSource")
         .properties(testdbJpaProperties)
         .build();

@@ -18,13 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
 @GrpcService
-public class DbServerPswdMgrGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
+public class DbServerPmGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
-  private static final Logger logger = LoggerFactory.getLogger(DbServerPswdMgrGrpcServiceImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(DbServerPmGrpcServiceImpl.class);
   private final GrpcCommandFactory commandManager;
 
   @Autowired
-  public DbServerPswdMgrGrpcServiceImpl(ServerHealthMonitor serverHealthMonitor, GrpcCommandFactory commandManager) {
+  public DbServerPmGrpcServiceImpl(ServerHealthMonitor serverHealthMonitor, GrpcCommandFactory commandManager) {
     super();
     this.commandManager = commandManager;
 

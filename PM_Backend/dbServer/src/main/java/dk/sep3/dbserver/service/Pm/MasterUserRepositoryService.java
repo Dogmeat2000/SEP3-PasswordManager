@@ -1,6 +1,6 @@
-package dk.sep3.dbserver.service.passwordManager;
+package dk.sep3.dbserver.service.Pm;
 
-import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
+import dk.sep3.dbserver.model.Pm.db_entities.MasterUser;
 import dk.sep3.dbserver.service.exceptions.DuplicateDbEntryException;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;

@@ -1,4 +1,4 @@
-package dk.sep3.dbserver.repositories.config.passwordManagerDb;
+package dk.sep3.dbserver.repositories.config.PmDb;
 
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
@@ -28,8 +28,8 @@ import java.util.Map;
 @EnableJpaRepositories(
     entityManagerFactoryRef = "primaryEntityManagerFactory",
     transactionManagerRef = "primaryTransactionManager",
-    basePackages = {"dk.sep3.dbserver.repositories.passwordManagerDb"})
-public class PasswordManagerDataSourceConfig
+    basePackages = {"dk.sep3.dbserver.repositories.PmDb"})
+public class PmDataSourceConfig
 {
   @Primary
   @Bean(name = "primaryDataSourceProperties")
@@ -53,7 +53,7 @@ public class PasswordManagerDataSourceConfig
 
     return builder
         .dataSource(primaryDataSource)
-        .packages("dk.sep3.dbserver.model.passwordManager.db_entities")
+        .packages("dk.sep3.dbserver.model.Pm.db_entities")
         .persistenceUnit("primaryDataSource")
         .properties(primaryJpaProperties)
         .build();

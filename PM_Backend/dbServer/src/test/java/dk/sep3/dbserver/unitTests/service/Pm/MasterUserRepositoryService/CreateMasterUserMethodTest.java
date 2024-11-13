@@ -1,12 +1,12 @@
-package dk.sep3.dbserver.unitTests.service.PswdMgr.MasterUserRepositoryService;
+package dk.sep3.dbserver.unitTests.service.Pm.MasterUserRepositoryService;
 
 import dk.sep3.dbserver.DbServerApplication;
 import dk.sep3.dbserver.integrationTests.TestDataSourceConfig;
-import dk.sep3.dbserver.model.passwordManager.db_entities.MasterUser;
+import dk.sep3.dbserver.model.Pm.db_entities.MasterUser;
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
-import dk.sep3.dbserver.repositories.passwordManagerDb.MasterUserRepository;
+import dk.sep3.dbserver.repositories.PmDb.MasterUserRepository;
 import dk.sep3.dbserver.service.exceptions.DuplicateDbEntryException;
-import dk.sep3.dbserver.service.passwordManager.MasterUserRepositoryServiceImpl;
+import dk.sep3.dbserver.service.Pm.MasterUserRepositoryServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
     "dk.sep3.dbserver.service.discoveryService", "dk.sep3.dbdiscoveryservice.*"
 })
 @EntityScan(basePackages = {"dk.sep3.dbserver.model.discoveryService.db_entities"})
-public class DbServerDiscoveryServiceApplication
+public class DbDiscoveryServiceApplication
 {
   public static void main(String[] args) {
-    SpringApplication.run(DbServerDiscoveryServiceApplication.class, args);
+    SpringApplication.run(DbDiscoveryServiceApplication.class, args);
   }
 }
