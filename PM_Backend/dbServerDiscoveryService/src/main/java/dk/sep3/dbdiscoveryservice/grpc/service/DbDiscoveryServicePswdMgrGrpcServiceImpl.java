@@ -1,9 +1,9 @@
-package dk.sep3.dbserverdiscoveryservice.grpc.service;
+package dk.sep3.dbdiscoveryservice.grpc.service;
 
 import dk.sep3.dbserver.model.discoveryService.db_entities.DatabaseServer;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryService;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
-import dk.sep3.dbserverdiscoveryservice.service.DatabaseServerMonitor;
+import dk.sep3.dbdiscoveryservice.service.DatabaseServerMonitor;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
 import grpc.PasswordManagerServiceGrpc;
@@ -22,14 +22,14 @@ import javax.naming.ServiceUnavailableException;
 import java.util.Arrays;
 
 @GrpcService
-public class DbDiscoveryServicePasswordManagerGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
+public class DbDiscoveryServicePswdMgrGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
   private final DiscoveryRepositoryService discoveryRepositoryService;
   private final int numberOfRetries = 6;
-  private static final Logger logger = LoggerFactory.getLogger(DbDiscoveryServicePasswordManagerGrpcServiceImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(DbDiscoveryServicePswdMgrGrpcServiceImpl.class);
 
   @Autowired
-  public DbDiscoveryServicePasswordManagerGrpcServiceImpl(DiscoveryRepositoryServiceImpl discoveryRepositoryService,
+  public DbDiscoveryServicePswdMgrGrpcServiceImpl(DiscoveryRepositoryServiceImpl discoveryRepositoryService,
       DatabaseServerMonitor databaseServerMonitor,
       Environment environment) {
     super();

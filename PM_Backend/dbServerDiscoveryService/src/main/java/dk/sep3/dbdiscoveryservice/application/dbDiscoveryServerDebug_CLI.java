@@ -1,4 +1,4 @@
-package dk.sep3.dbserverdiscoveryservice.application;
+package dk.sep3.dbdiscoveryservice.application;
 
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
 import dk.sep3.dbserver.grpc.factories.MasterUserDTOGrpcFactory;

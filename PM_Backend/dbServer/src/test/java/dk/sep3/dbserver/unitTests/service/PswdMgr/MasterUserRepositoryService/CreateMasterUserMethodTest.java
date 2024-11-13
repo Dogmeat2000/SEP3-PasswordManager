@@ -1,4 +1,4 @@
-package dk.sep3.dbserver.unitTests.service.passwordManager.MasterUserRepositoryService;
+package dk.sep3.dbserver.unitTests.service.PswdMgr.MasterUserRepositoryService;
 
 import dk.sep3.dbserver.DbServerApplication;
 import dk.sep3.dbserver.integrationTests.TestDataSourceConfig;

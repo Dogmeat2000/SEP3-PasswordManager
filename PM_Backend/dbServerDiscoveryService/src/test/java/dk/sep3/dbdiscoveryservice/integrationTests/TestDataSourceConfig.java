@@ -1,4 +1,4 @@
-package dk.sep3.dbserverdiscoveryservice.integrationTests;
+package dk.sep3.dbdiscoveryservice.integrationTests;
 
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
