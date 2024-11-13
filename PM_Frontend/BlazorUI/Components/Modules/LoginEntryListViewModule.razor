@@ -5,6 +5,45 @@
     
     [Parameter]
     public string Category { get; set; }
+    
+    // For selecting entry to edit
+    [Parameter]
+    public EventCallback<LoginEntryDTO> OnEntrySingleClicked { get; set; }
+    [Parameter]
+    public EventCallback<LoginEntryDTO> OnEntryDoubleClicked { get; set; }
+    
+    private LoginEntryDTO selectedEntry;
+    private bool singleClickHandled;
+    private System.Timers.Timer clickTimer;
+    
+    public LoginEntryListViewModule()
+    {
+        // Indstil timeren til forsinkelse (200 ms)
+        clickTimer = new System.Timers.Timer(200);
+        clickTimer.Elapsed += (sender, e) =>
+        {
+            clickTimer.Stop();
+            if (singleClickHandled)
+            {
+                InvokeAsync(() => OnEntrySingleClicked.InvokeAsync(selectedEntry));
+                singleClickHandled = false;
+            }
+        };
+    }
+
+    private void HandleClick(LoginEntryDTO entry)
+    {
+        selectedEntry = entry;
+        singleClickHandled = true;
+        clickTimer.Start();
+    }
+
+    private void HandleDoubleClick(LoginEntryDTO entry)
+    {
+        clickTimer.Stop();
+        singleClickHandled = false;
+        OnEntryDoubleClicked.InvokeAsync(entry);
+    }
 }
 
 <div class="loginEntry-section">
@@ -21,7 +60,7 @@
     </thead>
     <tbody>
         @foreach (LoginEntryDTO loginEntry in Entries) {
-            <tr>
+            <tr @onclick="() => HandleClick(loginEntry)" @ondblclick="() => HandleDoubleClick(loginEntry)">
                 <th>@loginEntry.EntryName</th>
                 <th><a href="@loginEntry.EntryAddress" target="_blank" rel="noopener norefferer">@loginEntry.EntryAddress</a></th>
                 <th>@loginEntry.EntryUsername</th>

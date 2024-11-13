@@ -6,8 +6,8 @@
 
 @if (isVisible)
 {
-    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
-        <div class="modal-dialog">
+    <div class="modal fade show d-block" @onclick="HideModal" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog" @onclick:stopPropagation>
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Update or delete Entry</h5>
@@ -32,7 +32,7 @@
                     </div>
                     @*<div class="form-group">
                     <label for="category">entryCategory</label>
-                    <select id="category" class="form-control" @bind="category">
+                    <select id="category" class="form-control" @bind="entrycategory">
                         <option>Select</option>
                         <option>Social Media</option>
                         <option>Bank - Pension - Insurance</option>
@@ -52,30 +52,34 @@
 @code {
     private bool isVisible = false;
 
-    private LoginEntryDTO selectedLoginEntry; 
+    [Parameter]
+    public LoginEntryDTO? SelectedEntry { get; set; }
     
-    private string entryName = string.Empty;
-    private string entryAddress = string.Empty;
-    private string entryUsername = string.Empty;
-    private string entryPassword = string.Empty;
-    private string category = string.Empty;
+    private string? entryName = string.Empty;
+    private string? entryAddress = string.Empty;
+    private string? entryUsername = string.Empty;
+    private string? entryPassword = string.Empty;
+    private string? entrycategory = string.Empty;
 
     [Parameter]
     public EventCallback<LoginEntryDTO> OnUpdateEntrySucces { get; set; }
     public EventCallback<bool> onDeleteEntrySuccess { get; set; }
-
-    private void Initialize()
-    {
-        selectedLoginEntry = new LoginEntryDTO();
-        
-        entryName = "";
-        entryAddress = "";
-        entryUsername = "";
-        entryPassword = ""; 
-    }
     
     public void ShowModal()
     {
+        if (SelectedEntry != null)
+        {
+            entryName = SelectedEntry.EntryName;
+            entryUsername = SelectedEntry.EntryUsername;
+            entryPassword = SelectedEntry.EntryPassword;
+            entryAddress = SelectedEntry.EntryAddress;
+            entrycategory = SelectedEntry.EntryCategory;
+            
+            isVisible = true;
+            StateHasChanged();
+        }
+
+
         isVisible = true; 
         StateHasChanged();
     }
@@ -83,11 +87,6 @@
     private void HideModal()
     {
         isVisible = false; 
-        entryName = string.Empty;
-        entryAddress = string.Empty;
-        entryUsername = string.Empty;
-        entryPassword = string.Empty;
-        
         StateHasChanged();
     }
 
@@ -108,7 +107,7 @@
 
     private async Task DeleteLoginEntryAsync()
     {
-        var isDeleted = await LoginEntryService.DeleteLoginEntryAsync(selectedLoginEntry); 
+        var isDeleted = await LoginEntryService.DeleteLoginEntryAsync(SelectedEntry); 
         await onDeleteEntrySuccess.InvokeAsync(); 
     }
 }

@@ -3,11 +3,11 @@
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
 
-<EditLoginEntryModal @ref="editLoginEntryModal"/>
+<EditLoginEntryModal @ref="editLoginEntryModal" SelectedEntry="selectedEntry"/>
 
 @code {
     // Edit and delete attributes
-    private LoginEntryDTO selectedEntry; 
+    private LoginEntryDTO? selectedEntry; 
     private EditLoginEntryModal? editLoginEntryModal; 
     
     private string masterUsername = "user0";
@@ -101,6 +101,18 @@
             Console.WriteLine("editLoginEntryModal er null");
         }
     }
+    
+    private void OnEntrySingleClicked(LoginEntryDTO entry)
+    {
+        selectedEntry = entry;
+        Console.WriteLine("Entry selected with single click: " + entry.EntryName);
+    }
+
+    private void OnEntryDoubleClicked(LoginEntryDTO entry)
+    {
+        selectedEntry = entry;
+        ShowEditLoginEntryModal();
+    }
 }
 
 <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 100%; margin: 0 auto;">
@@ -126,9 +138,9 @@
             </div>
 
         <div class="flex-grow-1 px-1">
-            <LoginEntryListViewModule Entries="socialMediaEntries" Category="Social Media"/>
-            <LoginEntryListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance"/>
-            <LoginEntryListViewModule Entries="otherEntries" Category="Other"/>
+            <LoginEntryListViewModule Entries="socialMediaEntries" Category="Social Media" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
+            <LoginEntryListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
+            <LoginEntryListViewModule Entries="otherEntries" Category="Other" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
         </div>
     </div>
 </div>
