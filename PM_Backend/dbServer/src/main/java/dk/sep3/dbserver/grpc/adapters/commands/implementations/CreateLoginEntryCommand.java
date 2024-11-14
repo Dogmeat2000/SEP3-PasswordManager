@@ -29,8 +29,11 @@ public class CreateLoginEntryCommand implements GrpcCommand {
         if(!request.getDataCase().equals(GenericRequest.DataCase.LOGINENTRY))
             throw new DataIntegrityViolationException("Argument is not valid.");
 
+        System.out.println(request.getLoginEntry().toString());
         // Convert to db compatible entity:
         LoginEntry loginEntry = LoginEntryDTOtoLoginEntryEntity.convertToLoginEntryEntity(request.getLoginEntry());
+
+        System.out.println(loginEntry.toString());
 
         // Execute the proper action:
         loginEntry = loginEntryServiceImpl.createLoginEntry(loginEntry);
