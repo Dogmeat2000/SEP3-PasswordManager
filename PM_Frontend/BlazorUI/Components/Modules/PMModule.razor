@@ -18,42 +18,50 @@
     private List<LoginEntryDTO> socialMediaEntries = new();
     private List<LoginEntryDTO> bankEntries = new();
     private List<LoginEntryDTO> otherEntries = new();
+    private MarkupString loadExceptionMsg = new();
     
     protected override async Task OnInitializedAsync() {
         await LoadEntries();
     }
 
-    
-    private void TestData() {
-        socialMediaEntries.Add(new LoginEntryDTO(1, "TestEntryUserName1", "TestPswd1", 109, "Social Media", "Discord", "https://discord.com"));
-        bankEntries.Add(new LoginEntryDTO(2, "TestEntryUserName2", "TestPswd1", 109, "Bank - Pension - Insurance", "ItsLearning", "https://itsLearning.dk"));
-        otherEntries.Add(new LoginEntryDTO(3, "TestEntryUserName3", "TestPswd1", 109, "Other", "Folketinget", "https://folketinget.dk"));
-    }
-    
-
     private async Task LoadEntries() {
-        try { 
-        ServerResponse response = await ServiceLayer.ReadLoginEntriesAsync(new MasterUserDTO()); // TODO: Apply the logged-in userDTO here instead.
+        int retryCount = 3;
+        int counter = 0;
+        while (counter < retryCount) {
+            ServerResponse? response;
+            try {
+                loadExceptionMsg = (MarkupString)("");
+                response = await ServiceLayer.ReadLoginEntriesAsync(new MasterUserDTO(112, "TestUsername", "TestPassword")); // TODO: Apply the logged-in userDTO here instead.
         
-            if (response.statusCode == 200 
-                && response.dto is LoginEntryListDTO entries
-                && entries.loginEntries != null
-                && entries.loginEntries.Count > 0) {
-            
-                IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
-                socialMediaEntries = enumerableEntries.Where(e => e.EntryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
-                bankEntries = enumerableEntries.Where(e => e.EntryCategory == "Bank - Pension - Insurance").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
-                otherEntries = enumerableEntries.Where(e => e.EntryCategory == "Other").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
-                StateHasChanged();
+                if (response is { statusCode: 200, dto: LoginEntryListDTO { loginEntries.Count: > 0 } entries }) {
+                    IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
+                    // Categorize entries to "Social Media" category:
+                    socialMediaEntries = enumerableEntries.Where(e => e.EntryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                    foreach (var loginEntryDto in socialMediaEntries)
+                        entries.RemoveLoginEntry(loginEntryDto); //Remove already assigned entries, so any remainders can be caught later and added to "Others" category.
+                    
+                    // Categorize entries to "Bank - Pension - Insurance" category:
+                    bankEntries = enumerableEntries.Where(e => e.EntryCategory == "Bank - Pension - Insurance").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                    foreach (var loginEntryDto in bankEntries)
+                        entries.RemoveLoginEntry(loginEntryDto); //Remove already assigned entries, so any remainders can be caught later and added to "Others" category.
+
+                    // Categorize remaining entries to "Others" category:
+                    foreach (var loginEntryDto in entries.loginEntries)
+                        otherEntries.Add(loginEntryDto);
+                    
+                    counter += 100000;
+                    StateHasChanged();
+                }
+            } catch (Exception e) {
+                Console.WriteLine("[LoginEntryListViewModule.razor] Exception occurred while querying for all loginEntries. Reason: " + e.Message);
+                loadExceptionMsg = (MarkupString)("<b>Error:</b> Exception occurred while loading login entries." +
+                                                  "<br><br>" +
+                                                  "<b>Type:</b> " + e.GetType() + 
+                                                  "<br><br><b>Reason:</b> " + e.Message);
+                counter++;
+                Thread.Sleep(250);
             }
-        } catch (Exception e) {
-            // TODO: Improve exceptionhandling. Currently just placeholder, so blazor app can be launched elsewhere while implementing backend.
-            Console.WriteLine("[LoginEntryListViewModule.razor] Exception occurred while querying for all loginEntries. Reason: " + e.Message);
         }
-        
-        // TODO: Delete below:
-        TestData();
-        StateHasChanged();
     }
 
     private void OpenCreateModal() {
@@ -137,14 +145,27 @@
         </div>
 
         <div class="flex-grow-1">
-            <LoginEntryListViewModule Entries="socialMediaEntries" Category="Social Media" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
-            <LoginEntryListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
+            <!-- Only shows a Category, if there exists any login-entries in said category -->
+            @if (socialMediaEntries.Count > 0) {
+                <LoginEntryListViewModule Entries="socialMediaEntries" Category="Social Media" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
+            }
+
+            @if (bankEntries.Count > 0) {
+                <LoginEntryListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
+            }
+
+            <!-- Always shows the Other Category, even though no login entries are found -->
             <LoginEntryListViewModule Entries="otherEntries" Category="Other" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
+
+            @if (loadExceptionMsg.ToString().Length > 0) {
+                <div class="error-box">
+                    <p>@loadExceptionMsg</p>
+                </div>
+            }
         </div>
     </div>
 </div>
 
-@if (isCreateModalOpen)
-{
+@if (isCreateModalOpen) {
     <CreateEntryModule OnCreate="HandleCreate" />
 }
