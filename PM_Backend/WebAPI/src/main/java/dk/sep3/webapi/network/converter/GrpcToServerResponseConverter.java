@@ -2,9 +2,9 @@ package dk.sep3.webapi.network.converter;
 
 import common.ServerResponse;
 import common.dto.LoginEntryListDTO;
+import common.dto.LoginEntryDTO;
 import common.dto.MasterUserDTO;
 import grpc.GenericResponse;
-import grpc.LoginEntryDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,7 +16,7 @@ public class GrpcToServerResponseConverter {
         // Checks to see if GenericResponse has data of type MasterUserDTO
         if (grpcResponse.hasMasterUser()) {
             MasterUserDTO masterUserDTO = new MasterUserDTO();
-            masterUserDTO.setId((int) grpcResponse.getMasterUser().getId());
+            masterUserDTO.setId(grpcResponse.getMasterUser().getId());
             masterUserDTO.setMasterUsername(grpcResponse.getMasterUser().getMasterUsername());
             masterUserDTO.setMasterPassword(grpcResponse.getMasterUser().getMasterPassword());
             serverResponse.setDto(masterUserDTO);
@@ -24,8 +24,7 @@ public class GrpcToServerResponseConverter {
         } else if (grpcResponse.hasLoginEntries()) {
             // Convert gRPC loginEntries to HTTP compatible format:
             LoginEntryListDTO loginEntryListDTO = new LoginEntryListDTO();
-
-            for (LoginEntryDTO grpcLoginEntryDTO : grpcResponse.getLoginEntries().getLoginEntriesList()){
+            for (grpc.LoginEntryDTO grpcLoginEntryDTO : grpcResponse.getLoginEntries().getLoginEntriesList()){
                 common.dto.LoginEntryDTO newEntry = new common.dto.LoginEntryDTO(
                     grpcLoginEntryDTO.getEntryUsername(),
                     grpcLoginEntryDTO.getEntryPassword(),
@@ -40,15 +39,21 @@ public class GrpcToServerResponseConverter {
             // Set the ServerResponse:
             serverResponse.setDto(loginEntryListDTO);
 
-        } /*else if (grpcResponse.hasLoginEntry()) {
-          LoginEntryDTO loginEntryDTO = new LoginEntryDTO(grpcResponse.getLoginEntry().getEntryUsername(),
-              grpcResponse.getLoginEntry().getEntryPassword(),
-              grpcResponse.getLoginEntry().getMasterUserId(),
-              grpcResponse.getLoginEntry().getEntryName(),
-              grpcResponse.getLoginEntry().getEntryAddress(),
-              "Unspecified");
+        } else if (grpcResponse.hasLoginEntry()) {
+            LoginEntryDTO loginEntryDTO = new LoginEntryDTO();
+            loginEntryDTO.setId(grpcResponse.getLoginEntry().getId());
+            loginEntryDTO.setEntryUsername(grpcResponse.getLoginEntry().getEntryUsername());
+            loginEntryDTO.setEntryPassword(grpcResponse.getLoginEntry().getEntryPassword());
+            loginEntryDTO.setMasterUserId(grpcResponse.getLoginEntry().getMasterUserId());
+            loginEntryDTO.setEntryName(grpcResponse.getLoginEntry().getEntryName());
+            loginEntryDTO.setEntryAddress(grpcResponse.getLoginEntry().getEntryAddress());
+            loginEntryDTO.setEntryCategory(grpcResponse.getLoginEntry().getCategory());
             serverResponse.setDto(loginEntryDTO);
-        }*/ else {
+        } else if (grpcResponse.hasException()) {
+            // An exception occurred. Return the exception:
+            return new ServerResponse(grpcResponse.getStatusCode(), grpcResponse.getException().getException());
+
+        } else {
             return new ServerResponse(500, "Error: dto not supported");
         }
 
