@@ -33,4 +33,8 @@ public class LoginEntryListDTO extends DTO {
     public void addLoginEntry(LoginEntryDTO loginEntry) {
         loginEntries.add(loginEntry);
     }
+
+    @Override public String toString() {
+        return "LoginEntryListDTO{" + "loginEntries=" + loginEntries + '}';
+    }
 }

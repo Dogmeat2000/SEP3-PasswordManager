@@ -79,7 +79,7 @@ public class DTOJsonConverter : JsonConverter
                         EntryPassword = jsonObject["entryPassword"]?.ToString(),
                         EntryAddress = jsonObject["entryAddress"]?.ToString(),
                         MasterUserId = (int?)jsonObject["masterUserId"],
-                        EntryCategory = jsonObject["category"]?.ToString(),
+                        EntryCategory = jsonObject["entryCategory"]?.ToString(),
                         id = (int?)jsonObject["id"]
                     };
                     

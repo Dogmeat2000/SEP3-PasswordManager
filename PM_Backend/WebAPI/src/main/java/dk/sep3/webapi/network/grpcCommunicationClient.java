@@ -2,6 +2,7 @@ package dk.sep3.webapi.network;
 
 import common.ClientRequest;
 import common.ServerResponse;
+import common.dto.LoginEntryDTO;
 import dk.sep3.webapi.network.converter.ClientRequestToGrpcConverter;
 import dk.sep3.webapi.network.converter.GrpcToServerResponseConverter;
 import grpc.*;
@@ -38,9 +39,14 @@ public class grpcCommunicationClient implements CommunicationClient {
     public ServerResponse callDbServer(ClientRequest request) {
         GenericRequest grpcRequest = requestConverter.convert(request);
 
+        System.out.println("GrpcCommunicationClient: callDbServer -> " + grpcRequest.toString());
+
         GenericResponse grpcResponse = stub.handleRequest(grpcRequest);
 
-        return responseConverter.convert(grpcResponse);
+        ServerResponse response = responseConverter.convert(grpcResponse);
+        System.out.println("grpcCommunicationClient: Response: " + response.getStatusCode());
+
+        return response;
     }
 
     @Override

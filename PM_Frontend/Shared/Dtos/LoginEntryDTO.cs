@@ -30,7 +30,7 @@ namespace Shared.Dtos
                 EntryPassword = entryPassword;
                 EntryAddress = entryAddress;
                 MasterUserId = masterUserId;
-                EntryCategory = entryCategory;
+                EntryCategory = entryCategory ?? "Other";
             }
     
             public LoginEntryDTO(int id) : base(id) { }

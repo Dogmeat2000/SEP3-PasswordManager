@@ -13,7 +13,7 @@ public class ClientRequestToGrpcConverter {
         GenericRequest.Builder builder = GenericRequest.newBuilder()
                 .setRequestType(request.getRequestType());
 
-        // Tilføj DTO baseret på requestType
+        // Add DTO based on requestType
         if (request.getRequestType().equals("CreateMasterUser")) {
             common.dto.MasterUserDTO masterUserDTO = (common.dto.MasterUserDTO) request.getDTO();
             builder.setMasterUser(
@@ -56,6 +56,32 @@ public class ClientRequestToGrpcConverter {
                     .setMasterUsername(masterUserDTO.getMasterUsername())
                     .setMasterPassword(masterUserDTO.getMasterPassword())
                     .build()
+            );
+        } else if (request.getRequestType().equals("UpdateLoginEntry")) {
+            common.dto.LoginEntryDTO loginEntryDTO = (LoginEntryDTO) request.getDTO();
+            builder.setLoginEntry(
+                    grpc.LoginEntryDTO.newBuilder()
+                            .setId(loginEntryDTO.getId())
+                            .setEntryName(loginEntryDTO.getEntryName())
+                            .setEntryUsername(loginEntryDTO.getEntryUsername())
+                            .setEntryPassword(loginEntryDTO.getEntryPassword())
+                            .setEntryAddress(loginEntryDTO.getEntryAddress())
+                            .setMasterUserId(loginEntryDTO.getMasterUserId())
+                            .setCategory(loginEntryDTO.getEntryCategory())
+                            .build()
+            );
+        } else if (request.getRequestType().equals("DeleteLoginEntry")) {
+            common.dto.LoginEntryDTO loginEntryDTO = (LoginEntryDTO) request.getDTO();
+            builder.setLoginEntry(
+                    grpc.LoginEntryDTO.newBuilder()
+                            .setId(loginEntryDTO.getId())
+                            .setEntryName(loginEntryDTO.getEntryName())
+                            .setEntryUsername(loginEntryDTO.getEntryUsername())
+                            .setEntryPassword(loginEntryDTO.getEntryPassword())
+                            .setEntryAddress(loginEntryDTO.getEntryAddress())
+                            .setMasterUserId(loginEntryDTO.getMasterUserId())
+                            .setCategory(loginEntryDTO.getEntryCategory())
+                            .build()
             );
         }
 

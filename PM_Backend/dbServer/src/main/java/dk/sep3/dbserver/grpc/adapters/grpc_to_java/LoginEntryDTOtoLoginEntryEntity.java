@@ -19,6 +19,9 @@ public class LoginEntryDTOtoLoginEntryEntity {
         String entryAddress = grpcDTO.getEntryAddress();
         String entryCategory = grpcDTO.getCategory(); //TOdo convert category to correct category id
 
-        return new LoginEntry(id, entryUsername, entryPassword, entryName, entryAddress, 1, masterUserId);
+        LoginEntry entry = new LoginEntry(id, entryUsername, entryPassword, entryName, entryAddress, 1, masterUserId);
+        System.out.println("From converter: " + entry);
+
+        return entry;
     }
 }
