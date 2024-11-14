@@ -9,4 +9,5 @@ public interface ICryptographyService
     Task<ServerResponse> DecryptServerResponceAsync(ServerResponse serverResponse);
     Task<LoginEntryDTO> EncryptLoginEntryAsync(LoginEntryDTO loginEntryDTO);
     Task<ServerResponse> DecryptLoginEntryAsync(ServerResponse serverResponse);
+    Task<ServerResponse> DecryptLoginEntryListAsync(ServerResponse serverResponse);
 }
