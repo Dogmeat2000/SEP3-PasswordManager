@@ -34,6 +34,7 @@ public class GrpcToServerResponseConverter {
                     grpcLoginEntryDTO.getEntryAddress(),
                     grpcLoginEntryDTO.getCategory()
                 );
+                newEntry.setId(grpcLoginEntryDTO.getId());
                 loginEntryListDTO.addLoginEntry(newEntry);
             }
             // Set the ServerResponse:
