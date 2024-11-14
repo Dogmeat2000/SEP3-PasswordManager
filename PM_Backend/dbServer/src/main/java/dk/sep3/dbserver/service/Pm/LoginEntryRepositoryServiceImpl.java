@@ -2,6 +2,7 @@ package dk.sep3.dbserver.service.Pm;
 
 import dk.sep3.dbserver.model.Pm.db_entities.LoginEntry;
 import dk.sep3.dbserver.repositories.PmDb.LoginEntryRepository;
+import dk.sep3.dbserver.repositories.PmDb.MasterUserRepository;
 import dk.sep3.dbserver.service.exceptions.NotFoundInDBException;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.exception.ConstraintViolationException;
@@ -19,16 +20,18 @@ public class LoginEntryRepositoryServiceImpl implements LoginEntryRepositoryServ
 
     private final LoginEntryRepository loginEntryRepository;
     private static final Logger logger = LoggerFactory.getLogger(LoginEntryRepositoryServiceImpl.class);
+    private final MasterUserRepository masterUserRepository;
 
     @Autowired
-    public LoginEntryRepositoryServiceImpl(LoginEntryRepository loginEntryRepository) {
+    public LoginEntryRepositoryServiceImpl(LoginEntryRepository loginEntryRepository, MasterUserRepository masterUserRepository) {
         this.loginEntryRepository = loginEntryRepository;
+        this.masterUserRepository = masterUserRepository;
     }
 
     @Override
     public LoginEntry createLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException {
         // Validate the received LoginEntry data before saving to the database
-        validateLoginEntry(loginEntry);
+        validateCreateLoginEntry(loginEntry);
 
         try {
             // Save LoginEntry to the database
@@ -136,7 +139,6 @@ public class LoginEntryRepositoryServiceImpl implements LoginEntryRepositoryServ
             throw new DataIntegrityViolationException("LoginEntry cannot be null.");
         }
 
-        validateEntryId(loginEntry.getId());
         validateEntryUsername(loginEntry.getEntryUsername());
         validateEntryPassword(loginEntry.getEntryPassword());
         validateEntryName(loginEntry.getEntryName());
@@ -146,7 +148,23 @@ public class LoginEntryRepositoryServiceImpl implements LoginEntryRepositoryServ
         // Additional validation can be added if there are constraints on uniqueness, etc.
     }
 
-    private void validateEntryId(int id) throws DataIntegrityViolationException {
+    private void validateCreateLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException {
+        if (loginEntry == null) {
+            logger.error("Validation failed. LoginEntry is null.");
+            throw new DataIntegrityViolationException("LoginEntry cannot be null.");
+        }
+
+        validateEntryIdOnCreate(loginEntry.getId());
+        validateEntryUsername(loginEntry.getEntryUsername());
+        validateEntryPassword(loginEntry.getEntryPassword());
+        validateEntryName(loginEntry.getEntryName());
+        validateEntryCategoryId(loginEntry.getEntryCategoryId());
+        validateMasterUserId(loginEntry.getMasterUserId());
+
+        // Additional validation can be added if there are constraints on uniqueness, etc.
+    }
+
+    private void validateEntryIdOnCreate(int id) throws DataIntegrityViolationException {
         if (id != 0) {
             logger.error("Validation failed. Provided LoginEntry ID must be zero, as the DB auto-generates it.");
             throw new DataIntegrityViolationException("LoginEntry ID must be zero as the DB auto-generates it.");
@@ -182,9 +200,13 @@ public class LoginEntryRepositoryServiceImpl implements LoginEntryRepositoryServ
     }
 
     private void validateMasterUserId(int masterUserId) throws DataIntegrityViolationException {
-        if (masterUserId <= 0) {
-            logger.error("Validation failed. MasterUser ID associated with LoginEntry must be a positive integer.");
-            throw new DataIntegrityViolationException("MasterUser ID must be a positive integer.");
+        if (masterUserId <= 0 || !masterUserExists(masterUserId)) {
+            logger.error("Validation failed. MasterUser ID associated with LoginEntry must be a valid and existing positive integer. masterUserId " + masterUserId);
+            throw new DataIntegrityViolationException("MasterUser ID must be a positive integer and must exist.");
         }
+    }
+
+    private boolean masterUserExists(int masterUserId) {
+        return masterUserRepository.existsById(masterUserId);
     }
 }
