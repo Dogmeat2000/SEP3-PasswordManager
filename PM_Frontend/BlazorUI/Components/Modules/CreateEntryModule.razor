@@ -8,6 +8,7 @@
     private string entryUsername = string.Empty;
     private string entryPassword = string.Empty;
     private string category = string.Empty;
+    private int masterUserId = 112; //Hardcoded untill authentication is implemented TODO: Set to use the logged in users id
     private bool isSubmitting = false;
     private string? errorMessage = null;
     private string? confirmationMessage = null;
@@ -24,22 +25,32 @@
         errorMessage = null;
         confirmationMessage = null;
 
+        if (!entryAddress.Contains("https://") || !entryAddress.Contains("http://"))
+        {
+            entryAddress = "https://" + entryAddress;
+        }
         var newEntry = new LoginEntryDTO
         {
             EntryName = entryName,
             EntryAddress = entryAddress,
             EntryUsername = entryUsername,
             EntryPassword = entryPassword,
-            EntryCategory = category
+            EntryCategory = category,
+            MasterUserId = masterUserId
+            
         };
 
+        
+        {
+            
+        }
         try
         {
             // Call the service layer to create the entry in the database and receive a ServerResponse
             ServerResponse response = await ServiceLayer.CreateLoginEntryAsync(newEntry);
 
             // Check the status code in the ServerResponse
-            if (response.statusCode == 200)
+            if (response.statusCode == 201)
             {
                 confirmationMessage = "Entry created successfully!";
                 
