@@ -40,6 +40,9 @@ public class ClientRequestToGrpcConverter {
                             .setEntryUsername(loginEntryDTO.getEntryUsername())
                             .setEntryPassword(loginEntryDTO.getEntryPassword())
                             .setMasterUserId(loginEntryDTO.getMasterUserId())
+                            .setEntryName(loginEntryDTO.getEntryName())
+                            .setEntryAddress(loginEntryDTO.getEntryAddress())
+                            .setCategory(loginEntryDTO.getEntryCategory())
                             .build()
             );
         } else if (request.getRequestType().equalsIgnoreCase("ReadLoginEntries")) {
