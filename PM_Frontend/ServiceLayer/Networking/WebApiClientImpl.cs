@@ -14,8 +14,7 @@ public class WebApiClientImpl : IWebApiClient
     private readonly string _loadBalancerUrl;
     private string WebApiUrl { get; set; }
 
-    public WebApiClientImpl(HttpClient httpClient, string loadBalancerUrl)
-    {
+    public WebApiClientImpl(HttpClient httpClient, string loadBalancerUrl) {
         _httpClient = httpClient;
         _loadBalancerUrl = loadBalancerUrl;
     }
@@ -47,7 +46,7 @@ public class WebApiClientImpl : IWebApiClient
     }
     
     public async Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto) {
-        ServerResponse serverResponse = await SendRequestAsync("ReadLoginEntries", dto); 
+        ServerResponse serverResponse = await SendRequestAsync("ReadLoginEntries", dto);
         return serverResponse;
     }
 
@@ -82,8 +81,7 @@ public class WebApiClientImpl : IWebApiClient
             var request = new ClientRequest(requestType, requestDto);
             
             //Check to see if WebApiUrl is set
-            if (string.IsNullOrEmpty(WebApiUrl))
-            {
+            if (string.IsNullOrEmpty(WebApiUrl)) {
                 Console.WriteLine("Setting WebApiUrl");
                 await SetWebApiServerUrlAsync(false);
             }
@@ -97,8 +95,7 @@ public class WebApiClientImpl : IWebApiClient
                 Console.WriteLine("Attempting to use WEB-API URL: " + WebApiUrl + " for request of type: " + requestType);
 
                 // Serialize the request with type information
-                var jsonRequest = JsonConvert.SerializeObject(request, new JsonSerializerSettings
-                {
+                var jsonRequest = JsonConvert.SerializeObject(request, new JsonSerializerSettings {
                     TypeNameHandling = TypeNameHandling.Auto // Ensure @class is included for polymorphism
                 });
                 Console.WriteLine(jsonRequest);
@@ -116,9 +113,8 @@ public class WebApiClientImpl : IWebApiClient
                         Console.WriteLine("Server is overloaded, trying new server:");
                         await WebApiServerIsOverloadedAsync();
                         numberOfAttempts++;
-                    }
-                    else
-                    {
+                    } else {
+                        NetworkExceptionHandler.HandleException(response.StatusCode, response.Content.ReadAsStringAsync().Result);
                         throw new Exception("Server responded with an error: " + response.ReasonPhrase);
                     }
                 }
@@ -131,14 +127,11 @@ public class WebApiClientImpl : IWebApiClient
                     var serverResponse = JsonConvert.DeserializeObject<ServerResponse>(jsonResponse);
                     Console.WriteLine("ServerResponse: " + serverResponse);
                     
-                    if (serverResponse != null)
-                    {
+                    if (serverResponse != null) {
                         return serverResponse;
                     }
                     
                     throw new Exception("Server was not responded with an error: " + jsonResponse);
-                    
-                    
                 }
             }
 
@@ -148,20 +141,24 @@ public class WebApiClientImpl : IWebApiClient
 
     private async Task<string> SetWebApiServerUrlAsync(bool overLoaded)
     {
-        //if webapi url not already set
-        if (string.IsNullOrEmpty(WebApiUrl) || overLoaded)
-        {
-            //Ask loadbalancer for new web api server
-            ClientRequest request = new ClientRequest("GetAvailableServer", null);
-            var response = await _httpClient.PostAsJsonAsync($"{_loadBalancerUrl}/loadbalancer/server", request);
-
-            response.EnsureSuccessStatusCode();
-
-            var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
-            //Set webapiurl to be the new url
-            WebApiUrl = serverResponse?.message + "/api/handleRequest";
-            Console.WriteLine("WebApiUrl set to: " + WebApiUrl);
+        try {
+            //if webapi url not already set
+            if (string.IsNullOrEmpty(WebApiUrl) || overLoaded) {
+                //Ask loadbalancer for new web api server
+                ClientRequest request = new ClientRequest("GetAvailableServer", null);
+                var response = await _httpClient.PostAsJsonAsync($"{_loadBalancerUrl}/loadbalancer/server", request);
+                response.EnsureSuccessStatusCode();
+                var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
+                //Set webapiurl to be the new url
+                WebApiUrl = serverResponse?.message + "/api/handleRequest";
+                Console.WriteLine("WebApiUrl set to: " + WebApiUrl);
+            }
         }
+        catch (Exception e) {
+            Console.WriteLine(e.StackTrace);
+            throw new Exception($"SetWebApiServerUrlAsync failed: {e.Message}");
+        }
+
 
         return WebApiUrl;
     }
