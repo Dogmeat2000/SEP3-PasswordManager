@@ -1,9 +1,6 @@
 package dk.sep3.dbserver.grpc.adapters.commands;
 
-import dk.sep3.dbserver.grpc.adapters.commands.implementations.CreateLoginEntryCommand;
-import dk.sep3.dbserver.grpc.adapters.commands.implementations.CreateMasterUserCommand;
-import dk.sep3.dbserver.grpc.adapters.commands.implementations.ReadLoginEntriesCommand;
-import dk.sep3.dbserver.grpc.adapters.commands.implementations.ReadMasterUserCommand;
+import dk.sep3.dbserver.grpc.adapters.commands.implementations.*;
 import dk.sep3.dbserver.service.exceptions.IllegalGrpcCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +26,8 @@ public class GrpcCommandFactory
     // LoginEntry Commands:
     grpcCommandMap.put("createloginentry", commands.stream().filter(c -> c instanceof CreateLoginEntryCommand).findFirst().orElseThrow(() -> new IllegalGrpcCommand(genericErrorMsg)));
     grpcCommandMap.put("readloginentries", commands.stream().filter(c -> c instanceof ReadLoginEntriesCommand).findFirst().orElseThrow(() -> new IllegalGrpcCommand(genericErrorMsg)));
-
+    grpcCommandMap.put("updateloginentry", commands.stream().filter(c -> c instanceof UpdateLoginEntryCommand).findFirst().orElseThrow(() -> new IllegalGrpcCommand(genericErrorMsg)));
+    grpcCommandMap.put("deleteloginentry", commands.stream().filter(c -> c instanceof DeleteLoginEntryCommand).findFirst().orElseThrow(() -> new IllegalGrpcCommand(genericErrorMsg)));
     // Add more commands below: IMPORTANT: Please add any command in ALL LOWERCASE!
 
     //..

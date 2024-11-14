@@ -26,7 +26,6 @@ public class GenericResponseFactory
         .build();
   }
 
-
   public static GenericResponse buildGrpcGenericResponseWithLoginEntryDTO(int statusCode, LoginEntry loginEntry)
   {
     return GenericResponse.newBuilder()
@@ -49,5 +48,11 @@ public class GenericResponseFactory
     responseBuilder.setLoginEntries(loginEntryListDTOBuilder.build());
 
     return responseBuilder.build();
+  }
+
+  public static GenericResponse buildGrpcGenericResponseEmptyDTO(int statusCode, String message) {
+    return GenericResponse.newBuilder()
+            .setStatusCode(statusCode)
+            .build();
   }
 }

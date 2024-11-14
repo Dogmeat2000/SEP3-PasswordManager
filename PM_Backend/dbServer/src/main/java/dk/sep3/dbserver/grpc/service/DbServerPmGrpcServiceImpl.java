@@ -46,9 +46,13 @@ public class DbServerPmGrpcServiceImpl extends PasswordManagerServiceGrpc.Passwo
       // Identify what action was requested:
       String cmdRequested = request.getRequestType();
 
+      System.out.println("DbServer: " + cmdRequested);
+
       // Identify which gRPC command to execute:
       GrpcCommand command = commandManager.getCommand(cmdRequested);
+      System.out.println("DbServer after command " + cmdRequested.toLowerCase());
 
+      System.out.println("dbServerPmGrpcServiceimpl: " + request.getDataCase());
       // Execute the command:
       GenericResponse response = command.execute(request);
 
