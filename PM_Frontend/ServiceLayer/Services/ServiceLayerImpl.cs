@@ -21,9 +21,9 @@ public class ServiceLayerImpl : IServiceLayer
         return await _masterUserService.CreateMasterUserAsync(masterUserDto);
     }
 
-    public async Task<ServerResponse> ReadMasterUserAsync(int masterUserId)
+    public async Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO masterUserDto)
     {
-        return await _masterUserService.ReadMasterUserAsync(masterUserId);
+        return await _masterUserService.ReadMasterUserAsync(masterUserDto);
     }
     
     // TODO: Marcus, commented out due to errors.

@@ -28,12 +28,10 @@ public class WebApiClientImpl : IWebApiClient
         return responseMasterUserDto;
     }
 
-    public async Task<ServerResponse> ReadMasterUserAsync(int masterUserId)
+    public async Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO masterUserDto)
     {
-        var responseMasterUserDto =
-            await SendRequestAsync<MasterUserDTO>("ReadMasterUser",
-                new MasterUserDTO(masterUserId, null, null));
-        return responseMasterUserDto;
+        var serverResponse = await SendRequestAsync<MasterUserDTO>("ReadMasterUser", masterUserDto);
+        return serverResponse;
     }
 
     

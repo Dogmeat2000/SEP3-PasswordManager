@@ -37,10 +37,10 @@ public class MasterUserServiceImpl : IMasterUserService
         return decryptedServerResponse;
     }
 
-    public async Task<ServerResponse> ReadMasterUserAsync(int masterUserId)
+    public async Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO masterUserDto)
     {
         //Send the request to the web-api
-        var returnedMasterUserDto = await _webApiClient.ReadMasterUserAsync(masterUserId);
+        var returnedMasterUserDto = await _webApiClient.ReadMasterUserAsync(masterUserDto);
 
         //TODO: ?? Validation
 

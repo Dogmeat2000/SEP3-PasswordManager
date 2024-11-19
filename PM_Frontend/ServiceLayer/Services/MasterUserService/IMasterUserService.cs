@@ -22,7 +22,7 @@ public interface IMasterUserService
      * Handles eventual validation
      * Decrypts the returning master user before returning it.
      */
- Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
+ Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO loginDto);
  
  // TODO: Marcus, commented out due to errors.
  /**

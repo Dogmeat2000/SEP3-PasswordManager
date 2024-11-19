@@ -22,11 +22,21 @@
   <component name="ChangeListManager">
     <list default="true" id="bf0f3349-a25a-49e0-9410-275559e90b27" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PM_Frontend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateEntryModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/CreateEntryModule.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/EditLoginEntryModal.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/EditLoginEntryModal.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginEntryListViewModule.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/Cryptography/CryptographyServiceImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/JSONService/DTOJsonConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/JSONService/DTOJsonConverter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/LoginModule.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Modules/PMModule.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Components/Pages/Home.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorUI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorUI/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PM_Frontend.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PM_Frontend.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Networking/IWebApiClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Networking/IWebApiClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Networking/WebApiClientImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Networking/WebApiClientImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/IServiceLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/IServiceLayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/IMasterUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/IMasterUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/MasterUserService/MasterUserServiceImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceLayer/Services/ServiceLayerImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceLayer/Services/ServiceLayerImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.csproj.AssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,15 +62,14 @@
     &quot;assignee&quot;: &quot;Sterup15&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/KatAamand/SEP3_PasswordManager.git&quot;,
-    &quot;accountId&quot;: &quot;b2dccf4c-2b83-4bcd-b46f-63a17befd26a&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/KatAamand/SEP3_PasswordManager.git",
+    "accountId": "1bbfbcf5-afd9-476e-862d-4997578f79fd"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f16564c8c4b61e6ea398fe412680c6b795b266584ccf6a362aed712dc4d2b387/WebApplication.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -267,6 +276,7 @@
       <workItem from="1730802070176" duration="14562000" />
       <workItem from="1730919601498" duration="649000" />
       <workItem from="1730962081104" duration="1234000" />
+      <workItem from="1731917616264" duration="9683000" />
     </task>
     <task id="LOCAL-00001" summary="Cleaned up in Client - removed old project and replaced with 3 new: Shared, Client and BlazorFrontend. Ready to start work on the Client">
       <option name="closed" value="true" />

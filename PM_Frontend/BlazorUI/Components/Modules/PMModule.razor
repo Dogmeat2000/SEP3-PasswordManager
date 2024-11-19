@@ -23,6 +23,15 @@
     protected override async Task OnInitializedAsync() {
         await LoadEntries();
     }
+    
+    [Parameter]
+    public EventCallback OnLoginSuccess { get; set; }
+
+    private async Task HandleLogin()
+    {
+
+        await OnLoginSuccess.InvokeAsync();
+    }
 
     private async Task LoadEntries() {
         int retryCount = 3;

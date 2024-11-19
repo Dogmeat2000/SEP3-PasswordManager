@@ -3,28 +3,31 @@
 @using BlazorUI.Components.Modules
 
 
-<!--
-<AuthorizeView>
-    <Authorized>
-        
-    </Authorized>
-    <NotAuthorized>
-        <LoginModule />
-    </NotAuthorized>
-</AuthorizeView>-->
-
 @code {
-    // TODO: Marcus, commented in/out due to errors.
+    private bool isLoggedIn = false; 
+    private string masterUsername = string.Empty;
     private LoginModule? loginModule;
     private PMModule? pmModule;
     private CreateEntryModule? _createEntryModule;
+ 
+    
+    private async Task OnLoginSuccess()
+    {
+        isLoggedIn = true;
+        masterUsername = "LoggedInUser";
+        StateHasChanged();
+    }
 }
 
 <div class="container">
     <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-        @* <LoginModule @ref="loginModule" /> *@
-        <PMModule @ref="pmModule"/>
-        @*   <CreateEntryModule @ref="_createEntryModule"/> *@
-
+        @if (!isLoggedIn)
+        {
+        <LoginModule OnLoginSuccess="OnLoginSuccess" />
+        }
+        else
+        {
+        <PMModule masterUsername="@masterUsername" />
+        }
     </div>
 </div>

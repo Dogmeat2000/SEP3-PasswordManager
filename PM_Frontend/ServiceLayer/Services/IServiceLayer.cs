@@ -26,7 +26,7 @@ namespace ServiceLayer.Services
          * @return MasterUserDTO: The master user which id is used as parameter.
          * Todo: Think about if parameters should be changed so that the method can be used for login-purposes.
          */
-        Task<ServerResponse> ReadMasterUserAsync(int masterUserId);
+        Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO masterUserDto);
 
         /**
          * Sends a request to retrieve all login entries.
