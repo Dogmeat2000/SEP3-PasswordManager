@@ -9,8 +9,8 @@
     // Edit and delete attributes
     private LoginEntryDTO? selectedEntry; 
     private EditLoginEntryModal? editLoginEntryModal; 
-    
-    private string masterUsername = "user0";
+    [Parameter]
+    public string masterUsername { get; set; } = "user0"; // Default value if none is provided.
     private string generatedPassword = string.Empty;
 
     private bool isCreateModalOpen = false;
@@ -85,11 +85,10 @@
     }
     
 
-    private async Task HandleCreate(LoginEntryDTO newEntry)
+    private async Task HandleCreate()
     {
-        await ServiceLayer.CreateLoginEntryAsync(newEntry);
         await LoadEntries();
-        CloseCreateModal();
+        //CloseCreateModal();
         StateHasChanged(); 
     }
     
@@ -177,4 +176,8 @@
 
 @if (isCreateModalOpen) {
     <CreateEntryModule OnCreate="HandleCreate" />
+}
+
+@if (isCreateModalOpen) {
+<CreateEntryModule OnCancel="CloseCreateModal" />
 }

@@ -58,8 +58,11 @@ public class LoginEntryServiceImpl : ILoginEntryService
     public async Task<ServerResponse> CreateLoginEntryAsync(
         LoginEntryDTO newEntry)
     {
-        ServerResponse response = await _webApiClient.CreateLoginEntryAsync(await _cryptographyService.EncryptLoginEntryAsync(newEntry));
-        return await _cryptographyService.DecryptLoginEntryAsync(response);
+        ServerResponse response = await _webApiClient.CreateLoginEntryAsync(newEntry); //Todo: Add encryption when decryption works as intended
+        Console.WriteLine("LoginEntryServiceImpl: Status code:" + response.statusCode + " | Response: " + response);
+        //ServerResponse decryptedResponse = await _cryptographyService.DecryptLoginEntryAsync(response); //Todo: Fix decryption, it somehow interrupts the rest of the code
+        //Console.WriteLine("LoginEntryServiceImpl: Decrypted server response:" + decryptedResponse);
+        return response;
     }
 
     /**

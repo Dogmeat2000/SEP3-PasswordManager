@@ -55,7 +55,7 @@
                 confirmationMessage = "Entry created successfully!";
                 
                 // Optionally, invoke the OnCreate callback to notify the parent component
-                await OnCreate.InvokeAsync(newEntry);
+                await OnCreate.InvokeAsync();
 
                 // Clear the form fields
                 entryName = string.Empty;
@@ -88,6 +88,7 @@
     private async Task CloseCreateModal()
     {
         await OnCancel.InvokeAsync();
+        StateHasChanged();
     }
 }
 

@@ -60,7 +60,7 @@ public class CryptographyServiceImpl : ICryptographyService
             
         }
         
-        return await Task.FromResult(decryptedServerResponse);
+        return serverResponse; //TODO: Use decryption, as of now it just returns the given serverResponse
     }
     
     public async Task<ServerResponse> DecryptLoginEntryListAsync(ServerResponse serverResponse)
