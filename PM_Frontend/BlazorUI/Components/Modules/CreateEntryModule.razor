@@ -24,6 +24,18 @@
         isSubmitting = true;
         errorMessage = null;
         confirmationMessage = null;
+        
+        // Validation: Ensure all fields are filled
+        if (string.IsNullOrWhiteSpace(entryName) ||
+            string.IsNullOrWhiteSpace(entryAddress) ||
+            string.IsNullOrWhiteSpace(entryUsername) ||
+            string.IsNullOrWhiteSpace(entryPassword) ||
+            string.IsNullOrWhiteSpace(category))
+        {
+            errorMessage = "All fields must be filled before creating an entry.";
+            isSubmitting = false;
+            return;
+        }
 
         if (!entryAddress.Contains("https://") || !entryAddress.Contains("http://"))
         {
@@ -55,7 +67,7 @@
                 confirmationMessage = "Entry created successfully!";
                 
                 // Optionally, invoke the OnCreate callback to notify the parent component
-                await OnCreate.InvokeAsync(newEntry);
+                await OnCreate.InvokeAsync();
 
                 // Clear the form fields
                 entryName = string.Empty;
@@ -88,6 +100,7 @@
     private async Task CloseCreateModal()
     {
         await OnCancel.InvokeAsync();
+        StateHasChanged();
     }
 }
 

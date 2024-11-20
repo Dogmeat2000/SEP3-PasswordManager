@@ -14,6 +14,7 @@
     private EditLoginEntryModal? editLoginEntryModal;
 
     private string generatedPassword = string.Empty;
+
     private bool isCreateModalOpen = false;
 
     private List<LoginEntryDTO> socialMediaEntries = new();
@@ -85,11 +86,10 @@
         StateHasChanged(); 
     }
 
-    private async Task HandleCreate(LoginEntryDTO newEntry)
+    private async Task HandleCreate()
     {
-        await ServiceLayer.CreateLoginEntryAsync(newEntry);
         await LoadEntries();
-        CloseCreateModal();
+        //CloseCreateModal();
         StateHasChanged(); 
     }
 
@@ -154,11 +154,31 @@
         </div>
 
         <div class="flex-grow-1">
+            <!-- Only shows a Category, if there exists any login-entries in said category -->
+            @if (socialMediaEntries.Count > 0) {
+                <LoginEntryListViewModule Entries="socialMediaEntries" Category="Social Media" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
+            }
+
+            @if (bankEntries.Count > 0) {
+                <LoginEntryListViewModule Entries="bankEntries" Category="Bank - Pension - Insurance" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
+            }
+
+            <!-- Always shows the Other Category, even though no login entries are found -->
+            <LoginEntryListViewModule Entries="otherEntries" Category="Other" OnEntrySingleClicked="OnEntrySingleClicked" OnEntryDoubleClicked="OnEntryDoubleClicked"/>
+
+            @if (loadExceptionMsg.ToString().Length > 0) {
+                <div class="error-box">
+                    <p>@loadExceptionMsg</p>
+                </div>
+            }
         </div>
     </div>
 </div>
 
-@if (isCreateModalOpen)
-{
+@if (isCreateModalOpen) {
     <CreateEntryModule OnCreate="HandleCreate" />
+}
+
+@if (isCreateModalOpen) {
+<CreateEntryModule OnCancel="CloseCreateModal" />
 }
