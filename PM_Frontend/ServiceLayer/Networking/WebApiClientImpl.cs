@@ -36,10 +36,10 @@ public class WebApiClientImpl : IWebApiClient
 
     
     // LoginEntry methods:
-    public async Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO loginEntryDto)
+    public async Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO newEntry)
     {
         var serverResponse =
-            await SendRequestAsync <LoginEntryDTO>("CreateLoginEntry", loginEntryDto);
+            await SendRequestAsync <LoginEntryDTO>("CreateLoginEntry", newEntry);
         return serverResponse;
     }
     
