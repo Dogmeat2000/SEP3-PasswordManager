@@ -19,15 +19,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)  // Gives access to extended testing functionality
@@ -45,10 +46,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class GrpcIntegrationTests
 {
   @MockBean private DiscoveryRepository dbDiscoveryRepository;
-  //private MasterUserRepository dbMasterUserRepository;
 
   @InjectMocks private DbServerPmGrpcServiceImpl passwordManagerGrpcService;
   @InjectMocks private DiscoveryRepositoryServiceImpl discoveryRepositoryService;
+
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
   private ManagedChannel channel;
   private PasswordManagerServiceGrpc.PasswordManagerServiceBlockingStub passwordManagerStub;
@@ -104,7 +107,7 @@ public class GrpcIntegrationTests
     assertNotNull(response); // Ensure that the response is not null
     assertEquals(1, response.getMasterUser().getId());
     assertEquals("TestUser1", response.getMasterUser().getMasterUsername());
-    assertEquals("TestPassword1", response.getMasterUser().getMasterPassword());
+    assertTrue(passwordEncoder.matches("TestPassword1", response.getMasterUser().getMasterPassword()));
     assertEquals(201, response.getStatusCode());
   }
 
@@ -147,7 +150,7 @@ public class GrpcIntegrationTests
     assertNotNull(response); // Ensure that the response is not null
     assertEquals(1, response.getMasterUser().getId());
     assertEquals("TestUser2", response.getMasterUser().getMasterUsername());
-    assertEquals("TestPassword2", response.getMasterUser().getMasterPassword());
+    assertTrue(passwordEncoder.matches("TestPassword2", response.getMasterUser().getMasterPassword()));
     assertEquals(200, response.getStatusCode());
 
   }

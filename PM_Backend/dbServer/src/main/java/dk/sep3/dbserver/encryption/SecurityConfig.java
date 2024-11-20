@@ -9,19 +9,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfig
 {
-  @Value("${password.encoder.argon2.memory}")
+  @Value("${password.encoder.argon2.memory:32768}")
   private int memory;
 
-  @Value("${password.encoder.argon2.saltLength}")
+  @Value("${password.encoder.argon2.saltLength:24}")
   private int saltLength;
 
-  @Value("${password.encoder.argon2.iterations}")
+  @Value("${password.encoder.argon2.iterations:2}")
   private int iterations;
 
-  @Value("${password.encoder.argon2.parallelism}")
+  @Value("${password.encoder.argon2.parallelism:2}")
   private int parallelism;
 
-  @Value("${password.encoder.argon2.hashLength}")
+  @Value("${password.encoder.argon2.hashLength:48}")
   private int hashLength;
 
   /**<p>Specialized Utility Class used for encoding primarily the MasterUser password before committing to the Database for storage.</p>

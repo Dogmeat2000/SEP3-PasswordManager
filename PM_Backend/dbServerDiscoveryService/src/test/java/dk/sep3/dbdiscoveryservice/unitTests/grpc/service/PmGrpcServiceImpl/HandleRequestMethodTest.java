@@ -32,6 +32,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.env.Environment;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
@@ -67,6 +68,9 @@ public class HandleRequestMethodTest
   @Autowired
   private MasterUserRepository dbMasterUserRepository;
 
+  @Autowired
+  private PasswordEncoder passwordEncoder;
+
   @Autowired GrpcCommandFactory commandFactory;
 
   private DbDiscoveryServicePmGrpcServiceImpl discoveryPasswordManagerGrpcService;
@@ -90,9 +94,9 @@ public class HandleRequestMethodTest
   @BeforeEach
   public void setUp() throws IOException {
     // Set up some test-data for the test database:
-    MasterUser masterUser1 = new MasterUser(0, "TestMasterUser1", "ads91234AVA'S7_:&)/(=9");
-    MasterUser masterUser2 = new MasterUser(0, "TestMasterUser2", "ads91234AVA'S7_:&)/(=9");
-    MasterUser masterUser3 = new MasterUser(0, "TestMasterUser3", "ads91234AVA'S7_:&)/(=9");
+    MasterUser masterUser1 = new MasterUser(0, "TestMasterUser1", passwordEncoder.encode("ads91234AVA'S7_:&)/(=9"));
+    MasterUser masterUser2 = new MasterUser(0, "TestMasterUser2", passwordEncoder.encode("ads91234AVA'S7_:&)/(=9"));
+    MasterUser masterUser3 = new MasterUser(0, "TestMasterUser3", passwordEncoder.encode("ads91234AVA'S7_:&)/(=9"));
     dbMasterUserRepository.save(masterUser1);
     dbMasterUserRepository.save(masterUser2);
     dbMasterUserRepository.save(masterUser3);
@@ -208,7 +212,7 @@ public class HandleRequestMethodTest
     assertNotNull(response.getMasterUser().getMasterUsername());
     assertEquals(1, response.getMasterUser().getId());
     assertEquals("TestMasterUser1", response.getMasterUser().getMasterUsername());
-    assertEquals("ads91234AVA'S7_:&)/(=9", response.getMasterUser().getMasterPassword());
+    assertTrue(passwordEncoder.matches("ads91234AVA'S7_:&)/(=9", response.getMasterUser().getMasterPassword()));
   }
 
   @Test public void whenHandleRequest_IsGivenCreateMasterUserRequestWithValidMasterUserDTOThatExistsInDB_ReturnsCreatedMasterUser() {
@@ -224,7 +228,7 @@ public class HandleRequestMethodTest
     assertNotNull(response.getMasterUser().getMasterUsername());
     assertEquals(4, response.getMasterUser().getId());
     assertEquals("TestMasterUser4", response.getMasterUser().getMasterUsername());
-    assertEquals("ads91234AVA'S7_:&)/(=9", response.getMasterUser().getMasterPassword());
+    assertTrue(passwordEncoder.matches("ads91234AVA'S7_:&)/(=9", response.getMasterUser().getMasterPassword()));
   }
 
 

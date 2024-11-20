@@ -39,8 +39,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
@@ -59,16 +58,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class GrpcIntegrationTests
 {
   @MockBean private DiscoveryRepository dbDiscoveryRepository;
+  @MockBean private ServerHealthMonitor serverHealthMonitor;
+  @MockBean private DatabaseServerMonitor databaseServerMonitor;
   @InjectMocks private DiscoveryRepositoryServiceImpl discoveryRepositoryService;
-  @MockBean ServerHealthMonitor serverHealthMonitor;
-  @MockBean DatabaseServerMonitor databaseServerMonitor;
 
-  @Autowired GrpcCommandFactory commandFactory;
+  @Autowired private GrpcCommandFactory commandFactory;
+  @Autowired Environment environment;
 
   private DbDiscoveryServicePmGrpcServiceImpl discoveryPasswordManagerGrpcService;
   private DbServerPmGrpcServiceImpl dbServerPasswordManagerGrpcService;
-
-  @Autowired Environment environment;
 
   private Server dbServerGrpcServer;
   private Server discoveryGrpcServer;
@@ -192,10 +190,9 @@ public class GrpcIntegrationTests
     // Verify if gRPC response is correct and if the database is updated:
     // Expected response is a MasterUserDTO with an id of 1 and a statusCode of 201.
     assertNotNull(response); // Ensure that the response is not null
+    assertEquals(201, response.getStatusCode());
     assertEquals(1, response.getMasterUser().getId());
     assertEquals("TestUser1", response.getMasterUser().getMasterUsername());
-    assertEquals("TestPassword1", response.getMasterUser().getMasterPassword());
-    assertEquals(201, response.getStatusCode());
   }
 
 
@@ -237,7 +234,6 @@ public class GrpcIntegrationTests
     assertNotNull(response); // Ensure that the response is not null
     assertEquals(1, response.getMasterUser().getId());
     assertEquals("TestUser2", response.getMasterUser().getMasterUsername());
-    assertEquals("TestPassword2", response.getMasterUser().getMasterPassword());
     assertEquals(200, response.getStatusCode());
 
   }

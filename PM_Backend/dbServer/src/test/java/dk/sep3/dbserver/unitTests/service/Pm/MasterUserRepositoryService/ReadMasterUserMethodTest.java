@@ -18,6 +18,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
@@ -46,14 +47,17 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
     @Autowired private MasterUserRepositoryServiceImpl dbMasterUserRepositoryService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @BeforeEach public void setUp() {
       // Initialize all the @Mock and @InjectMock fields, allowing Spring Boot time to perform its Dependency Injection.
       MockitoAnnotations.openMocks(this);
 
       // Set up some test-data for the test database:
-      MasterUser masterUser1 = new MasterUser(0, "TestMasterUser1", "ads91234AVA'S7_:&)/(=9");
-      MasterUser masterUser2 = new MasterUser(0, "TestMasterUser2", "ads91234AVA'S7_:&)/(=9");
-      MasterUser masterUser3 = new MasterUser(0, "TestMasterUser3", "ads91234AVA'S7_:&)/(=9");
+      MasterUser masterUser1 = new MasterUser(0, "TestMasterUser1", passwordEncoder.encode("ads91234AVA'S7_:&)/(=9"));
+      MasterUser masterUser2 = new MasterUser(0, "TestMasterUser2", passwordEncoder.encode("ads91234AVA'S7_:&)/(=9"));
+      MasterUser masterUser3 = new MasterUser(0, "TestMasterUser3", passwordEncoder.encode("ads91234AVA'S7_:&)/(=9"));
       dbMasterUserRepository.save(masterUser1);
       dbMasterUserRepository.save(masterUser2);
       dbMasterUserRepository.save(masterUser3);
@@ -88,7 +92,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
       // Assert: Expected id of created MasterUser is 4 (Check Setup and count number of added MasterUsers)
       assertEquals("TestMasterUser1", masterUser.getMasterUsername());
-      assertEquals("ads91234AVA'S7_:&)/(=9", masterUser.getEncryptedPassword());
+      assertTrue(passwordEncoder.matches("ads91234AVA'S7_:&)/(=9", masterUser.getEncryptedPassword()));
       assertEquals(1, masterUser.getId());
     }
 
