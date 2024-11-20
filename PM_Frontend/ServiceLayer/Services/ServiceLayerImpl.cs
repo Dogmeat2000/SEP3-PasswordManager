@@ -1,3 +1,5 @@
+using System.Security.AccessControl;
+using System.Threading.Channels;
 using ServiceLayer.Services.LoginEntryService;
 using ServiceLayer.Services.MasterUserService;
 using Shared.CommunicationObjects;
@@ -40,7 +42,9 @@ public class ServiceLayerImpl : IServiceLayer
     public async Task<ServerResponse> CreateLoginEntryAsync(
         LoginEntryDTO newEntry)
     {
-        return await _loginEntryService.CreateLoginEntryAsync(newEntry);
+        ServerResponse serverResponse = await _loginEntryService.CreateLoginEntryAsync(newEntry);
+        Console.WriteLine("ServiceLayerImpl: Status code:" + serverResponse.statusCode);
+        return serverResponse;
     }
 
     public async Task<LoginEntryDTO> UpdateLoginEntryAsync(LoginEntryDTO updatedEntry)

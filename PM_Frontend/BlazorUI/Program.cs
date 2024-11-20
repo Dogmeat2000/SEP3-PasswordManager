@@ -1,8 +1,7 @@
 using BlazorUI.Components;
-//using Microsoft.AspNetCore.Authentication.JwtBearer;
-//using Microsoft.IdentityModel.Tokens;
+using BlazorUI.Components.Auth;
 using ServiceLayer.Factories;
-using System.Text;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace BlazorUI
 {
@@ -14,6 +13,9 @@ namespace BlazorUI
             
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
+            builder.Services.AddAuthorizationCore();
+            builder.Services.AddScoped<AuthenticationStateProvider, AuthProvider>();
+            
             
             ServiceLayerFactory.RegisterServices(builder.Services, builder.Configuration);
   

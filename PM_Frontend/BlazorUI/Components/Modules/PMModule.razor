@@ -2,15 +2,17 @@
 @using Shared.CommunicationObjects
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
+@inject AuthenticationStateProvider AuthProvider
 
 <EditLoginEntryModal @ref="editLoginEntryModal" SelectedEntry="selectedEntry"/>
 
 @code {
-    // Edit and delete attributes
-    private LoginEntryDTO? selectedEntry; 
-    private EditLoginEntryModal? editLoginEntryModal; 
+    private string masterUsername = string.Empty;
+    private int masterUserId = 0;
     
-    private string masterUsername = "user0";
+    private LoginEntryDTO? selectedEntry; 
+    private EditLoginEntryModal? editLoginEntryModal;
+
     private string generatedPassword = string.Empty;
 
     private bool isCreateModalOpen = false;
@@ -19,61 +21,61 @@
     private List<LoginEntryDTO> bankEntries = new();
     private List<LoginEntryDTO> otherEntries = new();
     private MarkupString loadExceptionMsg = new();
-    
-    protected override async Task OnInitializedAsync() {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await InitializeMasterUser();
         await LoadEntries();
     }
-    
-    [Parameter]
-    public EventCallback OnLoginSuccess { get; set; }
 
-    private async Task HandleLogin()
+    private async Task InitializeMasterUser()
     {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
 
-        await OnLoginSuccess.InvokeAsync();
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            masterUsername = user.Identity.Name ?? string.Empty;
+            masterUserId = int.Parse(user.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value ?? "0");
+        }
+        else
+        {
+            Console.WriteLine("User is not authenticated. Redirecting to login.");
+            loadExceptionMsg = (MarkupString)("<b>Error:</b> User not authenticated. Please log in.");
+        }
     }
 
-    private async Task LoadEntries() {
+    private async Task LoadEntries()
+    {
         int retryCount = 3;
         int counter = 0;
-        while (counter < retryCount) {
+        while (counter < retryCount)
+        {
             ServerResponse? response;
-            try {
+            try
+            {
                 loadExceptionMsg = (MarkupString)("");
-                response = await ServiceLayer.ReadLoginEntriesAsync(new MasterUserDTO(112, "TestUsername", "TestPassword")); // TODO: Apply the logged-in userDTO here instead.
-        
-                if (response is { statusCode: 200, dto: LoginEntryListDTO { loginEntries.Count: > 0 } entries }) {
-                    IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
-                    // Categorize entries to "Social Media" category:
-                    socialMediaEntries = enumerableEntries.Where(e => e.EntryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
-                    foreach (var loginEntryDto in socialMediaEntries)
-                        entries.RemoveLoginEntry(loginEntryDto); //Remove already assigned entries, so any remainders can be caught later and added to "Others" category.
-                    
-                    // Categorize entries to "Bank - Pension - Insurance" category:
-                    bankEntries = enumerableEntries.Where(e => e.EntryCategory == "Bank - Pension - Insurance").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
-                    foreach (var loginEntryDto in bankEntries)
-                        entries.RemoveLoginEntry(loginEntryDto); //Remove already assigned entries, so any remainders can be caught later and added to "Others" category.
+                response = await ServiceLayer.ReadLoginEntriesAsync(new MasterUserDTO(masterUserId, masterUsername, string.Empty));
 
-                    // Categorize remaining entries to "Others" category:
-                    foreach (var loginEntryDto in entries.loginEntries)
-                        otherEntries.Add(loginEntryDto);
-                    
-                    counter += 100000;
-                    StateHasChanged();
+                if (response is { statusCode: 200, dto: LoginEntryListDTO { loginEntries.Count: > 0 } entries })
+                {
+                    IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
+                  
                 }
-            } catch (Exception e) {
-                Console.WriteLine("[LoginEntryListViewModule.razor] Exception occurred while querying for all loginEntries. Reason: " + e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[PMModule] Exception occurred: {e.Message}");
                 loadExceptionMsg = (MarkupString)("<b>Error:</b> Exception occurred while loading login entries." +
-                                                  "<br><br>" +
-                                                  "<b>Type:</b> " + e.GetType() + 
-                                                  "<br><br><b>Reason:</b> " + e.Message);
+                                                  $"<br><br><b>Type:</b> {e.GetType()}<br><br><b>Reason:</b> {e.Message}");
                 counter++;
                 Thread.Sleep(250);
             }
         }
     }
 
-    private void OpenCreateModal() {
+    private void OpenCreateModal()
+    {
         isCreateModalOpen = true;
         StateHasChanged(); 
     }
@@ -83,16 +85,14 @@
         isCreateModalOpen = false;
         StateHasChanged(); 
     }
-    
 
-    private async Task HandleCreate(LoginEntryDTO newEntry)
+    private async Task HandleCreate()
     {
-        await ServiceLayer.CreateLoginEntryAsync(newEntry);
         await LoadEntries();
-        CloseCreateModal();
+        //CloseCreateModal();
         StateHasChanged(); 
     }
-    
+
     private void GeneratePassword()
     {
         generatedPassword = GenerateRandomPassword();
@@ -115,14 +115,14 @@
         }
         else
         {
-            Console.WriteLine("editLoginEntryModal er null");
+            Console.WriteLine("editLoginEntryModal is null.");
         }
     }
-    
+
     private void OnEntrySingleClicked(LoginEntryDTO entry)
     {
         selectedEntry = entry;
-        Console.WriteLine("Entry selected with single click: " + entry.EntryName);
+        Console.WriteLine($"Entry selected with single click: {entry.EntryName}");
     }
 
     private void OnEntryDoubleClicked(LoginEntryDTO entry)
@@ -130,7 +130,6 @@
         selectedEntry = entry;
         ShowEditLoginEntryModal();
     }
-
 }
 
 <div class="card shadow mb-5 bg-white rounded" style="width: 100%; margin: 0 auto;">
@@ -139,7 +138,8 @@
     </div>
 
     <div class="d-flex justify-content-start align-items-center p-3" style="background-color: #007bc7; border-color: var(--color-primary-dark); border-bottom: 2px solid;">
-        <button class="btn btn-sm btn-outline-light me-3" @onclick="GeneratePassword">Generate Password</button>
+        <span class="text-white">Welcome, @masterUsername!</span>
+        <button class="btn btn-sm btn-outline-light ms-3" @onclick="GeneratePassword">Generate Password</button>
         <span class="text-white ms-2">@generatedPassword</span>
     </div>
 
@@ -177,4 +177,8 @@
 
 @if (isCreateModalOpen) {
     <CreateEntryModule OnCreate="HandleCreate" />
+}
+
+@if (isCreateModalOpen) {
+<CreateEntryModule OnCancel="CloseCreateModal" />
 }

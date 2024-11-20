@@ -21,13 +21,13 @@
 
 <div class="container">
     <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-        @if (!isLoggedIn)
-        {
-        <LoginModule OnLoginSuccess="OnLoginSuccess" />
-        }
-        else
-        {
-        <PMModule masterUsername="@masterUsername" />
-        }
+        <AuthorizeView>
+            <NotAuthorized>
+                <LoginModule OnLoginSuccess="OnLoginSuccess" />
+            </NotAuthorized>
+            <Authorized>
+                <PMModule masterUsername="@masterUsername" />
+            </Authorized>
+        </AuthorizeView>
     </div>
 </div>
