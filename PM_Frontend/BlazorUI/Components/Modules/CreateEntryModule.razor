@@ -24,6 +24,18 @@
         isSubmitting = true;
         errorMessage = null;
         confirmationMessage = null;
+        
+        // Validation: Ensure all fields are filled
+        if (string.IsNullOrWhiteSpace(entryName) ||
+            string.IsNullOrWhiteSpace(entryAddress) ||
+            string.IsNullOrWhiteSpace(entryUsername) ||
+            string.IsNullOrWhiteSpace(entryPassword) ||
+            string.IsNullOrWhiteSpace(category))
+        {
+            errorMessage = "All fields must be filled before creating an entry.";
+            isSubmitting = false;
+            return;
+        }
 
         if (!entryAddress.Contains("https://") || !entryAddress.Contains("http://"))
         {
