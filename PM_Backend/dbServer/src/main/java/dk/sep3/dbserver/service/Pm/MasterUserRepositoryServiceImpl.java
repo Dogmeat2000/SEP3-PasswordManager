@@ -75,7 +75,15 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
 
       // Check that the found MasterUser has a password that matches the provided:
       MasterUser foundMasterUser = masterUsersFound.getFirst();
-      boolean validationSuccess = passwordEncoder.matches(encryptedPassword, foundMasterUser.getEncryptedPassword());
+
+      boolean validationSuccess;
+      if(encryptedPassword.contains("argon2id") && encryptedPassword.contains("$m=") && encryptedPassword.contains(",t=") && encryptedPassword.contains(",p=")){
+        // Received password is already encrypted. Use regular equals method:
+        validationSuccess = encryptedPassword.equals(foundMasterUser.getEncryptedPassword());
+      } else {
+        // Password is encrypted. We must encrypt it and then match it:
+        validationSuccess = passwordEncoder.matches(encryptedPassword, foundMasterUser.getEncryptedPassword());
+      }
 
       if(validationSuccess) {
         // Return the result:

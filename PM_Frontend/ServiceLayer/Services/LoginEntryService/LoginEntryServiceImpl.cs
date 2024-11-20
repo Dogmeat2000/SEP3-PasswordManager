@@ -72,9 +72,9 @@ public class LoginEntryServiceImpl : ILoginEntryService
      */
     public async Task<LoginEntryDTO> UpdateLoginEntryAsync(LoginEntryDTO updatedEntry)
     {
-        var encryptedEntry = await _cryptographyService.EncryptLoginEntryAsync(updatedEntry);
+        //var encryptedEntry = await _cryptographyService.EncryptLoginEntryAsync(updatedEntry);
         
-        var response = await _webApiClient.UpdateLoginEntryAsync(encryptedEntry);
+        var response = await _webApiClient.UpdateLoginEntryAsync(updatedEntry);
         
         var decryptedEntry = await _cryptographyService.DecryptLoginEntryAsync(response);
         var decryptedEntryDto = decryptedEntry.dto;
@@ -84,7 +84,7 @@ public class LoginEntryServiceImpl : ILoginEntryService
             throw new ApplicationException("Failed to update login entry");
         }
     
-        return (LoginEntryDTO)decryptedEntryDto;
+        return (LoginEntryDTO)response.dto;
     }
 
     /**
