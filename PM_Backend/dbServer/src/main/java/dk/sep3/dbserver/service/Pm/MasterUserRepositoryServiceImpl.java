@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,17 +19,24 @@ import java.util.NoSuchElementException;
 @Service
 public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryService
 {
-  public final MasterUserRepository masterUserRepository;
+  private final MasterUserRepository masterUserRepository;
+  private final PasswordEncoder passwordEncoder;
   private static final Logger logger = LoggerFactory.getLogger(MasterUserRepositoryServiceImpl.class);
 
   @Autowired
-  public MasterUserRepositoryServiceImpl(MasterUserRepository masterUserRepository) {
+  public MasterUserRepositoryServiceImpl(MasterUserRepository masterUserRepository, PasswordEncoder passwordEncoder) {
     this.masterUserRepository = masterUserRepository;
+    this.passwordEncoder = passwordEncoder;
   }
 
   @Override public MasterUser createMasterUser(MasterUser masterUser) throws DataIntegrityViolationException, PersistenceException {
     // Validate received data, before passing to repository/database:
     validateCreateMasterUser(masterUser);
+
+    // Hash Password, before committing to DB:
+    String unencryptedPassword = masterUser.getEncryptedPassword();
+    String encryptedPassword = passwordEncoder.encode(unencryptedPassword);
+    masterUser.setEncryptedPassword(encryptedPassword);
 
     // Attempt to add MasterUser to DB:
     try {
@@ -57,14 +65,26 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
     // Attempt to fetch MasterUser from DB:
     try {
       // Causes the repository to query the database. If no match is found, an error is thrown immediately.
-      List<MasterUser> masterUsersFound = masterUserRepository.findByMasterUsernameAndEncryptedPassword(masterUsername, encryptedPassword);
+      List<MasterUser> masterUsersFound = masterUserRepository.findByMasterUsername(masterUsername);
       if(masterUsersFound.isEmpty())
         throw new NotFoundInDBException("MasterUser {" + masterUsername + "} not found in DB");
       else if (masterUsersFound.size() > 1)
         throw new DataIntegrityViolationException("Multiple matching masterUsers found in database. Only one matching masterUser is allowed");
 
       logger.info("MasterUser {} read from DB", masterUsername);
-      return masterUsersFound.getFirst();
+
+      // Check that the found MasterUser has a password that matches the provided:
+      MasterUser foundMasterUser = masterUsersFound.getFirst();
+      boolean validationSuccess = passwordEncoder.matches(encryptedPassword, foundMasterUser.getEncryptedPassword());
+
+      if(validationSuccess) {
+        // Return the result:
+        logger.info("MasterUser {} validated successfully", masterUsername);
+        return masterUsersFound.getFirst();
+      } else {
+        logger.error("MasterUser {} failed validation. Wrong password provided.", masterUsername);
+        throw new NotFoundInDBException("MasterUser {" + masterUsername + "} found, but invalid password was provided");
+      }
 
     } catch (IllegalArgumentException | ConstraintViolationException | DataIntegrityViolationException e) {
       // Handle exceptions caused by incompatible data formats (either java or sql ddl mismatch in definitions):
