@@ -33,7 +33,9 @@ public class AuthProvider : AuthenticationStateProvider
 
        List<Claim> claims = new List<Claim>()
        {
-           new Claim(ClaimTypes.Name, masterUser.masterUsername)
+           new Claim(ClaimTypes.Name, masterUser.masterUsername),
+           new Claim("MasterUserPassword", masterUser.masterPassword),
+           new Claim("MasterUserId", masterUser.id.ToString()),
        };
        
        ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth");
@@ -64,7 +66,9 @@ public class AuthProvider : AuthenticationStateProvider
         MasterUserDTO masterUserDto = JsonSerializer.Deserialize<MasterUserDTO>(userAsJson);
         List<Claim> claims = new List<Claim>()
         {
-            new Claim(ClaimTypes.Name, masterUserDto.masterUsername)
+            new Claim(ClaimTypes.Name, masterUserDto.masterUsername),
+            new Claim("MasterUserPassword", masterUserDto.masterPassword),
+            new Claim("MasterUserId", masterUserDto.id.ToString()),
         };
         ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth");
         ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);

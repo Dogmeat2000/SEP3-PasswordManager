@@ -1,17 +1,33 @@
-﻿@using ServiceLayer.Services
+﻿@using System.Security.Claims
+@using ServiceLayer.Services
 @using Shared.Dtos
 @using Shared.CommunicationObjects
 @inject IServiceLayer ServiceLayer
 @code {
+    [CascadingParameter] public Task<AuthenticationState> State { get; set; }
     private string entryName = string.Empty;
     private string entryAddress = string.Empty;
     private string entryUsername = string.Empty;
     private string entryPassword = string.Empty;
     private string category = string.Empty;
-    private int masterUserId = 112; //Hardcoded untill authentication is implemented TODO: Set to use the logged in users id
+    private int masterUserId; //TODO: Set to use the logged in users id
     private bool isSubmitting = false;
     private string? errorMessage = null;
     private string? confirmationMessage = null;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authenticationState = await State;
+        ClaimsPrincipal claimsPrincipal = authenticationState.User;
+        if(claimsPrincipal.Identity is null || !claimsPrincipal.Identity.IsAuthenticated)
+        {
+            // the user is not logged in
+            return;
+        }
+        IEnumerable<Claim> claims = claimsPrincipal.Claims;
+        string userIdAsString = claims.Single(c => c.Type == "MasterUserId").Value;
+        masterUserId = int.Parse(userIdAsString);
+    }
 
     [Parameter]
     public EventCallback<LoginEntryDTO> OnCreate { get; set; }
