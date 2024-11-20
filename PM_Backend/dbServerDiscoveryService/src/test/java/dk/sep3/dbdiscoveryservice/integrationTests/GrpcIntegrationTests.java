@@ -2,6 +2,7 @@ package dk.sep3.dbdiscoveryservice.integrationTests;
 
 import dk.sep3.dbserver.DbServerApplication;
 import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommandFactory;
+import dk.sep3.dbserver.grpc.factories.LoginEntryDTOGrpcFactory;
 import dk.sep3.dbserver.grpc.factories.MasterUserDTOGrpcFactory;
 import dk.sep3.dbserver.grpc.service.DbServerPmGrpcServiceImpl;
 import dk.sep3.dbserver.grpc.service.ServerHealthMonitor;
@@ -9,10 +10,7 @@ import dk.sep3.dbdiscoveryservice.grpc.service.DbDiscoveryServicePmGrpcServiceIm
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
 import dk.sep3.dbdiscoveryservice.service.DatabaseServerMonitor;
-import grpc.GenericRequest;
-import grpc.GenericResponse;
-import grpc.MasterUserDTO;
-import grpc.PasswordManagerServiceGrpc;
+import grpc.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.ServerBuilder;
@@ -164,6 +162,7 @@ public class GrpcIntegrationTests
     }
   }
 
+
   @Test
   public void testHandleGenericRequest_CreateMasterUser_ReturnsStatusCode201() {
     // Arrange: Build the MasterUserDTO to register:
@@ -235,7 +234,73 @@ public class GrpcIntegrationTests
     assertEquals(1, response.getMasterUser().getId());
     assertEquals("TestUser2", response.getMasterUser().getMasterUsername());
     assertEquals(200, response.getStatusCode());
+  }
 
+
+  @Test
+  public void testHandleGenericRequest_ReadLoginEntries_ReturnsStatusCode200() {
+    // Arrange: Build the MasterUserDTO to Read:
+    MasterUserDTO masterUserDTO = MasterUserDTOGrpcFactory.buildGrpcMasterUserDTO(0, "TestUser", "TestPassword");
+
+    // Add the MasterUser to the database, so we have something to read from there:
+    GenericRequest request = GenericRequest.newBuilder()
+        .setRequestType("CreateMasterUser")
+        .setMasterUser(masterUserDTO)
+        .build();
+
+    MasterUserDTO createMasterUserResponse = discoveryPasswordManagerStub.handleRequest(request).getMasterUser();
+    masterUserDTO = MasterUserDTOGrpcFactory.buildGrpcMasterUserDTO(createMasterUserResponse.getId(), "TestUser", "TestPassword");
+
+    // Add a few login entries to this Master User:
+    LoginEntryDTO loginEntryDTO1 = LoginEntryDTOGrpcFactory.buildGrpcLoginEntryDTO(0, "Discord", "testUser1", "test12345678910", "https://discord.com","Other", masterUserDTO.getId());
+    GenericRequest request1 = GenericRequest.newBuilder()
+        .setRequestType("CreateLoginEntry")
+        .setLoginEntry(loginEntryDTO1)
+        .build();
+
+    LoginEntryDTO loginEntryDTO2 = LoginEntryDTOGrpcFactory.buildGrpcLoginEntryDTO(0, "Google", "testUser1", "test12345678910", "https://google.com","Other", masterUserDTO.getId());
+    GenericRequest request2 = GenericRequest.newBuilder()
+        .setRequestType("CreateLoginEntry")
+        .setLoginEntry(loginEntryDTO2)
+        .build();
+
+    LoginEntryDTO loginEntryDTO3 = LoginEntryDTOGrpcFactory.buildGrpcLoginEntryDTO(0, "Tv2", "testUser1", "test12345678910", "https://tv2.dk","Other", masterUserDTO.getId());
+    GenericRequest request3 = GenericRequest.newBuilder()
+        .setRequestType("CreateLoginEntry")
+        .setLoginEntry(loginEntryDTO3)
+        .build();
+
+    loginEntryDTO1 = discoveryPasswordManagerStub.handleRequest(request1).getLoginEntry();
+    loginEntryDTO2 = discoveryPasswordManagerStub.handleRequest(request2).getLoginEntry();
+    loginEntryDTO3 = discoveryPasswordManagerStub.handleRequest(request3).getLoginEntry();
+
+
+    // Act:
+    // Build the Message that should be simulated as the incoming gRPC message (MasterUserData to read from the database):
+    request = GenericRequest.newBuilder()
+        .setRequestType("ReadLoginEntries")
+        .setMasterUser(masterUserDTO)
+        .build();
+
+    // Send the gRPC message to the server:
+    GenericResponse response;
+    try {
+      response = discoveryPasswordManagerStub.handleRequest(request);
+    } catch (StatusRuntimeException e) {
+      // Sets the response to null in case of an error, so we ensure that this test fails.
+      response = null;
+    }
+
+
+    // Assert:
+    // Verify if gRPC response is correct and if the database is updated:
+    // Expected response is a MasterUserDTO with an id of 1 and a statusCode of 201.
+    assertNotNull(response); // Ensure that the response is not null
+    assertEquals(3, response.getLoginEntries().getLoginEntriesList().size());
+    assertEquals(loginEntryDTO1, response.getLoginEntries().getLoginEntriesList().get(0));
+    assertEquals(loginEntryDTO2, response.getLoginEntries().getLoginEntriesList().get(1));
+    assertEquals(loginEntryDTO3, response.getLoginEntries().getLoginEntriesList().get(2));
+    assertEquals(200, response.getStatusCode());
   }
 
 }
