@@ -9,6 +9,9 @@
 @code {
     [Parameter]
     public string masterUsername { get; set; } = string.Empty;
+    [Parameter]
+    public string masterPassword { get; set; } = string.Empty;
+    
     private int masterUserId = 0;
     
     private LoginEntryDTO? selectedEntry; 
@@ -37,7 +40,8 @@
         if (user.Identity?.IsAuthenticated == true)
         {
             masterUsername = user.Identity.Name ?? string.Empty;
-            masterUserId = int.Parse(user.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value ?? "0");
+            masterPassword = user.Claims.FirstOrDefault(c => c.Type == "MasterUserPassword").Value ?? string.Empty;
+            masterUserId = int.Parse(user.Claims.FirstOrDefault(c => c.Type == "MasterUserId")?.Value ?? "0");
         }
         else
         {
@@ -56,7 +60,7 @@
             try
             {
                 loadExceptionMsg = (MarkupString)("");
-                response = await ServiceLayer.ReadLoginEntriesAsync(new MasterUserDTO(masterUserId, masterUsername, string.Empty));
+                response = await ServiceLayer.ReadLoginEntriesAsync(new MasterUserDTO(masterUserId, masterUsername, masterPassword));
 
                 if (response is { statusCode: 200, dto: LoginEntryListDTO { loginEntries.Count: > 0 } entries })
                 {

@@ -14,6 +14,7 @@ namespace BlazorUI
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
             builder.Services.AddAuthorizationCore();
+            
             builder.Services.AddScoped<AuthenticationStateProvider, AuthProvider>();
             
             

@@ -22,33 +22,15 @@
 
         try
         {
-            var response = await ServiceLayer.ReadMasterUserAsync(loginDto);
-
-            if (response.statusCode == 200)
-            {
-                // Type-safe cast of AuthenticationStateProvider
-                if (AuthProvider is AuthProvider authProvider)
-                {
-                    await authProvider.Login(masterUsername, masterPassword);
-
-                    message = "Login successful!";
-                    await OnLoginSuccess.InvokeAsync();
-                    NavManager.NavigateTo("/");
-                }
-                else
-                {
-                    message = "Error: Authentication state provider is not properly configured.";
-                }
-            }
-            else
-            {
-                message = $"Login failed: {response.message}";
-            }
+            await ((AuthProvider)AuthProvider).Login(loginDto);
+            NavManager.NavigateTo("/");
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
-            message = $"An error occurred during login: {ex.Message}";
+            Console.WriteLine(e);
+            message = $"Error: {e.Message}";
         }
+        
     }
 
     private async Task CreateUser()

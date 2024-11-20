@@ -1,5 +1,7 @@
 using System.Security.Claims;
+using System.Text.Json;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 using ServiceLayer.Services;
 using Shared.Dtos;
 
@@ -8,21 +10,91 @@ namespace BlazorUI.Components.Auth;
 public class AuthProvider : AuthenticationStateProvider
 {
     private readonly IServiceLayer serviceLayer;
-    private ClaimsPrincipal currentUser = new(new ClaimsIdentity());
+    private readonly IJSRuntime jsRuntime;
 
-    public AuthProvider(IServiceLayer serviceLayer)
+    public AuthProvider(IServiceLayer serviceLayer, IJSRuntime jsRuntime)
     {
         this.serviceLayer = serviceLayer;
+        this.jsRuntime = jsRuntime;
     }
 
-    public override Task<AuthenticationState> GetAuthenticationStateAsync()
+    public async Task Login(MasterUserDTO masterUserDto)
     {
-        return Task.FromResult(new AuthenticationState(currentUser));
+       var serverResponse = await serviceLayer.ReadMasterUserAsync(masterUserDto);
+
+       if (serverResponse.statusCode != 200)
+       {
+           throw new Exception(serverResponse.statusCode.ToString());
+       }
+
+       MasterUserDTO masterUser = (MasterUserDTO) serverResponse.dto;
+       string jsonSerializedMasterUser = JsonSerializer.Serialize(masterUser);
+       await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", jsonSerializedMasterUser);
+
+       List<Claim> claims = new List<Claim>()
+       {
+           new Claim(ClaimTypes.Name, masterUser.masterUsername),
+           new Claim("MasterUserPassword", masterUser.masterPassword),
+           new Claim("MasterUserId", masterUser.id.ToString()),
+       };
+       
+       ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth");
+       ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+       
+       NotifyAuthenticationStateChanged(
+           Task.FromResult(new AuthenticationState(claimsPrincipal))
+       );
+    }
+    
+    public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+    {
+        string userAsJson = "";
+        try
+        {
+            userAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
+        }
+        catch (InvalidOperationException e)
+        {
+            return new AuthenticationState(new());
+        }
+
+        if (string.IsNullOrEmpty(userAsJson))
+        {
+            return new AuthenticationState(new());
+        }
+        
+        MasterUserDTO masterUserDto = JsonSerializer.Deserialize<MasterUserDTO>(userAsJson);
+        List<Claim> claims = new List<Claim>()
+        {
+            new Claim(ClaimTypes.Name, masterUserDto.masterUsername),
+            new Claim("MasterUserPassword", masterUserDto.masterPassword),
+            new Claim("MasterUserId", masterUserDto.id.ToString()),
+        };
+        ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth");
+        ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+        return new AuthenticationState(claimsPrincipal);
     }
 
+
+
+
+
+
+
+
+
+
+
+    /*
+       public override Task<AuthenticationState> GetAuthenticationStateAsync()
+       {
+           return Task.FromResult(new AuthenticationState(currentUser));
+       } */
+
+    /*
     public async Task Login(string username, string password)
     {
-    
+
         var loginDto = new MasterUserDTO
         {
             masterUsername = username,
@@ -52,5 +124,6 @@ public class AuthProvider : AuthenticationStateProvider
     {
         currentUser = new ClaimsPrincipal(new ClaimsIdentity());
         NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
-    }
+    } */
+
 }
