@@ -21,20 +21,21 @@ public class MasterUserServiceImpl : IMasterUserService
         //TODO: ?? Add validation on the master user before it is encrypted
 
         //Encrypt the master user
-        var encryptedMasterUserDto = await _cryptographyService.EncryptMasterUserAsync(masterUserDto);
+        //var encryptedMasterUserDto = await _cryptographyService.EncryptMasterUserAsync(masterUserDto);
 
         //Send the request to the web api
-        var returnedServerResponse = await _webApiClient.CreateMasterUserAsync(encryptedMasterUserDto);
+        var returnedServerResponse = await _webApiClient.CreateMasterUserAsync(masterUserDto);
 
         //TODO: ?? Add validation that the returned masteruser is the same as the encrypted one sent
 
         //Decrypt Server response
-        var decryptedServerResponse = await _cryptographyService.DecryptServerResponceAsync(returnedServerResponse);
+        //var decryptedServerResponse = await _cryptographyService.DecryptServerResponceAsync(returnedServerResponse);
+        // TODO Make encryption/decryption work properly
 
         //TODO: ?? Add validation that the returned decrypted masteruser is the same as the one sent
 
         //Return the decrypted master user
-        return decryptedServerResponse;
+        return returnedServerResponse;
     }
 
     public async Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO masterUserDto)
