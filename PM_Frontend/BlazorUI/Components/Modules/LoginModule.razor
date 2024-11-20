@@ -1,6 +1,8 @@
 ﻿@using ServiceLayer.Services
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
+@inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager NavManager
 
 @code {
     private string masterUsername = string.Empty;
@@ -9,29 +11,6 @@
     private string message = string.Empty;
 
     [Parameter] public EventCallback OnLoginSuccess { get; set; }
-
-    private async Task HandleLogin()
-    {
-        await OnLoginSuccess.InvokeAsync();
-    }
-
-    private async Task PerformLogin()
-    {
-        await OnLoginSuccess.InvokeAsync();
-    }
-
-    private void GeneratePassword()
-    {
-        generatedPassword = GenerateRandomPassword();
-    }
-
-    private string GenerateRandomPassword()
-    {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-        var random = new Random();
-        return new string(Enumerable.Repeat(chars, 12)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
-    }
 
     private async Task Login()
     {
@@ -44,19 +23,31 @@
         try
         {
             var response = await ServiceLayer.ReadMasterUserAsync(loginDto);
+
             if (response.statusCode == 200)
             {
-                message = "Login successful!";
-                await PerformLogin();
+                // Type-safe cast of AuthenticationStateProvider
+                if (AuthProvider is AuthProvider authProvider)
+                {
+                    await authProvider.Login(masterUsername, masterPassword);
+
+                    message = "Login successful!";
+                    await OnLoginSuccess.InvokeAsync();
+                    NavManager.NavigateTo("/");
+                }
+                else
+                {
+                    message = "Error: Authentication state provider is not properly configured.";
+                }
             }
             else
             {
-                message = "Login failed: " + response.message;
+                message = $"Login failed: {response.message}";
             }
         }
         catch (Exception ex)
         {
-            message = "Error: " + ex.Message;
+            message = $"An error occurred during login: {ex.Message}";
         }
     }
 
@@ -71,9 +62,10 @@
         try
         {
             var response = await ServiceLayer.CreateMasterUserAsync(createDto);
+
             if (response != null && response.statusCode == 201)
             {
-                message = "User created successfully!";
+                message = $"User '{masterUsername}' created successfully!";
             }
             else
             {
@@ -82,10 +74,22 @@
         }
         catch (Exception ex)
         {
-            message = "Error creating user: " + ex.Message;
+            message = $"Error creating user: {ex.Message}";
         }
     }
 
+    private void GeneratePassword()
+    {
+        generatedPassword = GenerateRandomPassword();
+    }
+
+    private string GenerateRandomPassword()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+        var random = new Random();
+        return new string(Enumerable.Repeat(chars, 12)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
 }
 
 <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 500px; margin: 0 auto;">
@@ -94,14 +98,13 @@
     </div>
 
     <div class="card-body">
-    <input type="text" class="form-control mb-3" placeholder="Username" @bind="masterUsername"/>
-    <input type="password" class="form-control mb-3" placeholder="Password" @bind="masterPassword"/>
-    <button class="btn btn-primary" @onclick="Login">Login</button>
-    <button class="btn btn-secondary ms-2" @onclick="CreateUser">Create User</button>
-    <!-- TODO:   <button class="btn btn-success mt-3" @onclick="GeneratePassword">Generate Password</button>    -->
+        <input type="text" class="form-control mb-3" placeholder="Username" @bind="masterUsername" />
+        <input type="password" class="form-control mb-3" placeholder="Password" @bind="masterPassword" />
+        <button class="btn btn-primary" @onclick="Login">Login</button>
+        <button class="btn btn-secondary ms-2" @onclick="CreateUser">Create User</button>
 
-    <div class="mt-3">
-        <p>@message</p>
+        <div class="mt-3">
+            <p>@message</p>
+        </div>
     </div>
-</div>
 </div>
