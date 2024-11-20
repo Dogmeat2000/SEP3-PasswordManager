@@ -7,7 +7,8 @@
 <EditLoginEntryModal @ref="editLoginEntryModal" SelectedEntry="selectedEntry"/>
 
 @code {
-    private string masterUsername = string.Empty;
+    [Parameter]
+    public string masterUsername { get; set; } = string.Empty;
     private int masterUserId = 0;
     
     private LoginEntryDTO? selectedEntry; 
