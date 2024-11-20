@@ -65,7 +65,22 @@
                 if (response is { statusCode: 200, dto: LoginEntryListDTO { loginEntries.Count: > 0 } entries })
                 {
                     IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
-                  
+                    // Categorize entries to "Social Media" category:
+                    socialMediaEntries = enumerableEntries.Where(e => e.EntryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                    foreach (var loginEntryDto in socialMediaEntries)
+                        entries.RemoveLoginEntry(loginEntryDto); //Remove already assigned entries, so any remainders can be caught later and added to "Others" category.
+                    
+                    // Categorize entries to "Bank - Pension - Insurance" category:
+                    bankEntries = enumerableEntries.Where(e => e.EntryCategory == "Bank - Pension - Insurance").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
+                    foreach (var loginEntryDto in bankEntries)
+                        entries.RemoveLoginEntry(loginEntryDto); //Remove already assigned entries, so any remainders can be caught later and added to "Others" category.
+
+                    // Categorize remaining entries to "Others" category:
+                    foreach (var loginEntryDto in entries.loginEntries)
+                        otherEntries.Add(loginEntryDto);
+                    
+                    counter += 100000;
+                    StateHasChanged();
                 }
             }
             catch (Exception e)
