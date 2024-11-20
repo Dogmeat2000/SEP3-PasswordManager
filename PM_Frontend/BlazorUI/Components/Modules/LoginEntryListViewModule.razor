@@ -65,27 +65,28 @@
 <div class="loginEntry-section">
     Category: @Category
 </div>
-<table class="loginEntry-table table table-striped table-hover" @onclick="ClearSelection">
-    <thead>
+<div class="table-container">
+    <table class="table table-striped table-hover loginEntry-table" @onclick="ClearSelection">
+        <thead>
         <tr class="small">
             <th scope="col">Name</th>
             <th scope="col">Website</th>
             <th scope="col">Username</th>
             <th scope="col"> Password</th>
         </tr>
-    </thead>
-    @if (!_fullyLoaded) {
-        <p>@UpdateLoadingMsg("Loading entries...")</p>
-    }
-    <tbody @onclick:stopPropagation>
+        </thead>
+        @if (!_fullyLoaded) {
+            <p>@UpdateLoadingMsg("Loading entries...")</p>
+        }
+        <tbody @onclick:stopPropagation>
         @foreach (LoginEntryDTO loginEntry in Entries) {
-        <tr @onclick="() => HandleClick(loginEntry)"
-            @ondblclick="() => HandleDoubleClick(loginEntry)"
-            class="@(selectedEntry == loginEntry ? "active-row" : "")">
-                <td>@loginEntry.EntryName</td>
-                <td><a href="@loginEntry.EntryAddress" target="_blank" rel="noopener norefferer">@loginEntry.EntryAddress</a></td>
-                <td>@loginEntry.EntryUsername</td>
-                <td>@loginEntry.EntryPassword</td>
+            <tr @onclick="() => HandleClick(loginEntry)"
+                @ondblclick="() => HandleDoubleClick(loginEntry)"
+                class="@(selectedEntry == loginEntry ? "active-row" : "")">
+                <td class="tableCell-mouseover-pointer">@loginEntry.EntryName</td>
+                <td ><a href="@loginEntry.EntryAddress" target="_blank" rel="noopener norefferer">@loginEntry.EntryAddress</a></td>
+                <td class="tableCell-mouseover-pointer">@loginEntry.EntryUsername</td>
+                <td class="tableCell-mouseover-pointer">@loginEntry.EntryPassword</td>
             </tr>
         }
         @if (!_fullyLoaded) {
@@ -95,5 +96,7 @@
         @if (_fullyLoaded && Entries.Count <= 0) {
             UpdateLoadingMsg("No Login Entries found...");
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+

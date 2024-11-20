@@ -6,5 +6,24 @@
   font-size: 0.9rem; 
 }
 
+.tableCell-mouseover-pointer:hover {
+  cursor: pointer;
+}
+
+.table-container {
+  max-height: 800px;
+  overflow-y: scroll;
+}
+
+.loginEntry-table {
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: break-word;
+  white-space: normal;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+
 
 
