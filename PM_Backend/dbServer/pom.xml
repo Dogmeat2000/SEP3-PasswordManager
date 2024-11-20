@@ -44,6 +44,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Dependency for Spring Boot Security (Password encryption)-->
+        <!-- Read more here: https://docs.spring.io/spring-security/reference/reactive/getting-started.html -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <dependency>
             <!-- Dependent on the shared Common Module -->
             <groupId>dk.sep3</groupId>

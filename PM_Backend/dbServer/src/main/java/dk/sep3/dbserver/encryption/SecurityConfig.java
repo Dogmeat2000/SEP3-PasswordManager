@@ -1,0 +1,81 @@
+package dk.sep3.dbserver.encryption;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Configuration
+public class SecurityConfig
+{
+  /**<p>Specialized Utility Class used for encoding primarily the MasterUser password before committing to the Database for storage.</p>
+   * <p> The Password encoder utilizes the Spring Frameworks builtin security module, which offers access to a range of encryption algorithms.</p>
+   * <p> It specifically uses the Argon2 algorithm, which provides Very High Security at a medium performance hit, with built-in salting.
+   * This algorithm features the highest security among the available algorithms in Spring Security, which is essential - since this is a password manager.</p>
+   * <p> More documentation can be found here: {@link org.springframework.security.crypto.password.PasswordEncoder}.</p>
+   * <h3>Comparison of Password Encryption Algorithms</h3>
+   * <table border="1">
+   *   <caption>Comparison of Password Encryption Algorithms</caption>
+   *   <tr>
+   *     <th>Algorithm</th>
+   *     <th>Security</th>
+   *     <th>Performance</th>
+   *     <th>Built-In Salting</th>
+   *     <th>Adaptive (Future-Proof)</th>
+   *     <th>Recommended Use Case</th>
+   *   </tr>
+   *   <tr>
+   *     <td>BCrypt</td>
+   *     <td>High</td>
+   *     <td>Medium</td>
+   *     <td>Yes</td>
+   *     <td>Yes</td>
+   *     <td>General purpose</td>
+   *   </tr>
+   *   <tr>
+   *     <td>PBKDF2</td>
+   *     <td>High</td>
+   *     <td>Medium</td>
+   *     <td>Yes</td>
+   *     <td>Yes</td>
+   *     <td>Enterprise systems</td>
+   *   </tr>
+   *   <tr>
+   *     <td>Argon2</td>
+   *     <td>Very High</td>
+   *     <td>Medium</td>
+   *     <td>Yes</td>
+   *     <td>Yes</td>
+   *     <td>High-security systems</td>
+   *   </tr>
+   *   <tr>
+   *     <td>SCrypt</td>
+   *     <td>Very High</td>
+   *     <td>Medium</td>
+   *     <td>Yes</td>
+   *     <td>Yes</td>
+   *     <td>Systems requiring memory hardness</td>
+   *   </tr>
+   *   <tr>
+   *     <td>SHA-256/512</td>
+   *     <td>Medium</td>
+   *     <td>High</td>
+   *     <td>No</td>
+   *     <td>No</td>
+   *     <td>Legacy systems</td>
+   *   </tr>
+   *   <tr>
+   *     <td>NoOp</td>
+   *     <td>None</td>
+   *     <td>High</td>
+   *     <td>No</td>
+   *     <td>No</td>
+   *     <td>Testing purposes only</td>
+   *   </tr>
+   * </table>
+   */
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new Argon2PasswordEncoder(24, 48, 1, 65536, 6);
+  }
+}
