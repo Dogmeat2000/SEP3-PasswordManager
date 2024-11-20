@@ -46,15 +46,19 @@ public class ReadLoginEntriesCommand implements GrpcCommand
       throw new DataIntegrityViolationException("Invalid DTO provided");
 
     // Check if the MasterUser is a valid account:
+    MasterUser foundMasterUser = null;
     try {
-      // Will throw an exception is the user cannot be found in the db.
-      masterUserServiceImpl.readMasterUser(masterUser.getMasterUsername(), masterUser.getEncryptedPassword());
+      // Will throw an exception if the user cannot be found in the db.
+      foundMasterUser = masterUserServiceImpl.readMasterUser(masterUser.getMasterUsername(), masterUser.getEncryptedPassword());
+
+      if(foundMasterUser == null)
+        throw new DataIntegrityViolationException("Invalid DTO provided");
     } catch (Exception e) {
       throw new DataIntegrityViolationException("Cannot look up loginEntries for a MasterUser that does not exist in the repository");
     }
 
     // Execute the proper action:
-    List<LoginEntry> loginEntries = loginEntryRepositoryServiceImpl.readLoginEntriesByMasterUserId(masterUser.getId());
+    List<LoginEntry> loginEntries = loginEntryRepositoryServiceImpl.readLoginEntriesByMasterUserId(foundMasterUser.getId());
 
     // Translate the response returned from the DB into a gRPC compatible type, before sending back to the client:
     return GenericResponseFactory.buildGrpcGenericResponseWithLoginEntryListDTO(200, loginEntries);
