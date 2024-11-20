@@ -129,7 +129,7 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
     if(masterUserName == null){
       logger.error("Validation of MasterUserName failed. MasterUsername cannot be null.");
       throw new DataIntegrityViolationException("MasterUsername cannot be null");
-    } else if(masterUserName.isEmpty() || masterUserName.isBlank()) {
+    } else if(masterUserName.isBlank()) {
       logger.error("Validation of MasterUserName failed. MasterUsername cannot be empty.");
       throw new DataIntegrityViolationException("MasterUsername cannot be empty");
     }
@@ -142,7 +142,7 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
     if(encryptedPassword == null) {
       logger.error("Validation of MasterUsers encryptedPassword' failed. Encrypted Password cannot be null");
       throw new DataIntegrityViolationException("Encrypted Password cannot be null");
-    } else if(encryptedPassword.isEmpty() || encryptedPassword.isBlank()){
+    } else if(encryptedPassword.isBlank()){
       logger.error("Validation of MasterUsers encryptedPassword' failed. Encrypted Password cannot be empty");
       throw new DataIntegrityViolationException("Encrypted Password cannot be empty");
     } else if (encryptedPassword.length() < 12) {
