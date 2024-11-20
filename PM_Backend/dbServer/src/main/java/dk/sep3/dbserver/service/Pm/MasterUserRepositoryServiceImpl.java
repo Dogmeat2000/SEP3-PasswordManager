@@ -140,13 +140,13 @@ public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryServ
 
   private void validateMasterUserPassword(String encryptedPassword) throws DataIntegrityViolationException {
     if(encryptedPassword == null) {
-      logger.error("Validation of MasterUsers encryptedPassword' failed. Encrypted Password cannot be null");
+      logger.error("Validation of MasterUsers encryptedPassword' failed. Password cannot be null");
       throw new DataIntegrityViolationException("Encrypted Password cannot be null");
     } else if(encryptedPassword.isBlank()){
-      logger.error("Validation of MasterUsers encryptedPassword' failed. Encrypted Password cannot be empty");
+      logger.error("Validation of MasterUsers encryptedPassword' failed. Password cannot be empty");
       throw new DataIntegrityViolationException("Encrypted Password cannot be empty");
     } else if (encryptedPassword.length() < 12) {
-      logger.error("Validation of MasterUsers encryptedPassword' failed. Encrypted Password must be at least 12 characters long");
+      logger.error("Validation of MasterUsers encryptedPassword' failed. Password must be at least 12 characters long");
       throw new DataIntegrityViolationException("Encrypted Password must be at least 12 characters");
     }
 

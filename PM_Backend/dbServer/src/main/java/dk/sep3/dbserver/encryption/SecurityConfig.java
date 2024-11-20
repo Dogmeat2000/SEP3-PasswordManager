@@ -1,5 +1,6 @@
 package dk.sep3.dbserver.encryption;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
@@ -8,6 +9,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfig
 {
+  @Value("${password.encoder.argon2.memory}")
+  private int memory;
+
+  @Value("${password.encoder.argon2.saltLength}")
+  private int saltLength;
+
+  @Value("${password.encoder.argon2.iterations}")
+  private int iterations;
+
+  @Value("${password.encoder.argon2.parallelism}")
+  private int parallelism;
+
+  @Value("${password.encoder.argon2.hashLength}")
+  private int hashLength;
+
   /**<p>Specialized Utility Class used for encoding primarily the MasterUser password before committing to the Database for storage.</p>
    * <p> The Password encoder utilizes the Spring Frameworks builtin security module, which offers access to a range of encryption algorithms.</p>
    * <p> It specifically uses the Argon2 algorithm, which provides Very High Security at a medium performance hit, with built-in salting.
@@ -76,6 +92,6 @@ public class SecurityConfig
    */
   @Bean
   public PasswordEncoder passwordEncoder() {
-    return new Argon2PasswordEncoder(24, 48, 1, 65536, 6);
+    return new Argon2PasswordEncoder(saltLength, hashLength, parallelism, memory, iterations);
   }
 }

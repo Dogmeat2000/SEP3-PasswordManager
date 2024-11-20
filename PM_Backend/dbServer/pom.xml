@@ -51,6 +51,16 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- Dependency for Spring Boot Security (Password encryption),
+        Specifically the Argon2 algorithm-->
+        <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk15on -->
+        <!-- Note: Spring Security 6.4 (latest) requires JDK15on v 1.70. It does not yet support the latest Argon2 version... -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>1.70</version>
+        </dependency>
+
         <dependency>
             <!-- Dependent on the shared Common Module -->
             <groupId>dk.sep3</groupId>
