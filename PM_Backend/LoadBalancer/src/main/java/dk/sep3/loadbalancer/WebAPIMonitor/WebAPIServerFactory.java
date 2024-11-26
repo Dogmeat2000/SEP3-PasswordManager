@@ -21,7 +21,7 @@ public class WebAPIServerFactory {
 
     public WebAPIServer createNewServer() {
         int port = getNextAvailablePort();
-        String newServerUrl = "http://localhost:" + port;
+        String newServerUrl = "https://localhost:" + port;
 
         try {
             System.out.println("Starting new WebAPIApplication on port " + port);
