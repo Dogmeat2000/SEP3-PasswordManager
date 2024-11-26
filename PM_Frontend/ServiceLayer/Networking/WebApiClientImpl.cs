@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -17,6 +18,7 @@ public class WebApiClientImpl : IWebApiClient
     public WebApiClientImpl(HttpClient httpClient, string loadBalancerUrl) {
         _httpClient = httpClient;
         _loadBalancerUrl = loadBalancerUrl;
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
     }
     
     
@@ -142,12 +144,22 @@ public class WebApiClientImpl : IWebApiClient
         try {
             //if webapi url not already set
             if (string.IsNullOrEmpty(WebApiUrl) || overLoaded) {
+                
                 //Ask loadbalancer for new web api server
                 ClientRequest request = new ClientRequest("GetAvailableServer", null);
                 var response = await _httpClient.PostAsJsonAsync($"{_loadBalancerUrl}/loadbalancer/server", request);
                 response.EnsureSuccessStatusCode();
                 var serverResponse = await response.Content.ReadFromJsonAsync<ServerResponse>();
                 //Set webapiurl to be the new url
+                
+                Console.WriteLine("Response from LoadBalancer: " + response);
+                if (serverResponse == null) 
+                {
+                    Console.WriteLine("LoadBalancer did not return a valid response.");
+                    throw new Exception("LoadBalancer did not return a valid server URL.");
+                }
+                Console.WriteLine("ServerResponse message: " + serverResponse.message);
+
                 WebApiUrl = serverResponse?.message + "/api/handleRequest";
                 Console.WriteLine("WebApiUrl set to: " + WebApiUrl);
             }
