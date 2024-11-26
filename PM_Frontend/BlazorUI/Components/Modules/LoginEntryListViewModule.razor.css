@@ -17,11 +17,19 @@
 
 .loginEntry-table {
   table-layout: fixed;
-  width: 100%;
-  word-wrap: break-word;
-  white-space: normal;
-  border-collapse: collapse;
-  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+}
+
+.loginEntry-section {
+  position: sticky; 
+  height: 30px; 
+  top: 0; 
+}
+
+.loginEntry-table thead {
+  position: sticky; 
+  top: 30px;
+  background: #f8f8f8;
 }
 
 
