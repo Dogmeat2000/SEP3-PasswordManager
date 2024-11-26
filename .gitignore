@@ -38,3 +38,5 @@
 /PM_Frontend/TestBlazorApp/obj/TestBlazorApp.csproj.nuget.dgspec.json
 /PM_Frontend/TestBlazorApp/obj/TestBlazorApp.csproj.nuget.g.props
 /PM_Frontend/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.*
+*.cache
+PM_Frontend/TestBlazorApp/obj/Debug/net8.0/TestBlazorApp.csproj.AssemblyReference.cache
