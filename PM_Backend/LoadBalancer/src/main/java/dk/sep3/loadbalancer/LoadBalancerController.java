@@ -23,4 +23,10 @@ public class LoadBalancerController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/")
+    public String home() {
+        return "LoadBalancer is running!";
+    }
+
 }

@@ -37,4 +37,10 @@ public class WebAPIServerController {
         else
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @GetMapping("/")
+    public String home() {
+        return "WebAPI is running!";
+    }
+
 }
