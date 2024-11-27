@@ -1,10 +1,8 @@
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using ServiceLayer.Authentication;
 using ServiceLayer.Networking;
 using ServiceLayer.Services;
-using ServiceLayer.Services.Authentication;
 using ServiceLayer.Services.Cryptography;
 using ServiceLayer.Services.LoginEntryService;
 using ServiceLayer.Services.MasterUserService;
@@ -29,9 +27,6 @@ public static class ServiceLayerFactory
         // Register scoped services for Login and Master User functionality
         services.AddScoped<ILoginEntryService, LoginEntryServiceImpl>();
         services.AddScoped<IMasterUserService, MasterUserServiceImpl>();
-        
-        // Register Authentication Service
-        services.AddScoped<IAuthenticationService, AuthenticationServiceImpl>();
 
         // Register the main ServiceLayer implementation, which relies on other services
         services.AddScoped<IServiceLayer, ServiceLayerImpl>();
