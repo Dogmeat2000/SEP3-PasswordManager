@@ -10,7 +10,7 @@
     private string entryUsername = string.Empty;
     private string entryPassword = string.Empty;
     private string category = string.Empty;
-    private int masterUserId; //TODO: Set to use the logged in users id
+    private int masterUserId; 
     private bool isSubmitting = false;
     private string? errorMessage = null;
     private string? confirmationMessage = null;
@@ -30,7 +30,7 @@
     }
 
     [Parameter]
-    public EventCallback<LoginEntryDTO> OnCreate { get; set; }
+    public EventCallback OnCreate { get; set; }
 
     [Parameter]
     public EventCallback OnCancel { get; set; }

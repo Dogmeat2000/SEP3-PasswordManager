@@ -1,4 +1,5 @@
-﻿@using ServiceLayer.Services
+﻿@using Microsoft.AspNetCore.Components.Sections
+@using ServiceLayer.Services
 @using Shared.CommunicationObjects
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
@@ -65,6 +66,11 @@
 
                 if (response is { statusCode: 200, dto: LoginEntryListDTO { loginEntries.Count: > 0 } entries })
                 {
+                    //Clear lists to make room for the updated entries
+                    socialMediaEntries.Clear();
+                    bankEntries.Clear();
+                    otherEntries.Clear();
+                    
                     IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
                     // Categorize entries to "Social Media" category:
                     socialMediaEntries = enumerableEntries.Where(e => e.EntryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
@@ -110,9 +116,10 @@
 
     private async Task HandleCreate()
     {
-        await LoadEntries();
-        //CloseCreateModal();
-        StateHasChanged(); 
+        Console.WriteLine("HandleCreate called");
+        await LoadEntries(); // Refresh the entries
+        Console.WriteLine("Entries reloaded successfully.");
+        StateHasChanged(); // Ensure the UI reflects the new state
     }
 
     private void GeneratePassword()
@@ -197,10 +204,7 @@
     </div>
 </div>
 
-@if (isCreateModalOpen) {
-    <CreateEntryModule OnCreate="HandleCreate" />
-}
-
-@if (isCreateModalOpen) {
-<CreateEntryModule OnCancel="CloseCreateModal" />
+@if (isCreateModalOpen)
+{
+    <CreateEntryModule OnCreate="HandleCreate" OnCancel="CloseCreateModal" />
 }

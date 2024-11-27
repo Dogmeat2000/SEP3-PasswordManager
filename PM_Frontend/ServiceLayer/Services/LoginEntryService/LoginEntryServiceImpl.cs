@@ -19,18 +19,14 @@ public class LoginEntryServiceImpl : ILoginEntryService
 
     public async Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto) {
         // Validate received request, before encryption:
-        // TODO: Finish implementing this validation, once authorization and login functionality have been completed.
-        /*if (dto.id != loggedInUser.id || dto.masterUsername != loggedInUser.masterUsername || dto.masterPassword != loggedInUser.masterPassword) {
+        if (String.IsNullOrWhiteSpace(dto.masterUsername) || String.IsNullOrWhiteSpace(dto.masterPassword)) {
             throw new ArgumentException("Unable to process request. Valid logged-in user credentials were not provided.");
-        }*/
+        }
         
-        // Encrypt the embedded dto:
-        // TODO: Encryption / Decryption does not reliably produce the same encrypted strings each time... So for now it does not work.
-        //var encryptedDto = await _cryptographyService.EncryptMasterUserAsync(dto);
-        var encryptedDto = dto; // TODO: Temporary solution.
+        // Note: Embedded DTO is encrypted using SSL/HTTPS. It should not be further encrypted here.
         
         // Request all loginEntries
-        ServerResponse response = await _webApiClient.ReadLoginEntriesAsync(encryptedDto);
+        ServerResponse response = await _webApiClient.ReadLoginEntriesAsync(dto);
         
         // Validate the response:
         if (!(response.dto != null && response.dto.GetType() == typeof(LoginEntryListDTO))) {
@@ -43,8 +39,7 @@ public class LoginEntryServiceImpl : ILoginEntryService
         }
         
         // Decrypt the embedded loginEntries.
-        //ServerResponse decryptedResponse = await _cryptographyService.DecryptLoginEntryListAsync(response);
-        ServerResponse decryptedResponse = response; // TODO: Temporary solution.
+        ServerResponse decryptedResponse = await _cryptographyService.DecryptLoginEntryListAsync(response);
         
         // Return the ServerResponse
         return decryptedResponse;
@@ -55,15 +50,33 @@ public class LoginEntryServiceImpl : ILoginEntryService
      * @param newEntry LoginEntryDTO containing the data for the new entry.
      * @return ServerResponse containing the created entry.
      */
-    public async Task<ServerResponse> CreateLoginEntryAsync(
-        LoginEntryDTO newEntry)
+    public async Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO newEntry)
     {
-        ServerResponse response = await _webApiClient.CreateLoginEntryAsync(newEntry); //Todo: Add encryption when decryption works as intended
-        Console.WriteLine("LoginEntryServiceImpl: Status code:" + response.statusCode + " | Response: " + response);
-        //ServerResponse decryptedResponse = await _cryptographyService.DecryptLoginEntryAsync(response); //Todo: Fix decryption, it somehow interrupts the rest of the code
-        //Console.WriteLine("LoginEntryServiceImpl: Decrypted server response:" + decryptedResponse);
-        return response;
+        
+        if (newEntry == null)
+        {
+            throw new ArgumentNullException(nameof(newEntry), "LoginEntryDTO cannot be null.");
+        }
+
+        var encryptedEntry = await _cryptographyService.EncryptLoginEntryAsync(newEntry);
+        
+        if (encryptedEntry == null)
+        {
+            throw new Exception("Failed to encrypt the login entry.");
+        }
+
+        var response = await _webApiClient.CreateLoginEntryAsync(encryptedEntry);
+        
+        if (response == null || response.dto == null)
+        {
+            throw new Exception("Failed to create the login entry.");
+        }
+
+        var decryptedResponse = await _cryptographyService.DecryptLoginEntryAsync(response);
+        
+        return decryptedResponse;
     }
+
 
     /**
      * Updates an existing login entry, encrypting the password before sending it to the server.
