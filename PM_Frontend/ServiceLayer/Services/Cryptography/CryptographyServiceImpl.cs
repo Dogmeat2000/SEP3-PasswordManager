@@ -67,30 +67,48 @@ public class CryptographyServiceImpl : ICryptographyService
     {
         ServerResponse decryptedServerResponse = new();
         decryptedServerResponse.message = serverResponse.message;
-        decryptedServerResponse.statusCode = serverResponse.statusCode;
+        decryptedServerResponse.statusCode = serverResponse.statusCode; 
+        decryptedServerResponse.dto = new LoginEntryListDTO();
+        LoginEntryListDTO decryptedLoginEntryListDTO = new();
 
+        if (serverResponse == null || serverResponse.dto == null) {
+            throw new ApplicationException("ServerResponse is null");
+        }
+        
         try {
-            if (decryptedServerResponse.dto.GetType() == typeof(LoginEntryListDTO)) {
+            if (serverResponse.dto.GetType() == typeof(LoginEntryListDTO)) {
 
-                LoginEntryListDTO receivedLoginEntryListDto = (LoginEntryListDTO)decryptedServerResponse.dto;
-                LoginEntryListDTO decryptedLoginEntryListDTO = new();
+                LoginEntryListDTO receivedLoginEntryListDto = (LoginEntryListDTO) serverResponse.dto;
                 foreach (var loginEntryDTO in receivedLoginEntryListDto.loginEntries) {
-                    LoginEntryDTO decryptedLoginEntry = (LoginEntryDTO)decryptedServerResponse.dto;
-                    decryptedLoginEntry.id = int.Parse(AesEncryptionHelper.Decrypt(loginEntryDTO.id.ToString()));
-                    decryptedLoginEntry.EntryUsername = AesEncryptionHelper.Decrypt(loginEntryDTO.EntryUsername);
-                    decryptedLoginEntry.EntryPassword = AesEncryptionHelper.Decrypt(loginEntryDTO.EntryPassword);
-                    decryptedLoginEntry.EntryAddress = AesEncryptionHelper.Decrypt(loginEntryDTO.EntryAddress);
-                    decryptedLoginEntry.EntryName = AesEncryptionHelper.Decrypt(loginEntryDTO.EntryName);
-                    decryptedLoginEntry.EntryCategory = AesEncryptionHelper.Decrypt(loginEntryDTO.EntryCategory);
+                    LoginEntryDTO decryptedLoginEntry = new LoginEntryDTO();
+                    
+                    decryptedLoginEntry.id = loginEntryDTO.id;
+                    decryptedLoginEntry.EntryAddress = loginEntryDTO.EntryAddress;
+                    decryptedLoginEntry.EntryName = loginEntryDTO.EntryName;
+                    decryptedLoginEntry.EntryCategory = loginEntryDTO.EntryCategory;
+                    try {
+                        decryptedLoginEntry.EntryUsername = AesEncryptionHelper.Decrypt(loginEntryDTO.EntryUsername);
+                        decryptedLoginEntry.EntryPassword = AesEncryptionHelper.Decrypt(loginEntryDTO.EntryPassword);
+                    } catch (FormatException e) {
+                        // Catch unencrypted keys. TODO: Delete this try-catch once no non-encrypted keys remain in the test data.
+                        decryptedLoginEntry.EntryUsername = loginEntryDTO.EntryUsername;
+                        decryptedLoginEntry.EntryPassword = loginEntryDTO.EntryPassword;
+                    } catch (ArgumentException e) {
+                        // Catch unencrypted keys. TODO: Delete this try-catch once no non-encrypted keys remain in the test data.
+                        decryptedLoginEntry.EntryUsername = loginEntryDTO.EntryUsername;
+                        decryptedLoginEntry.EntryPassword = loginEntryDTO.EntryPassword;
+                    }
                     decryptedLoginEntryListDTO.AddLoginEntry(decryptedLoginEntry);
                 }
             } else {
                 throw new ApplicationException();
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             throw new ApplicationException("Failed to decrypt the fetched login entries. Reason: " + e.Message);
         }
-        
+        decryptedServerResponse.dto = decryptedLoginEntryListDTO;
+
         return await Task.FromResult(decryptedServerResponse);
     }
 }

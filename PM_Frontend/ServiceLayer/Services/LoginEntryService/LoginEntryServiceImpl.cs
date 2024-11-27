@@ -17,35 +17,30 @@ public class LoginEntryServiceImpl : ILoginEntryService
         _webApiClient = webApiClient;
     }
 
-    public async Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto) {
+    public async Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto) { 
         // Validate received request, before encryption:
-        // TODO: Finish implementing this validation, once authorization and login functionality have been completed.
-        /*if (dto.id != loggedInUser.id || dto.masterUsername != loggedInUser.masterUsername || dto.masterPassword != loggedInUser.masterPassword) {
+        if (String.IsNullOrWhiteSpace(dto.masterUsername) || String.IsNullOrWhiteSpace(dto.masterPassword)) {
             throw new ArgumentException("Unable to process request. Valid logged-in user credentials were not provided.");
-        }*/
-        
-        // Encrypt the embedded dto:
-        // TODO: Encryption / Decryption does not reliably produce the same encrypted strings each time... So for now it does not work.
-        //var encryptedDto = await _cryptographyService.EncryptMasterUserAsync(dto);
-        var encryptedDto = dto; // TODO: Temporary solution.
-        
+        }
+
+        // Note: Embedded DTO is encrypted using SSL/HTTPS. It should not be further encrypted here.
+
         // Request all loginEntries
-        ServerResponse response = await _webApiClient.ReadLoginEntriesAsync(encryptedDto);
-        
+        ServerResponse response = await _webApiClient.ReadLoginEntriesAsync(dto);
+
         // Validate the response:
         if (!(response.dto != null && response.dto.GetType() == typeof(LoginEntryListDTO))) {
             throw new ApplicationException("Failed to fetch all login entries.");
         }
-        
+
         // Check query was success, else return the exception response:
         if (response.statusCode != 200) {
             throw new ApplicationException("Failed to fetch login entries.");
         }
-        
+
         // Decrypt the embedded loginEntries.
-        //ServerResponse decryptedResponse = await _cryptographyService.DecryptLoginEntryListAsync(response);
-        ServerResponse decryptedResponse = response; // TODO: Temporary solution.
-        
+        ServerResponse decryptedResponse = await _cryptographyService.DecryptLoginEntryListAsync(response);
+
         // Return the ServerResponse
         return decryptedResponse;
     }
