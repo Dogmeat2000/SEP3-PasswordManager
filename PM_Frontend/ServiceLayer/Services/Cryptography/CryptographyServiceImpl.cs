@@ -47,20 +47,29 @@ public class CryptographyServiceImpl : ICryptographyService
         ServerResponse decryptedServerResponse = new();
         decryptedServerResponse.message = serverResponse.message;
         decryptedServerResponse.statusCode = serverResponse.statusCode;
+        decryptedServerResponse.dto = serverResponse.dto;
 
-        if (decryptedServerResponse.dto.GetType() == typeof(LoginEntryDTO))
+        if (decryptedServerResponse.dto?.GetType() == typeof(LoginEntryDTO))
         {
-            
             LoginEntryDTO decryptedLoginEntry = (LoginEntryDTO)decryptedServerResponse.dto;
-            
-            Console.WriteLine("From cryp: " + decryptedLoginEntry.EntryName);
-            
-            AesEncryptionHelper.Decrypt(decryptedLoginEntry.EntryUsername);
-            AesEncryptionHelper.Decrypt(decryptedLoginEntry.EntryPassword);
+
+            try {
+                decryptedLoginEntry.EntryUsername = AesEncryptionHelper.Decrypt(decryptedLoginEntry.EntryUsername);
+                decryptedLoginEntry.EntryPassword = AesEncryptionHelper.Decrypt(decryptedLoginEntry.EntryPassword);
+
+            } catch (FormatException e) {
+                // Catch unencrypted keys. TODO: Delete this try-catch once no non-encrypted keys remain in the test data.
+                decryptedLoginEntry.EntryUsername = decryptedLoginEntry.EntryUsername;
+                decryptedLoginEntry.EntryPassword = decryptedLoginEntry.EntryPassword;
+            } catch (ArgumentException e) {
+                // Catch unencrypted keys. TODO: Delete this try-catch once no non-encrypted keys remain in the test data.
+                decryptedLoginEntry.EntryUsername = decryptedLoginEntry.EntryUsername;
+                decryptedLoginEntry.EntryPassword = decryptedLoginEntry.EntryPassword;
+            }
             
         }
         
-        return serverResponse; //TODO: Use decryption, as of now it just returns the given serverResponse
+        return decryptedServerResponse; 
     }
     
     public async Task<ServerResponse> DecryptLoginEntryListAsync(ServerResponse serverResponse)
