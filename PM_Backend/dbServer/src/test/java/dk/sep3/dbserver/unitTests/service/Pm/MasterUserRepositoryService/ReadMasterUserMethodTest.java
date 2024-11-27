@@ -50,9 +50,11 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    private AutoCloseable closeable;
+
     @BeforeEach public void setUp() {
       // Initialize all the @Mock and @InjectMock fields, allowing Spring Boot time to perform its Dependency Injection.
-      MockitoAnnotations.openMocks(this);
+      closeable = MockitoAnnotations.openMocks(this);
 
       // Set up some test-data for the test database:
       MasterUser masterUser1 = new MasterUser(0, "TestMasterUser1", passwordEncoder.encode("ads91234AVA'S7_:&)/(=9"));
@@ -64,7 +66,10 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
     }
 
     @AfterEach public void tearDown() {
-      // Empty
+      // Close the Mockito Injections:
+      try {
+        closeable.close();
+      } catch (Exception ignored) {}
     }
 
     // ZERO / Null Tests below:
