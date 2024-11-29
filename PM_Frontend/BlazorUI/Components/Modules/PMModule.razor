@@ -5,7 +5,10 @@
 @inject IServiceLayer ServiceLayer
 @inject AuthenticationStateProvider AuthProvider
 
-<EditLoginEntryModal @ref="editLoginEntryModal" SelectedEntry="selectedEntry"/>
+<EditLoginEntryModal @ref="editLoginEntryModal" 
+                     SelectedEntry="selectedEntry"
+                     OnUpdateEntrySuccess="HandleEntryUpdateSuccess" 
+                     OnDeleteEntrySuccess="HandleEntryDeleteSuccess" />
 
 @code {
     [Parameter]
@@ -87,7 +90,6 @@
                         otherEntries.Add(loginEntryDto);
                     
                     counter += 100000;
-                    StateHasChanged();
                 }
             }
             catch (Exception e)
@@ -99,6 +101,7 @@
                 Thread.Sleep(250);
             }
         }
+        StateHasChanged();
     }
 
     private void OpenCreateModal()
@@ -112,7 +115,6 @@
         isCreateModalOpen = false;
         StateHasChanged(); 
     }
-    
 
     private async Task HandleCreate()
     {
@@ -147,6 +149,18 @@
             Console.WriteLine("editLoginEntryModal is null.");
         }
     }
+    
+    private async Task HandleEntryUpdateSuccess()
+    {
+    
+    }
+    
+    private async Task HandleEntryDeleteSuccess()
+    {
+        await LoadEntries();
+        StateHasChanged();
+    }
+
 
     private void OnEntrySingleClicked(LoginEntryDTO entry)
     {
