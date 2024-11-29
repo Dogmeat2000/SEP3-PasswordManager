@@ -51,6 +51,7 @@ public class CryptographyServiceImpl : ICryptographyService
 
         if (decryptedServerResponse.dto?.GetType() == typeof(LoginEntryDTO))
         {
+            
             LoginEntryDTO decryptedLoginEntry = (LoginEntryDTO)decryptedServerResponse.dto;
 
             try {
@@ -69,7 +70,7 @@ public class CryptographyServiceImpl : ICryptographyService
             
         }
         
-        return decryptedServerResponse; 
+        return decryptedServerResponse;
     }
     
     public async Task<ServerResponse> DecryptLoginEntryListAsync(ServerResponse serverResponse)
@@ -83,23 +84,21 @@ public class CryptographyServiceImpl : ICryptographyService
         if (serverResponse == null || serverResponse.dto == null) {
             throw new ApplicationException("ServerResponse is null");
         }
-        
+
         try {
             if (serverResponse.dto.GetType() == typeof(LoginEntryListDTO)) {
 
                 LoginEntryListDTO receivedLoginEntryListDto = (LoginEntryListDTO) serverResponse.dto;
                 foreach (var loginEntryDTO in receivedLoginEntryListDto.loginEntries) {
                     LoginEntryDTO decryptedLoginEntry = new LoginEntryDTO();
-                    
+
                     decryptedLoginEntry.id = loginEntryDTO.id;
                     decryptedLoginEntry.EntryAddress = loginEntryDTO.EntryAddress;
                     decryptedLoginEntry.EntryName = loginEntryDTO.EntryName;
                     decryptedLoginEntry.EntryCategory = loginEntryDTO.EntryCategory;
-
                     try {
                         decryptedLoginEntry.EntryUsername = AesEncryptionHelper.Decrypt(loginEntryDTO.EntryUsername);
                         decryptedLoginEntry.EntryPassword = AesEncryptionHelper.Decrypt(loginEntryDTO.EntryPassword);
-
                     } catch (FormatException e) {
                         // Catch unencrypted keys. TODO: Delete this try-catch once no non-encrypted keys remain in the test data.
                         decryptedLoginEntry.EntryUsername = loginEntryDTO.EntryUsername;
@@ -114,13 +113,12 @@ public class CryptographyServiceImpl : ICryptographyService
             } else {
                 throw new ApplicationException();
             }
-        } 
+        }
         catch (Exception e) {
             throw new ApplicationException("Failed to decrypt the fetched login entries. Reason: " + e.Message);
         }
-
         decryptedServerResponse.dto = decryptedLoginEntryListDTO;
-        
+
         return await Task.FromResult(decryptedServerResponse);
     }
 }

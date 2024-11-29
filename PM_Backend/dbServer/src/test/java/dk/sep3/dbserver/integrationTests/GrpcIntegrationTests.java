@@ -4,10 +4,13 @@ import dk.sep3.dbserver.DbServerApplication;
 import dk.sep3.dbserver.grpc.factories.LoginEntryDTOGrpcFactory;
 import dk.sep3.dbserver.grpc.factories.MasterUserDTOGrpcFactory;
 import dk.sep3.dbserver.grpc.service.DbServerPmGrpcServiceImpl;
-import dk.sep3.dbserver.model.Pm.db_entities.MasterUser;
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
-import grpc.*;
+import grpc.GenericRequest;
+import grpc.GenericResponse;
+import grpc.LoginEntryDTO;
+import grpc.MasterUserDTO;
+import grpc.PasswordManagerServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
@@ -54,6 +57,8 @@ public class GrpcIntegrationTests
 
   private ManagedChannel channel;
   private PasswordManagerServiceGrpc.PasswordManagerServiceBlockingStub passwordManagerStub;
+  private AutoCloseable closeable;
+
 
   @BeforeEach
   public void setUp() {
@@ -65,7 +70,7 @@ public class GrpcIntegrationTests
     passwordManagerStub = PasswordManagerServiceGrpc.newBlockingStub(channel);
 
     // Initialize all the @Mock and @InjectMock fields, allowing Spring Boot time to perform its Dependency Injection.
-    MockitoAnnotations.openMocks(this);
+    closeable = MockitoAnnotations.openMocks(this);
   }
 
   @AfterEach
@@ -75,6 +80,11 @@ public class GrpcIntegrationTests
     channel = null;
 
     passwordManagerStub = null;
+
+    // Close the Mockito Injections:
+    try {
+      closeable.close();
+    } catch (Exception ignored) {}
   }
 
 

@@ -84,6 +84,7 @@ public class HandleRequestMethodTest
   private ManagedChannel dbServerChannel;
   private ManagedChannel dbDiscoveryChannel;
   private PasswordManagerServiceGrpc.PasswordManagerServiceBlockingStub discoveryPasswordManagerStub;
+  private AutoCloseable closeable;
 
   @Value("${grpc.server.port.primary}")
   private int dbGrpcServerPort;
@@ -131,7 +132,7 @@ public class HandleRequestMethodTest
         .build();
 
     // Initialize all the @Mock and @InjectMock fields, allowing Spring Boot time to perform its Dependency Injection.
-    MockitoAnnotations.openMocks(this);
+    closeable = MockitoAnnotations.openMocks(this);
 
     discoveryPasswordManagerStub = PasswordManagerServiceGrpc.newBlockingStub(dbServerChannel);
   }
@@ -170,6 +171,11 @@ public class HandleRequestMethodTest
     }
 
     discoveryPasswordManagerStub = null;
+
+    // Close the Mockito Injections:
+    try {
+      closeable.close();
+    } catch (Exception ignored) {}
   }
 
   private boolean isPortInUse(int port) {

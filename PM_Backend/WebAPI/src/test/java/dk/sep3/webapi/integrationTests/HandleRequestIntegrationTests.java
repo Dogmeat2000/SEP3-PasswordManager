@@ -8,9 +8,7 @@ import common.dto.LoginEntryDTO;
 import common.dto.MasterUserDTO;
 import dk.sep3.webapi.network.converter.ClientRequestToGrpcConverter;
 import dk.sep3.webapi.network.grpcCommunicationClient;
-import grpc.GenericRequest;
 import grpc.GenericResponse;
-import grpc.LoginEntryListDTO;
 import grpc.PasswordManagerServiceGrpc;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,18 +54,23 @@ public class HandleRequestIntegrationTests
   @InjectMocks
   private grpcCommunicationClient grpcClient;
 
+  private AutoCloseable closeable;
+
   @LocalServerPort
   private int port;
 
 
   @BeforeEach
   public void setUp() {
-    MockitoAnnotations.openMocks(this);
+    closeable = MockitoAnnotations.openMocks(this);
   }
 
   @AfterEach
   public void tearDown() {
-    // Empty
+    // Close the Mockito Injections:
+    try {
+      closeable.close();
+    } catch (Exception ignored) {}
   }
 
 
@@ -174,7 +177,7 @@ public class HandleRequestIntegrationTests
     }
   }
 
-/*
+
   @Test
   public void testHandleGenericRequest_ReadLoginEntries_ReturnsStatusCode200() {
     // Arrange: Build the MasterUserDTO to register some LoginEntries with:
@@ -247,7 +250,7 @@ public class HandleRequestIntegrationTests
 
 
       // Act: Send the HTTP message to the server:
-      String url = "http://localhost:" + port + "/api/handleRequest";
+      String url = "https://localhost:" + port + "/api/handleRequest";
       ResponseEntity<ServerResponse> response = restTemplate.postForEntity(url, entity, ServerResponse.class);
 
 
@@ -272,5 +275,5 @@ public class HandleRequestIntegrationTests
     } catch (JsonProcessingException e) {
       fail("Unexpected Exception thrown while testing. " + e.getMessage());
     }
-  }*/
+  }
 }

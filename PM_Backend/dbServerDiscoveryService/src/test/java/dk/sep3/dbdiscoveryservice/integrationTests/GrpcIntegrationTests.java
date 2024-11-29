@@ -10,7 +10,11 @@ import dk.sep3.dbdiscoveryservice.grpc.service.DbDiscoveryServicePmGrpcServiceIm
 import dk.sep3.dbserver.repositories.discoveryServiceDb.DiscoveryRepository;
 import dk.sep3.dbserver.service.discoveryService.DiscoveryRepositoryServiceImpl;
 import dk.sep3.dbdiscoveryservice.service.DatabaseServerMonitor;
-import grpc.*;
+import grpc.GenericRequest;
+import grpc.GenericResponse;
+import grpc.LoginEntryDTO;
+import grpc.MasterUserDTO;
+import grpc.PasswordManagerServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.ServerBuilder;
@@ -72,6 +76,7 @@ public class GrpcIntegrationTests
   private ManagedChannel dbServerChannel;
   private ManagedChannel dbDiscoveryChannel;
   private PasswordManagerServiceGrpc.PasswordManagerServiceBlockingStub discoveryPasswordManagerStub;
+  private AutoCloseable closeable;
 
   @Value("${grpc.server.port.primary}")
   private int dbGrpcServerPort;
@@ -112,7 +117,7 @@ public class GrpcIntegrationTests
         .build();
 
     // Initialize all the @Mock and @InjectMock fields, allowing Spring Boot time to perform its Dependency Injection.
-    MockitoAnnotations.openMocks(this);
+    closeable = MockitoAnnotations.openMocks(this);
 
     discoveryPasswordManagerStub = PasswordManagerServiceGrpc.newBlockingStub(dbServerChannel);
   }
@@ -151,6 +156,11 @@ public class GrpcIntegrationTests
     }
 
     discoveryPasswordManagerStub = null;
+
+    // Close the Mockito Injections:
+    try {
+      closeable.close();
+    } catch (Exception ignored) {}
   }
 
   private boolean isPortInUse(int port) {

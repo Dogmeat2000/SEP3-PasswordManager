@@ -39,6 +39,8 @@ public class HandleRequestIntegrationTests
   @LocalServerPort
   private int port;
 
+  private AutoCloseable closeable;
+
   @MockBean WebAPIServerMonitor webAPIServerMonitor;
 
   @MockBean WebAPIServer webAPIServer;
@@ -46,14 +48,17 @@ public class HandleRequestIntegrationTests
 
   @BeforeEach
   public void setUp() {
-    MockitoAnnotations.openMocks(this);
+    closeable = MockitoAnnotations.openMocks(this);
   }
 
   @AfterEach
   public void tearDown() {
-    // Empty
+    // Close the Mockito Injections:
+    try {
+      closeable.close();
+    } catch (Exception ignored) {}
   }
-/*
+
 
   @Test
   public void testGetAvailableServer_ReturnsLocalHost_And_LocalPort() {
@@ -93,6 +98,6 @@ public class HandleRequestIntegrationTests
     } catch (JsonProcessingException e) {
       fail("Unexpected Exception thrown while testing. " + e.getMessage());
     }
-  }*/
+  }
 
 }

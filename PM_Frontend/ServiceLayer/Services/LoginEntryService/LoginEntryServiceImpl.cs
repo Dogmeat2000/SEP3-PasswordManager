@@ -22,25 +22,25 @@ public class LoginEntryServiceImpl : ILoginEntryService
         if (String.IsNullOrWhiteSpace(dto.masterUsername) || String.IsNullOrWhiteSpace(dto.masterPassword)) {
             throw new ArgumentException("Unable to process request. Valid logged-in user credentials were not provided.");
         }
-        
+
         // Note: Embedded DTO is encrypted using SSL/HTTPS. It should not be further encrypted here.
-        
+
         // Request all loginEntries
         ServerResponse response = await _webApiClient.ReadLoginEntriesAsync(dto);
-        
+
         // Validate the response:
         if (!(response.dto != null && response.dto.GetType() == typeof(LoginEntryListDTO))) {
             throw new ApplicationException("Failed to fetch all login entries.");
         }
-        
+
         // Check query was success, else return the exception response:
         if (response.statusCode != 200) {
             throw new ApplicationException("Failed to fetch login entries.");
         }
-        
+
         // Decrypt the embedded loginEntries.
         ServerResponse decryptedResponse = await _cryptographyService.DecryptLoginEntryListAsync(response);
-        
+
         // Return the ServerResponse
         return decryptedResponse;
     }
@@ -52,28 +52,28 @@ public class LoginEntryServiceImpl : ILoginEntryService
      */
     public async Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO newEntry)
     {
-        
+
         if (newEntry == null)
         {
             throw new ArgumentNullException(nameof(newEntry), "LoginEntryDTO cannot be null.");
         }
 
         var encryptedEntry = await _cryptographyService.EncryptLoginEntryAsync(newEntry);
-        
+
         if (encryptedEntry == null)
         {
             throw new Exception("Failed to encrypt the login entry.");
         }
 
         var response = await _webApiClient.CreateLoginEntryAsync(encryptedEntry);
-        
+
         if (response == null || response.dto == null)
         {
             throw new Exception("Failed to create the login entry.");
         }
 
         var decryptedResponse = await _cryptographyService.DecryptLoginEntryAsync(response);
-        
+
         return decryptedResponse;
     }
 
@@ -89,7 +89,7 @@ public class LoginEntryServiceImpl : ILoginEntryService
         {
             throw new ArgumentNullException(nameof(updatedEntry), "LoginEntryDTO cannot be null.");
         }
-        
+
         
         var encryptedEntry = await _cryptographyService.EncryptLoginEntryAsync(updatedEntry);
 
@@ -104,14 +104,14 @@ public class LoginEntryServiceImpl : ILoginEntryService
         {
             throw new Exception("Failed to update the login entry.");
         }
-        
+
         var decryptedResponse = await _cryptographyService.DecryptLoginEntryAsync(response);
 
         if (decryptedResponse == null)
         {
             throw new Exception("Failed to decrypt the login entry.");
         }
-        
+
         if (!(decryptedResponse.dto.GetType() == typeof(LoginEntryDTO)) || decryptedResponse.dto == null)
         {
             throw new ApplicationException("Failed to update login entry");
@@ -133,7 +133,7 @@ public class LoginEntryServiceImpl : ILoginEntryService
         {
             throw new ApplicationException("Failed to delete the login entry.");
         }
-        
+
         return true;
     }
 }
