@@ -85,19 +85,39 @@ public class LoginEntryServiceImpl : ILoginEntryService
      */
     public async Task<LoginEntryDTO> UpdateLoginEntryAsync(LoginEntryDTO updatedEntry)
     {
-        //var encryptedEntry = await _cryptographyService.EncryptLoginEntryAsync(updatedEntry);
+        if (updatedEntry == null)
+        {
+            throw new ArgumentNullException(nameof(updatedEntry), "LoginEntryDTO cannot be null.");
+        }
         
-        var response = await _webApiClient.UpdateLoginEntryAsync(updatedEntry);
         
-        var decryptedEntry = await _cryptographyService.DecryptLoginEntryAsync(response);
-        var decryptedEntryDto = decryptedEntry.dto;
+        var encryptedEntry = await _cryptographyService.EncryptLoginEntryAsync(updatedEntry);
 
-        if (!(decryptedEntryDto.GetType() == typeof(LoginEntryDTO)))
+        if (encryptedEntry == null)
+        {
+            throw new Exception("Failed to encrypt the login entry.");
+        }
+        
+        var response = await _webApiClient.UpdateLoginEntryAsync(encryptedEntry);
+
+        if (response == null || response.dto == null)
+        {
+            throw new Exception("Failed to update the login entry.");
+        }
+        
+        var decryptedResponse = await _cryptographyService.DecryptLoginEntryAsync(response);
+
+        if (decryptedResponse == null)
+        {
+            throw new Exception("Failed to decrypt the login entry.");
+        }
+        
+        if (!(decryptedResponse.dto.GetType() == typeof(LoginEntryDTO)) || decryptedResponse.dto == null)
         {
             throw new ApplicationException("Failed to update login entry");
         }
     
-        return (LoginEntryDTO)response.dto;
+        return (LoginEntryDTO)decryptedResponse.dto;
     }
 
     /**
@@ -108,6 +128,12 @@ public class LoginEntryServiceImpl : ILoginEntryService
     public async Task<bool> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete)
     {
         var response = await _webApiClient.DeleteLoginEntryAsync(entryToDelete);
-        return true; // TO DO Implement proper validation
+
+        if (response.statusCode != 200)
+        {
+            throw new ApplicationException("Failed to delete the login entry.");
+        }
+        
+        return true;
     }
 }

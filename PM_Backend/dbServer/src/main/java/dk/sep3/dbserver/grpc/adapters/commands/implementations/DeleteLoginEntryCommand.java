@@ -24,9 +24,6 @@ public class DeleteLoginEntryCommand implements GrpcCommand {
 
     @Override
     public GenericResponse execute(GenericRequest request) throws DataIntegrityViolationException, PersistenceException {
-        // Identify what type of DTO to convert to java compatible format:
-        if(!request.getDataCase().equals(GenericRequest.DataCase.LOGINENTRY))
-            throw new DataIntegrityViolationException("Argument is not valid.");
 
         // Convert to db compatible entity:
         LoginEntry loginEntry = LoginEntryDTOtoLoginEntryEntity.convertToLoginEntryEntity(request.getLoginEntry());

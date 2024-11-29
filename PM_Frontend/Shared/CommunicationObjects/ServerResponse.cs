@@ -16,11 +16,13 @@ public class ServerResponse
     {
         this.statusCode = statusCode;
         this.message = message;
+        this.dto = null;
     }
 
     public ServerResponse(int statusCode, DTO dto)
     {
         this.statusCode = statusCode;
+        this.message = null;
         this.dto = dto;
     }
 

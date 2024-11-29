@@ -53,8 +53,6 @@ public class GrpcToServerResponseConverter {
             // An exception occurred. Return the exception:
             return new ServerResponse(grpcResponse.getStatusCode(), grpcResponse.getException().getException());
 
-        } else {
-            return new ServerResponse(500, "Error: dto not supported");
         }
 
         return serverResponse;

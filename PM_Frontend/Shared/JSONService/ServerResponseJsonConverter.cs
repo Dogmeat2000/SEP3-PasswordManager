@@ -50,7 +50,7 @@ namespace Shared.JSONService
             var dtoToken = jsonObject["dto"];
             DTO dto = null;
 
-            if (dtoToken != null)
+            if (dtoToken != null && dtoToken.Type != JTokenType.Null)
             {
                 // Manually check @class to determine DTO type
                 var typeName = dtoToken["@class"]?.ToString();

@@ -15,11 +15,6 @@ public class RequestHandler {
     }
 
     public ServerResponse handle(ClientRequest request) {
-        if (request.getDTO() instanceof common.dto.LoginEntryDTO) {
-            System.out.println("WebAPI: " + ((LoginEntryDTO) request.getDTO()).getEntryName());
-        }
-        System.out.println("WebAPI: requestType " + request.getRequestType() + " dto: " + request.getDTO().getId());
-
         ServerResponse response = communicationClient.callDbServer(request);
         System.out.println("WebAPI: Response: " + response.getStatusCode());
 

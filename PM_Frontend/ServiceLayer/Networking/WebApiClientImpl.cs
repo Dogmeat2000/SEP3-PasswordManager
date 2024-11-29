@@ -124,7 +124,11 @@ public class WebApiClientImpl : IWebApiClient
                     var jsonResponse = await response.Content.ReadAsStringAsync();
 
                     // Deserialize ServerResponse to determine if we received a valid DTO
-                    var serverResponse = JsonConvert.DeserializeObject<ServerResponse>(jsonResponse);
+                    var serverResponse = JsonConvert.DeserializeObject<ServerResponse>(jsonResponse, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.Auto
+                    });
+                    
                     Console.WriteLine("ServerResponse: " + serverResponse);
                     
                     if (serverResponse != null) {
