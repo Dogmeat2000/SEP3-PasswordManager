@@ -28,11 +28,6 @@ public class ServiceLayerImpl : IServiceLayer
         return await _masterUserService.ReadMasterUserAsync(masterUserDto);
     }
     
-    // TODO: Marcus, commented out due to errors.
-    /*public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
-    {
-        return await _masterUserService.AuthenticateUserAsync(masterUserDto);
-    }*/
 
     // LoginEntry Service Methods:
     public async Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto) {
