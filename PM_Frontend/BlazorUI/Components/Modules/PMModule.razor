@@ -91,14 +91,15 @@
                     
                     counter += 100000;
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (KeyNotFoundException ignored) {
+                // Each 'login category' displays a message when no entries can be found. See the 'LoginEntryListViewModule'
+                counter += 100000;
+            } catch (Exception e) {
                 Console.WriteLine($"[PMModule] Exception occurred: {e.Message}");
                 loadExceptionMsg = (MarkupString)("<b>Error:</b> Exception occurred while loading login entries." +
                                                   $"<br><br><b>Type:</b> {e.GetType()}<br><br><b>Reason:</b> {e.Message}");
                 counter++;
-                Thread.Sleep(250);
+                await Task.Delay(250);
             }
         }
         StateHasChanged();

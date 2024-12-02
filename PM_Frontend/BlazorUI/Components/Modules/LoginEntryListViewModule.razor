@@ -1,7 +1,7 @@
 ﻿@using Shared.Dtos
 @code {
-    [Parameter]
-    public List<LoginEntryDTO> Entries { get; set; }
+    [Parameter] 
+    public List<LoginEntryDTO> Entries { get; set; } = new();
     
     [Parameter]
     public string Category { get; set; }
@@ -16,7 +16,7 @@
     private bool singleClickHandled;
     private System.Timers.Timer clickTimer;
     private bool _fullyLoaded = false;
-    private string _loadingMsg = String.Empty;
+    private string _loadingMsg { get; set; } = String.Empty;
     
     public LoginEntryListViewModule()
     {
@@ -31,6 +31,10 @@
                 singleClickHandled = false;
             }
         };
+    }
+    
+    protected override void OnParametersSet() {
+        StateHasChanged();
     }
 
     private void HandleClick(LoginEntryDTO entry)
@@ -52,13 +56,8 @@
         OnEntryDoubleClicked.InvokeAsync(entry);
     }
 
-    private void ToggleFullyLoaded() {
-        _fullyLoaded = !_fullyLoaded;
-    }
-
-    private string UpdateLoadingMsg(string msg) {
+    private void UpdateLoadingMsg(string msg) {
         _loadingMsg = msg;
-        return _loadingMsg;
     }
 }
 <div class="w-100" style="max-height:70vh; overflow-y: scroll;">
@@ -76,26 +75,26 @@
             </tr>
         </thead>
         @if (!_fullyLoaded) {
-            <p>@UpdateLoadingMsg("Loading entries...")</p>
+            UpdateLoadingMsg("Loading entries...");
         }
         <tbody class="table-group-divider" @onclick:stopPropagation>
-            @foreach (LoginEntryDTO loginEntry in Entries) {
+        @foreach (LoginEntryDTO loginEntry in Entries) {
             <tr role="button" @onclick="() => HandleClick(loginEntry)"
                 @ondblclick="() => HandleDoubleClick(loginEntry)"
                 class="@(selectedEntry == loginEntry ? "active-row" : "")">
-                    <td class="loginEntry-table">@loginEntry.EntryName</td>
-                    <td><a href="@loginEntry.EntryAddress" target="_blank" rel="noopener norefferer">@loginEntry.EntryAddress</a></td>
-                    <td class="loginEntry-table">@loginEntry.EntryUsername</td>
-                    <td class="loginEntry-table">@loginEntry.EntryPassword</td>
-                </tr>
-            }
-            @if (!_fullyLoaded) {
-                UpdateLoadingMsg(String.Empty);
-                ToggleFullyLoaded();
-            }
-            @if (_fullyLoaded && Entries.Count <= 0) {
-                UpdateLoadingMsg("No Login Entries found...");
-            }
+                <td class="loginEntry-table">@loginEntry.EntryName</td>
+                <td><a href="@loginEntry.EntryAddress" target="_blank" rel="noopener norefferer">@loginEntry.EntryAddress</a></td>
+                <td class="loginEntry-table">@loginEntry.EntryUsername</td>
+                <td class="loginEntry-table">@loginEntry.EntryPassword</td>
+            </tr>
+            _fullyLoaded = true;
+        }
+        @if (Entries.Count == 0) {
+            UpdateLoadingMsg("No Login Entries Found...");
+        } else {
+            UpdateLoadingMsg(String.Empty);
+        }
         </tbody>
+        <p>@_loadingMsg</p>
     </table>
 </div>
