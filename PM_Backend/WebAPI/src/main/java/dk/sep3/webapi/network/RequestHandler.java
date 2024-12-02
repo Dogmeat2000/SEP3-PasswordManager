@@ -2,7 +2,6 @@ package dk.sep3.webapi.network;
 
 import common.ClientRequest;
 import common.ServerResponse;
-import common.dto.LoginEntryDTO;
 import org.springframework.context.annotation.Configuration;
 
 /** Handles incoming client requests from WebAPIServer and forwards them to the CommunicationClient **/

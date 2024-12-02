@@ -21,6 +21,7 @@ import org.springframework.core.env.Environment;
 import javax.naming.ServiceUnavailableException;
 import java.util.Arrays;
 
+/**<p>Main gRPC handling method, that is responsible for receiving gRPC requests from clients, finding an appropriate database server to re-transmit to, and handling the responses from each database server.</p>*/
 @GrpcService
 public class DbDiscoveryServicePmGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
@@ -44,6 +45,10 @@ public class DbDiscoveryServicePmGrpcServiceImpl extends PasswordManagerServiceG
     }
   }
 
+  /**<p>Handles incoming gRPC requests by re-transmitting to an appropriate database server. Also catches gRPC responses and transmits these back to the client.
+   * If connection to a database server cannot be established immediately, it will try a few times before sending an exception message back to the client.</p>
+   * @param request a gRPC formatted GenericRequest message.
+   * @param responseObserver the gRPC formatted GenericResponse message.*/
   @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver) {
     try {
       // Transmit to the least congested gRPC server:

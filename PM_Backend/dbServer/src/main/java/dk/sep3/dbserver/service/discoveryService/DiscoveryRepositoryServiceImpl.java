@@ -72,7 +72,7 @@ public class DiscoveryRepositoryServiceImpl implements DiscoveryRepositoryServic
       while(i <= numberOfRetries) {
         try {
           serverRepository.delete(server);
-          logger.info("DatabaseServer removed from Discovery DB with address: {}", server.getHost());
+          logger.info("DatabaseServer removed from Discovery DB with address: {}", server.getHost() + ":" + server.getPort());
           break;
         }
         catch (IllegalArgumentException | ConstraintViolationException | DataIntegrityViolationException e) {

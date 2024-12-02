@@ -2,10 +2,8 @@ package dk.sep3.webapi.network;
 
 import common.ClientRequest;
 import common.ServerResponse;
-import common.dto.LoginEntryDTO;
 import dk.sep3.webapi.network.converter.ClientRequestToGrpcConverter;
 import dk.sep3.webapi.network.converter.GrpcToServerResponseConverter;
-import grpc.*;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
 import grpc.PasswordManagerServiceGrpc;
