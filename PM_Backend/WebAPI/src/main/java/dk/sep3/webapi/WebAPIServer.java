@@ -20,6 +20,12 @@ public class WebAPIServer {
         this.handler = handler;
     }
 
+    /**
+     * Handles an incoming client request by forwarding it to the request handler.
+     *
+     * @param request The client request to be handled.
+     * @return A ServerResponse indicating the result of the request.
+     */
     public ServerResponse handleRequest(ClientRequest request) {
         if (!isAvailable()) {
             return new ServerResponse(503, "Server is overloaded. Please try again later.");
@@ -38,6 +44,9 @@ public class WebAPIServer {
         }
     }
 
+    /**
+     * Reduces the current load by decrementing the load count.
+     */
     private void finishRequest() {
         currentLoad--;
         System.out.println("Finished request. Current load: " + currentLoad);

@@ -10,7 +10,7 @@ namespace ServiceLayer.Services.Cryptography;
  */ 
 public class AesEncryptionHelper
 {
-    private static readonly byte[] Key = Encoding.UTF8.GetBytes("1234567890123456"); // Todo change to dynamic secure key, with at least 16 bytes
+    private static readonly byte[] Key = Encoding.UTF8.GetBytes("1234567890123456"); // In future, change to more secure key
 
     public static string Encrypt(string textToEncrypt)
     {
