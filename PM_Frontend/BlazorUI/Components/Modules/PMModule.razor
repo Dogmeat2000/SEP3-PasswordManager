@@ -166,12 +166,14 @@
     private async Task HandleEntryUpdateSuccess()
     {
         await LoadEntries();
+        selectedEntry = null; 
         StateHasChanged();
     }
     
     private async Task HandleEntryDeleteSuccess()
     {
         await LoadEntries();
+        selectedEntry = null; 
         StateHasChanged();
     }
     
