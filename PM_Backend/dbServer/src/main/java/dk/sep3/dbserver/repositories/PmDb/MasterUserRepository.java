@@ -12,10 +12,8 @@ import java.util.List;
  * JPA specification states that each Entity in the database must have a java annotated @Entity object in the Java code.
  * JPA also states that for each @Entity there must be a corresponding @Repository similar to this.</p> */
 @Repository
-public interface MasterUserRepository extends JpaRepository<MasterUser, Integer>  // <-- Primary key of Entity must be provided as the Type to JpaRepository!
+public interface MasterUserRepository extends JpaRepository<MasterUser, Integer> // <-- Primary key of Entity must be provided as the Type to JpaRepository!
 {
-  // The extended JpaRepository automatically adds CRUD and Paging/Sorting operations to the User entity.
-  // If additional functionality is required, it can be added below along with custom SQL queries.
 
   /** <p>Fetches a List of users with this exact username and password from the database.<br><br>
    * This method makes use of JPA's built in query derivation, where JPA automatically translates

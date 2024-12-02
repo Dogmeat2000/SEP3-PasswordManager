@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**<p>JPA Compatible entity, that includes all data relating to each Login Entry that needs to be persisted.</p>*/
 @Entity
 @Table(name="\"login_entry\"")
 public class LoginEntry implements Serializable {
@@ -25,7 +26,7 @@ public class LoginEntry implements Serializable {
     @Column(name = "entry_address")
     private String entryAddress;
 
-    // Todo: Change the below variable, to point to the Category implementation using JPA - once that gets implemented. (Skrevet af Kristian)
+    // Todo: Change the below variable, to point to the Category implementation using JPA - once that gets implemented. (Association between JPA entities)
     @Column(name = "entry_category_id", nullable = false)
     private int entryCategoryId;
 

@@ -7,13 +7,13 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface DiscoveryRepository extends JpaRepository<DatabaseServer, Long>
+public interface DiscoveryRepository extends JpaRepository<DatabaseServer, Long> // <-- Primary key of Entity must be provided as the Type to JpaRepository!
 {
-  // The extended JpaRepository automatically adds CRUD and Paging/Sorting operations to the DatabaseServer entity.
-  // If additional functionality is required, it can be added below along with custom SQL queries.
-  /** Find the Database server that has not been heard from, the longest. */
+  /** <p>Find the Database server that has not been heard from the longest.</p>
+   * @return An Optional value, that is either Null - meaning no database server was found - or a DatabaseServer entity corresponding to the server that had the highest/oldest ping.*/
   Optional<DatabaseServer> findFirstByOrderByLastPingAsc();
 
-  /** Find the Database server, that is least congested */
+  /** <p>Find the Database server, that is least congested</p>
+   * @return An Optional value, that is either Null - meaning no database server was found - or a DatabaseServer entity corresponding to the server that is experiencing the least gRPC traffic.*/
   Optional<DatabaseServer> findFirstByOrderByCongestionPercentageAsc();
 }

@@ -9,6 +9,7 @@ import grpc.LoginEntryListDTO;
 
 import java.util.List;
 
+/** <p>Class is responsible for defining methods to convert/build proper gRPC GenericResponses based on the desired response type/details.</p>*/
 public class GenericResponseFactory
 {
   public static GenericResponse buildGrpcGenericResponseWithMasterUserDTO(int statusCode, MasterUser masterUser) {

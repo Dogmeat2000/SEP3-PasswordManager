@@ -21,6 +21,9 @@ import java.util.Map;
 
 // Configured, following this guide: https://mmafrar.medium.com/configuring-multiple-data-sources-with-spring-boot-2-and-spring-data-jpa-8e236844e80f
 // and https://medium.com/@sharatnaik1996/connect-and-use-multiple-datasources-in-spring-boot-java-1192286ab361
+/** <p>Defines necessary configuration data for the Database Server repository/Db through Spring Boot and JPA.
+ * This is required, since each Database Server has access to multiple different databases,
+ * meaning default JPA configuration is not an option.</p>*/
 @Configuration
 @ConditionalOnProperty(name = "discovery.datasource.enabled", havingValue = "true", matchIfMissing = true)
 @EnableTransactionManagement

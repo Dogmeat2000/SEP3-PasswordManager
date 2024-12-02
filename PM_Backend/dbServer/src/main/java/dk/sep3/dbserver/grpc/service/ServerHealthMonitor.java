@@ -17,12 +17,16 @@ import java.net.URI;
 import java.net.URL;
 
 
+/**<p> Class is responsible for the high level Server Health Monitoring.
+ * It continuously evaluates local database server health and updates the central database server
+ * repository with the most updated health metrics, so the database discovery service always can
+ * choose the least congested database servers to redirect gRPC calls to.</p>*/
 @Service
 public class ServerHealthMonitor
 {
   private final DiscoveryRepositoryService discoveryRepositoryService;
   private static final Logger logger = LoggerFactory.getLogger(ServerHealthMonitor.class);
-  private final int threadCycleSleepTimeInMs = 7500; // 5 Second.
+  private final int threadCycleSleepTimeInMs = 7500; // 7.5 Seconds.
   private DatabaseServer thisServer;
 
   @Autowired

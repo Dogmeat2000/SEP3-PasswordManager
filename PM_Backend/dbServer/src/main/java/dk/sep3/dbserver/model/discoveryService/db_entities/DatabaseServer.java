@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+/**<p>JPA compatible entity, containing the relevant database server information and metrics required for rudimentary server health monitoring.</p>*/
 @Entity
 @Table(name = "discoveryservice")
 public class DatabaseServer implements Serializable

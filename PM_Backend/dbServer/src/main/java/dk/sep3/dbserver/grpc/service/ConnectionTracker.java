@@ -12,6 +12,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 // Read more here: https://grpc.io/docs/guides/interceptors/
 // Metrics can be accessed from here: http://localhost:8080/actuator/metrics/grpc.server.active.connections (replace port number)
+/**<p>Class is responsible for tracking the number of active gRPC connections to the local database server.
+ * It is used in conjunction with the Health Monitoring services, where the number of active gRPC
+ * requests/connections is used as an indicator for server congestion. </p>*/
 @Component
 public class ConnectionTracker implements ServerInterceptor
 {
@@ -27,6 +30,7 @@ public class ConnectionTracker implements ServerInterceptor
   }
 
 
+  /**<p>Intercepts each incoming gRPC connection call and increases the number of active connections by 1. When the connection completes or cancels, it also decreases the number of connections by 1</p>*/
   @Override public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> call,
       Metadata headers,
       ServerCallHandler<ReqT, RespT> next) {
