@@ -152,7 +152,8 @@
     
     private async Task HandleEntryUpdateSuccess()
     {
-    
+        await LoadEntries();
+        StateHasChanged();
     }
     
     private async Task HandleEntryDeleteSuccess()
@@ -160,8 +161,7 @@
         await LoadEntries();
         StateHasChanged();
     }
-
-
+    
     private void OnEntrySingleClicked(LoginEntryDTO entry)
     {
         selectedEntry = entry;
