@@ -66,6 +66,12 @@
      */
     private async Task LoadEntries()
     {
+        //Clear lists to make room for the updated entries
+        socialMediaEntries.Clear();
+        bankEntries.Clear();
+        otherEntries.Clear();
+        StateHasChanged();
+        
         int retryCount = 3;
         int counter = 0;
         while (counter < retryCount)
@@ -78,11 +84,6 @@
 
                 if (response is { statusCode: 200, dto: LoginEntryListDTO { loginEntries.Count: > 0 } entries })
                 {
-                    //Clear lists to make room for the updated entries
-                    socialMediaEntries.Clear();
-                    bankEntries.Clear();
-                    otherEntries.Clear();
-                    
                     IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
                     // Categorize entries to "Social Media" category:
                     socialMediaEntries = enumerableEntries.Where(e => e.EntryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
