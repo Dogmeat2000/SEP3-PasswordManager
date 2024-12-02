@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Shared.Dtos
+﻿namespace Shared.Dtos
 {
     public class MasterUserDTO : DTO
     {

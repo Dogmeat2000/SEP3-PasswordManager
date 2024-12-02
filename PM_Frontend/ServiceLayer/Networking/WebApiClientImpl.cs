@@ -1,11 +1,9 @@
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using Newtonsoft.Json; // Make sure to add this
 using Shared.CommunicationObjects;
 using Shared.Dtos;
-using Shared.JSONService;
 
 namespace ServiceLayer.Networking;
 
@@ -63,16 +61,7 @@ public class WebApiClientImpl : IWebApiClient
         var serverResponse = await SendRequestAsync("DeleteLoginEntry", logonEntryDto);
         return serverResponse;
     }
-
-
-    
-    // TODO: Marcus, commented out due to errors.
-    /*public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
-    {
-        return await SendRequestAsync<MasterUserDTO>("AuthenticateUser", masterUserDto);
-    }*/
-
-    
+   
     
     private async Task<ServerResponse> SendRequestAsync<TRequestDto>(string requestType, TRequestDto requestDto)
             where TRequestDto : DTO
@@ -114,6 +103,7 @@ public class WebApiClientImpl : IWebApiClient
                         await WebApiServerIsOverloadedAsync();
                         numberOfAttempts++;
                     } else {
+                        // Hand over the http exception status to the global exception handler, so proper C# exceptions can be thrown:
                         NetworkExceptionHandler.HandleException(response.StatusCode, response.Content.ReadAsStringAsync().Result);
                         throw new Exception("Server responded with an error: " + response.ReasonPhrase);
                     }
@@ -172,8 +162,7 @@ public class WebApiClientImpl : IWebApiClient
             Console.WriteLine(e.StackTrace);
             throw new Exception($"SetWebApiServerUrlAsync failed: {e.Message}");
         }
-
-
+        
         return WebApiUrl;
     }
 

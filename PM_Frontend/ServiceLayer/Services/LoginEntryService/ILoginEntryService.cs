@@ -9,7 +9,7 @@ namespace ServiceLayer.Services.LoginEntryService
      */
     public interface ILoginEntryService
     {
-        /** <summary>Sends a request to fetch all login_entries, associated with the designated MasterUser.
+        /** <summary>Sends a request to fetch all login entries, associated with the designated MasterUser.
          * Handles business logic, such as validated and encrypted before transmission, and decrypted upon receival. </summary>
          * <param name="dto">A <see cref="MasterUserDTO"/> object that contains the currently logged in MasterUser's id, username and password</param>
          * <returns> <p>If Successful: A <see cref="ServerResponse"/> object containing a <b>decrypted</b> DTO of <see cref="LoginEntryListDTO"/> type, associated with the logged-in user...</p>
