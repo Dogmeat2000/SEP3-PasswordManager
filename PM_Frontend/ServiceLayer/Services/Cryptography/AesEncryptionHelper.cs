@@ -9,7 +9,7 @@ namespace ServiceLayer.Services.Cryptography;
  */ 
 public class AesEncryptionHelper
 {
-    private static readonly byte[] Key = Encoding.UTF8.GetBytes("1234567890123456"); // In future, change to more secure key
+    private static readonly byte[] Key = Encoding.UTF8.GetBytes("1234567890123456"); // In the future, change to more secure key
 
     public static string Encrypt(string textToEncrypt)
     {
