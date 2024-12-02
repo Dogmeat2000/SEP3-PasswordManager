@@ -28,15 +28,6 @@ namespace ServiceLayer.Services
          */
         Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO masterUserDto);
 
-        /**
-         * Sends a request to retrieve all login entries.
-         * Delegates business-logic to ILoginEntryService.
-         * Decrypts the passwords in the returned entries before returning them.
-         *
-         * @return ServerResponse containing the list of decrypted LoginEntryDTO objects
-         */
-        // TODO: Marcus, commented out due to errors.
-        //Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto);
 
         /** <summary>Sends a request to fetch all login_entries, associated with the designated MasterUser.
          * Delegates business logic to ILoginEntryService (Such as validation and encryption).</summary>

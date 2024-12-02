@@ -5,6 +5,10 @@ using Shared.Dtos;
 
 namespace ServiceLayer.Services.MasterUserService;
 
+/**
+ * Service implementation for handling master user operations such as creation and retrieval.
+ * Communicates with a web API to perform the required tasks.
+ */
 public class MasterUserServiceImpl : IMasterUserService
 {
     private readonly ICryptographyService _cryptographyService;
@@ -16,49 +20,36 @@ public class MasterUserServiceImpl : IMasterUserService
         _webApiClient = webApiClient;
     }
 
+    /**
+  * Creates a new master user by sending the provided MasterUserDTO to the web API.
+  *
+  * @param masterUserDto The data transfer object containing the details of the master user to be created.
+  * @return A Task that represents the asynchronous operation. The task result contains a ServerResponse object,
+  *         which indicates the result of the create operation.
+  * @throws ArgumentNullException if masterUserDto is null.
+  */
     public async Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto)
     {
-        //TODO: ?? Add validation on the master user before it is encrypted
-
-        //Encrypt the master user
-        //var encryptedMasterUserDto = await _cryptographyService.EncryptMasterUserAsync(masterUserDto);
-
-        //Send the request to the web api
         var returnedServerResponse = await _webApiClient.CreateMasterUserAsync(masterUserDto);
-
-        //TODO: ?? Add validation that the returned masteruser is the same as the encrypted one sent
-
-        //Decrypt Server response
-        // TODO Make encryption/decryption work properly
-        // var decryptedServerResponse = await _cryptographyService.DecryptServerResponceAsync(returnedServerResponse);
-
-        //TODO: ?? Add validation that the returned decrypted masteruser is the same as the one sent
-
-        //Return the decrypted master user
+        
         return returnedServerResponse;
     }
 
+    
+    /**
+  * Reads information about an existing master user by sending the provided MasterUserDTO to the web API.
+  *
+  * @param masterUserDto The data transfer object containing details for querying the master user.
+  * @return A Task that represents the asynchronous operation. The task result contains a ServerResponse object,
+  *         which includes the details of the requested master user or an error if the user could not be found.
+  * @throws ArgumentNullException if masterUserDto is null.
+  */
     public async Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO masterUserDto)
     {
-        //Send the request to the web-api
         var returnedMasterUserDto = await _webApiClient.ReadMasterUserAsync(masterUserDto);
-
-        //TODO: ?? Validation
+        
 
         return returnedMasterUserDto;
     }
-
-    // TODO: Marcus, commented out due to errors.
-    /*public async Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto)
-    {
-        // Encrypt the master user credentials for secure transmission
-        var encryptedMasterUserDto = await _cryptographyService.EncryptMasterUserAsync(masterUserDto);
-
-        // Send encrypted credentials to the web API for authentication
-        var response = await _webApiClient.AuthenticateUserAsync(encryptedMasterUserDto);
-
-        // Decrypt the response to retrieve authentication results
-        return await _cryptographyService.DecryptServerResponceAsync(response);
-        
-    }*/
+    
 }
