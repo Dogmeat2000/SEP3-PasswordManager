@@ -1,10 +1,10 @@
 ﻿@using Shared.Dtos
 @code {
+    // Properties containing essential login entry information:
+    [Parameter] 
+    public List<LoginEntryDTO> Entries { get; set; } = new();
     [Parameter]
-    public List<LoginEntryDTO> Entries { get; set; }
-    
-    [Parameter]
-    public string Category { get; set; }
+    public string? Category { get; set; }
     
     // For selecting entry to edit
     [Parameter]
@@ -15,8 +15,8 @@
     private LoginEntryDTO? selectedEntry;
     private bool singleClickHandled;
     private System.Timers.Timer clickTimer;
-    private bool _fullyLoaded = false;
-    private string _loadingMsg = String.Empty;
+    private bool _fullyLoaded = false; // True, if html code has finished processed all entries.
+    private string loadingMsg { get; set; } = String.Empty; // Used to display a status message, depending on if entries are found or not.
     
     public LoginEntryListViewModule()
     {
@@ -31,6 +31,11 @@
                 singleClickHandled = false;
             }
         };
+    }
+    
+    protected override void OnParametersSet() {
+        <!-- Ensure that the UI is updated each time the associated parameters change -->
+        StateHasChanged();
     }
 
     private void HandleClick(LoginEntryDTO entry)
@@ -52,50 +57,56 @@
         OnEntryDoubleClicked.InvokeAsync(entry);
     }
 
-    private void ToggleFullyLoaded() {
-        _fullyLoaded = !_fullyLoaded;
-    }
-
-    private string UpdateLoadingMsg(string msg) {
-        _loadingMsg = msg;
-        return _loadingMsg;
+    private void UpdateLoadingMsg(string msg) {
+        loadingMsg = msg;
     }
 }
+<!-- A main div to contain each Login Entry table -->
 <div class="w-100" style="max-height:70vh; overflow-y: scroll;">
+    <!-- Div to contain this categories information (example. Category: Other) -->
     <div class="loginEntry-section">
         Category: @Category
     </div>
 
+    <!-- The table, that shows all login entries associated with this category -->
     <table class="loginEntry-table table table-striped table-hover any" @onclick="ClearSelection">
+        <!-- Table Header -->
         <thead>
-            <tr class="small">
-                <th scope="col">Name</th>
-                <th scope="col">Website</th>
-                <th scope="col">Username</th>
-                <th scope="col"> Password</th>
-            </tr>
+        <tr class="small">
+            <th scope="col">Name</th>
+            <th scope="col">Website</th>
+            <th scope="col">Username</th>
+            <th scope="col"> Password</th>
+        </tr>
         </thead>
+        <!-- Update the displayed message, to notify user that entries are being loaded. Useful with MANY entries, or slow connection -->
         @if (!_fullyLoaded) {
-            <p>@UpdateLoadingMsg("Loading entries...")</p>
+            UpdateLoadingMsg("Loading entries...");
         }
+        <!-- Table Content -->
         <tbody class="table-group-divider" @onclick:stopPropagation>
-            @foreach (LoginEntryDTO loginEntry in Entries) {
+        @foreach (LoginEntryDTO loginEntry in Entries) {
+            <!-- Each row acts as a button -->
             <tr role="button" @onclick="() => HandleClick(loginEntry)"
                 @ondblclick="() => HandleDoubleClick(loginEntry)"
                 class="@(selectedEntry == loginEntry ? "active-row" : "")">
-                    <td class="loginEntry-table">@loginEntry.EntryName</td>
-                    <td><a href="@loginEntry.EntryAddress" target="_blank" rel="noopener norefferer">@loginEntry.EntryAddress</a></td>
-                    <td class="loginEntry-table">@loginEntry.EntryUsername</td>
-                    <td class="loginEntry-table">@loginEntry.EntryPassword</td>
-                </tr>
-            }
-            @if (!_fullyLoaded) {
-                UpdateLoadingMsg(String.Empty);
-                ToggleFullyLoaded();
-            }
-            @if (_fullyLoaded && Entries.Count <= 0) {
-                UpdateLoadingMsg("No Login Entries found...");
-            }
+                <td class="loginEntry-table">@loginEntry.EntryName</td>
+                <td><a href="@loginEntry.EntryAddress" target="_blank" rel="noopener norefferer">@loginEntry.EntryAddress</a></td>
+                <td class="loginEntry-table">@loginEntry.EntryUsername</td>
+                <td class="loginEntry-table">@loginEntry.EntryPassword</td>
+            </tr>
+
+        }
+        <!-- Notify UI that for-each loop finished executing -->
+        @if (!_fullyLoaded) {
+            _fullyLoaded = true;
+        }
+
+        <!-- If no entries were loaded/displayed, show proper message. Otherwise 'hide' the message. -->
+        @{ UpdateLoadingMsg(Entries.Count == 0 ? "No Login Entries Found..." : String.Empty); }
         </tbody>
+        
+        <!-- Display a status message beneath the table - that is set depending on what happens in the above code -->
+        <p>@loadingMsg</p>
     </table>
 </div>

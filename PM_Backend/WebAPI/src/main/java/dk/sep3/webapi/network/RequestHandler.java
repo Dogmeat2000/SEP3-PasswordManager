@@ -13,10 +13,13 @@ public class RequestHandler {
         this.communicationClient = communicationClient;
     }
 
+    /**
+     * Handles an incoming client request by forwarding it to the CommunicationClient for processing.
+     *
+     * @param request The client request to be handled.
+     * @return A ServerResponse indicating the result of the request.
+     */
     public ServerResponse handle(ClientRequest request) {
-        ServerResponse response = communicationClient.callDbServer(request);
-        System.out.println("WebAPI: Response: " + response.getStatusCode());
-
-        return response;
+        return communicationClient.callDbServer(request);
     }
 }

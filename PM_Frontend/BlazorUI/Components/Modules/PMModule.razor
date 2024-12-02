@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Components.Sections
-@using ServiceLayer.Services
+﻿@using ServiceLayer.Services
 @using Shared.CommunicationObjects
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
@@ -55,8 +54,24 @@
         }
     }
 
+    /**<summary> Method handles loading entries from the connected servers.
+     * It also gracefully handles exceptions occuring in this process,
+     * and displays meaningful messages to the user.
+     * It will try loading entries several times, before 'giving up'
+     * and showing an exception message</summary>
+     * <remarks>TODO: Method is not finalized.
+     * A fully SOLID implementation of Categories has not been completed.
+     * Currently just uses hard-coded values. This should change!
+     * See TODO details in method.</remarks>
+     */
     private async Task LoadEntries()
     {
+        //Clear lists to make room for the updated entries
+        socialMediaEntries.Clear();
+        bankEntries.Clear();
+        otherEntries.Clear();
+        StateHasChanged();
+        
         int retryCount = 3;
         int counter = 0;
         while (counter < retryCount)
@@ -69,11 +84,6 @@
 
                 if (response is { statusCode: 200, dto: LoginEntryListDTO { loginEntries.Count: > 0 } entries })
                 {
-                    //Clear lists to make room for the updated entries
-                    socialMediaEntries.Clear();
-                    bankEntries.Clear();
-                    otherEntries.Clear();
-                    
                     IEnumerable<LoginEntryDTO> enumerableEntries = entries.loginEntries;
                     // Categorize entries to "Social Media" category:
                     socialMediaEntries = enumerableEntries.Where(e => e.EntryCategory == "Social Media").ToList(); //TODO: These names should not be hard-coded. They should be read from the DB list of Categories.
@@ -91,16 +101,19 @@
                     
                     counter += 100000;
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (KeyNotFoundException) {
+                // Each 'login category' displays a message when no entries can be found. See the 'LoginEntryListViewModule'
+                counter += 100000;
+            } catch (Exception e) {
                 Console.WriteLine($"[PMModule] Exception occurred: {e.Message}");
                 loadExceptionMsg = (MarkupString)("<b>Error:</b> Exception occurred while loading login entries." +
                                                   $"<br><br><b>Type:</b> {e.GetType()}<br><br><b>Reason:</b> {e.Message}");
                 counter++;
-                Thread.Sleep(250);
+                await Task.Delay(250);
             }
         }
+        
+        // Prompt the UI to update, based on what happened in this method:
         StateHasChanged();
     }
 
@@ -134,7 +147,7 @@
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
         var random = new Random();
-        return new string(Enumerable.Repeat(chars, 12)
+        return new string(Enumerable.Repeat(chars, 16)
             .Select(s => s[random.Next(s.Length)]).ToArray());
     }
 
@@ -152,16 +165,18 @@
     
     private async Task HandleEntryUpdateSuccess()
     {
-    
+        await LoadEntries();
+        selectedEntry = null; 
+        StateHasChanged();
     }
     
     private async Task HandleEntryDeleteSuccess()
     {
         await LoadEntries();
+        selectedEntry = null; 
         StateHasChanged();
     }
-
-
+    
     private void OnEntrySingleClicked(LoginEntryDTO entry)
     {
         selectedEntry = entry;

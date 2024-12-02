@@ -18,25 +18,15 @@ namespace ServiceLayer.Services
         Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto);
 
         /**
-         * WARNING: This should not be accessible as it will return a master user with username and password, 
+         * WARNING: This should not be accessible as it will return a master user with username and its encrypted password, 
          * and only takes the id as param. Another method should be made for login-purposes.
          * Sends a read request to get a master user.
          * Delegates business-logic to IMasterUserService.
          * @param masterUserId the id of the master user which is wanted
          * @return MasterUserDTO: The master user which id is used as parameter.
-         * Todo: Think about if parameters should be changed so that the method can be used for login-purposes.
          */
         Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO masterUserDto);
 
-        /**
-         * Sends a request to retrieve all login entries.
-         * Delegates business-logic to ILoginEntryService.
-         * Decrypts the passwords in the returned entries before returning them.
-         *
-         * @return ServerResponse containing the list of decrypted LoginEntryDTO objects
-         */
-        // TODO: Marcus, commented out due to errors.
-        //Task<ServerResponse> AuthenticateUserAsync(MasterUserDTO masterUserDto);
 
         /** <summary>Sends a request to fetch all login_entries, associated with the designated MasterUser.
          * Delegates business logic to ILoginEntryService (Such as validation and encryption).</summary>

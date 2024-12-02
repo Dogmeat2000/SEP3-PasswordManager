@@ -16,6 +16,12 @@ public class WebAPIServerController {
         this.server = server;
     }
 
+    /**
+     * Handles client requests by forwarding them to the WebAPIServer for processing.
+     *
+     * @param request The client request that needs to be processed.
+     * @return ResponseEntity containing the ServerResponse and appropriate HTTP status.
+     */
     @PostMapping("/handleRequest")
     public ResponseEntity<ServerResponse> handleRequest(@RequestBody ClientRequest request) {
         System.out.println("Received request: " + request.getRequestType());
