@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Components.Sections
-@using ServiceLayer.Services
+﻿@using ServiceLayer.Services
 @using Shared.CommunicationObjects
 @using Shared.Dtos
 @inject IServiceLayer ServiceLayer
@@ -55,6 +54,16 @@
         }
     }
 
+    /**<summary> Method handles loading entries from the connected servers.
+     * It also gracefully handles exceptions occuring in this process,
+     * and displays meaningful messages to the user.
+     * It will try loading entries several times, before 'giving up'
+     * and showing an exception message</summary>
+     * <remarks>TODO: Method is not finalized.
+     * A fully SOLID implementation of Categories has not been completed.
+     * Currently just uses hard-coded values. This should change!
+     * See TODO details in method.</remarks>
+     */
     private async Task LoadEntries()
     {
         int retryCount = 3;
@@ -91,7 +100,7 @@
                     
                     counter += 100000;
                 }
-            } catch (KeyNotFoundException ignored) {
+            } catch (KeyNotFoundException) {
                 // Each 'login category' displays a message when no entries can be found. See the 'LoginEntryListViewModule'
                 counter += 100000;
             } catch (Exception e) {
@@ -102,6 +111,8 @@
                 await Task.Delay(250);
             }
         }
+        
+        // Prompt the UI to update, based on what happened in this method:
         StateHasChanged();
     }
 
