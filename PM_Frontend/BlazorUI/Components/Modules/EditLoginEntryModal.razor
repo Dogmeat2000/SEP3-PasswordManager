@@ -1,6 +1,5 @@
 ﻿@using System.Security.Authentication
 @using System.Security.Claims
-@using Microsoft.AspNetCore.Http.HttpResults
 @using ServiceLayer.Services
 @using ServiceLayer.Services.LoginEntryService
 @using Shared.Dtos
@@ -34,7 +33,7 @@
 
                     <div class="form-group mb-3">
                         <label for="entryPassword" class="form-label">Password</label>
-                        <input type="password" id="entryPassword" class="form-control" @bind="entryPassword" placeholder="Enter password"/>
+                        <input type="text" id="entryPassword" class="form-control" @bind="entryPassword" placeholder="Enter password"/>
                     </div>
 
                     <!-- Optional Category Selection -->
@@ -61,8 +60,8 @@
                                     @errorMessage
                                 </div>
                             }
-                        <button class="btn btn-secondary" @onclick="HideModal">Cancel</button>
-                        <button class="btn btn-secondary" @onclick="DeleteLoginEntryAsync" @onclick:preventDefault disabled="@isLoading">Delete</button>
+                        <button class="btn btn-outline-secondary" @onclick="HideModal">Cancel</button>
+                        <button class="btn btn-secondary" @onclick="ConfirmDelete" @onclick:preventDefault disabled="@isLoading">Delete</button>
                         <button class="btn btn-primary" @onclick="UpdateLoginEntryAsync" @onclick:preventDefault disabled="@isLoading">Save</button>
                     </div> 
                 </form>
@@ -71,11 +70,50 @@
     </div>
 }
 
+@if (isDeleteConfirmationVisible)
+{
+    <div class="modal fade show d-block" @onclick="HideDeleteConfirmation" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog" @onclick:stopPropagation>
+            <div class="modal-content">
+                <div class="modal-header header">
+                    <h5 class="modal-title">Confirm Deletion</h5>
+                    <button type="button" class="close btn bg-white" @onclick="HideDeleteConfirmation">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this entry?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary" @onclick="HideDeleteConfirmation">Cancel</button>
+                    <button class="btn btn-danger" @onclick="DeleteLoginEntryAsync" @onclick:preventDefault>Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (isUpdateSuccessVisible)
+{
+    <div class="alert alert-success position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
+        Entry successfully updated!
+    </div>
+}
+
+@if (isDeleteSuccessVisible)
+{
+    <div class="alert alert-success position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
+        Entry successfully deleted!
+    </div>
+}
+
+
 @code {
     [CascadingParameter] public Task<AuthenticationState> State { get; set; }
     
     private bool isVisible = false;
     private bool isLoading = false;
+    private bool isUpdateSuccessVisible = false;
+    private bool isDeleteConfirmationVisible = false;
+    private bool isDeleteSuccessVisible = false;
     private string errorMessage = string.Empty; 
 
     [Parameter]
@@ -123,6 +161,18 @@
         isVisible = true; 
         StateHasChanged();
     }
+    
+    private void ConfirmDelete()
+    {
+        isDeleteConfirmationVisible = true;
+        StateHasChanged();
+    }
+
+    private void HideDeleteConfirmation()
+    {
+        isDeleteConfirmationVisible = false;
+        StateHasChanged();
+    }
 
     private void HideModal()
     {
@@ -151,6 +201,7 @@
             }
 
             await Task.Delay(1000);
+            ShowUpdateSuccessMessage();
 
             HideModal();
         }
@@ -166,7 +217,34 @@
 
     }
 
-
+    private void ShowUpdateSuccessMessage()
+    {
+        isUpdateSuccessVisible = true;
+        StateHasChanged();
+        _ = HideUpdateSuccessMessageAfterDelay();
+    }
+    
+    private async Task HideUpdateSuccessMessageAfterDelay()
+    {
+        await Task.Delay(3000);
+        isUpdateSuccessVisible = false;
+        StateHasChanged();
+    }
+    
+    private void ShowDeleteSuccessMessage()
+    {
+        isDeleteSuccessVisible = true;
+        StateHasChanged();
+        _ = HideDeleteSuccessMessageAfterDelay();
+    }
+    
+    private async Task HideDeleteSuccessMessageAfterDelay()
+    {
+        await Task.Delay(3000);
+        isDeleteSuccessVisible = false;
+        StateHasChanged();
+    }
+    
     private async Task DeleteLoginEntryAsync()
     {
         isLoading = true;
@@ -186,7 +264,9 @@
             await OnDeleteEntrySuccess.InvokeAsync();
             
             await Task.Delay(1000);
+            ShowDeleteSuccessMessage();
 
+            HideDeleteConfirmation();
             HideModal();
         }
         catch (Exception e)

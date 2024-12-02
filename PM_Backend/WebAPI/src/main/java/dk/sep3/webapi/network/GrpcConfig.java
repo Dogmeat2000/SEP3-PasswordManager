@@ -12,6 +12,11 @@ public class GrpcConfig
 {
   private ManagedChannel channel;
 
+  /**
+   * Creates and configures a gRPC ManagedChannel to connect to the Password Manager server.
+   *
+   * @return The ManagedChannel configured to connect to localhost at port 8090.
+   */
   @Bean
   public ManagedChannel grpcChannel() {
     channel = ManagedChannelBuilder.forAddress("localhost", 8090)
@@ -20,11 +25,20 @@ public class GrpcConfig
     return channel;
   }
 
+  /**
+   * Creates a gRPC blocking stub to communicate with the Password Manager service.
+   *
+   * @param channel The ManagedChannel used to connect to the gRPC server.
+   * @return The blocking stub for making synchronous calls to the Password Manager service.
+   */
   @Bean
   public PasswordManagerServiceGrpc.PasswordManagerServiceBlockingStub passwordManagerServiceBlockingStub(ManagedChannel channel) {
     return PasswordManagerServiceGrpc.newBlockingStub(channel);
   }
 
+  /**
+   * Shuts down the gRPC channel if it is open.
+   */
   public void shutdownChannel() {
     if (channel != null && !channel.isShutdown()) {
       channel.shutdown();

@@ -19,6 +19,11 @@ public class WebAPIServerFactory {
         this.requestHandler = requestHandler;
     }
 
+    /**
+     * Creates a new WebAPIServer instance and starts a new server process on an available port.
+     *
+     * @return A new instance of WebAPIServer with a unique port and process.
+     */
     public WebAPIServer createNewServer() {
         int port = getNextAvailablePort();
         String newServerUrl = "https://localhost:" + port;
@@ -56,6 +61,11 @@ public class WebAPIServerFactory {
         }
     }
 
+    /**
+     * Finds the next available port to use for creating a new WebAPIServer.
+     *
+     * @return An available port number.
+     */
     private int getNextAvailablePort() {
         while (true) {
             int port = currentPort++;
@@ -65,6 +75,12 @@ public class WebAPIServerFactory {
         }
     }
 
+    /**
+     * Checks if a specific port is available for use.
+     *
+     * @param port The port number to check.
+     * @return True if the port is available, false otherwise.
+     */
     private boolean isPortAvailable(int port) {
         try (ServerSocket socket = new ServerSocket(port)) {
             socket.setReuseAddress(true);

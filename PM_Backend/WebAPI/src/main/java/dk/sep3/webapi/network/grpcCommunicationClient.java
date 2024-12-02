@@ -12,9 +12,10 @@ import grpc.PasswordManagerServiceGrpc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/** gRPC communicationClient, responsible for making contact with dbServer and sending the results back through the system
- * Uses Converter class to convert ClientRequest to gRPC's GenericRequest-format **/
-
+/**
+ * gRPC CommunicationClient, responsible for making contact with dbServer and sending the results back through the system.
+ * Uses converter classes to convert ClientRequest to gRPC's GenericRequest format and to convert gRPC responses to ServerResponse.
+ */
 @Component
 public class grpcCommunicationClient implements CommunicationClient {
     private final PasswordManagerServiceGrpc.PasswordManagerServiceBlockingStub stub;
@@ -35,6 +36,12 @@ public class grpcCommunicationClient implements CommunicationClient {
     }
 
 
+    /**
+     * Calls the dbServer using gRPC to handle the provided client request.
+     *
+     * @param request The ClientRequest object that needs to be processed by the dbServer.
+     * @return A ServerResponse object containing the response from the dbServer.
+     */
     @Override
     public ServerResponse callDbServer(ClientRequest request) {
         GenericRequest grpcRequest = requestConverter.convert(request);
@@ -49,6 +56,9 @@ public class grpcCommunicationClient implements CommunicationClient {
         return response;
     }
 
+    /**
+     * Shuts down the gRPC channel when it is no longer needed.
+     */
     @Override
     public void shutdown() {
         grpcConfig.shutdownChannel();
