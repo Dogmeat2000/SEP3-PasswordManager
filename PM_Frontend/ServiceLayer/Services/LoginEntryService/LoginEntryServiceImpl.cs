@@ -45,11 +45,7 @@ public class LoginEntryServiceImpl : ILoginEntryService
         return decryptedResponse;
     }
 
-    /**
-     * Creates a new login entry, encrypting the password before sending it to the server.
-     * @param newEntry LoginEntryDTO containing the data for the new entry.
-     * @return ServerResponse containing the created entry.
-     */
+
     public async Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO newEntry)
     {
 
@@ -78,11 +74,7 @@ public class LoginEntryServiceImpl : ILoginEntryService
     }
 
 
-    /**
-     * Updates an existing login entry, encrypting the password before sending it to the server.
-     * @param updatedEntry LoginEntryDTO containing the updated data.
-     * @return ServerResponse containing the updated entry.
-     */
+
     public async Task<LoginEntryDTO> UpdateLoginEntryAsync(LoginEntryDTO updatedEntry)
     {
         if (updatedEntry == null)
@@ -119,12 +111,7 @@ public class LoginEntryServiceImpl : ILoginEntryService
     
         return (LoginEntryDTO)decryptedResponse.dto;
     }
-
-    /**
-     * Deletes a login entry by its ID.
-     * @param entryId The ID of the entry to delete.
-     * @return ServerResponse indicating success or failure of the deletion.
-     */
+    
     public async Task<bool> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete)
     {
         var response = await _webApiClient.DeleteLoginEntryAsync(entryToDelete);
