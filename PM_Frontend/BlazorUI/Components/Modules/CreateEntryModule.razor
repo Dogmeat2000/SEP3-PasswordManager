@@ -53,7 +53,7 @@
             return;
         }
 
-        if (!entryAddress.Contains("https://") || !entryAddress.Contains("http://"))
+        if (!entryAddress.Contains("https://") && !entryAddress.Contains("http://") && !entryAddress.Contains("http"))
         {
             entryAddress = "https://" + entryAddress;
         }
