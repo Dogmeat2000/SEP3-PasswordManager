@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
+/** <p>Class is responsible for receiving and handling all incoming gRPC messages</p>*/
 @GrpcService
 public class DbServerPmGrpcServiceImpl extends PasswordManagerServiceGrpc.PasswordManagerServiceImplBase
 {
@@ -37,6 +38,9 @@ public class DbServerPmGrpcServiceImpl extends PasswordManagerServiceGrpc.Passwo
     }
   }
 
+  /**<p>Primary method for receiving and handling each gRPC request, including exception handling.</p>
+   * @param request the gRPC compatible GenericRequest to handle.
+   * @param responseObserver the gRPC compatible stream into which to inject the GenericResponse to return to the gRPC client.*/
   @Override public void handleRequest(GenericRequest request, StreamObserver<GenericResponse> responseObserver){
     try {
       // Validate request

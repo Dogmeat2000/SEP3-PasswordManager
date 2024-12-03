@@ -7,6 +7,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 
+/**
+ * <p>LoginEntryRepositoryService defines the interface responsible for the database methods relating to LoginEntry registration and management.</p>
+ */
 public interface LoginEntryRepositoryService {
     LoginEntry createLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException;
 

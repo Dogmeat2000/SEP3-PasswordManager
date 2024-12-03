@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.net.ssl.SSLContext;
 
+/**<p>Class is responsible for defining the @Configuration data required for accessing the WEB Api server security through https/SSL</p> */
 @Configuration
 public class RestTemplateConfig {
 

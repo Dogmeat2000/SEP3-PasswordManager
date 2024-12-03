@@ -14,7 +14,7 @@ import io.grpc.StatusRuntimeException;
 
 import java.util.Scanner;
 
-// This is a simple CommandLineInterface debugging tool, to test the foundational DB Server architecture (simulate gRPC calls and if they properly affect the database repository).
+/** <p>This is a simple CommandLineInterface debugging tool, to test the foundational DB Server architecture (simulate gRPC calls and if they properly affect the database repository).</p>*/
 public class dbServerDebug_CLI
 {
   private static final String host = "localhost";

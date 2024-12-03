@@ -1,6 +1,5 @@
 package dk.sep3.dbserver.grpc.adapters.commands.implementations;
 
-import common.dto.LoginEntryDTO;
 import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommand;
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.LoginEntryDTOtoLoginEntryEntity;
 import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
+/** <p>Defines the database server logic relating to executing this command</p>*/
 @Component
 public class DeleteLoginEntryCommand implements GrpcCommand {
     private final LoginEntryRepositoryService loginEntryServiceImpl;

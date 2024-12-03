@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+/**
+ * <p>Implementation responsible for adding this gRPC/database server to the discovery service so external clients may find it</p>
+ */
 @Service
 public class DiscoveryRepositoryServiceImpl implements DiscoveryRepositoryService
 {

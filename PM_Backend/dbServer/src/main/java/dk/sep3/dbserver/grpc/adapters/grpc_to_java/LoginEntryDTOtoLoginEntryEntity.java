@@ -3,6 +3,7 @@ package dk.sep3.dbserver.grpc.adapters.grpc_to_java;
 import dk.sep3.dbserver.model.Pm.db_entities.LoginEntry;
 import grpc.LoginEntryDTO;
 
+/** <p>Responsible for converting a gRPC connection data entries into java database server compatible db entities</p> */
 public class LoginEntryDTOtoLoginEntryEntity {
 
     public static LoginEntry convertToLoginEntryEntity(LoginEntryDTO grpcDTO)

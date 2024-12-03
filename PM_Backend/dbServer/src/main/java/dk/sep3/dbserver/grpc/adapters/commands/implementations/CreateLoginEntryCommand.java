@@ -2,10 +2,8 @@ package dk.sep3.dbserver.grpc.adapters.commands.implementations;
 
 import dk.sep3.dbserver.grpc.adapters.commands.GrpcCommand;
 import dk.sep3.dbserver.grpc.adapters.grpc_to_java.LoginEntryDTOtoLoginEntryEntity;
-import dk.sep3.dbserver.grpc.adapters.grpc_to_java.MasterUserDTOtoMasterUserEntity;
 import dk.sep3.dbserver.grpc.factories.GenericResponseFactory;
 import dk.sep3.dbserver.model.Pm.db_entities.LoginEntry;
-import dk.sep3.dbserver.model.Pm.db_entities.MasterUser;
 import dk.sep3.dbserver.service.Pm.LoginEntryRepositoryService;
 import grpc.GenericRequest;
 import grpc.GenericResponse;
@@ -14,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
+/** <p>Defines the database server logic relating to executing this command</p>*/
 @Component
 public class CreateLoginEntryCommand implements GrpcCommand {
 
