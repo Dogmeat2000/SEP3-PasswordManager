@@ -7,7 +7,15 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 
+/**
+ * Service implementation for managing LoginEntry entities.
+ * Provides methods to create, read, update, and delete LoginEntries.
+ */
 public interface LoginEntryRepositoryService {
+    /**
+     * Service implementation for managing LoginEntry entities.
+     * Provides methods to create, read, update, and delete LoginEntries.
+     */
     LoginEntry createLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException;
 
 
@@ -19,7 +27,20 @@ public interface LoginEntryRepositoryService {
      * @throws DataIntegrityViolationException Thrown if the provided id is invalid (i.e. 0, or negative).
      */
     List<LoginEntry> readLoginEntriesByMasterUserId(int id) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException;
+
+    /**
+     * Service implementation for managing LoginEntry entities.
+     * Provides methods to create, read, update, and delete LoginEntries.
+     */
     LoginEntry updateLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException;
+
+    /**
+     * Deletes an existing LoginEntry from the database.
+     *
+     * @param loginEntry The LoginEntry object to be deleted.
+     *                   Must have a valid ID and must exist in the database.
+     * @throws PersistenceException If the LoginEntry does not exist or if a persistence-related error occurs.
+     */
     void deleteLoginEntry(LoginEntry loginEntry) throws PersistenceException;
 
 }
