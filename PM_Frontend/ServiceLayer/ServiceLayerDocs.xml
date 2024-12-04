@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ServiceLayer</name>
+    </assembly>
+    <members>
+        <member name="T:ServiceLayer.Networking.IWebApiClient">
+            Handles the communication with the Web-api, sends and receives requests.
+        </member>
+        <member name="M:ServiceLayer.Networking.IWebApiClient.CreateMasterUserAsync(Shared.Dtos.MasterUserDTO)">
+             Sends a request to create a new master user in the Web API.
+            
+             @param masterUserDto DTO containing the master user data to be created.
+             @return ServerResponse containing the result of the creation request.
+        </member>
+        <member name="M:ServiceLayer.Networking.IWebApiClient.ReadLoginEntriesAsync(Shared.Dtos.MasterUserDTO)">
+            <summary>Reads all login entries from the database, associated with the logged-in user.</summary>
+            <param name="dto">An encrypted <see cref="T:Shared.Dtos.MasterUserDTO"/> object that contains the currently logged in MasterUser's id, username and password</param>
+            <returns> <p>If Successful: A <see cref="T:Shared.CommunicationObjects.ServerResponse"/> object containing an <b>encrypted</b> DTO of <see cref="T:Shared.Dtos.LoginEntryListDTO"/> type, associated with the logged-in user...</p>
+            <p>If unsuccessful: A <see cref="T:Shared.CommunicationObjects.ServerResponse"/> object containing the received HTTP status code and exception message</p></returns>
+        </member>
+        <member name="T:ServiceLayer.Networking.NetworkExceptionHandler">
+            <summary>
+            Is responsible for receiving and translating http StatusCodes into C# exceptions,
+            where the StatusCodes correspond to any non-success code.
+            </summary> 
+        </member>
+        <member name="M:ServiceLayer.Networking.NetworkExceptionHandler.HandleException(System.Net.HttpStatusCode,System.String)">
+            <summary>Receives http statusCodes and translates these into proper C# exceptions, causing the proper exception to be thrown in the application.
+            This allows for other C# classes to properly act upon these exceptions. This method ignores any success codes.
+            </summary>
+            <param name="statusCode">The http statusCode for the error.</param>
+            <param name="exceptionMsg">The http exception message / reason, typically provided alongside the status code.</param>
+            <exception cref="T:System.ArgumentException">When statusCode 400 'BadRequest' is received. </exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">When statusCode 404 'NotFound' is received. </exception>
+            <exception cref="T:System.UnauthorizedAccessException">When statusCode 405 'MethodNotAllowed' is received. </exception>
+            <exception cref="T:System.Data.DataException">When statusCode 409 'Conflict' is received. </exception>
+            <exception cref="T:System.IO.IOException">When statusCode 500 'InternalServerError' is received. </exception>
+            <exception cref="T:System.Diagnostics.UnreachableException">When statusCode 503 'ServiceUnavailable' is received. </exception>
+            <exception cref="T:System.Exception">When any statusCode other than the above specified, is received (excluding success codes). </exception>
+        </member>
+        <member name="M:ServiceLayer.Networking.WebApiClientImpl.UpdateLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+            Updates LoginEntry in DB *
+        </member>
+        <member name="M:ServiceLayer.Networking.WebApiClientImpl.DeleteLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+            Deletes LoginEntry in DB *
+        </member>
+        <member name="T:ServiceLayer.Services.Cryptography.AesEncryptionHelper">
+            AES encryption helper class.
+            Uses symmetrical encryption AES (Advanced Encryption Standard) for encryption of sensitive data.
+            The same key is used both for encryption and decryption *
+        </member>
+        <member name="T:ServiceLayer.Services.Cryptography.ICryptographyService">
+            <summary>
+            Interface for cryptography services, providing methods to encrypt and decrypt various data objects.
+            </summary>
+        </member>
+        <member name="M:ServiceLayer.Services.Cryptography.ICryptographyService.EncryptMasterUserAsync(Shared.Dtos.MasterUserDTO)">
+            <summary>
+            Encrypts the provided MasterUserDTO object.
+            </summary>
+            <param name="masterUserDTO">The MasterUserDTO object to encrypt.</param>
+            <returns>A Task representing the asynchronous operation. 
+            The result contains the encrypted MasterUserDTO object.</returns>
+        </member>
+        <member name="M:ServiceLayer.Services.Cryptography.ICryptographyService.DecryptServerResponceAsync(Shared.CommunicationObjects.ServerResponse)">
+            <summary>
+            Decrypts the provided ServerResponse object.
+            </summary>
+            <param name="serverResponse">The ServerResponse object to decrypt.</param>
+            <returns>A Task representing the asynchronous operation. 
+            The result contains the decrypted ServerResponse object.</returns>
+        </member>
+        <member name="M:ServiceLayer.Services.Cryptography.ICryptographyService.EncryptLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+            <summary>
+            Encrypts the provided LoginEntryDTO object.
+            </summary>
+            <param name="loginEntryDTO">The LoginEntryDTO object to encrypt.</param>
+            <returns>A Task representing the asynchronous operation. 
+            The result contains the encrypted LoginEntryDTO object.</returns>
+        </member>
+        <member name="M:ServiceLayer.Services.Cryptography.ICryptographyService.DecryptLoginEntryAsync(Shared.CommunicationObjects.ServerResponse)">
+            <summary>
+            Decrypts the LoginEntry information in the provided ServerResponse object.
+            </summary>
+            <param name="serverResponse">The ServerResponse object containing the LoginEntry to decrypt.</param>
+            <returns>A Task representing the asynchronous operation. 
+            The result contains the ServerResponse object with decrypted LoginEntry data.</returns>
+        </member>
+        <member name="M:ServiceLayer.Services.Cryptography.ICryptographyService.DecryptLoginEntryListAsync(Shared.CommunicationObjects.ServerResponse)">
+            <summary>
+             Handles decryption of the <see cref="T:Shared.Dtos.LoginEntryListDTO"/>, where embedded Login Entries are decrypted and repacked into this DTO.
+             </summary>
+             
+             <remarks>Currently this method tries to decrypt data. If it fails, it just displays it in its encrypted form.</remarks>
+             
+             <param name="serverResponse">An encrypted <see cref="T:Shared.CommunicationObjects.ServerResponse"/> object that contains the <see cref="T:Shared.Dtos.LoginEntryListDTO"/> to decrypt</param>
+            
+             <returns> <p>A <see cref="T:Shared.CommunicationObjects.ServerResponse"/> object containing the <b>decrypted</b> DTO of <see cref="T:Shared.Dtos.LoginEntryListDTO"/> type, associated with the logged-in user.</p>
+             </returns>
+        </member>
+        <member name="T:ServiceLayer.Services.IServiceLayer">
+            The interface which the front-end application contacts with requests that will be handled
+            (validated, encrypted, and other business logic) by the service layer.
+        </member>
+        <member name="M:ServiceLayer.Services.IServiceLayer.CreateMasterUserAsync(Shared.Dtos.MasterUserDTO)">
+            Sends a create request to create a new MasterUser.
+            Delegates business-logic to IMasterUserService.
+            @param masterUserDto the master user which is requested to be created
+            @return MasterUserDTO: the created master user
+        </member>
+        <member name="M:ServiceLayer.Services.IServiceLayer.ReadMasterUserAsync(Shared.Dtos.MasterUserDTO)">
+            WARNING: This should not be accessible as it will return a master user with username and its encrypted password, 
+            and only takes the id as param. Another method should be made for login-purposes.
+            Sends a read request to get a master user.
+            Delegates business-logic to IMasterUserService.
+            @param masterUserId the id of the master user which is wanted
+            @return MasterUserDTO: The master user which id is used as parameter.
+        </member>
+        <member name="M:ServiceLayer.Services.IServiceLayer.ReadLoginEntriesAsync(Shared.Dtos.MasterUserDTO)">
+            <summary>Sends a request to fetch all login_entries, associated with the designated MasterUser.
+            Delegates business logic to ILoginEntryService (Such as validation and encryption).</summary>
+            <param name="dto">A <see cref="T:Shared.Dtos.MasterUserDTO"/> object that contains the currently logged in MasterUser's id, username and password</param>
+            <returns> <p>If Successful: A <see cref="T:Shared.CommunicationObjects.ServerResponse"/> object containing a <b>decrypted</b> DTO of <see cref="T:Shared.Dtos.LoginEntryListDTO"/> type, associated with the logged-in user...</p>
+            <p>If unsuccessful: A <see cref="T:Shared.CommunicationObjects.ServerResponse"/> object containing the received HTTP status code and exception message</p></returns>
+            <exception cref="T:System.ArgumentException">Thrown if validation of <see cref="T:Shared.Dtos.MasterUserDTO"/> failed.
+            Provided MasterUser does not contain the currently logged in users id, username and password.</exception>
+        </member>
+        <member name="M:ServiceLayer.Services.IServiceLayer.CreateLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+             Sends a create request for a new login entry.
+             Delegates business-logic to ILoginEntryService.
+             Handles validation before encryption and encrypts the DTO before it is sent on.
+            
+             @param newEntry LoginEntryDTO containing the data for the new entry
+             @return ServerResponse containing the created LoginEntryDTO
+        </member>
+        <member name="M:ServiceLayer.Services.IServiceLayer.UpdateLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+             Sends an update request for an existing login entry.
+             Delegates business-logic to ILoginEntryService.
+             Handles validation before encryption and encrypts the DTO before it is sent on.
+            
+             @param updatedEntry LoginEntryDTO containing updated data for the entry
+             @return ServerResponse containing the updated LoginEntryDTO
+        </member>
+        <member name="M:ServiceLayer.Services.IServiceLayer.DeleteLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+             Sends a delete request for a login entry based on the entry ID.
+             Delegates business-logic to ILoginEntryService.
+            
+             @param entryId The ID of the entry to be deleted
+             @return ServerResponse indicating success or failure of the deletion
+        </member>
+        <member name="T:ServiceLayer.Services.LoginEntryService.ILoginEntryService">
+            Handles business logic for the LoginEntry data entity
+            Business logic includes encryption, validation, and communication with the API.
+        </member>
+        <member name="M:ServiceLayer.Services.LoginEntryService.ILoginEntryService.ReadLoginEntriesAsync(Shared.Dtos.MasterUserDTO)">
+            <summary>Sends a request to fetch all login entries, associated with the designated MasterUser.
+            Handles business logic, such as validated and encrypted before transmission, and decrypted upon receival. </summary>
+            <param name="dto">A <see cref="T:Shared.Dtos.MasterUserDTO"/> object that contains the currently logged in MasterUser's id, username and password</param>
+            <returns> <p>If Successful: A <see cref="T:Shared.CommunicationObjects.ServerResponse"/> object containing a <b>decrypted</b> DTO of <see cref="T:Shared.Dtos.LoginEntryListDTO"/> type, associated with the logged-in user...</p>
+            <p>If unsuccessful: A <see cref="T:Shared.CommunicationObjects.ServerResponse"/> object containing the received HTTP status code and exception message</p></returns>
+            <exception cref="T:System.ArgumentException">Thrown if validation of <see cref="T:Shared.Dtos.MasterUserDTO"/> failed.
+            Provided MasterUser does not contain the currently logged in users id, username and password.</exception>
+        </member>
+        <member name="M:ServiceLayer.Services.LoginEntryService.ILoginEntryService.CreateLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+             Sends a create-request for a new login entry.
+             Handles validation before encryption.
+             Encrypts the DTO before it is sent on.
+            
+             @param newEntry LoginEntryDTO containing data for the new entry
+             @return ServerResponse containing the created LoginEntryDTO
+        </member>
+        <member name="M:ServiceLayer.Services.LoginEntryService.ILoginEntryService.UpdateLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+             Sends an update-request for an existing login entry.
+             Handles validation before encryption.
+             Encrypts the DTO before it is sent on.
+            
+             @param updatedEntry LoginEntryDTO containing updated data for the entry
+             @return ServerResponse containing the updated LoginEntryDTO
+        </member>
+        <member name="M:ServiceLayer.Services.LoginEntryService.ILoginEntryService.DeleteLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+             Sends a delete-request for a login entry based on the entry ID.
+            
+             @param entryId The ID of the entry to be deleted
+             @return ServerResponse indicating success or failure of the deletion
+        </member>
+        <member name="M:ServiceLayer.Services.LoginEntryService.LoginEntryServiceImpl.CreateLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+            Creates a new login entry, encrypting the password before sending it to the server.
+            @param newEntry LoginEntryDTO containing the data for the new entry.
+            @return ServerResponse containing the created entry.
+        </member>
+        <member name="M:ServiceLayer.Services.LoginEntryService.LoginEntryServiceImpl.UpdateLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+            Updates an existing login entry, encrypting the password before sending it to the server.
+            @param updatedEntry LoginEntryDTO containing the updated data.
+            @return ServerResponse containing the updated entry.
+        </member>
+        <member name="M:ServiceLayer.Services.LoginEntryService.LoginEntryServiceImpl.DeleteLoginEntryAsync(Shared.Dtos.LoginEntryDTO)">
+            Deletes a login entry by its ID.
+            @param entryId The ID of the entry to delete.
+            @return ServerResponse indicating success or failure of the deletion.
+        </member>
+        <member name="T:ServiceLayer.Services.MasterUserService.IMasterUserService">
+            Handles business logic for the MasterUser data entity
+            Business logic contains encryption, validation and so on
+        </member>
+        <member name="M:ServiceLayer.Services.MasterUserService.IMasterUserService.CreateMasterUserAsync(Shared.Dtos.MasterUserDTO)">
+            Sends the create-request for the master user further down
+            Handles validation before encryption
+            Encrypts the DTO before it is sent on
+            Decrypts the returning master user before it is returned.
+        </member>
+        <member name="M:ServiceLayer.Services.MasterUserService.IMasterUserService.ReadMasterUserAsync(Shared.Dtos.MasterUserDTO)">
+            Sends the read-request for the master user further down
+            Handles eventual validation
+            Decrypts the returning master user before returning it.
+        </member>
+        <member name="T:ServiceLayer.Services.MasterUserService.MasterUserServiceImpl">
+            Service implementation for handling master user operations such as creation and retrieval.
+            Communicates with a web API to perform the required tasks.
+        </member>
+        <member name="M:ServiceLayer.Services.MasterUserService.MasterUserServiceImpl.CreateMasterUserAsync(Shared.Dtos.MasterUserDTO)">
+             Creates a new master user by sending the provided MasterUserDTO to the web API.
+            
+             @param masterUserDto The data transfer object containing the details of the master user to be created.
+             @return A Task that represents the asynchronous operation. The task result contains a ServerResponse object,
+                     which indicates the result of the create operation.
+             @throws ArgumentNullException if masterUserDto is null.
+        </member>
+        <member name="M:ServiceLayer.Services.MasterUserService.MasterUserServiceImpl.ReadMasterUserAsync(Shared.Dtos.MasterUserDTO)">
+             Reads information about an existing master user by sending the provided MasterUserDTO to the web API.
+            
+             @param masterUserDto The data transfer object containing details for querying the master user.
+             @return A Task that represents the asynchronous operation. The task result contains a ServerResponse object,
+                     which includes the details of the requested master user or an error if the user could not be found.
+             @throws ArgumentNullException if masterUserDto is null.
+        </member>
+    </members>
+</doc>
