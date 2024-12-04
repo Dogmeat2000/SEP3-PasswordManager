@@ -17,7 +17,11 @@ public interface IWebApiClient
      */
     Task<ServerResponse> CreateMasterUserAsync(MasterUserDTO masterUserDto);
 
+    /** Finds a MasterUser in DB that matches the masterUserDto as given **/
     Task<ServerResponse> ReadMasterUserAsync(MasterUserDTO masterUserDto);
+    
+    //LoginEntry methods
+    /** Creates LoginEntry in DB **/
     Task<ServerResponse> CreateLoginEntryAsync(LoginEntryDTO newEntry);
     
     /**<summary>Reads all login entries from the database, associated with the logged-in user.</summary>
@@ -25,6 +29,8 @@ public interface IWebApiClient
      * <returns> <p>If Successful: A <see cref="ServerResponse"/> object containing an <b>encrypted</b> DTO of <see cref="LoginEntryListDTO"/> type, associated with the logged-in user...</p>
      * <p>If unsuccessful: A <see cref="ServerResponse"/> object containing the received HTTP status code and exception message</p></returns>*/
     Task<ServerResponse> ReadLoginEntriesAsync(MasterUserDTO dto);
+    /** Updates LoginEntry in DB **/
     Task<ServerResponse> UpdateLoginEntryAsync(LoginEntryDTO encryptLoginEntryAsync);
+    /** Deletes LoginEntry in DB **/
     Task<ServerResponse> DeleteLoginEntryAsync(LoginEntryDTO entryToDelete);
 }
