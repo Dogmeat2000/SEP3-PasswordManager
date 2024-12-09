@@ -13,7 +13,7 @@ import io.grpc.StatusRuntimeException;
 
 import java.util.Scanner;
 
-// This is a simple CommandLineInterface debugging tool, to test if the Discovery Service properly retransmits requests to a gRPC server.
+/** <p>This is a simple CommandLineInterface debugging tool, to test if the Discovery Service properly retransmits requests to a gRPC server.</p>*/
 public class dbDiscoveryServerDebug_CLI
 {
   private static final String host = "localhost";

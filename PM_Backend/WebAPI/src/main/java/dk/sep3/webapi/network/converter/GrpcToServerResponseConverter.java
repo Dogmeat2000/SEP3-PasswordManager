@@ -7,6 +7,7 @@ import common.dto.MasterUserDTO;
 import grpc.GenericResponse;
 import org.springframework.stereotype.Component;
 
+/**<p>Class provides methods to convert returned (from database server) gRPC compatible GenericRequest messages into http/web compatible ClientRequests</p>*/
 @Component
 public class GrpcToServerResponseConverter {
     public ServerResponse convert(GenericResponse grpcResponse) {

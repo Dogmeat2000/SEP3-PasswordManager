@@ -4,6 +4,7 @@ import dk.sep3.dbserver.grpc.factories.LoginEntryDTOGrpcFactory;
 import dk.sep3.dbserver.model.Pm.db_entities.LoginEntry;
 import grpc.LoginEntryDTO;
 
+/** <p>Responsible for converting java database server compatible db entities into gRPC connection data entries</p> */
 public class LoginEntrytoGrpcLoginEntry {
     public static LoginEntryDTO convertToGrpc(LoginEntry loginEntryEntity) {
         if (loginEntryEntity == null)

@@ -6,6 +6,7 @@ import common.dto.MasterUserDTO;
 import grpc.GenericRequest;
 import org.springframework.stereotype.Component;
 
+/**<p>Class provides methods to convert received (from external web client) http/web compatible ClientRequests into gRPC compatible GenericRequest messages</p>*/
 @Component
 public class ClientRequestToGrpcConverter {
 

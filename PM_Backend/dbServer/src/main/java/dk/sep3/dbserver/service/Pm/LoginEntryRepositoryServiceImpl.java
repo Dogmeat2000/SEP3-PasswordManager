@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * <p>Class implements the interface responsible for the database methods relating to LoginEntry registration and management.</p>
+ */
 @Service
 public class LoginEntryRepositoryServiceImpl implements LoginEntryRepositoryService {
 

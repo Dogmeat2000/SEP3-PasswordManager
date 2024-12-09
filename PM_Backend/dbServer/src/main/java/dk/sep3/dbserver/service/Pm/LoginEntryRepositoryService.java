@@ -8,13 +8,14 @@ import org.springframework.dao.DataIntegrityViolationException;
 import java.util.List;
 
 /**
- * Service implementation for managing LoginEntry entities.
- * Provides methods to create, read, update, and delete LoginEntries.
+ * <p>Service implementation for managing LoginEntry entities.
+ * Provides methods to create, read, update, and delete LoginEntries.</p>
  */
 public interface LoginEntryRepositoryService {
     /**
-     * Service implementation for managing LoginEntry entities.
-     * Provides methods to create, read, update, and delete LoginEntries.
+     * <p>Service implementation for creating LoginEntry entities.</p>
+     * @throws PersistenceException Thrown if creating LoginEntry failed, due to system/persistence issues (i.e. Repository is offline, etc.)
+     * @throws DataIntegrityViolationException Thrown if the provided data required for creation, is invalid.
      */
     LoginEntry createLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException;
 
@@ -28,14 +29,17 @@ public interface LoginEntryRepositoryService {
      */
     List<LoginEntry> readLoginEntriesByMasterUserId(int id) throws NotFoundInDBException, DataIntegrityViolationException, PersistenceException;
 
-    /**
-     * Service implementation for managing LoginEntry entities.
-     * Provides methods to create, read, update, and delete LoginEntries.
-     */
+
+  /**
+   * <p>Service implementation for updating LoginEntry entities.</p>
+   * @param loginEntry The JPA compatible LoginEntry object to persist.
+   * @throws PersistenceException Thrown if updating LoginEntry failed, due to system/persistence issues (i.e. Repository is offline, etc.)
+   * @throws DataIntegrityViolationException Thrown if the provided data LoginEntry contains invalid data.
+   */
     LoginEntry updateLoginEntry(LoginEntry loginEntry) throws DataIntegrityViolationException, PersistenceException;
 
     /**
-     * Deletes an existing LoginEntry from the database.
+     * <p>Deletes an existing LoginEntry from the database.</p>
      *
      * @param loginEntry The LoginEntry object to be deleted.
      *                   Must have a valid ID and must exist in the database.

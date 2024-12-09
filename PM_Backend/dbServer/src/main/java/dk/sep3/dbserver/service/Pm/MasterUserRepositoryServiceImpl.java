@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * <p>Class implements the interface responsible for the database methods relating to MasterUser registration and management.</p>
+ */
 @Service
 public class MasterUserRepositoryServiceImpl implements MasterUserRepositoryService
 {
