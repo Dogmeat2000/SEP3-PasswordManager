@@ -1,59 +1,34 @@
-# SEP3 Password Manager
+# Password Manager
+![(Application Screenshot)](Development_Files/Screenshot.png)
 
-## Installation Guide
 
-### Certificates for Secure SSL Connections
-This system relies on HTTPS encryption to securely transport  
-data between the client and server. To enable secure communication,  
-the system uses two types of certificates: a self-signed keystore  
-for the server and a public certificate for the client.
+## Features
+Developed in Java and C#, using Blazor, PostgreSQL, Spring Boot, Spring Security (Argon2), Maven, gRPC, Restful webservices (principle), AES Encryption, HTTPS/SSL, JPA implemented with Hibernate and various design patterns, such as: Singleton, Adapter, Strategy & Observer patterns.
 
-#### Server-Side Certificate
-The server uses a self-signed `keystore.jks` file, which contains  
-the `mycert` certificate. This file is located in the  
-`src/main/resources` folder of both the **LoadBalancer** and  
-**WebAPI** modules.
+Features include:
+1. Login and User creation functionality (encrypted).
+2. User Login Credential storage and management.
+3. Persistence - using Object Relational Modelling with JPA, implemented with Hibernate.
+4. Secure communication from Web Interface (HTTPS/SSL) to first Java load balancer.
+5. Implementation of GRPC communication protocols for the Java backend.
+6. Implementation of secure hashing (Argon2) for user credential storage.
 
-- The `keystore.jks` file includes both the private and public keys.
-- The certificate details (file path, password, and alias) are  
-  configured in the `application.properties` file.
+## Video Showcase
+https://github.com/user-attachments/assets/b8476550-cb56-4d21-b5fd-4aef7499daba
 
-#### Client-Side Certificate
-The client must trust the server's certificate by using the  
-same public key. To achieve this, the public key is extracted  
-from the `keystore.jks` file using the **Keytool** utility.  
-The exported public key is stored in the `backend-cert.cer` file,  
-located in the `src/main/resources` folder of the **LoadBalancer**  
-module.
 
-**Steps to Install/Trust the Certificate**  
-To enable the client to trust the server, the public key must  
-be installed as a trusted certificate on the client machine:
 
-1. Locate the `backend-cert.cer` file in the file explorer and  
-   double-click it.
-2. In the popup window, click **Install Certificate**.
-3. Choose **Local Machine** (administrative rights required).
-4. Select **Place all certificates in the following store** and  
-   choose:
-  - **Trusted Root Certification Authorities** (Rodnøglecentre, der er tillid til).
-5. Complete the installation process.
+## Installation and Usage:
+Please follow the instructions presented in the [Installation Manual](Development_Files/Bilag%20U%20-%20Installationsguide.pdf) and the [User Guide](Development_Files/Bilag%20R%20-%20User%20Guide.pdf)
 
-### Starting the System for the First Time (Client Side)
-Since the certificates are self-signed, most browsers will not  
-initially accept them as trusted. When opening the client side  
-in a browser for the first time, the user will need to manually  
-proceed past a security warning.
+## UML Use Case Diagram
+![(UML Use Case Diagram)](Development_Files/Bilag%20D%20-%20Use%20Case%20Diagram.svg)
 
-**Steps to Proceed with Self-Signed Certificates:**
-1. When the browser shows a security warning, click the  
-   **Advanced** link.
-2. Click **Proceed to [URL] (unsafe)**.
-3. The browser will temporarily accept the certificate, allowing  
-   access to the Password Manager.
+## UML Domain Model
+![(UML Domain Model)](Development_Files/DomainModel.svg)
 
-### Future Improvements
-Once the system is hosted in production, a proper certificate  
-from a trusted Certificate Authority (e.g., Let's Encrypt) will  
-replace the self-signed certificate to avoid these warnings and  
-improve security.
+## Global Relations Diagram
+![(UML Domain Model)](Development_Files/GRD_PlanningPoker.svg)
+
+## UML Class Diagram
+![(UML Class Diagram)](Development_Files/Bilag%20H%20-%20UML%20Klassediagram.svg)
