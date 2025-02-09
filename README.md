@@ -14,7 +14,7 @@ Features include:
 7. Implementation of secure hashing (Argon2) for user credential storage.
 
 ## Video Showcase
-https://github.com/user-attachments/assets/b8476550-cb56-4d21-b5fd-4aef7499daba
+https://github.com/user-attachments/assets/8fe13462-ce9a-4931-a713-08d11ce2e21b
 
 ## Installation and Usage:
 Please follow the instructions presented in the [Installation Manual](Development_Files/Installationsguide%20for%20PasswordManager.pdf) and the [User Guide](Development_Files/Reference%20Manual.pdf)
